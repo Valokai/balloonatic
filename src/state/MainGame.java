@@ -14,7 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainGame extends StateBasedGame {
 
-    public static final int SCREEN_WIDTH = 1900;
+    private Float t;
     public static final int SCREEN_HEIGHT = 920;
 
     public MainGame() {
@@ -29,7 +29,7 @@ public class MainGame extends StateBasedGame {
     // Main entry point for the game, set up the app and its window etc
     public static void main(String[] args) throws SlickException {
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+//        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
         app.setVSync(true);
         app.setShowFPS(false);
         app.start();
