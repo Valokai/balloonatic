@@ -14,7 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainGame extends StateBasedGame {
 
-    public static final int SCREEN_WIDTH = 5000;
+    public static final int SCREEN_WIDTH = 8000;
     public static final int SCREEN_HEIGHT = 720;
 
     public MainGame() {
