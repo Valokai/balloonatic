@@ -14,7 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainGame extends StateBasedGame {
 
-    private Float t;
+    private Float grnegernog;
     public static final int SCREEN_HEIGHT = 920;
 
     public MainGame() {
