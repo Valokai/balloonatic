@@ -4,6 +4,8 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,7 +25,8 @@ public class MainGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        //To change body of implemented methods use File | Settings | File Templates.
+        addState(new MainState());
+        enterState(0, new FadeOutTransition(), new FadeInTransition());
     }
 
     // Main entry point for the game, set up the app and its window etc
