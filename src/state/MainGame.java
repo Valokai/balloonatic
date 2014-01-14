@@ -14,8 +14,8 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainGame extends StateBasedGame {
 
-    public static final int SCREEN_WIDTH = 12380;
-    public static final int SCREEN_HEIGHT = 750;
+    public static final int SCREEN_WIDTH = 5000;
+    public static final int SCREEN_HEIGHT = 720;
 
     public MainGame() {
         super("Balloonatic");
