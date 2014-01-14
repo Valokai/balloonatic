@@ -1,9 +1,10 @@
 package state;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -16,7 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainState extends BasicGameState {
 
-    private Image background;
+    private Rectangle rectangle;
 
     @Override
     public int getID() {
@@ -25,12 +26,14 @@ public class MainState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
+        rectangle = new Rectangle(0, 0, 200, 200);
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
+        rectangle.setLocation(200, 200);
+        graphics.setColor(Color.red);
+        graphics.fill(rectangle);
     }
 
     @Override

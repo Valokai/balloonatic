@@ -16,8 +16,8 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
  */
 public class MainGame extends StateBasedGame {
 
-    private static final int SCREEN_WIDTH = 1280;
-    public static final int SCREEN_HEIGHT = 800;
+    public static final int SCREEN_WIDTH = 800;
+    public static final int SCREEN_HEIGHT = 400;
 
     public MainGame() {
         super("Balloonatic");
