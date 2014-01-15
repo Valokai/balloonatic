@@ -61,6 +61,8 @@ public class MainState extends BasicGameState {
 
         graphics.drawString("bgimage x: " + bgFrontX,0,40);
         graphics.drawString("bgimages: " + bgimageCount, 0,60);
+
+        graphics.drawString("balloony: " + balloon.getY(), 0,80);
         balloon.render();
 
 
@@ -69,6 +71,7 @@ public class MainState extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame stateBasedGame, int delta) throws SlickException {
         float deltaTime = delta /1000;
+        Input input = gc.getInput();
 
         /*move the background images*/
         backgrounds.get(0).move(deltaTime -2, 0);
@@ -109,5 +112,9 @@ public class MainState extends BasicGameState {
             frontground.remove(0);
         }
         balloon.update(gc, delta);
+
+        if(balloon.getY() > 800 || balloon.getY() < 0){
+            balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
+        }
     }
 }

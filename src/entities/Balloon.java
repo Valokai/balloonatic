@@ -30,6 +30,12 @@ public class Balloon {
         }
     }
 
+    public void reset(float x, float y) {
+        loonx = x;
+        loony = y;
+        loonspeed = 0;
+    }
+
 
     public float getX()
     {
