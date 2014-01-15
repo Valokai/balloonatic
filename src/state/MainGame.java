@@ -30,5 +30,6 @@ public class MainGame extends StateBasedGame {
         app.setVSync(true);
         app.setShowFPS(false);
         app.start();
+        sy
     }
 }
