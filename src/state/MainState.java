@@ -12,10 +12,7 @@ import java.util.ArrayList;
 public class MainState extends BasicGameState {
 
     private Image skyimage;
-    private ArrayList<Backgrounds> frontground = new ArrayList<Backgrounds>();
-    private ArrayList<Backgrounds> backgrounds = new ArrayList<Backgrounds>();
-    float currentFrontX = 0, bgFrontX = 0;
-    int imageCount, bgimageCount;
+    private BackgroundHandler frontground, background;
     Balloon balloon;
 
 
@@ -29,10 +26,14 @@ public class MainState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        frontground.add(new HillsOne(0.0f,100.0f));
+        frontground = new BackgroundHandler("frontground", new FrontHills(0.0f,0));
+        background = new BackgroundHandler("background", new BGHills(0.0f,0));
 
-        backgrounds.add(new HillsTwo(0.0f,100.0f));
-        //backgrounds.add(new HillsTwo(3900.0f,100.0f));
+        frontground.add(new FrontHills(0.0f,0));
+        frontground.add(new BGHills(0.0f,0));
+
+
+        background.add(new BGHills(0.0f,0));
 
 
         /*draw blue background, always active*/
@@ -47,22 +48,15 @@ public class MainState extends BasicGameState {
 
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
 
-        for(int i = 0; i<backgrounds.size(); i++) {
-            backgrounds.get(i).render();
-        }
+        background.render();
+        frontground.render();
 
-        for(int i = 0; i<frontground.size(); i++) {
-            frontground.get(i).render();
-        }
+        background.printStats(graphics, 0, 0);
+        frontground.printStats(graphics, 200, 0);
+        balloon.printStats(graphics, 400, 0);
 
-        /*for error checking*/
-        graphics.drawString("image x: " + currentFrontX,0,0);
-        graphics.drawString("images: " + imageCount, 0,20);
 
-        graphics.drawString("bgimage x: " + bgFrontX,0,40);
-        graphics.drawString("bgimages: " + bgimageCount, 0,60);
 
-        graphics.drawString("balloony: " + balloon.getY(), 0,80);
         balloon.render();
 
 
@@ -73,48 +67,35 @@ public class MainState extends BasicGameState {
         float deltaTime = delta /1000;
         Input input = gc.getInput();
 
-        /*move the background images*/
-        backgrounds.get(0).move(deltaTime -2, 0);
-        //backgrounds.get(1).move(deltaTime -3, 0);
 
-        bgFrontX = backgrounds.get(0).getX();
-        bgimageCount = backgrounds.size();
+       // frontground.update(deltaTime-5, 0);
+        backgroundMove(frontground, deltaTime-5, 0);
+        backgroundMove(background, deltaTime-2, 0);
 
-        /*handles the frontground images, loads the next one when needed and removes the previous when not needed*/
-        if(backgrounds.get(0).getX() == -2800.0) {
-            backgrounds.add(new HillsTwo(1100,100));
-        }
-        if(backgrounds.get(0).getX() < -2800.0) {
-            backgrounds.get(1).move(deltaTime -2, 0);
-        }
-        if(backgrounds.get(0).getX() == -4000.0) {
-            backgrounds.remove(0);
-        }
+        //background.update(deltaTime- 2, 0);
 
-
-
-        /*move the front hills image relative to view*/
-        frontground.get(0).move(deltaTime -5, 0);
-
-        /*for error checking, strings at top of window*/
-        currentFrontX = frontground.get(0).getX();
-        imageCount = frontground.size();
-
-
-        /*handles the frontground images, loads the next one when needed and removes the previous when not needed*/
-        if(frontground.get(0).getX() == -2800) {
-            frontground.add(new HillsOne(1100,100));
-        }
-        if(frontground.get(0).getX() < -2800.0) {
-            frontground.get(1).move(deltaTime -5, 0);
-        }
-        if(frontground.get(0).getX() == -4000.0) {
-            frontground.remove(0);
-        }
         balloon.update(gc, delta);
 
         if(balloon.getY() > 800 || balloon.getY() < 0){
             balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
         }
+
     }
+
+    public void backgroundMove(BackgroundHandler bg, float x, float y) {
+       // if(balloon.getY() < 200 && balloon.getY() > -1000 && balloon.getSpeed() < 0) {
+            bg.update(x, y);
+           // return;
+       // }
+       // if(balloon.getY() < 200 && balloon.getY() > -1000 && balloon.getSpeed() > 0) {
+         //   bg.update( x, y-4, balloon);
+        //    return;
+      //  }
+       // if(balloon.getY() > 200) {
+       //     bg.update(x, y, balloon);
+        //    return;
+       // }
+
+    }
+
 }

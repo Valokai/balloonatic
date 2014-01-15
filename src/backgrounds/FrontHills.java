@@ -9,12 +9,9 @@ import org.newdawn.slick.SlickException;
  * Time: 2:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class HillsOne extends Backgrounds {
-    Image image;
-    public float x, y;
+public class FrontHills extends Backgrounds {
 
-    public HillsOne(float x, float y) {
-
+    public FrontHills(float x, float y) {
         this.x = x;
         this.y = y;
         try {
@@ -22,25 +19,5 @@ public class HillsOne extends Backgrounds {
         } catch (SlickException e) {
             e.printStackTrace();
         }
-
     }
-
-    public float getX() {
-        return x;
-    }
-
-    public float getY()   {
-        return y;
-    }
-
-    public void move(float x, float y) {
-        this.x += x;
-        this.y += y;
-    }
-
-
-    public void render() {
-        image.draw(x, y);
-    }
-
 }

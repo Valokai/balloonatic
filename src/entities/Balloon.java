@@ -65,6 +65,13 @@ public class Balloon {
         loon.drawCentered(loonx, loony);
     }
 
+    public void printStats(Graphics g, int x, int y) {
+        g.drawString("Balloon X: " + getX(), x, y);
+        g.drawString("Balloon Y: " + getY(), x, y+20);
+        g.drawString("Speed: " + getSpeed(), x, y+40);
+
+    }
+
     public void update(GameContainer gameContainer, int delta){
         float deltaTime = delta / 1000.0f;
         gameTime += deltaTime;

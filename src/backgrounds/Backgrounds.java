@@ -14,11 +14,22 @@ public abstract class Backgrounds {
     float x, y;
     Image image;
 
-    public abstract float getX();
-    public abstract float getY();
-    public abstract void move(float x, float y);
-    public abstract void render();
-
-
+    public float getX() {
+        return x;
+    }
+    public float getY()   {
+        return y;
+    }
+    public void move(float x, float y) {
+        this.x += x;
+        this.y += y;
+    }
+    public void resetToEnd() {
+        this.x = 1400.0f;
+        this.y = 0;
+    }
+    public void render() {
+        image.draw(x, y);
+    }
 
 }
