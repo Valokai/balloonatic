@@ -23,8 +23,8 @@ public class MainState extends BasicGameState {
     private Image skyimage;
     private ArrayList<Backgrounds> frontground = new ArrayList<Backgrounds>();
     private ArrayList<Backgrounds> backgrounds = new ArrayList<Backgrounds>();
-    float currentFrontX = 0, currentFrontY = 0;
-    int imageCount;
+    float currentFrontX = 0, bgFrontX = 0;
+    int imageCount, bgimageCount;
 
 
 
@@ -38,11 +38,12 @@ public class MainState extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         frontground.add(new HillsOne(0.0f,100.0f));
-        //frontground.add(new HillsOne(3900.0f,0.0f));
+
         backgrounds.add(new HillsTwo(0.0f,100.0f));
-        backgrounds.add(new HillsTwo(3900.0f,100.0f));
+        //backgrounds.add(new HillsTwo(3900.0f,100.0f));
 
 
+        /*draw blue background, always active*/
         skyimage = new Image("data/sprite/sky.png");
 
 
@@ -61,8 +62,12 @@ public class MainState extends BasicGameState {
             frontground.get(i).render();
         }
 
+        /*for error checking*/
         graphics.drawString("image x: " + currentFrontX,0,0);
         graphics.drawString("images: " + imageCount, 0,20);
+
+        graphics.drawString("bgimage x: " + bgFrontX,0,40);
+        graphics.drawString("bgimages: " + bgimageCount, 0,60);
 
 
     }
@@ -70,15 +75,36 @@ public class MainState extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame stateBasedGame, int delta) throws SlickException {
         float deltaTime = delta /1000;
-        backgrounds.get(0).move(deltaTime -3, 0);
-        backgrounds.get(1).move(deltaTime -3, 0);
 
+        /*move the background images*/
+        backgrounds.get(0).move(deltaTime -5, 0);
+        //backgrounds.get(1).move(deltaTime -3, 0);
+
+        bgFrontX = backgrounds.get(0).getX();
+        bgimageCount = backgrounds.size();
+
+        /*handles the frontground images, loads the next one when needed and removes the previous when not needed*/
+        if(backgrounds.get(0).getX() == -2800.0) {
+            backgrounds.add(new HillsTwo(1100,100));
+        }
+        if(backgrounds.get(0).getX() < -2800.0) {
+            backgrounds.get(1).move(deltaTime -5, 0);
+        }
+        if(backgrounds.get(0).getX() == -4000.0) {
+            backgrounds.remove(0);
+        }
+
+
+
+        /*move the front hills image relative to view*/
         frontground.get(0).move(deltaTime -10, 0);
 
+        /*for error checking, strings at top of window*/
         currentFrontX = frontground.get(0).getX();
         imageCount = frontground.size();
 
 
+        /*handles the frontground images, loads the next one when needed and removes the previous when not needed*/
         if(frontground.get(0).getX() == -2800) {
             frontground.add(new HillsOne(1100,100));
         }
@@ -88,8 +114,5 @@ public class MainState extends BasicGameState {
         if(frontground.get(0).getX() == -4000.0) {
             frontground.remove(0);
         }
-
-
-
     }
 }
