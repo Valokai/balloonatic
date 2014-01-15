@@ -1,6 +1,7 @@
 package entities;
 
 import org.newdawn.slick.*;
+import state.MainGame;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,12 +13,15 @@ import org.newdawn.slick.*;
 public class Balloon {
     Image loon = null;
     float loonx, loony, loonspeed;
+    float gameTime = 0.0f;
 
     public Balloon()
     {
         try
         {
             loon = new Image("data/images/balloon-small.png");
+            Reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
+            setSpeed(0);
         }
         catch(SlickException e)
         {
@@ -57,6 +61,29 @@ public class Balloon {
     public void render()
     {
         loon.drawCentered(loonx, loony);
+    }
+
+    public void update(GameContainer gameContainer, int delta){
+        float deltaTime = delta / 1000.0f;
+        gameTime += deltaTime;
+
+        Input input = gameContainer.getInput();
+
+        updatePlayer(deltaTime, input);
+    }
+
+    private void updatePlayer(float deltaTime, Input input)
+    {
+        if (input.isKeyDown(Input.KEY_SPACE))
+        {
+            setSpeed(getSpeed() - (deltaTime * 50.0f));
+            move(0.0f, getSpeed() * deltaTime);
+        }
+        else
+        {
+            setSpeed(getSpeed() + (deltaTime * 50.0f));
+            move(0.0f, getSpeed() * deltaTime);
+        }
     }
 
 
