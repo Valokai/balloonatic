@@ -69,4 +69,44 @@ public class ParallaxImage
     public void drawInfinityImage(Camera camera){
         sprite.drawCentered((float)((camera.getWidth() / 2.0) + this.centreX), (float)((camera.getHeight() / 2.0) + this.centreY));
     }
+
+    public double getCentreX() {
+        return centreX;
+    }
+
+    public void setCentreX(double centreX) {
+        this.centreX = centreX;
+    }
+
+    public double getCentreY() {
+        return centreY;
+    }
+
+    public void setCentreY(double centreY) {
+        this.centreY = centreY;
+    }
+
+    public Image getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Image sprite) {
+        this.sprite = sprite;
+    }
+
+    public double getDepth() {
+        return depth;
+    }
+
+    public void setDepth(double depth) {
+        this.depth = depth;
+    }
+
+    public boolean isAtInfinity() {
+        return atInfinity;
+    }
+
+    public void setAtInfinity(boolean atInfinity) {
+        this.atInfinity = atInfinity;
+    }
 }

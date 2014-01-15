@@ -8,6 +8,7 @@ public class ParallaxLayer
 {
 	private double movementRate;
 	private Stack<ArrayList<ParallaxImage>> stacks = new Stack<ArrayList<ParallaxImage>>();
+    float cameraMark = 0;
 	
 	public ParallaxLayer(double movementRate) 
 	{
@@ -46,10 +47,20 @@ public class ParallaxLayer
 
 	public void render(Camera camera)
 	{
-        if(camera.getLookAtX() > 1000){
-            camera.lookAt(0, 0);
-        }
         ArrayList<ParallaxImage> layerImages = stacks.peek();
+        if(cameraMark > 500){
+//            if(new Random().nextInt(5) > 2.5){
+//                stacks.push(stacks.pop());
+//            }
+            for(ParallaxImage image: layerImages){
+                image.setCentreX(camera.getLookAtX());
+                image.setCentreY(camera.getLookAtY());
+            }
+            cameraMark = 0;
+        }
+
+        cameraMark++;
+        System.out.println(cameraMark);
         for(ParallaxImage image: layerImages){
             image.render(camera);
         }
