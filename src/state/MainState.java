@@ -2,6 +2,7 @@ package state;
 
 import backgrounds.Backgrounds;
 import backgrounds.*;
+import entities.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
@@ -25,6 +26,7 @@ public class MainState extends BasicGameState {
     private ArrayList<Backgrounds> backgrounds = new ArrayList<Backgrounds>();
     float currentFrontX = 0, bgFrontX = 0;
     int imageCount, bgimageCount;
+    Balloon balloon;
 
 
 
@@ -45,6 +47,7 @@ public class MainState extends BasicGameState {
 
         /*draw blue background, always active*/
         skyimage = new Image("data/sprite/sky.png");
+        balloon = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
 
 
     }
@@ -68,6 +71,7 @@ public class MainState extends BasicGameState {
 
         graphics.drawString("bgimage x: " + bgFrontX,0,40);
         graphics.drawString("bgimages: " + bgimageCount, 0,60);
+        balloon.render();
 
 
     }
@@ -114,5 +118,6 @@ public class MainState extends BasicGameState {
         if(frontground.get(0).getX() == -4000.0) {
             frontground.remove(0);
         }
+        balloon.update(gc, delta);
     }
 }

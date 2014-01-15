@@ -15,12 +15,13 @@ public class Balloon {
     float loonx, loony, loonspeed;
     float gameTime = 0.0f;
 
-    public Balloon()
+    public Balloon(float x, float y)
     {
+        loonx = x;
+        loony = y;
         try
         {
             loon = new Image("data/images/balloon-small.png");
-            Reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
             setSpeed(0);
         }
         catch(SlickException e)
@@ -29,11 +30,6 @@ public class Balloon {
         }
     }
 
-    public void Reset(float x, float y)
-    {
-        loonx = x;
-        loony = y;
-    }
 
     public float getX()
     {

@@ -7,13 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-/**
- * Created with IntelliJ IDEA.
- * User: user360
- * Date: 14/01/14
- * Time: 1:25 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class MainGame extends StateBasedGame {
 
     public static final int SCREEN_WIDTH = 1024;
