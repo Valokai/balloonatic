@@ -74,12 +74,12 @@ public class GameState extends BasicGameState {
     {
         if (input.isKeyDown(Input.KEY_SPACE))
         {
-            balloon.setSpeed(balloon.getSpeed() - (deltaTime * 20.0f));
+            balloon.setSpeed(balloon.getSpeed() - (deltaTime * 50.0f));
             balloon.move(0.0f, balloon.getSpeed() * deltaTime);
         }
         else
         {
-            balloon.setSpeed(balloon.getSpeed() + (deltaTime * 20.0f));
+            balloon.setSpeed(balloon.getSpeed() + (deltaTime * 50.0f));
             balloon.move(0.0f, balloon.getSpeed() * deltaTime);
         }
     }
