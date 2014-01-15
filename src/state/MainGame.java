@@ -1,8 +1,7 @@
 package state;
 
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.SlickException;
+
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
@@ -14,8 +13,10 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainGame extends StateBasedGame {
 
-    private static final int SCREEN_WIDTH = 1280;
-    public static final int SCREEN_HEIGHT = 800;
+    public static final int GAME_STATE = 1;
+
+     static final int SCREEN_WIDTH = 1280;
+     static final int SCREEN_HEIGHT = 800;
 
     public MainGame() {
         super("Balloonatic");
@@ -24,6 +25,9 @@ public class MainGame extends StateBasedGame {
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
         //To change body of implemented methods use File | Settings | File Templates.
+
+        addState(new GameState(GAME_STATE));
+        enterState(GAME_STATE);
     }
 
     // Main entry point for the game, set up the app and its window etc
