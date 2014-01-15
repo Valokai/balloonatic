@@ -72,12 +72,12 @@ public class Balloon {
     {
         if (input.isKeyDown(Input.KEY_SPACE))
         {
-            setSpeed(getSpeed() - (deltaTime * 50.0f));
+            setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
         }
         else
         {
-            setSpeed(getSpeed() + (deltaTime * 50.0f));
+            setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
         }
     }

@@ -1,24 +1,14 @@
 package state;
 
-import backgrounds.Backgrounds;
 import backgrounds.*;
 import entities.*;
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-/**
- * Created with IntelliJ IDEA.
- * User: user360
- * Date: 15/01/14
- * Time: 11:29 AM
- * To change this template use File | Settings | File Templates.
- */
 public class MainState extends BasicGameState {
 
     private Image skyimage;
@@ -81,7 +71,7 @@ public class MainState extends BasicGameState {
         float deltaTime = delta /1000;
 
         /*move the background images*/
-        backgrounds.get(0).move(deltaTime -5, 0);
+        backgrounds.get(0).move(deltaTime -2, 0);
         //backgrounds.get(1).move(deltaTime -3, 0);
 
         bgFrontX = backgrounds.get(0).getX();
@@ -92,7 +82,7 @@ public class MainState extends BasicGameState {
             backgrounds.add(new HillsTwo(1100,100));
         }
         if(backgrounds.get(0).getX() < -2800.0) {
-            backgrounds.get(1).move(deltaTime -5, 0);
+            backgrounds.get(1).move(deltaTime -2, 0);
         }
         if(backgrounds.get(0).getX() == -4000.0) {
             backgrounds.remove(0);
@@ -101,7 +91,7 @@ public class MainState extends BasicGameState {
 
 
         /*move the front hills image relative to view*/
-        frontground.get(0).move(deltaTime -10, 0);
+        frontground.get(0).move(deltaTime -5, 0);
 
         /*for error checking, strings at top of window*/
         currentFrontX = frontground.get(0).getX();
@@ -113,7 +103,7 @@ public class MainState extends BasicGameState {
             frontground.add(new HillsOne(1100,100));
         }
         if(frontground.get(0).getX() < -2800.0) {
-            frontground.get(1).move(deltaTime -10, 0);
+            frontground.get(1).move(deltaTime -5, 0);
         }
         if(frontground.get(0).getX() == -4000.0) {
             frontground.remove(0);
