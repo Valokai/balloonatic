@@ -2,14 +2,15 @@ package parallax;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import state.MainGame;
 
 public class ParallaxImage 
 {
-	private double centreX;
-	private double centreY;
-	private Image sprite = null;
-	private double depth;
-	private boolean atInfinity;
+    protected double centreX;
+    protected double centreY;
+	protected Image sprite = null;
+    protected double depth;
+    protected boolean atInfinity;
 	
 	public ParallaxImage(double x, double y, double movementRate, String imageFile)
 	{
@@ -32,7 +33,7 @@ public class ParallaxImage
 		{
 			this.sprite = new Image(imageFile);
 		} 
-		catch (SlickException e) 
+		catch (SlickException e)
 		{
 			e.printStackTrace();
 		}
@@ -47,7 +48,7 @@ public class ParallaxImage
 	{
 		if (this.atInfinity)
 		{
-			sprite.drawCentered((float)((camera.getWidth() / 2.0) + this.centreX), (float)((camera.getHeight() / 2.0) + this.centreY));
+            drawInfinityImage(camera);
 		}
 		else
 		{
@@ -61,6 +62,11 @@ public class ParallaxImage
 			double top = (cy - (scl * sprite.getHeight() / 2.0));
 			
 			sprite.draw((float)((camera.getWidth() / 2.0) + left), (float)((camera.getHeight() / 2.0) + top), (float)scl);
+
 		}
 	}
+
+    public void drawInfinityImage(Camera camera){
+        sprite.drawCentered((float)((camera.getWidth() / 2.0) + this.centreX), (float)((camera.getHeight() / 2.0) + this.centreY));
+    }
 }

@@ -12,7 +12,7 @@ public class Camera
 	{
 		this.width = width;
 		this.height = height;
-		this.zoomFactor = 1.0;
+		this.zoomFactor = 1.1;
 	}
 	
 	public void lookAt(double x, double y)
