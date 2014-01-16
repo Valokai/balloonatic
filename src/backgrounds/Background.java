@@ -1,6 +1,7 @@
 package backgrounds;
 
-import org.newdawn.slick.Image;
+import entities.Sprite;
+import org.newdawn.slick.GameContainer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,27 +10,33 @@ import org.newdawn.slick.Image;
  * Time: 2:48 PM
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Backgrounds {
+public class Background extends Sprite {
 
-    float x, y;
-    Image image;
 
-    public float getX() {
-        return x;
+    public Background(String imagePath) {
+        super(imagePath);
     }
-    public float getY()   {
-        return y;
+
+    public Background(float x, float y, String imagePath) {
+        super(x, y, imagePath);
     }
+
     public void move(float x, float y) {
         this.x += x;
         this.y += y;
     }
+
     public void resetToEnd() {
         this.x = 1400.0f;
         this.y = 0;
     }
+
+    @Override
     public void render() {
         image.draw(x, y);
     }
+
+    @Override
+    public void update(GameContainer gameContainer, int delta) {}
 
 }
