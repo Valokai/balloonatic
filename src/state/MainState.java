@@ -51,14 +51,16 @@ public class MainState extends BasicGameState {
         background.render();
         frontground.render();
 
-        background.printStats(graphics, 0, 0);
-        frontground.printStats(graphics, 200, 0);
-        balloon.printStats(graphics, 400, 0);
 
 
+
+        //frontground.
 
         balloon.render();
 
+        balloon.printStats(graphics, 400, 0);
+        background.printStats(graphics, 0, 0, balloon);
+        frontground.printStats(graphics, 200, 0, balloon);
 
     }
 
@@ -83,19 +85,7 @@ public class MainState extends BasicGameState {
     }
 
     public void backgroundMove(BackgroundHandler bg, float x, float y) {
-       // if(balloon.getY() < 200 && balloon.getY() > -1000 && balloon.getSpeed() < 0) {
-            bg.update(x, y);
-           // return;
-       // }
-       // if(balloon.getY() < 200 && balloon.getY() > -1000 && balloon.getSpeed() > 0) {
-         //   bg.update( x, y-4, balloon);
-        //    return;
-      //  }
-       // if(balloon.getY() > 200) {
-       //     bg.update(x, y, balloon);
-        //    return;
-       // }
-
+        bg.update(x, y, balloon);
     }
 
 }

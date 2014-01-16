@@ -1,6 +1,8 @@
 package backgrounds;
 
+import entities.Balloon;
 import entities.Sprite;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 
 /**
@@ -17,8 +19,8 @@ public class Background extends Sprite {
         super(imagePath);
     }
 
-    public Background(float x, float y, String imagePath) {
-        super(x, y, imagePath);
+    public Background(float x, float y, String imagePath, String collisionImage) {
+        super(x, y, imagePath, collisionImage);
     }
 
     public void move(float x, float y) {
@@ -31,6 +33,14 @@ public class Background extends Sprite {
         this.y = 0;
     }
 
+    public float getX(){
+        return x;
+    }
+
+    public float getY(){
+        return y;
+    }
+
     @Override
     public void render() {
         image.draw(x, y);
@@ -38,5 +48,7 @@ public class Background extends Sprite {
 
     @Override
     public void update(GameContainer gameContainer, int delta) {}
+
+
 
 }

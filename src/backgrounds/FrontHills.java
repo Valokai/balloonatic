@@ -1,4 +1,7 @@
 package backgrounds;
+import entities.Balloon;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -12,6 +15,11 @@ import org.newdawn.slick.SlickException;
 public class FrontHills extends Background {
 
     public FrontHills(float x, float y) {
-        super(x, y, "data/sprite/hills1.png");
+        super(x, y, "data/sprite/hills1.png", "data/sprite/hills1blackwhite.png");
     }
+
+
+
+
+
 }

@@ -1,7 +1,10 @@
 package backgrounds;
 
 
+import entities.Balloon;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import state.MainGame;
 
 import java.util.ArrayList;
 
@@ -17,6 +20,7 @@ public class BackgroundHandler {
     private ArrayList<Background> renderlist, bglist;
     private String name;
     int count = 1;
+    private boolean collider = false;
 
     public BackgroundHandler(String name, Background firstbackground) {
         renderlist = new ArrayList<Background>();
@@ -30,21 +34,25 @@ public class BackgroundHandler {
         bglist.add(bg);
     }
 
-    public void printStats(Graphics g, int x, int y) {
+    public void printStats(Graphics g, int x, int y, Balloon balloon) {
         g.drawString(this.name, x, y);
         g.drawString("bglist: " + bglist.size(), x, y+20);
         g.drawString("renderlist: " + renderlist.size(), x, y+40);
         g.drawString("PosX(0): " + renderlist.get(0).getX(), x, y+60);
         g.drawString("count: " + count, x, y+80);
+        renderlist.get(0).printStats(name, renderlist.get(0).getX(), renderlist.get(0).getY(), g, balloon, 400, (name.equals("background")) ? 400 : 500);
+        collider = renderlist.get(0).isColliding();
     }
 
     public void render() {
         for(int i = 0; i<renderlist.size(); i++) {
             renderlist.get(i).render();
         }
+
+
     }
 
-    public void update(float moveX, float moveY) {
+    public void update(float moveX, float moveY, Balloon balloon) {
 
         renderlist.get(0).move(moveX, moveY);
 
@@ -64,6 +72,9 @@ public class BackgroundHandler {
         if(count == bglist.size()) {
             count = 0;
         }
+        if(collider && name.equals("frontground")) balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
     }
+
+
 
 }

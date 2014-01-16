@@ -20,7 +20,7 @@ public class Balloon extends Sprite{
     }
 
     public Balloon(float x, float y) {
-        super(x, y, "data/images/balloon-small.png");
+        super(x, y, "data/images/balloon-small.png", "data/images/balloon-small.png");
         setSpeed(0);
     }
 
@@ -76,6 +76,7 @@ public class Balloon extends Sprite{
             move(0.0f, getSpeed() * deltaTime);
         }
     }
+
 
 
 }
