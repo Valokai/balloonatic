@@ -12,18 +12,12 @@ import org.newdawn.slick.GameContainer;
  */
 public class Background extends Sprite {
 
-
-    public Background(String imagePath) {
-        super(imagePath);
+    public Background(String imagePath, boolean isCollidable) {
+        super(imagePath, isCollidable);
     }
 
-    public Background(float x, float y, String imagePath) {
-        super(x, y, imagePath);
-    }
-
-    public void move(float x, float y) {
-        this.x += x;
-        this.y += y;
+    public Background(float x, float y, String imagePath, boolean isCollidable) {
+        super(x, y, imagePath, isCollidable);
     }
 
     public void resetToEnd() {

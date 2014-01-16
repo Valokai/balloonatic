@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
  */
 public class BGHills extends Background {
 
-    public BGHills(float x, float y) {
-        super(x, y, "data/sprite/hills2.png");
+    public BGHills(float x, float y, boolean isCollidable) {
+        super(x, y, "data/sprite/hills2.png", isCollidable);
     }
 }

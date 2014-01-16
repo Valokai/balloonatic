@@ -66,4 +66,11 @@ public class BackgroundHandler {
         }
     }
 
+    public ArrayList<Background> getRenderlist() {
+        return renderlist;
+    }
+
+    public void setRenderlist(ArrayList<Background> renderlist) {
+        this.renderlist = renderlist;
+    }
 }
