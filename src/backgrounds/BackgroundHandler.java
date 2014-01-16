@@ -38,9 +38,9 @@ public class BackgroundHandler {
         g.drawString("count: " + count, x, y+80);
     }
 
-    public void render() {
+    public void render(Graphics graphics) {
         for(int i = 0; i<renderlist.size(); i++) {
-            renderlist.get(i).render();
+            renderlist.get(i).render(graphics);
         }
     }
 

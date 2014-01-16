@@ -2,6 +2,7 @@ package backgrounds;
 
 import entities.Sprite;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,7 +27,7 @@ public class Background extends Sprite {
     }
 
     @Override
-    public void render() {
+    public void render(Graphics graphics) {
         image.draw(x, y);
     }
 

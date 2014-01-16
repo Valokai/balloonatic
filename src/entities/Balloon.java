@@ -43,7 +43,8 @@ public class Balloon extends Sprite {
         y += offsetY;
     }
 
-    public void render(){
+    @Override
+    public void render(Graphics graphics){
         image.drawCentered(x, y);
     }
 
