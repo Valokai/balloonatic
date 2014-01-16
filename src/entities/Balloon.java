@@ -9,7 +9,7 @@ import org.newdawn.slick.*;
  * Time: 3:32 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Balloon extends Sprite{
+public class Balloon extends CollidableSprite{
 
     float loonspeed;
     float gameTime = 0.0f;

@@ -15,9 +15,6 @@ public class MainState extends BasicGameState {
     private BackgroundHandler frontground, background;
     Balloon balloon;
 
-
-
-
     @Override
     public int getID() {
         return 0;
@@ -39,7 +36,6 @@ public class MainState extends BasicGameState {
         /*draw blue background, always active*/
         skyimage = new Image("data/sprite/sky.png");
         balloon = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
-
 
     }
 

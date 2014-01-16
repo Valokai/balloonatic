@@ -14,6 +14,7 @@ import org.newdawn.slick.SlickException;
 public abstract class Sprite {
 
     protected Image image;
+
     protected float x, y;
 
     public Sprite(String imagePath) {
