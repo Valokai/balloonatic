@@ -72,7 +72,7 @@ public class BackgroundHandler {
         if(count == bglist.size()) {
             count = 0;
         }
-        if(collider && name.equals("frontground")) balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
+        if(collider && name.equals("frontground")) balloon.reset(100,100);
     }
 
 

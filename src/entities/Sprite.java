@@ -72,10 +72,22 @@ public abstract class Sprite {
     public void printStats(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y) {
 
         g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
+        g.drawOval(balloon.getX(), balloon.getY()+50, 2, 2);
+        g.drawOval(balloon.getX(), balloon.getY()-50, 2, 2);
+        g.drawOval(balloon.getX()-30, balloon.getY()-20, 2, 2);
+        g.drawOval(balloon.getX()+30, balloon.getY()-20, 2, 2);
         g.drawString(name, x, y-20);
-        g.drawString(""+balloonColliding(balloon, (int)imagex, (int)imagey),x,y);
+        g.drawString(""+balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey),x,y);
 
-        if(!balloonColliding(balloon, (int)imagex, (int)imagey).equals("0, 0, 0")) collider = true;
+
+
+
+        if(!balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey).equals("0, 0, 0") ||
+                !balloonColliding(balloon.getX(), balloon.getY()+50, (int)imagex, (int)imagey).equals("0, 0, 0") ||
+                !balloonColliding(balloon.getX(), balloon.getY()-50, (int)imagex, (int)imagey).equals("0, 0, 0") ||
+                !balloonColliding(balloon.getX()-30, balloon.getY()-20, (int)imagex, (int)imagey).equals("0, 0, 0") ||
+                !balloonColliding(balloon.getX()+30, balloon.getY()-20, (int)imagex, (int)imagey).equals("0, 0, 0")) collider = true;
+
         else collider = false;
     }
 
@@ -86,12 +98,13 @@ public abstract class Sprite {
 
 
 
-    public String balloonColliding(Balloon balloon, int imagex, int imagey){
+    public String balloonColliding(float bx, float by, int imagex, int imagey){
 
+        if(by <= 0) return "0, 0, 0";
         String rgb = "";
-        rgb += image.getColor((int)balloon.getX()-imagex, (int) balloon.getY()-imagey).getRed() + ", ";
-        rgb += image.getColor((int)balloon.getX()-imagex, (int) balloon.getY()-imagey).getGreen() + ", ";
-        rgb += image.getColor((int)balloon.getX()-imagex, (int) balloon.getY()-imagey).getBlue();
+        rgb += image.getColor((int)bx-imagex, (int)by-imagey).getRed() + ", ";
+        rgb += image.getColor((int)bx-imagex, (int)by-imagey).getGreen() + ", ";
+        rgb += image.getColor((int)bx-imagex, (int)by-imagey).getBlue();
 
         return rgb;
     }

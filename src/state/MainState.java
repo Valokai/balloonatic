@@ -30,7 +30,7 @@ public class MainState extends BasicGameState {
         background = new BackgroundHandler("background", new BGHills(0.0f,0));
 
         frontground.add(new FrontHills(0.0f,0));
-        frontground.add(new BGHills(0.0f,0));
+        frontground.add(new FrontHills(0.0f,0));
 
 
         background.add(new BGHills(0.0f,0));
@@ -78,7 +78,7 @@ public class MainState extends BasicGameState {
 
         balloon.update(gc, delta);
 
-        if(balloon.getY() > 800 || balloon.getY() < 0){
+        if(balloon.getY() > 800 || balloon.getY() < 5    ){
             balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
         }
 
