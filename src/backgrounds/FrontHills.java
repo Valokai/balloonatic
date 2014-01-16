@@ -9,15 +9,9 @@ import org.newdawn.slick.SlickException;
  * Time: 2:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FrontHills extends Backgrounds {
+public class FrontHills extends Background {
 
     public FrontHills(float x, float y) {
-        this.x = x;
-        this.y = y;
-        try {
-            image = new Image("data/sprite/hills1.png");
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
+        super(x, y, "data/sprite/hills1.png");
     }
 }

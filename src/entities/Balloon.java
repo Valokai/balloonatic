@@ -1,7 +1,6 @@
 package entities;
 
 import org.newdawn.slick.*;
-import state.MainGame;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,59 +9,42 @@ import state.MainGame;
  * Time: 3:32 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Balloon {
-    Image loon = null;
-    float loonx, loony, loonspeed;
+public class Balloon extends Sprite{
+
+    float loonspeed;
     float gameTime = 0.0f;
 
-    public Balloon(float x, float y)
-    {
-        loonx = x;
-        loony = y;
-        try
-        {
-            loon = new Image("data/images/balloon-small.png");
-            setSpeed(0);
-        }
-        catch(SlickException e)
-        {
-           System.out.println("error loading loon graphic");
-        }
+    public Balloon() {
+        super("data/images/balloon-small.png");
+        setSpeed(0);
+    }
+
+    public Balloon(float x, float y) {
+        super(x, y, "data/images/balloon-small.png");
+        setSpeed(0);
     }
 
     public void reset(float x, float y) {
-        loonx = x;
-        loony = y;
+        this.x = x;
+        this.y = y;
         loonspeed = 0;
     }
 
-
-    public float getX()
-    {
-     return loonx;
-    }
-    public float getY()
-    {
-        return loony;
-    }
-    public void setSpeed(float speed)
-    {
+    public void setSpeed(float speed){
        loonspeed = speed;
     }
-    public float getSpeed()
-    {
+
+    public float getSpeed(){
         return loonspeed;
     }
 
-    public void move(float offsetX, float offsetY)
-    {
-        loonx += offsetX;
-        loony += offsetY;
+    public void move(float offsetX, float offsetY){
+        x += offsetX;
+        y += offsetY;
     }
 
-    public void render()
-    {
-        loon.drawCentered(loonx, loony);
+    public void render(){
+        image.drawCentered(x, y);
     }
 
     public void printStats(Graphics g, int x, int y) {

@@ -1,9 +1,7 @@
 package backgrounds;
 
 
-import entities.Balloon;
 import org.newdawn.slick.Graphics;
-import state.MainGame;
 
 import java.util.ArrayList;
 
@@ -16,19 +14,19 @@ import java.util.ArrayList;
  */
 public class BackgroundHandler {
 
-    private ArrayList<Backgrounds> renderlist, bglist;
+    private ArrayList<Background> renderlist, bglist;
     private String name;
     int count = 1;
 
-    public BackgroundHandler(String name, Backgrounds firstbackground) {
-        renderlist = new ArrayList<Backgrounds>();
-        bglist = new ArrayList<Backgrounds>();
+    public BackgroundHandler(String name, Background firstbackground) {
+        renderlist = new ArrayList<Background>();
+        bglist = new ArrayList<Background>();
         renderlist.add(firstbackground);
         bglist.add(firstbackground);
         this.name = name;
     }
 
-    public void add(Backgrounds bg) {
+    public void add(Background bg) {
         bglist.add(bg);
     }
 
@@ -38,17 +36,12 @@ public class BackgroundHandler {
         g.drawString("renderlist: " + renderlist.size(), x, y+40);
         g.drawString("PosX(0): " + renderlist.get(0).getX(), x, y+60);
         g.drawString("count: " + count, x, y+80);
-
-
-
     }
 
     public void render() {
-
         for(int i = 0; i<renderlist.size(); i++) {
             renderlist.get(i).render();
         }
-
     }
 
     public void update(float moveX, float moveY) {
@@ -71,7 +64,6 @@ public class BackgroundHandler {
         if(count == bglist.size()) {
             count = 0;
         }
-
     }
 
 }
