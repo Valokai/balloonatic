@@ -10,6 +10,9 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class MainGame extends StateBasedGame {
 
+    public static final int MAIN_STATE = 0;
+    public static final int CAVE_STATE = 1;
+
     public static final int SCREEN_WIDTH = 1280;
     public static final int SCREEN_HEIGHT = 720;
 
@@ -19,8 +22,9 @@ public class MainGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        addState(new MainState());
-        enterState(0, new FadeOutTransition(), new FadeInTransition());
+        addState(new MainState(MAIN_STATE));
+        addState(new CaveState(CAVE_STATE));
+        enterState(CAVE_STATE);
     }
 
     // Main entry point for the game, set up the app and its window etc
@@ -30,6 +34,5 @@ public class MainGame extends StateBasedGame {
         app.setVSync(true);
         app.setShowFPS(false);
         app.start();
-        sy
     }
 }

@@ -11,16 +11,22 @@ import java.util.ArrayList;
 
 public class MainState extends BasicGameState {
 
+    public static int stateId = -1;
+
     private Image skyimage;
     private BackgroundHandler frontground, background;
     Balloon balloon;
 
 
 
+    public MainState(int stateId)
+    {
+        this.stateId = stateId;
+    }
 
     @Override
     public int getID() {
-        return 0;
+        return stateId;
     }
 
     @Override
