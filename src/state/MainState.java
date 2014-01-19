@@ -14,7 +14,6 @@ public class MainState extends BasicGameState {
     private Image skyimage;
     private BackgroundHandler frontground, background;
     Balloon balloon;
-    Balloon balloon2;
 
     @Override
     public int getID() {
@@ -37,7 +36,6 @@ public class MainState extends BasicGameState {
         /*draw blue background, always active*/
         skyimage = new Image("data/sprite/sky.png");
         balloon = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
-        balloon2 = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f + 100);
 
     }
 
@@ -53,15 +51,6 @@ public class MainState extends BasicGameState {
         frontground.printStats(graphics, 200, 0);
         balloon.printStats(graphics, 400, 0);
         balloon.render(graphics);
-        balloon2.render(graphics);
-
-//        for (Background background1 : frontground.getRenderlist()) {
-//            String stats = (balloon.isCollided(background1)) ? "collided" : "";
-//            graphics.drawString("Balloon & FrontHill Collision : " + stats, 0, 100);
-//        }
-
-        String stats = (balloon.isCollided(balloon2)) ? "collided" : "";
-        graphics.drawString("Balloon & FrontHill Collision : " + stats, 0, 100);
 
     }
 
@@ -71,10 +60,6 @@ public class MainState extends BasicGameState {
         backgroundMove(frontground, deltaTime-5, 0);
         backgroundMove(background, deltaTime-2, 0);
         balloon.update(gc, delta);
-//        balloon2.update(gc, delta);
-        if(balloon.getY() > 800 || balloon.getY() < 0){
-            balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
-        }
 
     }
 

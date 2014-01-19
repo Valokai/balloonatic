@@ -29,9 +29,6 @@ public abstract class Sprite {
 
     protected boolean isCollidable = false;
 
-    protected Polygon polygon;
-    private ArrayList<Float> points = new ArrayList<Float>();
-
     public Sprite(String imagePath, boolean isCollidable) {
         try {
             this.image = new Image(imagePath);
@@ -95,7 +92,6 @@ public abstract class Sprite {
                 }
             }
         }
-        System.out.println(mask);
         return mask;  //return our set
     }
 
@@ -127,7 +123,6 @@ public abstract class Sprite {
                     if(onCollideListener != null){
                         onCollideListener.onCollide(collidableSprite);
                     }
-                    System.out.println("Collided");
                     return true;
                 }
             }
