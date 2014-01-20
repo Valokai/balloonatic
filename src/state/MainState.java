@@ -6,14 +6,22 @@ import backgrounds.BackgroundHandler;
 import backgrounds.FrontHills;
 import entities.Balloon;
 import org.newdawn.slick.*;
+import org.newdawn.slick.particles.ParticleEmitter;
+import org.newdawn.slick.particles.ParticleIO;
+import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainState extends BasicGameState {
 
     private Image skyimage;
     private BackgroundHandler frontground, background;
-    Balloon balloon;
+    private Balloon balloon;
+    private ParticleSystem particleSystem;
+    private ParticleEmitter particleEmitter;
 
     @Override
     public int getID() {
@@ -24,6 +32,7 @@ public class MainState extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         initBackground();
         initPlayer();
+        initParticle();
 
     }
 
@@ -31,6 +40,7 @@ public class MainState extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         renderBackground(graphics);
         renderPlayer(graphics);
+        renderParticle();
 
     }
 
@@ -38,7 +48,7 @@ public class MainState extends BasicGameState {
     public void update(GameContainer gc, StateBasedGame stateBasedGame, int delta) throws SlickException {
         updateBackground(delta);
         updatePlayer(gc, delta);
-
+        updateParticle(delta);
     }
 
     public void initBackground() throws SlickException {
@@ -63,8 +73,8 @@ public class MainState extends BasicGameState {
 
     public void updateBackground(int delta){
         float deltaTime = delta /1000;
-        frontground.update(deltaTime-5, 0);
-        background.update(deltaTime-2, 0);
+        frontground.update(deltaTime - 5, 0);
+        background.update(deltaTime - 2, 0);
     }
 
     public void initPlayer(){
@@ -78,6 +88,30 @@ public class MainState extends BasicGameState {
 
     public void updatePlayer(GameContainer gc, int delta){
         balloon.update(gc, delta);
+    }
+
+    public void initParticle() throws SlickException {
+        try {
+            //load the test particle and
+            Image image = new Image("data/particles/test_particle.png", false);
+            particleSystem = new ParticleSystem(image,1500);
+
+            File xmlFile = new File("data/particles/test_emitter.xml");
+            particleEmitter = ParticleIO.loadEmitter(xmlFile);
+            particleSystem.addEmitter(particleEmitter);
+            particleSystem.setPosition(0, MainGame.SCREEN_HEIGHT/2);
+            particleSystem.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateParticle(int delta){
+        particleSystem.update(delta);
+    }
+
+    public void renderParticle(){
+        particleSystem.render();
     }
 
 }
