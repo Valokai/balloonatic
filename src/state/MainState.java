@@ -16,6 +16,7 @@ public class MainState extends BasicGameState {
     private Image skyimage;
     private BackgroundHandler frontground, background;
     Balloon balloon;
+    BalloonDarkness balloonDarkness;
 
 
 
@@ -45,6 +46,7 @@ public class MainState extends BasicGameState {
         /*draw blue background, always active*/
         skyimage = new Image("data/sprite/sky.png");
         balloon = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
+       // balloonDarkness = new BalloonDarkness(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f) ;
 
 
     }
@@ -68,6 +70,7 @@ public class MainState extends BasicGameState {
 
 
         balloon.render();
+        //balloonDarkness.render();
 
 
     }
@@ -85,10 +88,17 @@ public class MainState extends BasicGameState {
         //background.update(deltaTime- 2, 0);
 
         balloon.update(gc, delta);
+      //  balloonDarkness.update(gc, delta);
+
+
+
 
         if(balloon.getY() > 800 || balloon.getY() < 0){
+         //   balloonDarkness.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
             balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
         }
+
+
 
     }
 
