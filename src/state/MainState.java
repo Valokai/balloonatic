@@ -16,7 +16,7 @@ public class MainState extends BasicGameState {
     private Image skyimage;
     private BackgroundHandler frontground, background;
     Balloon balloon;
-    BalloonDarkness balloonDarkness;
+    //BalloonDarkness balloonDarkness;
 
 
 

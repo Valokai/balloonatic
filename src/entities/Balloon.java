@@ -21,6 +21,7 @@ public class Balloon extends Sprite{
         super("data/images/balloon-small.png");
         biggrad = new Image("data/images/balloongrad.png");
         lilgrad = new Image("data/images/balloongrad2.png");
+        grad = new Image("data/images/balloongrad2.png");
         setSpeed(0);
     }
 
@@ -28,6 +29,7 @@ public class Balloon extends Sprite{
         super(x, y, "data/images/balloon-small.png");
         biggrad = new Image("data/images/balloongrad.png");
         lilgrad = new Image("data/images/balloongrad2.png");
+        grad = new Image("data/images/balloongrad2.png");
         setSpeed(0);
     }
 
