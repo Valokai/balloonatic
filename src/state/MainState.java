@@ -23,36 +23,22 @@ public class MainState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         initBackground();
-        balloon = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
+        initPlayer();
 
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
-        skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
-
-        background.render(graphics);
-        frontground.render(graphics);
-
-        background.printStats(graphics, 0, 0);
-        frontground.printStats(graphics, 200, 0);
-        balloon.printStats(graphics, 400, 0);
-        balloon.render(graphics);
+        renderBackground(graphics);
+        renderPlayer(graphics);
 
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame stateBasedGame, int delta) throws SlickException {
-        float deltaTime = delta /1000;
-        backgroundMove(frontground, deltaTime-5, 0);
-        backgroundMove(background, deltaTime-2, 0);
-        balloon.update(gc, delta);
+        updateBackground(delta);
+        updatePlayer(gc, delta);
 
-    }
-
-    public void backgroundMove(BackgroundHandler bg, float x, float y) {
-        bg.update(x, y);
     }
 
     public void initBackground() throws SlickException {
@@ -63,6 +49,35 @@ public class MainState extends BasicGameState {
         background = new BackgroundHandler("background");
         background.add(new BGHills(0.0f,0, false));
         skyimage = new Image("data/sprite/sky.png");
+    }
+
+    public void renderBackground(Graphics graphics){
+        skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
+
+        background.render(graphics);
+        frontground.render(graphics);
+
+        background.printStats(graphics, 0, 0);
+        frontground.printStats(graphics, 200, 0);
+    }
+
+    public void updateBackground(int delta){
+        float deltaTime = delta /1000;
+        frontground.update(deltaTime-5, 0);
+        background.update(deltaTime-2, 0);
+    }
+
+    public void initPlayer(){
+        balloon = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
+    }
+
+    public void renderPlayer(Graphics graphics){
+        balloon.printStats(graphics, 400, 0);
+        balloon.render(graphics);
+    }
+
+    public void updatePlayer(GameContainer gc, int delta){
+        balloon.update(gc, delta);
     }
 
 }

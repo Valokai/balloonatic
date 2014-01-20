@@ -1,6 +1,7 @@
 package entities;
 
 import org.newdawn.slick.*;
+import state.MainGame;
 
 /**
  * Created with IntelliJ IDEA.
@@ -62,6 +63,10 @@ public class Balloon extends Sprite {
         Input input = gameContainer.getInput();
 
         updatePlayer(deltaTime, input);
+
+        if(getY() > 800 || getY() < 0){
+            reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
+        }
     }
 
     private void updatePlayer(float deltaTime, Input input)
