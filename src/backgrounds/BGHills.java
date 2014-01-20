@@ -13,6 +13,12 @@ public class BGHills extends Background {
 
     public BGHills(float x, float y) {
         super(x, y, "data/sprite/hills2.png", "data/sprite/hills2.png");
+        try {
+            collisionImage = new Image("data/sprite/hills2.png") ;
+        } catch (SlickException e){
+            e.printStackTrace();
+        }
+
     }
 
 }

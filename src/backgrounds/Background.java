@@ -4,6 +4,7 @@ import entities.Balloon;
 import entities.Sprite;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,6 +14,7 @@ import org.newdawn.slick.GameContainer;
  * To change this template use File | Settings | File Templates.
  */
 public class Background extends Sprite {
+    Image collisionImage;
 
 
     public Background(String imagePath) {
@@ -44,6 +46,10 @@ public class Background extends Sprite {
     @Override
     public void render() {
         image.draw(x, y);
+    }
+
+    public void updateCollisionImage() {
+        super.collisionImage = this.collisionImage;
     }
 
     @Override

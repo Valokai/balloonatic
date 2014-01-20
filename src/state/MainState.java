@@ -27,6 +27,7 @@ public class MainState extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         frontground = new BackgroundHandler("frontground", new FrontHills(0.0f,0));
+        frontground = new BackgroundHandler("frontground", new BrightHills(0.0f,0));
         background = new BackgroundHandler("background", new BGHills(0.0f,0));
 
         frontground.add(new FrontHills(0.0f,0));
@@ -38,7 +39,7 @@ public class MainState extends BasicGameState {
 
         /*draw blue background, always active*/
         skyimage = new Image("data/sprite/sky.png");
-        balloon = new Balloon(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f);
+        balloon = new Balloon(280, 100);
 
 
     }

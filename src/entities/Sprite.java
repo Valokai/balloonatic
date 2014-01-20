@@ -1,9 +1,6 @@
 package entities;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -71,6 +68,7 @@ public abstract class Sprite {
 
     public void printStats(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y) {
 
+        g.setColor(Color.black);
         g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
         g.drawOval(balloon.getX(), balloon.getY()+50, 2, 2);
         g.drawOval(balloon.getX(), balloon.getY()-50, 2, 2);
@@ -82,17 +80,27 @@ public abstract class Sprite {
 
 
 
+            /*
         if(!balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey).equals("0, 0, 0") ||
                 !balloonColliding(balloon.getX(), balloon.getY()+50, (int)imagex, (int)imagey).equals("0, 0, 0") ||
                 !balloonColliding(balloon.getX(), balloon.getY()-50, (int)imagex, (int)imagey).equals("0, 0, 0") ||
                 !balloonColliding(balloon.getX()-30, balloon.getY()-20, (int)imagex, (int)imagey).equals("0, 0, 0") ||
-                !balloonColliding(balloon.getX()+30, balloon.getY()-20, (int)imagex, (int)imagey).equals("0, 0, 0")) collider = true;
+                !balloonColliding(balloon.getX()+30, balloon.getY()-20, (int)imagex, (int)imagey).equals("0, 0, 0")) collider = true;   */
+
+
+        if(balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey).equals("255, 0, 0") ||
+                balloonColliding(balloon.getX(), balloon.getY()+50, (int)imagex, (int)imagey).equals("255, 0, 0") ||
+                balloonColliding(balloon.getX(), balloon.getY()-50, (int)imagex, (int)imagey).equals("255, 0, 0") ||
+                balloonColliding(balloon.getX()-30, balloon.getY()-20, (int)imagex, (int)imagey).equals("255, 0, 0") ||
+                balloonColliding(balloon.getX()+30, balloon.getY()-20, (int)imagex, (int)imagey).equals("255, 0, 0")) collider = true;
+
+
+        //if(balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey).equals("255, 0, 0")) collider = true;
 
         else collider = false;
     }
 
     public boolean isColliding() {
-
         return collider;
     }
 
@@ -102,9 +110,9 @@ public abstract class Sprite {
 
         if(by <= 0) return "0, 0, 0";
         String rgb = "";
-        rgb += image.getColor((int)bx-imagex, (int)by-imagey).getRed() + ", ";
-        rgb += image.getColor((int)bx-imagex, (int)by-imagey).getGreen() + ", ";
-        rgb += image.getColor((int)bx-imagex, (int)by-imagey).getBlue();
+        rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getRed() + ", ";
+        rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getGreen() + ", ";
+        rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getBlue();
 
         return rgb;
     }
