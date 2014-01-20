@@ -14,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 public class MainState extends BasicGameState {
 
@@ -38,9 +39,11 @@ public class MainState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+
         renderBackground(graphics);
+
         renderPlayer(graphics);
-        renderParticle();
+
 
     }
 
@@ -65,6 +68,7 @@ public class MainState extends BasicGameState {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
 
         background.render(graphics);
+        renderParticle();
         frontground.render(graphics);
 
         background.printStats(graphics, 0, 0);
@@ -99,7 +103,7 @@ public class MainState extends BasicGameState {
             File xmlFile = new File("data/particles/test_emitter.xml");
             particleEmitter = ParticleIO.loadEmitter(xmlFile);
             particleSystem.addEmitter(particleEmitter);
-            particleSystem.setPosition(0, MainGame.SCREEN_HEIGHT/2);
+            particleSystem.setPosition(0, 0);
             particleSystem.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
         } catch (IOException e) {
             e.printStackTrace();
@@ -111,7 +115,7 @@ public class MainState extends BasicGameState {
     }
 
     public void renderParticle(){
-        particleSystem.render();
+        particleSystem.render(0, 0);
     }
 
 }
