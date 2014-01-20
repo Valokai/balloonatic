@@ -61,7 +61,7 @@ public class MainState extends BasicGameState {
 //        }
 
         String stats = (balloon.isCollided(balloon2)) ? "collided" : "";
-        graphics.drawString("Balloon & FrontHill Collision : " + stats, 0, 100);
+        graphics.drawString("Balloon1 & Balloon2 Collision : " + stats, 0, 100);
 
     }
 
