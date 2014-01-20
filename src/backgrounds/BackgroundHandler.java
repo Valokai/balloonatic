@@ -18,16 +18,15 @@ public class BackgroundHandler {
     private String name;
     int count = 1;
 
-    public BackgroundHandler(String name, Background firstbackground) {
+    public BackgroundHandler(String name) {
         renderlist = new ArrayList<Background>();
         bglist = new ArrayList<Background>();
-        renderlist.add(firstbackground);
-        bglist.add(firstbackground);
         this.name = name;
     }
 
     public void add(Background bg) {
         bglist.add(bg);
+        if(renderlist.isEmpty())renderlist.add(bglist.get(0));
     }
 
     public void printStats(Graphics g, int x, int y) {
