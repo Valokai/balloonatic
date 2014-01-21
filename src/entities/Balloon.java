@@ -13,6 +13,7 @@ public class Balloon extends Sprite{
 
     float loonspeed;
     float gameTime = 0.0f;
+    float distance =0;
 
     public Balloon() {
         super("data/images/balloon-small.png");
@@ -61,6 +62,7 @@ public class Balloon extends Sprite{
         Input input = gameContainer.getInput();
 
         updatePlayer(deltaTime, input);
+        distance++;
     }
 
     private void updatePlayer(float deltaTime, Input input)
@@ -75,6 +77,10 @@ public class Balloon extends Sprite{
             setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
         }
+    }
+
+    public float getDistance() {
+        return distance;
     }
 
 

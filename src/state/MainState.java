@@ -14,7 +14,9 @@ public class MainState extends BasicGameState {
     private Image skyimage;
     private BackgroundHandler frontground, background, thirdground;
     Balloon balloon;
-    int distance = 0;
+    float distance = 0;
+    //two of each to emulate memory usage, can change because won't have loop of same background in original
+    Background fronthills,fronthills2, bghills,bghills2, cavefront,cavefront2, cavesecond, cavesecond2, waterfront,waterfront2, watersecond,watersecond2;
 
 
 
@@ -26,41 +28,54 @@ public class MainState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        //maps
+        fronthills = new FrontHills(0.0f, 0);
+        fronthills2 = new FrontHills(0.0f, 0);
+        bghills = new BGHills(0.0f, 0);
+        bghills2 = new BGHills(0.0f, 0);
+        cavefront = new CaveFront(0.0f, 0);
+        cavefront2 = new CaveFront(0.0f, 0);
+        cavesecond = new CaveSecond(0.0f, 0);
+        cavesecond2 = new CaveSecond(0.0f, 0);
+        waterfront = new WaterFront(0.0f, 0);
+        waterfront2 = new WaterFront(0.0f, 0);
+        watersecond = new WaterSecond(0.0f, 0);
+        watersecond2 = new WaterSecond(0.0f, 0);
 
-        frontground = new BackgroundHandler("frontground", new FrontHills(0.0f,0));
+        frontground = new BackgroundHandler("frontground", fronthills);
         //frontground = new BackgroundHandler("frontground", new BrightHills(0.0f,0));
-        background = new BackgroundHandler("background", new BGHills(0.0f,0));
+        background = new BackgroundHandler("background", bghills);
 
-        frontground.add(new FrontHills(0.0f,0));
-        frontground.add(new FrontHills(0.0f,0));
-        frontground.add(new FrontHills(0.0f,0));
-        frontground.add(new FrontHills(0.0f,0));
-
-        //second scenario
-        frontground.add(new CaveFront(0.0f,0));
-        frontground.add(new CaveFront(0.0f,0));
-        frontground.add(new CaveFront(0.0f,0));
-        frontground.add(new CaveFront(0.0f,0));
-        frontground.add(new CaveFront(0.0f,0));
-
-        //third scenario
-        frontground.add(new WaterFront(0.0f,0));
-        frontground.add(new WaterFront(0.0f,0));
-        frontground.add(new WaterFront(0.0f,0));
-        frontground.add(new WaterFront(0.0f,0));
-        frontground.add(new WaterFront(0.0f,0));
-
-
-
-        background.add(new BGHills(0.0f,0));
+        frontground.add(fronthills2);
+        frontground.add(fronthills);
+        frontground.add(fronthills2);
+        frontground.add(fronthills);
 
         //second scenario
-        background.add(new CaveSecond( 0.0f,0));
-        background.add(new CaveSecond(0.0f,0));
+        frontground.add(cavefront);
+        frontground.add(cavefront2);
+        frontground.add(cavefront);
+        frontground.add(cavefront2);
+        frontground.add(cavefront);
 
         //third scenario
-        background.add(new WaterSecond(0.0f,0));
-        background.add(new WaterSecond(0.0f,0));
+        frontground.add(waterfront2);
+        frontground.add(waterfront);
+        frontground.add(waterfront2);
+        frontground.add(waterfront);
+        frontground.add(waterfront2);
+
+
+
+        background.add(bghills2);
+
+        //second scenario
+        background.add(cavesecond);
+        background.add(cavesecond2);
+
+        //third scenario
+        background.add(watersecond);
+        background.add(watersecond2);
 
 
         /*draw blue background, always active*/
@@ -109,7 +124,7 @@ public class MainState extends BasicGameState {
         if(balloon.getY() > 800 || balloon.getY() < 5    ){
             balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
         }
-        distance++;
+        distance = balloon.getDistance();
 
     }
 

@@ -42,11 +42,11 @@ public class BackgroundHandler {
         g.drawString("count: " + count, x, y+80);
         //renderlist.get(0).printStats(name, renderlist.get(0).getX(), renderlist.get(0).getY(), g, balloon, 400, (name.equals("background")) ? 400 : 500);
         if(renderlist.size()>1 && renderlist.get(0).getX()<-3620) {
-            renderlist.get(1).printStats(name, renderlist.get(1).getX(), renderlist.get(1).getY(), g, balloon, 400, (name.equals("background")) ? 400 : 500);
+            renderlist.get(1).printStats(name, renderlist.get(1).getX(), renderlist.get(1).getY(), g, balloon, 10, (name.equals("background")) ? 400 : 500);
             collider2 = renderlist.get(1).isColliding();
         }
         else {
-            renderlist.get(0).printStats(name, renderlist.get(0).getX(), renderlist.get(0).getY(), g, balloon, 400, (name.equals("background")) ? 400 : 500);
+            renderlist.get(0).printStats(name, renderlist.get(0).getX(), renderlist.get(0).getY(), g, balloon, 10, (name.equals("background")) ? 400 : 500);
             collider = renderlist.get(0).isColliding();
         }
     }
