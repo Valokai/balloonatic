@@ -5,6 +5,7 @@ import backgrounds.Background;
 import backgrounds.BackgroundHandler;
 import backgrounds.FrontHills;
 import entities.Balloon;
+import entities.SceneObject;
 import org.newdawn.slick.*;
 import org.newdawn.slick.particles.ParticleEmitter;
 import org.newdawn.slick.particles.ParticleIO;
@@ -25,6 +26,8 @@ public class MainState extends BasicGameState {
     private BackgroundHandler frontground, background;
     private Balloon balloon;
 
+    private SceneObject sceneObject;
+
     private ParticleTransmitter particleTransmitter;
     @Override
     public int getID() {
@@ -36,6 +39,8 @@ public class MainState extends BasicGameState {
         initBackground();
         initPlayer();
         initParticle();
+
+        sceneObject = new SceneObject(100, 200, "data/particles/leaf.png");
     }
 
     @Override
@@ -43,6 +48,8 @@ public class MainState extends BasicGameState {
         renderBackground(graphics);
         renderPlayer(graphics);
         renderParticle();
+
+        sceneObject.render(graphics);
     }
 
     @Override
@@ -50,6 +57,8 @@ public class MainState extends BasicGameState {
         updateBackground(delta);
         updatePlayer(gc, delta);
         updateParticle(delta);
+
+        sceneObject.update(gc, delta);
     }
 
     public void initBackground() throws GameException {
