@@ -21,8 +21,12 @@ public class MainState extends BasicGameState {
     private Image skyimage;
     private BackgroundHandler frontground, background;
     private Balloon balloon;
-    private ParticleSystem particleSystem;
-    private ParticleEmitter particleEmitter;
+
+    private ParticleSystem particleSystem1;
+    private ParticleEmitter particleEmitter1;
+
+    private ParticleSystem particleSystem2;
+    private ParticleEmitter particleEmitter2;
 
     @Override
     public int getID() {
@@ -39,12 +43,8 @@ public class MainState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
         renderBackground(graphics);
-
         renderPlayer(graphics);
-
-
     }
 
     @Override
@@ -97,25 +97,41 @@ public class MainState extends BasicGameState {
     public void initParticle() throws SlickException {
         try {
             //load the test particle and
-            Image image = new Image("data/particles/test_particle.png", false);
-            particleSystem = new ParticleSystem(image,1500);
+            Image image = new Image("data/particles/particle.png", false);
+            particleSystem1 = new ParticleSystem(image,1500);
 
-            File xmlFile = new File("data/particles/test_emitter.xml");
-            particleEmitter = ParticleIO.loadEmitter(xmlFile);
-            particleSystem.addEmitter(particleEmitter);
-            particleSystem.setPosition(0, 0);
-            particleSystem.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
+            File xmlFile = new File("data/particles/emitter.xml");
+            particleEmitter1 = ParticleIO.loadEmitter(xmlFile);
+            particleSystem1.addEmitter(particleEmitter1);
+            particleSystem1.setPosition(0, 0);
+            particleSystem1.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            //load the test particle and
+            Image image = new Image("data/particles/particle.png", false);
+            particleSystem2 = new ParticleSystem(image,1500);
+
+            File xmlFile = new File("data/particles/emitter_fast.xml");
+            particleEmitter2 = ParticleIO.loadEmitter(xmlFile);
+            particleSystem2.addEmitter(particleEmitter2);
+            particleSystem2.setPosition(0, 0);
+            particleSystem2.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void updateParticle(int delta){
-        particleSystem.update(delta);
+        particleSystem1.update(delta);
+        particleSystem2.update(delta);
     }
 
     public void renderParticle(){
-        particleSystem.render(0, 0);
+        particleSystem1.render(0, 0);
+        particleSystem2.render(0, 0);
     }
 
 }
