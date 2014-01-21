@@ -11,6 +11,9 @@ import org.newdawn.slick.particles.ParticleIO;
 import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import util.GameException;
+import util.Particle;
+import util.ParticleTransmitter;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,29 +25,24 @@ public class MainState extends BasicGameState {
     private BackgroundHandler frontground, background;
     private Balloon balloon;
 
-    private ParticleSystem particleSystem1;
-    private ParticleEmitter particleEmitter1;
-
-    private ParticleSystem particleSystem2;
-    private ParticleEmitter particleEmitter2;
-
+    private ParticleTransmitter particleTransmitter;
     @Override
     public int getID() {
         return 0;
     }
 
     @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws GameException {
         initBackground();
         initPlayer();
         initParticle();
-
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         renderBackground(graphics);
         renderPlayer(graphics);
+        renderParticle();
     }
 
     @Override
@@ -54,14 +52,18 @@ public class MainState extends BasicGameState {
         updateParticle(delta);
     }
 
-    public void initBackground() throws SlickException {
+    public void initBackground() throws GameException {
         frontground = new BackgroundHandler("frontground");
         frontground.add(new FrontHills(0.0f,0, false));
         frontground.add(new BGHills(0.0f,0, false));
 
         background = new BackgroundHandler("background");
         background.add(new BGHills(0.0f,0, false));
-        skyimage = new Image("data/sprite/sky.png");
+        try {
+            skyimage = new Image("data/sprite/sky.png");
+        } catch (SlickException e) {
+            throw new GameException(e.getMessage(), e.getCause());
+        }
     }
 
     public void renderBackground(Graphics graphics){
@@ -94,44 +96,22 @@ public class MainState extends BasicGameState {
         balloon.update(gc, delta);
     }
 
-    public void initParticle() throws SlickException {
-        try {
-            //load the test particle and
-            Image image = new Image("data/particles/particle.png", false);
-            particleSystem1 = new ParticleSystem(image,1500);
+    public void initParticle() throws GameException {
+        particleTransmitter = new ParticleTransmitter();
 
-            File xmlFile = new File("data/particles/emitter.xml");
-            particleEmitter1 = ParticleIO.loadEmitter(xmlFile);
-            particleSystem1.addEmitter(particleEmitter1);
-            particleSystem1.setPosition(0, 0);
-            particleSystem1.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Particle windFastParticle = new Particle("data/particles/particle.png", "data/particles/emitter_fast.xml", 1000);
+        Particle windSlowParticle = new Particle("data/particles/particle.png", "data/particles/emitter.xml", 2000);
 
-        try {
-            //load the test particle and
-            Image image = new Image("data/particles/particle.png", false);
-            particleSystem2 = new ParticleSystem(image,1500);
-
-            File xmlFile = new File("data/particles/emitter_fast.xml");
-            particleEmitter2 = ParticleIO.loadEmitter(xmlFile);
-            particleSystem2.addEmitter(particleEmitter2);
-            particleSystem2.setPosition(0, 0);
-            particleSystem2.setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        particleTransmitter.registerParticle(windFastParticle, 0, 0);
+        particleTransmitter.registerParticle(windSlowParticle, 0, 0);
     }
 
     public void updateParticle(int delta){
-        particleSystem1.update(delta);
-        particleSystem2.update(delta);
+        particleTransmitter.update(delta);
     }
 
     public void renderParticle(){
-        particleSystem1.render(0, 0);
-        particleSystem2.render(0, 0);
+        particleTransmitter.render();
     }
 
 }
