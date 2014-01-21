@@ -15,7 +15,7 @@ public class Balloon extends Sprite{
     float gameTime = 0.0f;
     Image grad = null;
     Image grad2 = null;
-    float scale = 1f;
+    float scale = .7f;
 
     public Balloon() throws SlickException {
         super("data/images/balloon-small.png");
@@ -85,18 +85,28 @@ public class Balloon extends Sprite{
         {
             setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
-
-            scale = scale + deltaTime;
-            grad2 = grad.getScaledCopy(scale);
+            scaleUp(deltaTime, scale);
 
         }
         else
         {
             setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
-            scale = scale - deltaTime;
-            grad2 = grad.getScaledCopy(scale);
+            scaleDown(deltaTime, scale);
         }
+    }
+
+    private void scaleDown(float deltaTime, float scale){
+        if(scale > 0.7){
+        this.scale = scale - 2* deltaTime;
+        }
+        grad2 = grad.getScaledCopy(scale);
+    }
+    private void scaleUp(float deltaTime, float scale){
+        if(scale < 1.2){
+        this.scale = scale + 2 *deltaTime;
+        }
+        grad2 = grad.getScaledCopy(scale);
     }
 
 
