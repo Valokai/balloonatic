@@ -12,20 +12,14 @@ import org.newdawn.slick.SlickException;
  * Time: 2:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FrontHills extends Background {
+public class WaterThird extends Background {
 
-    public FrontHills(float x, float y) {
-        super(x, y, "data/sprite/hills1.png", "data/sprite/hills1blackwhite.png");
+    public WaterThird(float x, float y) {
+        super(x, y, "data/sprite/water-third.png", "data/sprite/water-third.png");
         try {
-        collisionImage = new Image("data/sprite/hills1blackwhite.png") ;
+            collisionImage = new Image("data/sprite/water-third.png") ;
         } catch (SlickException e){
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
 }

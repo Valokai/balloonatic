@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class MainState extends BasicGameState {
 
     private Image skyimage;
-    private BackgroundHandler frontground, background;
+    private BackgroundHandler frontground, background, thirdground;
     Balloon balloon;
+    int distance = 0;
 
 
 
@@ -27,14 +28,28 @@ public class MainState extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         frontground = new BackgroundHandler("frontground", new FrontHills(0.0f,0));
-        frontground = new BackgroundHandler("frontground", new BrightHills(0.0f,0));
+        //frontground = new BackgroundHandler("frontground", new BrightHills(0.0f,0));
         background = new BackgroundHandler("background", new BGHills(0.0f,0));
 
         frontground.add(new FrontHills(0.0f,0));
         frontground.add(new FrontHills(0.0f,0));
+        frontground.add(new FrontHills(0.0f,0));
+        frontground.add(new FrontHills(0.0f,0));
+
+        //second scenario
+        frontground.add(new WaterFront(0.0f,0));
+        frontground.add(new WaterFront(0.0f,0));
+        frontground.add(new WaterFront(0.0f,0));
+        frontground.add(new WaterFront(0.0f,0));
+        frontground.add(new WaterFront(0.0f,0));
+
 
 
         background.add(new BGHills(0.0f,0));
+
+        //second scenario
+        background.add(new WaterSecond(0.0f,0));
+        background.add(new WaterSecond(0.0f,0));
 
 
         /*draw blue background, always active*/
@@ -62,6 +77,7 @@ public class MainState extends BasicGameState {
         balloon.printStats(graphics, 400, 0);
         background.printStats(graphics, 0, 0, balloon);
         frontground.printStats(graphics, 200, 0, balloon);
+        graphics.drawString("Disance: " + distance + "m", 800, 0);
 
     }
 
@@ -71,7 +87,7 @@ public class MainState extends BasicGameState {
         Input input = gc.getInput();
 
 
-       // frontground.update(deltaTime-5, 0);
+        //frontground.update(deltaTime-5, 0);
         backgroundMove(frontground, deltaTime-5, 0);
         backgroundMove(background, deltaTime-2, 0);
 
@@ -82,6 +98,7 @@ public class MainState extends BasicGameState {
         if(balloon.getY() > 800 || balloon.getY() < 5    ){
             balloon.reset(MainGame.SCREEN_WIDTH / 4.0f, MainGame.SCREEN_HEIGHT / 2.0f)  ;
         }
+        distance++;
 
     }
 
