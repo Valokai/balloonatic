@@ -13,23 +13,21 @@ public class Balloon extends Sprite{
 
     float loonspeed;
     float gameTime = 0.0f;
-    Image biggrad = null;
-    Image lilgrad = null;
     Image grad = null;
+    Image grad2 = null;
+    float scale = 1f;
 
     public Balloon() throws SlickException {
         super("data/images/balloon-small.png");
-        biggrad = new Image("data/images/balloongrad.png");
-        lilgrad = new Image("data/images/balloongrad2.png");
-        grad = new Image("data/images/balloongrad2.png");
+        grad = new Image("data/images/gradcent.png");
+        grad2 = grad.getScaledCopy(scale);
         setSpeed(0);
     }
 
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/images/balloon-small.png");
-        biggrad = new Image("data/images/balloongrad.png");
-        lilgrad = new Image("data/images/balloongrad2.png");
-        grad = new Image("data/images/balloongrad2.png");
+        grad = new Image("data/images/gradcent.png");
+        grad2 = grad.getScaledCopy(scale);
         setSpeed(0);
     }
 
@@ -37,6 +35,14 @@ public class Balloon extends Sprite{
         this.x = x;
         this.y = y;
         loonspeed = 0;
+        scale = 1;
+    }
+
+    public void setScale(float radscale){
+        scale = radscale;
+    }
+    public float getScale(){
+        return scale;
     }
 
     public void setSpeed(float speed){
@@ -53,8 +59,8 @@ public class Balloon extends Sprite{
     }
 
     public void render(){
-        image.drawCentered(x, y);
-        grad.draw(x-400,y-1250);
+        image.drawCentered(x,y);
+        grad2.drawCentered(x,y);
     }
 
     public void printStats(Graphics g, int x, int y) {
@@ -79,13 +85,17 @@ public class Balloon extends Sprite{
         {
             setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
-            grad = biggrad;
+
+            scale = scale + deltaTime;
+            grad2 = grad.getScaledCopy(scale);
+
         }
         else
         {
             setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
-            grad = lilgrad;
+            scale = scale - deltaTime;
+            grad2 = grad.getScaledCopy(scale);
         }
     }
 
