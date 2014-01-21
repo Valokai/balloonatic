@@ -83,11 +83,11 @@ public class BackgroundHandler {
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -3620 && name.equals("frontground")) {
             if(collider2) {
-                balloon.reset(280,100);
+                balloon.reset(280,150);
                 return;
             }
         }  else {
-            if(collider) balloon.reset(280,100);
+            if(collider) balloon.reset(280,150);
         }
     }
 

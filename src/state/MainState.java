@@ -37,6 +37,13 @@ public class MainState extends BasicGameState {
         frontground.add(new FrontHills(0.0f,0));
 
         //second scenario
+        frontground.add(new CaveFront(0.0f,0));
+        frontground.add(new CaveFront(0.0f,0));
+        frontground.add(new CaveFront(0.0f,0));
+        frontground.add(new CaveFront(0.0f,0));
+        frontground.add(new CaveFront(0.0f,0));
+
+        //third scenario
         frontground.add(new WaterFront(0.0f,0));
         frontground.add(new WaterFront(0.0f,0));
         frontground.add(new WaterFront(0.0f,0));
@@ -48,6 +55,10 @@ public class MainState extends BasicGameState {
         background.add(new BGHills(0.0f,0));
 
         //second scenario
+        background.add(new CaveSecond( 0.0f,0));
+        background.add(new CaveSecond(0.0f,0));
+
+        //third scenario
         background.add(new WaterSecond(0.0f,0));
         background.add(new WaterSecond(0.0f,0));
 
