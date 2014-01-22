@@ -4,6 +4,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import state.MainGame;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -13,7 +15,9 @@ import java.util.Random;
  * Time: 3:54 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SceneObject extends Sprite implements Movable {
+public abstract class SceneObject extends Sprite {
+
+    protected Random randomizer = new Random();
 
     public SceneObject(String imagePath) {
         super(imagePath, false);
@@ -42,11 +46,7 @@ public class SceneObject extends Sprite implements Movable {
         move(delta);
     }
 
+    public abstract void move(int delta);
 
-    @Override
-    public void move(int delta) {
-        y += (float) (new Random().nextInt(8) * Math.sin(Math.toDegrees(x/800)));
-        x += delta * 0.02;
-        image.rotate(new Random().nextFloat());
-    }
+    public abstract boolean isOutofScreen();
 }

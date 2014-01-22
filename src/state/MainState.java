@@ -5,7 +5,9 @@ import backgrounds.Background;
 import backgrounds.BackgroundHandler;
 import backgrounds.FrontHills;
 import entities.Balloon;
+import entities.Leaf;
 import entities.SceneObject;
+import entities.SceneObjectManager;
 import org.newdawn.slick.*;
 import org.newdawn.slick.particles.ParticleEmitter;
 import org.newdawn.slick.particles.ParticleIO;
@@ -26,7 +28,7 @@ public class MainState extends BasicGameState {
     private BackgroundHandler frontground, background;
     private Balloon balloon;
 
-    private SceneObject sceneObject;
+    private SceneObjectManager sceneObjectManager;
 
     private ParticleTransmitter particleTransmitter;
     @Override
@@ -40,7 +42,12 @@ public class MainState extends BasicGameState {
         initPlayer();
         initParticle();
 
-        sceneObject = new SceneObject(100, 200, "data/particles/leaf.png");
+        sceneObjectManager = new SceneObjectManager();
+        sceneObjectManager.addSceneObject(new Leaf(0, 50, "data/particles/leaf.png"));
+        sceneObjectManager.addSceneObject(new Leaf(0, 100, "data/particles/leaf.png"));
+        sceneObjectManager.addSceneObject(new Leaf(0, 300, "data/particles/leaf.png"));
+        sceneObjectManager.addSceneObject(new Leaf(0, 500, "data/particles/leaf.png"));
+        sceneObjectManager.addSceneObject(new Leaf(0, 600, "data/particles/leaf.png"));
     }
 
     @Override
@@ -49,16 +56,16 @@ public class MainState extends BasicGameState {
         renderPlayer(graphics);
         renderParticle();
 
-        sceneObject.render(graphics);
+        sceneObjectManager.render(graphics);
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame stateBasedGame, int delta) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame stateBasedGame, int delta) throws GameException {
         updateBackground(delta);
         updatePlayer(gc, delta);
         updateParticle(delta);
 
-        sceneObject.update(gc, delta);
+        sceneObjectManager.update(delta);
     }
 
     public void initBackground() throws GameException {
