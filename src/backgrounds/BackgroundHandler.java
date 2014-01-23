@@ -52,10 +52,10 @@ public class BackgroundHandler {
         if(renderlist.get(0).getX() == -2500.0) {
             renderlist.add(bglist.get(count));
             renderlist.get(1).resetToEnd();
-            count++;
+            //scount++;
         }
         if(renderlist.get(0).getX() < -2500.0) {
-            renderlist.get(1).move(moveX, moveY);
+            renderlist.get(0).move(moveX, moveY);
         }
         if(renderlist.get(0).getX() == -4000.0) {
             renderlist.remove(0);

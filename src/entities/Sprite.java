@@ -21,6 +21,7 @@ public abstract class Sprite {
             this.image = new Image(imagePath);
             this.x = 0;
             this.y = 0;
+            this.image.setRotation((float) 75);
         } catch (SlickException e) {
             e.printStackTrace();
         }
