@@ -74,8 +74,8 @@ public abstract class Sprite {
         g.drawOval(balloon.getX(), balloon.getY()-50, 2, 2);
         g.drawOval(balloon.getX()-30, balloon.getY()-20, 2, 2);
         g.drawOval(balloon.getX()+30, balloon.getY()-20, 2, 2);
-        g.drawString(name, x, y-20);
-        g.drawString(""+balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey),x,y);
+        //g.drawString(name, x, y-20);
+        //g.drawString(""+balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey),x,y);
 
 
 
