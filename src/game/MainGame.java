@@ -12,13 +12,14 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
  * Date: 14/01/14
  * Time: 1:25 PM
  */
+
+/**
+ * Starter class fo the game
+ */
 public class MainGame extends StateBasedGame {
 
-    private static final int SCREEN_WIDTH = 1280;
-    public static final int SCREEN_HEIGHT = 800;
-
     public MainGame() {
-        super("Balloonatic");
+        super(Game.TITLE);
     }
 
     @Override
@@ -30,9 +31,9 @@ public class MainGame extends StateBasedGame {
     // Main entry point for the game, set up the app and its window etc
     public static void main(String[] args) throws SlickException {
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
-        app.setVSync(true);
-        app.setShowFPS(false);
+        app.setDisplayMode(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, false);
+        app.setVSync(Game.VSYNC);
+        app.setShowFPS(Game.DEBUG.SHOW_FPS);
         app.start();
     }
 }
