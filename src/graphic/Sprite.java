@@ -11,7 +11,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * This is an abstract class for all sprite. For background, please use <code>Background</code> instead.
+ * This is an abstract class for sprites. For backgrounds, please use <code>Background</code> instead.
  */
 public abstract class Sprite {
 
@@ -60,32 +60,32 @@ public abstract class Sprite {
     }
 
     /**
-     * Get position of Sprite on x coordinate
-     * @return position of Sprite on x coordinate
+     * Get Sprite x coordinate
+     * @return Sprite x coordinate
      */
     public float getX() {
         return x;
     }
 
     /**
-     * Set position of Sprite on x coordinate
-     * @param x position of Sprite on x coordinate
+     * Set Sprite x coordinate
+     * @param x  Sprite x coordinate
      */
     public void setX(float x) {
         this.x = x;
     }
 
     /**
-     * Get position of Sprite on y coordinate
-     * @return position of Sprite on y coordinate
+     * Get Sprite y coordinate
+     * @return Sprite y coordinate
      */
     public float getY() {
         return y;
     }
 
     /**
-     * Set position of Sprite on y coordinate
-     * @param y position of Sprite on y coordinate
+     * Set Sprite y coordinate
+     * @param y Sprite y coordinate
      */
     public void setY(float y) {
         this.y = y;
