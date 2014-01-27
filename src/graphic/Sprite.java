@@ -104,7 +104,7 @@ public abstract class Sprite {
      * @param graphics graphics object attached to current scene
      */
     public void render(Graphics graphics){
-        image.draw(x, y);
+        image.drawCentered(x, y);
     }
 
     /**
