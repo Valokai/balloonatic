@@ -11,7 +11,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * This is an abstract class for all sprite. For background, please use <code>Background</code> instead.
+ * This is an abstract class for sprites. For backgrounds please use <code>Background</code> instead.
  */
 public abstract class Sprite {
 
@@ -36,14 +36,21 @@ public abstract class Sprite {
     private float scale;
 
     /**
+     * Can a player collide with this object.
+     */
+    private boolean isCollidable;
+
+
+    /**
      * Constructor
      * @param imagePath path to sprite image
      * @throws SlickException
      */
-    protected Sprite(String imagePath) throws SlickException {
+    protected Sprite(String imagePath, boolean collidable) throws SlickException {
         this.image = new Image(imagePath);
         this.x = 0;
         this.y = 0;
+        this.isCollidable = collidable;
     }
 
     /**
@@ -53,7 +60,7 @@ public abstract class Sprite {
      * @param imagePath Path to image to render as Sprite
      * @throws SlickException
      */
-    protected Sprite(float x, float y, String imagePath) throws SlickException {
+    protected Sprite(float x, float y, String imagePath, boolean collidable) throws SlickException {
         this.x = x;
         this.y = y;
         this.image = new Image(imagePath);
