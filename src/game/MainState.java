@@ -1,6 +1,8 @@
 package game;
 
 import graphic.Balloon;
+import graphic.Leaf;
+import handlers.SceneHandler;
 import handlers.ScrollingHandler;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -25,8 +27,9 @@ public class MainState extends BasicGameState {
     /*the scrollable foreground and backgrounds*/
     private ScrollingHandler frontground, background;
 
-    /*the balloon*/
-    Balloon balloon;
+    private SceneHandler sceneHandler = SceneHandler.getInstance();
+
+    private Balloon balloon;
 
     @Override
     public int getID() {
@@ -44,8 +47,8 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f,0,false,3)); //add more map to the front scrollable
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
-        balloon = new Balloon(280, 100);      //initialize the balloon
-
+        balloon = (Balloon) sceneHandler.spawn(280, 100, Balloon.class, "balloon");
+        sceneHandler.spawn(280, 200, Leaf.class, "leaf");
         skyimage = new Image("data/image/sky.png");
 
     }
@@ -56,18 +59,22 @@ public class MainState extends BasicGameState {
         background.render();
         frontground.render();   //render the frontground scrollables
 
-        balloon.render();      //render the balloon
+        sceneHandler.render(gameContainer, graphics);    //render the balloon
 
         balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
+
+        if(balloon.isCollided(sceneHandler.getSceneObjectById("leaf"))){
+            graphics.drawString("Collided", 500, 300);
+        }
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {        float deltaTime = delta /1000;
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
+        float deltaTime = delta /1000;
         backgroundMove(background, deltaTime-2, 0);
         backgroundMove(frontground, deltaTime-5, 0); //update the front scrollable
-        balloon.update(gameContainer, delta);   //update the balloon
-
+        sceneHandler.update(gameContainer, delta);
     }
 
     /*moves the background, separate method for clarity*/

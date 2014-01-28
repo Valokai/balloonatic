@@ -2,6 +2,7 @@ package graphic;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -17,20 +18,20 @@ import org.newdawn.slick.SlickException;
  *
  * For creation of game characters, please use <code>Sprite</code>
  */
-public class Background extends Sprite {
+public class Background extends Sprite{
 
+    /*image map of collision points*/
+    protected Image collisionImage;
+
+    /*colliding status, true for colliding*/
+    protected boolean collider;
+
+    protected boolean isCollidable;
 
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
-        super(x, y, imagePath, collisionImage, collidable);
-    }
-
-    /**
-     * Constructor
-     * @param imagePath path to image of this Background
-     * @throws SlickException
-     */
-    protected Background(String imagePath, boolean collidable) throws SlickException {
-        super(imagePath,collidable);
+        super(x, y, imagePath);
+        this.collisionImage = new Image(collisionImage);
+        this.isCollidable = collidable;
     }
 
     /**
@@ -41,7 +42,8 @@ public class Background extends Sprite {
      * @throws SlickException
      */
     protected Background(float x, float y, String imagePath, boolean collidable) throws SlickException {
-        super(x, y, imagePath, collidable);
+        super(x, y, imagePath);
+        this.isCollidable = collidable;
     }
 
     /**
@@ -67,7 +69,6 @@ public class Background extends Sprite {
         image.draw(x, y);
     }
 
-    @Override
     public void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y) {
         g.setColor(Color.black);
         g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
@@ -106,5 +107,17 @@ public class Background extends Sprite {
         rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getBlue();
 
         return rgb;
+    }
+
+    public boolean isColliding(){
+        return collider;
+    }
+
+    public boolean isCollidable() {
+        return isCollidable;
+    }
+
+    public void setCollidable(boolean collidable) {
+        isCollidable = collidable;
     }
 }
