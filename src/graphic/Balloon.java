@@ -48,8 +48,26 @@ public class Balloon extends Sprite{
         setY(getY() + offsetY);
     }
 
+    public void update(GameContainer gameContainer, int delta){
+        float deltaTime = delta / 1000.0f;
+        Input input = gameContainer.getInput();
+        updatePlayer(deltaTime, input);
+    }
 
+    private void updatePlayer(float deltaTime, Input input)
+    {
+        if (input.isKeyDown(Input.KEY_SPACE))
+        {
+            setSpeed(getSpeed() - (deltaTime * 500.0f));
+            move(0.0f, getSpeed() * deltaTime);
 
+        }
+        else
+        {
+            setSpeed(getSpeed() + (deltaTime * 500.0f));
+            move(0.0f, getSpeed() * deltaTime);
+        }
+    }
 
 
 
