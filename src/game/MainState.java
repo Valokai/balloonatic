@@ -1,14 +1,15 @@
 package game;
 
-import Handlers.ScrollingHandler;
-import graphic.*;
-import org.newdawn.slick.Image;
-import scrollables.*;
+import graphic.Balloon;
+import handlers.ScrollingHandler;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import scrollables.BackHills;
+import scrollables.GreenHills;
 
 /**
  * Created with IntelliJ IDEA.
