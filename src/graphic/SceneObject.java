@@ -21,8 +21,8 @@ public abstract class SceneObject extends Sprite{
      * @param imagePath path to image file
      * @throws SlickException
      */
-    protected SceneObject(String imagePath) throws SlickException {
-        super(imagePath);
+    protected SceneObject(String imagePath, boolean isCollidable) throws SlickException {
+        super(imagePath, isCollidable);
     }
 
     /**
@@ -32,20 +32,20 @@ public abstract class SceneObject extends Sprite{
      * @param imagePath path to image file
      * @throws SlickException
      */
-    protected SceneObject(float x, float y, String imagePath) throws SlickException {
-        super(x, y, imagePath, false);
+    protected SceneObject(float x, float y, String imagePath, boolean isCollidable) throws SlickException {
+        super(x, y, imagePath, isCollidable);
     }
 
     /**
      * Move the scene object
      */
-    public abstract void move();
+    public abstract void move(int delta);
 
     /**
      * Check if this object is out of screen
      * @return true if this object is out of screen, otherwise false
      */
-    public abstract boolean isOutofScreen();
+    public abstract boolean isReadyForDisposal();
 
 
 }

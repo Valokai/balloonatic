@@ -6,8 +6,12 @@ package graphic;
  * Time: 3:02 PM
  */
 
+<<<<<<< HEAD
 import org.newdawn.slick.Color;
+=======
+import org.newdawn.slick.*;
 import org.newdawn.slick.GameContainer;
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -182,8 +186,8 @@ public abstract class Sprite {
         image = image.getScaledCopy(scale);
         this.scale = scale;
     }
-    public void update(int delta){}
 
+<<<<<<< HEAD
     public  void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y){}
 
     /**colliding status
@@ -198,4 +202,11 @@ public abstract class Sprite {
      */
     public boolean isCollidable() {
         return isCollidable;
-    }}
+    }
+
+
+
+=======
+    public void update(int delta){}
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
+}
