@@ -1,6 +1,6 @@
 package game;
 
-import Handlers.ScrollingHandler;
+import handlers.ScrollingHandler;
 import graphic.*;
 import org.newdawn.slick.Image;
 import scrollables.*;

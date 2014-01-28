@@ -1,10 +1,8 @@
-package Handlers;
+package handlers;
 
 
 import graphic.*;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import game.MainGame;
 
 import java.util.ArrayList;
 
