@@ -107,7 +107,7 @@ public abstract class Sprite {
     }
 
     /**
-     * Render sprite on screen
+     * Render this sprite on the screen
      * @param graphics graphics object attached to current scene
      */
     public void render(Graphics graphics){
@@ -115,7 +115,7 @@ public abstract class Sprite {
     }
 
     /**
-     * Get scale of this sprite
+     * Get the scale of this sprite
      * @return scale of this sprite
      */
     public float getScale() {
@@ -123,7 +123,7 @@ public abstract class Sprite {
     }
 
     /**
-     * Set scale of this sprite
+     * Set the scale of this sprite
      * @param scale scale of this sprite
      */
     public void setScale(float scale) {
