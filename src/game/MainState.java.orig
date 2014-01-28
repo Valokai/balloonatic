@@ -1,9 +1,14 @@
 package game;
 
+<<<<<<< HEAD
 import Handlers.ScrollingHandler;
 import graphic.*;
 import org.newdawn.slick.Image;
 import scrollables.*;
+=======
+import graphic.Leaf;
+import handlers.SceneHandler;
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -19,6 +24,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainState extends BasicGameState {
 
+<<<<<<< HEAD
     private Image skyimage;
 
     /*the scrollable foreground and backgrounds*/
@@ -27,6 +33,8 @@ public class MainState extends BasicGameState {
     /*the balloon*/
     Balloon balloon;
 
+=======
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
     @Override
     public int getID() {
         return 0;
@@ -51,6 +59,8 @@ public class MainState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+<<<<<<< HEAD
+
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render();
         frontground.render();   //render the frontground scrollables
@@ -59,14 +69,21 @@ public class MainState extends BasicGameState {
 
         balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
+=======
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {        float deltaTime = delta /1000;
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
+<<<<<<< HEAD
+
+        float deltaTime = delta /1000;
         backgroundMove(background, deltaTime-2, 0);
         backgroundMove(frontground, deltaTime-5, 0); //update the front scrollable
         balloon.update(gameContainer, delta);   //update the balloon
 
+=======
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
     }
 
     /*moves the background, separate method for clarity*/

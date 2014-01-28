@@ -8,7 +8,10 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
-import org.newdawn.slick.*;
+<<<<<<< HEAD
+=======
+import org.newdawn.slick.SlickException;
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
 import org.newdawn.slick.*;
 
 /**
@@ -16,6 +19,7 @@ import org.newdawn.slick.*;
  */
 public class Balloon extends Sprite{
 
+<<<<<<< HEAD
     /*speed of balloon*/
     float loonspeed;
 
@@ -23,12 +27,11 @@ public class Balloon extends Sprite{
     float gameTime = 0.0f;
 
     protected Balloon() throws SlickException {
-        super("data/image/balloon.png", true);
+        super("data/image/balloon.png");
     }
 
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/image/balloon.png", false);
-        setSpeed(0);
     }
 
     /**reset the ballon to coordinates
@@ -119,7 +122,62 @@ public class Balloon extends Sprite{
             setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
         }
+=======
+    private float speed;
+
+
+    protected Balloon() throws SlickException {
+        super("data/image/balloon.png", true);
     }
+
+    public Balloon(float x, float y) throws SlickException {
+        super(x, y, "data/image/balloon.png",true);
+        setSpeed(0);
+    }
+
+    public void reset(float x, float y) {
+        setX(x);
+        setY(y);
+        setSpeed(0);
+    }
+
+    public void setSpeed(float speed){
+        this.speed = speed;
+    }
+
+    public float getSpeed(){
+        return speed;
+
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
+    }
+
+    public void move(float offsetX, float offsetY){
+        setX(getX() + offsetX);
+        setY(getY() + offsetY);
+    }
+
+    public void update(GameContainer gameContainer, int delta){
+        float deltaTime = delta / 1000.0f;
+        Input input = gameContainer.getInput();
+        updatePlayer(deltaTime, input);
+    }
+
+    private void updatePlayer(float deltaTime, Input input)
+    {
+        if (input.isKeyDown(Input.KEY_SPACE))
+        {
+            setSpeed(getSpeed() - (deltaTime * 500.0f));
+            move(0.0f, getSpeed() * deltaTime);
+
+        }
+        else
+        {
+            setSpeed(getSpeed() + (deltaTime * 500.0f));
+            move(0.0f, getSpeed() * deltaTime);
+        }
+    }
+
+
 
 }
 

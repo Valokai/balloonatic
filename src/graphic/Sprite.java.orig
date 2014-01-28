@@ -6,8 +6,12 @@ package graphic;
  * Time: 3:02 PM
  */
 
+<<<<<<< HEAD
 import org.newdawn.slick.Color;
+=======
+import org.newdawn.slick.*;
 import org.newdawn.slick.GameContainer;
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -157,7 +161,7 @@ public abstract class Sprite {
     }
 
     /**
-     * Render this sprite on the screen
+     * Render sprite on screen
      * @param graphics graphics object attached to current scene
      */
 
@@ -167,7 +171,7 @@ public abstract class Sprite {
 
 
     /**
-     * Get the scale of this sprite
+     * Get scale of this sprite
      * @return scale of this sprite
      */
     public float getScale() {
@@ -175,15 +179,15 @@ public abstract class Sprite {
     }
 
     /**
-     * Set the scale of this sprite
+     * Set scale of this sprite
      * @param scale scale of this sprite
      */
     public void setScale(float scale) {
         image = image.getScaledCopy(scale);
         this.scale = scale;
     }
-    public void update(int delta){}
 
+<<<<<<< HEAD
     public  void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y){}
 
     /**colliding status
@@ -198,4 +202,11 @@ public abstract class Sprite {
      */
     public boolean isCollidable() {
         return isCollidable;
-    }}
+    }
+
+
+
+=======
+    public void update(int delta){}
+>>>>>>> f43640e36bf6bb0c7b5b7b307c26c52a21349923
+}
