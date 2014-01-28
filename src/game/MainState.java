@@ -1,5 +1,7 @@
 package game;
 
+import graphic.Leaf;
+import handlers.SceneHandler;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -14,6 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * To change this template use File | Settings | File Templates.
  */
 public class MainState extends BasicGameState {
+
     @Override
     public int getID() {
         return 0;
@@ -26,11 +29,9 @@ public class MainState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
     }
 }

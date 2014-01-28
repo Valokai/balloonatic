@@ -16,11 +16,11 @@ import org.newdawn.slick.SlickException;
 public class Balloon extends Sprite{
 
     protected Balloon() throws SlickException {
-        super("data/sprite/balloon.png");
+        super("data/sprite/balloon.png", true);
     }
 
     public Balloon(float x, float y) throws SlickException {
-        super(x, y, "data/sprite/balloon.png");
+        super(x, y, "data/sprite/balloon.png", true);
     }
 
 }

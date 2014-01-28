@@ -6,6 +6,7 @@ package graphic;
  * Time: 3:02 PM
  */
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -18,27 +19,27 @@ public abstract class Sprite {
     /**
      * Position of Sprite on x coordinate
      */
-    private float x;
+    protected float x;
 
     /**
      * Position of Sprite on y coordinate
      */
-    private float y;
+    protected float y;
 
     /**
      * Image reference to render this
      */
-    private Image image;
+    protected Image image;
 
     /**
      * Current scale of this
      */
-    private float scale;
+    protected float scale;
 
     /**
      * Can a player collide with this object.
      */
-    private boolean isCollidable;
+    protected boolean isCollidable;
 
 
     /**
@@ -110,7 +111,7 @@ public abstract class Sprite {
      * Render sprite on screen
      * @param graphics graphics object attached to current scene
      */
-    public void render(Graphics graphics){
+    public void render(GameContainer gc, Graphics graphics){
         image.draw(x, y);
     }
 
@@ -130,4 +131,6 @@ public abstract class Sprite {
         image = image.getScaledCopy(scale);
         this.scale = scale;
     }
+
+    public void update(int delta){}
 }
