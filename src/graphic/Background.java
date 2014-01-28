@@ -11,7 +11,9 @@ import org.newdawn.slick.SlickException;
  */
 
 /**
- * This class represents Background Image of the game. For creation of game characters, please use <code>Sprite</code>
+ * This class represent a Background Image of the game.
+ *
+ * For creation of game characters, please use <code>Sprite</code>
  */
 public class Background extends Sprite {
 
@@ -20,8 +22,8 @@ public class Background extends Sprite {
      * @param imagePath path to image of this Background
      * @throws SlickException
      */
-    protected Background(String imagePath) throws SlickException {
-        super(imagePath);
+    protected Background(String imagePath, boolean collidable) throws SlickException {
+        super(imagePath,collidable);
     }
 
     /**
@@ -31,8 +33,8 @@ public class Background extends Sprite {
      * @param imagePath path to image of this Background
      * @throws SlickException
      */
-    protected Background(float x, float y, String imagePath) throws SlickException {
-        super(x, y, imagePath);
+    protected Background(float x, float y, String imagePath, boolean collidable) throws SlickException {
+        super(x, y, imagePath, collidable);
     }
 
     /**
