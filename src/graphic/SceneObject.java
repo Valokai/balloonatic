@@ -33,7 +33,7 @@ public abstract class SceneObject extends Sprite{
      * @throws SlickException
      */
     protected SceneObject(float x, float y, String imagePath) throws SlickException {
-        super(x, y, imagePath);
+        super(x, y, imagePath, false);
     }
 
     /**

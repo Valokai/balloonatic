@@ -18,6 +18,8 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
  */
 public class MainGame extends StateBasedGame {
 
+    public static final int SCREEN_WIDTH = 1280;
+    public static final int SCREEN_HEIGHT = 720;
     public MainGame() {
         super(Game.TITLE);
     }
@@ -31,7 +33,7 @@ public class MainGame extends StateBasedGame {
     // Main entry point for the game, set up the app and its window etc
     public static void main(String[] args) throws SlickException {
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, false);
+        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
         app.setVSync(Game.VSYNC);
         app.setShowFPS(Game.DEBUG.SHOW_FPS);
         app.start();
