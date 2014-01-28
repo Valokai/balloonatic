@@ -24,8 +24,7 @@ public class Balloon extends Sprite{
     }
 
     public Balloon(float x, float y) throws SlickException {
-<<<<<<< HEAD
-        super(x, y, "data/sprite/balloon.png");
+        super(x, y, "data/sprite/balloon.png",true);
         setSpeed(0);
     }
 
@@ -41,9 +40,7 @@ public class Balloon extends Sprite{
 
     public float getSpeed(){
         return speed;
-=======
-        super(x, y, "data/sprite/balloon.png", true);
->>>>>>> 70a1f06005447c8b3479380e47712e1562744bf8
+
     }
 
     public void move(float offsetX, float offsetY){

@@ -6,6 +6,7 @@ package graphic;
  * Time: 3:02 PM
  */
 
+import org.newdawn.slick.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -111,14 +112,11 @@ public abstract class Sprite {
      * Render sprite on screen
      * @param graphics graphics object attached to current scene
      */
-<<<<<<< HEAD
-    public void render(Graphics graphics){
-        image.drawCentered(x, y);
-=======
+
     public void render(GameContainer gc, Graphics graphics){
-        image.draw(x, y);
->>>>>>> 70a1f06005447c8b3479380e47712e1562744bf8
+        image.drawCentered(x, y);
     }
+
 
     /**
      * Get scale of this sprite
