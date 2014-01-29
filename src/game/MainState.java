@@ -22,7 +22,7 @@ public class MainState extends BasicGameState {
     private Image skyimage;
 
     /*the scrollable foreground and backgrounds*/
-    private ScrollingHandler frontground, background;
+    private ScrollingHandler frontlayer, midlayer, backlayer;
 
     /*the balloon*/
     Balloon balloon;
@@ -35,13 +35,20 @@ public class MainState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        frontground = new ScrollingHandler("frontground", new GreenHills(0.0f,0,true,1)); //create front collidable scrollable
-        frontground.add(new GreenHills(0.0f,0,true,1)); //add more map to the front scrollable
+        frontlayer = new ScrollingHandler("frontground", new GreenHills(0.0f,0,true,1)); //create front collidable scrollable
+        frontlayer.add(new GreenHills(0.0f, 0, true, 1)); //add more map to the front scrollable
 
-        background = new ScrollingHandler("background", new BackHills(0.0f,0,false,1)); //create front collidable scrollable
-        background.add(new BackHills(0.0f,0,false,2)); //add more map to the front scrollable
-        background.add(new BackHills(0.0f,0,false,3)); //add more map to the front scrollable
-        background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
+        midlayer = new ScrollingHandler("midlayer", new SecondHills(0.0f,0,false,1));
+        midlayer.add(new SecondHills(0.0f,0,false,2));
+        midlayer.add(new SecondHills(0.0f,0,false,3));
+        midlayer.add(new SecondHills(0.0f,0,false,4));
+
+        backlayer = new ScrollingHandler("background", new BackHills(0.0f,0,false,1)); //create back non collidable scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 2)); //add more map to the back scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 3)); //add more map to the back scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 4)); //add more map to the back scrollable
+
+
 
         balloon = new Balloon(280, 100);      //initialize the balloon
 
@@ -52,19 +59,23 @@ public class MainState extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
-        background.render();
-        frontground.render();   //render the frontground scrollables
+
+        /*render the scrollable layers*/
+        backlayer.render();
+        midlayer.render();
+        frontlayer.render();
 
         balloon.render();      //render the balloon
 
         balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
-        frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
+        frontlayer.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {        float deltaTime = delta /1000;
-        backgroundMove(background, deltaTime-2, 0);
-        backgroundMove(frontground, deltaTime-5, 0); //update the front scrollable
+        backgroundMove(backlayer, deltaTime-1, 0);
+        backgroundMove(midlayer, deltaTime-2, 0);
+        backgroundMove(frontlayer, deltaTime-4, 0); //update the front scrollable
         balloon.update(gameContainer, delta);   //update the balloon
 
     }

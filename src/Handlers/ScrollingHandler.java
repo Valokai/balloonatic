@@ -102,7 +102,7 @@ public class ScrollingHandler {
             renderlist.get(1).move(moveX, moveY);
         }
 
-        if(renderlist.get(0).getX() == -2600.0) {
+        if(renderlist.get(0).getX() <= -2600.0) {
             renderlist.remove(0);
         }
 
