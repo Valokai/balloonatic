@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 public class Leaf extends SceneObject {
 
     public Leaf() throws SlickException {
-        super("data/image/leaf.png", false);
+        super("data/image/leaf.png", true);
     }
 
     protected Leaf(String imagePath, boolean isCollidable) throws SlickException {
@@ -26,11 +26,12 @@ public class Leaf extends SceneObject {
 
     @Override
     public void move(int delta) {
-        x += delta * 0.01;
+        x += delta * 0.008;
     }
 
     @Override
     public boolean isReadyForDisposal() {
         return (x > Game.SCREEN_WIDTH ||x < 0);
     }
+
 }
