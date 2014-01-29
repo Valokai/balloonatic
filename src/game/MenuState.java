@@ -1,8 +1,8 @@
 package game;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import com.aem.sticky.button.SimpleButton;
+import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MenuState extends BasicGameState {
 
+    private SimpleButton btn;
 
     @Override
     public int getID() {
@@ -23,16 +24,22 @@ public class MenuState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        //To change body of implemented methods use File | Settings | File Templates.
+        btn = new SimpleButton(new Rectangle(0, 0, 100, 80), new Image("data/image/balloon.png"), new Image("data/image/balloon2.png"), new Sound("data/sound/critical.ogg"));
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        //To change body of implemented methods use File | Settings | File Templates.
+       btn.render(gameContainer, graphics);
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
+        btn.update(gameContainer, delta);
+    }
+
+    @Override
+    public void mouseClicked(int button, int x, int y, int clickCount) {
+        super.mouseClicked(button, x, y, clickCount);
+        btn.mouseClicked(button, x, y, clickCount);
     }
 }
