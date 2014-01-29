@@ -106,7 +106,7 @@ public class Balloon extends SceneObject{
      */
     private void updatePlayer(float deltaTime, Input input)
     {
-        if (input.isKeyDown(Input.KEY_SPACE))
+        if (input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
         {
             setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);

@@ -110,6 +110,10 @@ public abstract class Sprite {
         }
     }
 
+    public void setCollideImage(String image) {
+
+    }
+
     /**
      * Render sprite on screen
      * @param graphics graphics object attached to current scene
