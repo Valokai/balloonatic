@@ -33,7 +33,7 @@ public class MainState extends BasicGameState {
 
     @Override
     public int getID() {
-        return 0;
+        return Game.STATE.MAIN;
     }
 
     @Override
