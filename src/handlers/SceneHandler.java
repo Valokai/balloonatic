@@ -173,4 +173,9 @@ public class SceneHandler {
         return registeredSceneObjects.get(id);
     }
 
+    public void clearAll(){
+        registeredSceneObjects.clear();
+        disposedSceneObjects.clear();
+    }
+
 }

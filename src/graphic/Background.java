@@ -1,9 +1,6 @@
 package graphic;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,10 +25,14 @@ public class Background extends Sprite{
 
     protected boolean isCollidable;
 
+    protected int width, height;
+
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
         super(x, y, imagePath);
         this.collisionImage = new Image(collisionImage);
         this.isCollidable = collidable;
+        this.width = 0;
+        this.height = 0;
     }
 
     /**
@@ -41,16 +42,33 @@ public class Background extends Sprite{
      * @param imagePath path to image of this Background
      * @throws SlickException
      */
-    protected Background(float x, float y, String imagePath, boolean collidable) throws SlickException {
+    public Background(float x, float y, String imagePath, boolean collidable) throws SlickException {
         super(x, y, imagePath);
         this.isCollidable = collidable;
+        this.width = 0;
+        this.height = 0;
+    }
+
+    public Background(float x, float y, int width, int height, String imagePath, String collisionImage, boolean collidable) throws SlickException {
+        super(x, y, imagePath);
+        this.collisionImage = new Image(collisionImage);
+        this.isCollidable = collidable;
+        this.width = width;
+        this.height = height;
     }
 
     /**
-     * //TODO
+     * Contructor
+     * @param x x position
+     * @param y y position
+     * @param imagePath path to image of this Background
+     * @throws SlickException
      */
-    public void restToEnd(){
-        //TODO
+    public Background(float x, float y, int width, int height, String imagePath, boolean collidable) throws SlickException {
+        super(x, y, imagePath);
+        this.isCollidable = collidable;
+        this.width = width;
+        this.height = height;
     }
 
     /*move the background*/
@@ -65,8 +83,13 @@ public class Background extends Sprite{
         this.y = 0;
     }
 
-    public void render() {
-        image.draw(x, y);
+    @Override
+    public void render(GameContainer gc, Graphics graphics) {
+        if(width != 0){
+            image.draw(x, y, width, height);
+        }else{
+            image.draw(x, y);
+        }
     }
 
     public void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y) {
