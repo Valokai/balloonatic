@@ -143,4 +143,14 @@ public class Background extends Sprite{
     public void setCollidable(boolean collidable) {
         isCollidable = collidable;
     }
+
+    public void setCollisionImage(String image){
+        try{
+            this.collisionImage = new Image(image);
+        }
+        catch(SlickException e )     {
+            e.printStackTrace();
+        }
+
+    }
 }

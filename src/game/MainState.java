@@ -41,7 +41,9 @@ public class MainState extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         frontground = new ScrollingHandler("frontground", new GreenHills(0.0f,0,true,1)); //create front collidable scrollable
-        frontground.add(new GreenHills(0.0f,0,true,1)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f,0,true,2)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f,0,true,3)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f,0,true,4)); //add more map to the front scrollable
 
         background = new ScrollingHandler("background", new BackHills(0.0f,0,false,1)); //create front collidable scrollable
         background.add(new BackHills(0.0f,0,false,2)); //add more map to the front scrollable
