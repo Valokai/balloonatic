@@ -5,10 +5,14 @@ import com.aem.sticky.button.SimpleButton;
 import com.aem.sticky.button.events.ClickListener;
 import graphic.Background;
 import handlers.SceneHandler;
+import javafx.scene.effect.Bloom;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,7 +38,7 @@ public class MenuState extends BasicGameState {
         btn.addListener(new ClickListener() {
             @Override
             public void onClick(Button clicked, float mx, float my) {
-                stateBasedGame.enterState(Game.STATE.MAIN);
+                stateBasedGame.enterState(Game.STATE.MAIN, new FadeOutTransition(), new BlobbyTransition());
             }
 
             @Override

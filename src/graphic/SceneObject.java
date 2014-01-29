@@ -88,7 +88,7 @@ public abstract class SceneObject extends Sprite{
     }
 
     public boolean isCollided(SceneObject collidable) {
-        if(collidable.isCollidable()){
+        if(collidable != null && collidable.isCollidable()){
             // This method detects to see if the images overlap at all. If they do, collision is possible
             int ax1 = (int) getX();
             int ay1 = (int) getY();
@@ -114,8 +114,6 @@ public abstract class SceneObject extends Sprite{
                     return true;
                 }
             }
-        }else{
-            Log.info("Given sprite is not collidable. Did you set isCollidable to false?");
         }
         return false;
     }
