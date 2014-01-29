@@ -1,4 +1,7 @@
-package game;
+package game; backlayer = new ScrollingHandler("background", new BackHills(0.0f,0,false,1)); //create back non collidable scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 2)); //add more map to the back scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 3)); //add more map to the back scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 4)); //add more map to the back scrollable
 
 import graphic.Balloon;
 import graphic.Leaf;
@@ -47,9 +50,12 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f,0,false,3)); //add more map to the front scrollable
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
-        balloon = (Balloon) sceneHandler.spawn(280, 100, Balloon.class, "balloon");
         sceneHandler.spawn(280, 200, Leaf.class, "leaf");
-        skyimage = new Image("data/image/sky.png");
+		 backlayer = new ScrollingHandler("background", new BackHills(0.0f,0,false,1)); //create back non collidable scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 2)); //add more map to the back scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 3)); //add more map to the back scrollable
+        backlayer.add(new BackHills(0.0f, 0, false, 4)); //add more map to the back scrollable
+		 skyimage = new Image("data/image/sky.png");
 
     }
 
@@ -59,9 +65,7 @@ public class MainState extends BasicGameState {
         background.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
-        sceneHandler.render(gameContainer, graphics);    //render the balloon
-
-        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
+        sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
 
         if(balloon.isCollided(sceneHandler.getSceneObjectById("leaf"))){
