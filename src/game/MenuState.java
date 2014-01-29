@@ -11,6 +11,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.CombinedTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
@@ -38,7 +39,7 @@ public class MenuState extends BasicGameState {
         btn.addListener(new ClickListener() {
             @Override
             public void onClick(Button clicked, float mx, float my) {
-                stateBasedGame.enterState(Game.STATE.MAIN, new FadeOutTransition(), new BlobbyTransition());
+                stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
             }
 
             @Override
