@@ -22,6 +22,7 @@ public class MenuState extends BasicGameState {
     private SimpleButton btn;
     private Background background;
     private SceneHandler sceneHandler = SceneHandler.getInstance();
+    private Music bGM = null;
 
     @Override
     public int getID() {
@@ -30,6 +31,7 @@ public class MenuState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
+        bGM = new Music("data/sound/menu/menuBGM.ogg");
         btn = new SimpleButton(new Rectangle(50, 50, 200, 100), new Image("data/image/balloon.png"), new Image("data/image/balloon2.png"), new Sound("data/sound/critical.ogg"));
         btn.addListener(new ClickListener() {
             @Override
@@ -48,6 +50,13 @@ public class MenuState extends BasicGameState {
             }
         });
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/title.png", false);
+    }
+
+
+    @Override
+    public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException
+    {
+      bGM.loop();
     }
 
     @Override
