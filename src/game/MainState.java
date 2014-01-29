@@ -56,8 +56,8 @@ public class MainState extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
-        background.render();
-        frontground.render();   //render the frontground scrollables
+        background.render(gameContainer, graphics);
+        frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
         sceneHandler.render(gameContainer, graphics);    //render the balloon
 

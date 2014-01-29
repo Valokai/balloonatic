@@ -3,6 +3,7 @@ package handlers;
 
 import graphic.*;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import game.MainGame;
 
@@ -76,9 +77,9 @@ public class ScrollingHandler {
     /**renders all the images in the renderlist
      *
      */
-    public void render() {
+    public void render(GameContainer gameContainer, Graphics graphics) {
         for(int i = 0; i<renderlist.size(); i++) {
-            renderlist.get(i).render();
+            renderlist.get(i).render(gameContainer, graphics);
         }
 
 
