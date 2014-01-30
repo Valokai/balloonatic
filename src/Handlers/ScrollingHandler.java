@@ -106,7 +106,7 @@ public class ScrollingHandler {
 
         renderlist.get(0).move(moveX, moveY);
 
-        /*calculate the balloons horisontal movement */
+        /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground")){
         distance -= moveX / 100;
         }
