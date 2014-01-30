@@ -13,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import scrollables.BackHills;
 import scrollables.GreenHills;
 import scrollables.SecondHills;
+import util.ParticleManager;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,6 +32,8 @@ public class MainState extends BasicGameState {
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
     private Balloon balloon;
+
+    private ParticleManager particleManager = new ParticleManager();
 
     @Override
     public int getID() {
@@ -58,6 +61,9 @@ public class MainState extends BasicGameState {
         backlayer.add(new SecondHills(0.0f, 0, false, 4)); //add more map to the back scrollable
         skyimage = new Image("data/image/sky.png");
 
+        particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
+        particleManager.addParticle("data/particles/emitter_fast.xml", "data/particles/particle.png");
+
     }
 
     @Override
@@ -65,6 +71,7 @@ public class MainState extends BasicGameState {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
+        particleManager.render(graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
 
@@ -86,6 +93,7 @@ public class MainState extends BasicGameState {
         backgroundMove(backlayer, deltaTime-2, 0);
         backgroundMove(frontground, deltaTime-4, 0); //update the front scrollable
         sceneHandler.update(gameContainer, delta);
+        particleManager.upate(delta);
     }
 
     /*moves the background, separate method for clarity*/
