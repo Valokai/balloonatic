@@ -13,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import scrollables.BackHills;
 import scrollables.GreenHills;
 import scrollables.SecondHills;
+import util.ParticleManager;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,6 +32,8 @@ public class MainState extends BasicGameState {
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
     private Balloon balloon;
+
+    private ParticleManager particleManager = new ParticleManager();
 
     @Override
     public int getID() {
@@ -58,6 +61,9 @@ public class MainState extends BasicGameState {
         backlayer.add(new SecondHills(0.0f, 0, false, 4)); //add more map to the back scrollable
         skyimage = new Image("data/image/sky.png");
 
+        particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
+        particleManager.addParticle("data/particles/emitter_fast.xml", "data/particles/particle.png");
+
     }
 
     @Override
@@ -65,6 +71,7 @@ public class MainState extends BasicGameState {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
+        particleManager.render(graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
 
@@ -74,21 +81,35 @@ public class MainState extends BasicGameState {
         if(balloon.isCollided(sceneHandler.getSceneObjectById("leaf"))){
             graphics.drawString("Collided", 500, 300);
         }
-    }
+
+        //render fuel
+        graphics.drawString("Fuel: "+balloon.getFuel(), 700, 0);
+        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+        //render score
+        graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);    }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         float deltaTime = delta /1000;
-        backgroundMove(background, deltaTime-1, 0);
-        backgroundMove(backlayer, deltaTime-2, 0);
-        backgroundMove(frontground, deltaTime-4, 0); //update the front scrollable
+        backgroundMove(background, deltaTime-1, 0, stateBasedGame);
+        backgroundMove(backlayer, deltaTime-2, 0, stateBasedGame);
+        backgroundMove(frontground, deltaTime-4, 0, stateBasedGame); //update the front scrollable
         sceneHandler.update(gameContainer, delta);
+        particleManager.upate(delta);
     }
 
     /*moves the background, separate method for clarity*/
-    public void backgroundMove(ScrollingHandler bg, float x, float y) {
-        bg.update(x, y, balloon);
+    public void backgroundMove(ScrollingHandler bg, float x, float y, StateBasedGame sbg) {
+        bg.update(x, y, balloon, sbg);
     }
 
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+        init(container, game);
+    }
 
+    @Override
+    public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+        super.leave(container, game);    //To change body of overridden methods use File | Settings | File Templates.
+    }
 }
