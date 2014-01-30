@@ -1,6 +1,7 @@
 package game;
 
 import graphic.Balloon;
+import graphic.Fuel;
 import graphic.Leaf;
 import handlers.SceneHandler;
 import handlers.ScrollingHandler;
@@ -33,7 +34,9 @@ public class MainState extends BasicGameState {
 
     private Balloon balloon;
 
+
     private ParticleManager particleManager = new ParticleManager();
+    private Fuel fuelIndicator;
 
     @Override
     public int getID() {
@@ -44,16 +47,18 @@ public class MainState extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         frontground = new ScrollingHandler("frontground", new GreenHills(0.0f,0,true,1)); //create front collidable scrollable
-        frontground.add(new GreenHills(0.0f,0,true,2)); //add more map to the front scrollable
-        frontground.add(new GreenHills(0.0f,0,true,3)); //add more map to the front scrollable
-        frontground.add(new GreenHills(0.0f,0,true,4)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 2)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 3)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 4)); //add more map to the front scrollable
 
         background = new ScrollingHandler("background", new BackHills(0.0f,0,false,1)); //create front collidable scrollable
-        background.add(new BackHills(0.0f,0,false,2)); //add more map to the front scrollable
+        background.add(new BackHills(0.0f, 0, false, 2)); //add more map to the front scrollable
         background.add(new BackHills(0.0f,0,false,3)); //add more map to the front scrollable
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
         balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
+        fuelIndicator = (Fuel) sceneHandler.spawn(280, 200, Fuel.class);
+
         sceneHandler.spawn(280, 200, Leaf.class, "leaf");
         backlayer = new ScrollingHandler("background", new SecondHills(0.0f,0,false,1)); //create back non collidable scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 2)); //add more map to the back scrollable
