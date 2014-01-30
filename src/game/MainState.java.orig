@@ -84,9 +84,13 @@ public class MainState extends BasicGameState {
 
         //render fuel
         graphics.drawString("Fuel: "+balloon.getFuel(), 700, 0);
-        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+<<<<<<< HEAD
         //render score
-        graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);    }
+        graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
+=======
+        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+>>>>>>> fbc7f66d2406b59b39393c2e6dcfc00a64a5e18e
+    }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
