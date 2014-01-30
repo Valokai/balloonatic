@@ -85,7 +85,7 @@ public class SceneHandler {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        return null;
+        return sceneObject;
     }
 
     /**
