@@ -9,25 +9,18 @@ import org.newdawn.slick.SlickException;
  * Time: 4:22 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FuelGague extends SceneObject {
+public class FuelGague extends Sprite {
 
     public FuelGague() throws SlickException {
-        super("data/image/fuelStatic.png", true);
-    }
-    @Override
-    public void move(int delta) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        super("data/image/fuelGague.png");
     }
 
-    @Override
-    public boolean isReadyForDisposal() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+
 
     /**render the image
      *
      */
     public void render(){
-        image.drawCentered(x, y);
+        image.getScaledCopy(50,50).drawCentered(x, y);
     }
 }

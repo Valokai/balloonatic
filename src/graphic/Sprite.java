@@ -147,4 +147,8 @@ public abstract class Sprite {
         this.scale = scale;
     }
 
+    public void draw(float x, float y, float width, float height){
+         image.draw(x, y, width, height);
+    }
+
 }
