@@ -33,6 +33,7 @@ public class ButtonManager {
         hover = hover.getScaledCopy(0.8f);
         Shape shape = new Rectangle(x, y, normal.getWidth(), normal.getHeight());
         SimpleButton simpleButton = new SimpleButton(shape, normal, hover, new Sound(oggPath));
+        simpleButton.addListener(clickListener);
         buttons.put(id, simpleButton);
     }
 
