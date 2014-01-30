@@ -22,6 +22,7 @@ public class Balloon extends SceneObject{
     private float gameTime = 0.0f;
 
     protected int fuel = 1000;
+    protected int lives = 3;
 
     public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
@@ -122,8 +123,31 @@ public class Balloon extends SceneObject{
         }
     }
 
+    /**returns the fuel of the balloon
+     *
+     * @return     the fuel
+     */
     public int getFuel() {
         return fuel;
+    }
+
+    /**get the lives of the player / balloon
+     *
+     * @return  the balloons lives
+     */
+    public int getLives() {
+        return lives;
+    }
+
+    public void editLives(int x) {
+        lives += x;
+    }
+
+    public void resetBalloonStats() {
+        lives = 3;
+        fuel = 1000;
+        x = 280;
+        y = 200;
     }
 
     @Override

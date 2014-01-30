@@ -77,21 +77,30 @@ public class MainState extends BasicGameState {
 
         //render fuel
         graphics.drawString("Fuel: "+balloon.getFuel(), 700, 0);
+        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         float deltaTime = delta /1000;
-        backgroundMove(background, deltaTime-1, 0);
-        backgroundMove(backlayer, deltaTime-2, 0);
-        backgroundMove(frontground, deltaTime-4, 0); //update the front scrollable
+        backgroundMove(background, deltaTime-1, 0, stateBasedGame);
+        backgroundMove(backlayer, deltaTime-2, 0, stateBasedGame);
+        backgroundMove(frontground, deltaTime-4, 0, stateBasedGame); //update the front scrollable
         sceneHandler.update(gameContainer, delta);
     }
 
     /*moves the background, separate method for clarity*/
-    public void backgroundMove(ScrollingHandler bg, float x, float y) {
-        bg.update(x, y, balloon);
+    public void backgroundMove(ScrollingHandler bg, float x, float y, StateBasedGame sbg) {
+        bg.update(x, y, balloon, sbg);
     }
 
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+        init(container, game);
+    }
 
+    @Override
+    public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+        super.leave(container, game);    //To change body of overridden methods use File | Settings | File Templates.
+    }
 }

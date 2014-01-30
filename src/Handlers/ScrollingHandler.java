@@ -1,11 +1,16 @@
 package handlers;
 
 
+import game.Game;
 import graphic.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import game.MainGame;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.CombinedTransition;
 
 import java.util.ArrayList;
 
@@ -91,7 +96,8 @@ public class ScrollingHandler {
      * @param moveY   amount to move the y-coordinate by
      * @param balloon original balloon object needed for collision
      */
-    public void update(float moveX, float moveY, Balloon balloon) {
+    public void update(float moveX, float moveY, Balloon balloon, StateBasedGame stateBasedGame) {
+
 
         renderlist.get(0).move(moveX, moveY);
 
@@ -115,11 +121,27 @@ public class ScrollingHandler {
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
             if(collider2) {
-                balloon.reset(280,150);
-                return;
+                balloon.editLives(-1);  //decrease the lives because they collide*/
+                if(balloon.getLives() <=0) {
+                   // balloon.resetBalloonStats();
+                    stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
+                }
+                else {
+                    balloon.reset(280,150);
+                    return;
+                }
             }
         }  else {
-            if(collider) balloon.reset(280,150);
+            if(collider) {
+                balloon.editLives(-1);
+                if(balloon.getLives() <= 0) {
+                   // balloon.resetBalloonStats();
+                    stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
+                }
+                else {
+                     balloon.reset(280,150);
+                }
+            }
         }
     }
 
