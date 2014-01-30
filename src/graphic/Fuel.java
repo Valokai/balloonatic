@@ -23,4 +23,11 @@ public class Fuel extends SceneObject {
     public boolean isReadyForDisposal() {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    /**render the image
+     *
+     */
+    public void render(){
+        image.drawCentered(x, y);
+    }
 }

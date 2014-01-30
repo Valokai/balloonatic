@@ -57,7 +57,7 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
         balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
-        fuelIndicator = (Fuel) sceneHandler.spawn(280, 200, Fuel.class);
+        fuelIndicator = (Fuel) sceneHandler.spawn(480, 200, Fuel.class);
 
         sceneHandler.spawn(280, 200, Leaf.class, "leaf");
         backlayer = new ScrollingHandler("background", new SecondHills(0.0f,0,false,1)); //create back non collidable scrollable
