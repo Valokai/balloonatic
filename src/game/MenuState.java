@@ -57,7 +57,7 @@ public class MenuState extends BasicGameState implements ClickListener {
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException
     {
-        bGM.loop();
+        //bGM.loop();
     }
 
     @Override
