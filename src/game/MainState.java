@@ -1,7 +1,7 @@
 package game;
 
 import graphic.Balloon;
-import graphic.Fuel;
+import graphic.FuelGague;
 import graphic.Leaf;
 import handlers.SceneHandler;
 import handlers.ScrollingHandler;
@@ -36,7 +36,7 @@ public class MainState extends BasicGameState {
 
 
     private ParticleManager particleManager = new ParticleManager();
-    private Fuel fuelIndicator;
+    private FuelGague fuelIndicator;
 
     @Override
     public int getID() {
@@ -57,7 +57,7 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
         balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
-        fuelIndicator = (Fuel) sceneHandler.spawn(480, 200, Fuel.class);
+        //fuelIndicator = (FuelGague) sceneHandler.spawn(480, 200, FuelGague.class);
 
         sceneHandler.spawn(280, 200, Leaf.class, "leaf");
         backlayer = new ScrollingHandler("background", new SecondHills(0.0f,0,false,1)); //create back non collidable scrollable
@@ -88,7 +88,7 @@ public class MainState extends BasicGameState {
         }
 
         //render fuel
-        graphics.drawString("Fuel: "+balloon.getFuel(), 700, 0);
+        graphics.drawString("FuelGague: "+balloon.getFuel(), 700, 0);
         graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
         //render score
         graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);    }
