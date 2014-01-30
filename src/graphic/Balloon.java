@@ -9,26 +9,24 @@ package graphic;
  */
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.*;
 
 /**
  * Balloon Sprite, Player of the game
  */
-public class Balloon extends Sprite{
+public class Balloon extends SceneObject{
 
     /*speed of balloon*/
-    float loonspeed;
+    private float loonspeed = 0;
 
     /*game time*/
-    float gameTime = 0.0f;
+    private float gameTime = 0.0f;
 
-    protected Balloon() throws SlickException {
+    public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
     }
 
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/image/balloon.png", false);
-        setSpeed(0);
     }
 
     /**reset the ballon to coordinates
@@ -93,12 +91,11 @@ public class Balloon extends Sprite{
      * @param gameContainer     the game container
      * @param delta             delta
      */
+    @Override
     public void update(GameContainer gameContainer, int delta){
         float deltaTime = delta / 1000.0f;
         gameTime += deltaTime;
-
         Input input = gameContainer.getInput();
-
         updatePlayer(deltaTime, input);
     }
 
@@ -109,7 +106,7 @@ public class Balloon extends Sprite{
      */
     private void updatePlayer(float deltaTime, Input input)
     {
-        if (input.isKeyDown(Input.KEY_SPACE))
+        if (input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
         {
             setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
@@ -121,5 +118,12 @@ public class Balloon extends Sprite{
         }
     }
 
+    @Override
+    public void move(int delta) {}
+
+    @Override
+    public boolean isReadyForDisposal() {
+        return false;
+    }
 }
 

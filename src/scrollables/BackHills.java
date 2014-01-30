@@ -15,7 +15,7 @@ import graphic.*;
 public class BackHills extends Background {
 
     public BackHills(float x, float y, boolean collidable, int type) throws SlickException {
-        super(x, y, "data/image/backgrounds/Hills1a.png", false);
+        super(x, y, "data/image/backgrounds/Hills1a.png", collidable);
 
         if(type==1) {
             this.setImage("data/image/backgrounds/Hills1a.png");

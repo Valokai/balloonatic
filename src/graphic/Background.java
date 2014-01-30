@@ -1,8 +1,6 @@
 package graphic;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,20 +15,24 @@ import org.newdawn.slick.SlickException;
  *
  * For creation of game characters, please use <code>Sprite</code>
  */
-public class Background extends Sprite {
+public class Background extends Sprite{
 
+    /*image map of collision points*/
+    protected Image collisionImage;
+
+    /*colliding status, true for colliding*/
+    protected boolean collider;
+
+    protected boolean isCollidable;
+
+    protected int width, height;
 
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
-        super(x, y, imagePath, collisionImage, collidable);
-    }
-
-    /**
-     * Constructor
-     * @param imagePath path to image of this Background
-     * @throws SlickException
-     */
-    protected Background(String imagePath, boolean collidable) throws SlickException {
-        super(imagePath,collidable);
+        super(x, y, imagePath);
+        this.collisionImage = new Image(collisionImage);
+        this.isCollidable = collidable;
+        this.width = 0;
+        this.height = 0;
     }
 
     /**
@@ -40,15 +42,33 @@ public class Background extends Sprite {
      * @param imagePath path to image of this Background
      * @throws SlickException
      */
-    protected Background(float x, float y, String imagePath, boolean collidable) throws SlickException {
-        super(x, y, imagePath, collidable);
+    public Background(float x, float y, String imagePath, boolean collidable) throws SlickException {
+        super(x, y, imagePath);
+        this.isCollidable = collidable;
+        this.width = 0;
+        this.height = 0;
+    }
+
+    public Background(float x, float y, int width, int height, String imagePath, String collisionImage, boolean collidable) throws SlickException {
+        super(x, y, imagePath);
+        this.collisionImage = new Image(collisionImage);
+        this.isCollidable = collidable;
+        this.width = width;
+        this.height = height;
     }
 
     /**
-     * //TODO
+     * Contructor
+     * @param x x position
+     * @param y y position
+     * @param imagePath path to image of this Background
+     * @throws SlickException
      */
-    public void restToEnd(){
-        //TODO
+    public Background(float x, float y, int width, int height, String imagePath, boolean collidable) throws SlickException {
+        super(x, y, imagePath);
+        this.isCollidable = collidable;
+        this.width = width;
+        this.height = height;
     }
 
     /*move the background*/
@@ -63,11 +83,15 @@ public class Background extends Sprite {
         this.y = 0;
     }
 
-    public void render() {
-        image.draw(x, y);
+    @Override
+    public void render(GameContainer gc, Graphics graphics) {
+        if(width != 0){
+            image.draw(x, y, width, height);
+        }else{
+            image.draw(x, y);
+        }
     }
 
-    @Override
     public void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y) {
         g.setColor(Color.black);
         g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
@@ -106,5 +130,27 @@ public class Background extends Sprite {
         rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getBlue();
 
         return rgb;
+    }
+
+    public boolean isColliding(){
+        return collider;
+    }
+
+    public boolean isCollidable() {
+        return isCollidable;
+    }
+
+    public void setCollidable(boolean collidable) {
+        isCollidable = collidable;
+    }
+
+    public void setCollisionImage(String image){
+        try{
+            this.collisionImage = new Image(image);
+        }
+        catch(SlickException e )     {
+            e.printStackTrace();
+        }
+
     }
 }

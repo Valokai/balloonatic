@@ -6,7 +6,6 @@ package graphic;
  * Time: 3:02 PM
  */
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -37,18 +36,6 @@ public abstract class Sprite {
      */
     protected float scale;
 
-    /**
-     * Can a player collide with this object.
-     */
-    protected boolean isCollidable;
-
-    /*colliding status, true for colliding*/
-    protected boolean collider;
-
-    /*image map of collision points*/
-    protected Image collisionImage;
-
-
     protected Sprite(String imagePath){
         try {
             this.image = new Image(imagePath);
@@ -57,20 +44,6 @@ public abstract class Sprite {
         }
         this.x = 0;
         this.y = 0;
-        this.isCollidable = false;
-    }
-
-    /**
-     * Constructor
-     * @param imagePath path to sprite image
-     * @param collidable boolean whether image is collidable
-     * @throws SlickException
-     */
-    protected Sprite(String imagePath, boolean collidable) throws SlickException {
-        this.image = new Image(imagePath);
-        this.x = 0;
-        this.y = 0;
-        this.isCollidable = collidable;
     }
 
     /**
@@ -78,31 +51,12 @@ public abstract class Sprite {
      * @param x Position of Sprite on x coordinate
      * @param y Position of Sprite on y coordinate
      * @param imagePath Path to image to render as Sprite
-     * @param collidable boolean whether image is collidable
      * @throws SlickException
      */
-    protected Sprite(float x, float y, String imagePath, boolean collidable) throws SlickException {
+    protected Sprite(float x, float y, String imagePath) throws SlickException {
         this.x = x;
         this.y = y;
         this.image = new Image(imagePath);
-        this.isCollidable = collidable;
-    }
-
-    /**
-     * Contructor
-     * @param x Position of Sprite on x coordinate
-     * @param y Position of Sprite on y coordinate
-     * @param imagePath Path to image to render as Sprite
-     * @param collisionImage Path to image that acts as collision map
-     * @param collidable boolean whether image is collidable
-     * @throws SlickException
-     */
-    protected Sprite(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
-        this.x = x;
-        this.y = y;
-        this.image = new Image(imagePath);
-        this.collisionImage = new Image(collisionImage);
-        this.isCollidable = collidable;
     }
 
     /**
@@ -156,6 +110,10 @@ public abstract class Sprite {
         }
     }
 
+    public void setCollideImage(String image) {
+
+    }
+
     /**
      * Render this sprite on the screen
      * @param graphics graphics object attached to current scene
@@ -164,6 +122,12 @@ public abstract class Sprite {
     public void render(GameContainer gc, Graphics graphics){
         image.drawCentered(x, y);
     }
+
+    /**
+     * Update sprite on screen
+     * @param delta
+     */
+    public void update(GameContainer gameContainer, int delta){}
 
 
     /**
@@ -182,20 +146,5 @@ public abstract class Sprite {
         image = image.getScaledCopy(scale);
         this.scale = scale;
     }
-    public void update(int delta){}
 
-    public  void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y){}
-
-    /**colliding status
-     * @return true for colliding, false for not colliding
-     */
-    public boolean isColliding() {
-        return collider;
-    }
-
-    /**colliding status
-     * @return true if the sprite is collidable, false for not
-     */
-    public boolean isCollidable() {
-        return isCollidable;
-    }}
+}

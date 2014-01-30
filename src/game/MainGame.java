@@ -26,8 +26,9 @@ public class MainGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
+        addState(new MenuState());
         addState(new MainState());
-        enterState(0);
+        enterState(Game.STATE.MENU);
     }
 
     // Main entry point for the game, set up the app and its window etc

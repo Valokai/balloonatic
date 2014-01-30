@@ -73,18 +73,20 @@ public class SceneHandler {
      * @param clazz class decedanded from SceneObject to be spwaned (this class must have default constructor)
      * @param id id for sceneobject to be spawned
      */
-    public void spawn(float x, float y, Class<? extends SceneObject> clazz, String id){
+    public SceneObject spawn(float x, float y, Class<? extends SceneObject> clazz, String id){
         SceneObject sceneObject = null;
         try {
             sceneObject = clazz.newInstance();
             registerSceneObject(id, sceneObject);
             sceneObject.setX(x);
             sceneObject.setY(y);
+            return sceneObject;
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     /**
@@ -111,14 +113,14 @@ public class SceneHandler {
      * Update handler
      * @param delta
      */
-    public void update(int delta){
+    public void update(GameContainer gameContainer, int delta){
         SceneObject sceneObject;
         for (String key : registeredSceneObjects.keySet()) {
             sceneObject = registeredSceneObjects.get(key);
             if(sceneObject.isReadyForDisposal()){
                 disposedSceneObjects.add(key);
             }else{
-                sceneObject.move(delta);
+                sceneObject.update(gameContainer, delta);
             }
         }
         if(!disposingThread.isRunning){
@@ -165,6 +167,15 @@ public class SceneHandler {
 
     private void printStat(Graphics graphics){
         graphics.drawString("Number of SO : " + registeredSceneObjects.size(), 10, 30);
+    }
+
+    public SceneObject getSceneObjectById(String id){
+        return registeredSceneObjects.get(id);
+    }
+
+    public void clearAll(){
+        registeredSceneObjects.clear();
+        disposedSceneObjects.clear();
     }
 
 }
