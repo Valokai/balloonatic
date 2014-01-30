@@ -134,7 +134,7 @@ public class ScrollingHandler {
                 balloon.editLives(-1);  //decrease the lives because they collide*/
                 if(balloon.getLives() <=0) {
                    // balloon.resetBalloonStats();
-                    stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
+                    stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
                 }
                 else {
                     balloon.reset(280,150);
@@ -146,7 +146,7 @@ public class ScrollingHandler {
                 balloon.editLives(-1);
                 if(balloon.getLives() <= 0) {
                    // balloon.resetBalloonStats();
-                    stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
+                    stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
                 }
                 else {
                      balloon.reset(280,150);

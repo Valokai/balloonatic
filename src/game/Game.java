@@ -47,6 +47,8 @@ public class Game {
 
     public static class STATE{
 
+        public static final int HISCORE = 2;
+
         public static final int MAIN = 1;
 
         public static final int MENU = 0;
