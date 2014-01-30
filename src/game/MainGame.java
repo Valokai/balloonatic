@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import util.ScoreBoard;
 
 /**
  * User: Tin Htoo Aung
@@ -24,10 +25,13 @@ public class MainGame extends StateBasedGame {
         super(Game.TITLE);
     }
 
+    static ScoreBoard SBoard = new ScoreBoard();
+
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
         addState(new MenuState());
         addState(new MainState());
+        addState(new HighScoreState());
         enterState(Game.STATE.MENU);
     }
 
