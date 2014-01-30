@@ -80,7 +80,6 @@ public class SceneHandler {
             registerSceneObject(id, sceneObject);
             sceneObject.setX(x);
             sceneObject.setY(y);
-            return sceneObject;
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -95,7 +94,7 @@ public class SceneHandler {
      * @param y y position of scene object to be spawned
      * @param clazz class decedanded from SceneObject to be spwaned (this class must have default constructor)
      */
-    public void spawn(float x, float y, Class<? extends SceneObject> clazz){
+    public SceneObject spawn(float x, float y, Class<? extends SceneObject> clazz){
         SceneObject sceneObject = null;
         try {
             sceneObject = clazz.newInstance();
@@ -107,6 +106,7 @@ public class SceneHandler {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return sceneObject;
     }
 
     /**
