@@ -21,6 +21,8 @@ public class Balloon extends SceneObject{
     /*game time*/
     private float gameTime = 0.0f;
 
+    protected int fuel = 1000;
+
     public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
     }
@@ -28,6 +30,7 @@ public class Balloon extends SceneObject{
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/image/balloon.png", false);
     }
+
 
     /**reset the ballon to coordinates
      *
@@ -106,8 +109,9 @@ public class Balloon extends SceneObject{
      */
     private void updatePlayer(float deltaTime, Input input)
     {
-        if (input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
+        if ((input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) && fuel > 0)
         {
+            fuel--;
             setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
         }
@@ -116,6 +120,10 @@ public class Balloon extends SceneObject{
             setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
         }
+    }
+
+    public int getFuel() {
+        return fuel;
     }
 
     @Override

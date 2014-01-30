@@ -74,6 +74,9 @@ public class MainState extends BasicGameState {
         if(balloon.isCollided(sceneHandler.getSceneObjectById("leaf"))){
             graphics.drawString("Collided", 500, 300);
         }
+
+        //render fuel
+        graphics.drawString("Fuel: "+balloon.getFuel(), 700, 0);
     }
 
     @Override
