@@ -14,6 +14,7 @@ import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.CombinedTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import util.ParticleManager;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,6 +29,7 @@ public class MenuState extends BasicGameState {
     private Background background;
     private SceneHandler sceneHandler = SceneHandler.getInstance();
     private Music bGM = null;
+    private ParticleManager particleManager = new ParticleManager();
 
     @Override
     public int getID() {
@@ -55,6 +57,7 @@ public class MenuState extends BasicGameState {
             }
         });
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/title.png", false);
+        particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
     }
 
 
@@ -68,12 +71,14 @@ public class MenuState extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.render(gameContainer, graphics);
         btn.render(gameContainer, graphics);
+        particleManager.render(graphics);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         btn.update(gameContainer, delta);
         background.update(gameContainer, delta);
+        particleManager.upate(delta);
     }
 
     @Override

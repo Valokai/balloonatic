@@ -122,13 +122,14 @@ public class Background extends Sprite{
      * @return  a string of the rgb value of the pixel, eg "255, 255, 255"
      */
     public String balloonColliding(float bx, float by, int imagex, int imagey){
-
-        if(by <= 0) return "0, 0, 0";
         String rgb = "";
-        rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getRed() + ", ";
-        rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getGreen() + ", ";
-        rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getBlue();
-
+        try{
+            if(by <= 0) return "0, 0, 0";
+            rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getRed() + ", ";
+            rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getGreen() + ", ";
+            rgb += collisionImage.getColor((int)bx-imagex, (int)by-imagey).getBlue();
+            return rgb;
+        }catch (ArrayIndexOutOfBoundsException e){}
         return rgb;
     }
 
