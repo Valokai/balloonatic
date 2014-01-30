@@ -22,6 +22,7 @@ public class ScrollingHandler {
     private String name;    //the name of this scrollable, eg Foreground
     int count = 1;   //count for controlling renderlist and bglist
     private boolean collider = false, collider2 = false;    //two booleans for collisions for when two images are rendered
+    private float distance = 0;
 
     /**constructor, initializes variables
      *
@@ -74,6 +75,10 @@ public class ScrollingHandler {
 
     }
 
+    public float getDistance(){
+        return distance;
+    }
+
     /**renders all the images in the renderlist
      *
      */
@@ -94,6 +99,11 @@ public class ScrollingHandler {
     public void update(float moveX, float moveY, Balloon balloon) {
 
         renderlist.get(0).move(moveX, moveY);
+
+        /*calculate the balloons horisontal movement */
+        if (name.equals("frontground")){
+        distance -= moveX / 100;
+        }
 
         /*handles the images, loads the next one when needed and removes the previous when not needed*/
         if(renderlist.get(0).getX() == -1000.0) {

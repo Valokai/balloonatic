@@ -77,6 +77,8 @@ public class MainState extends BasicGameState {
 
         //render fuel
         graphics.drawString("Fuel: "+balloon.getFuel(), 700, 0);
+        //render score
+        graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
     }
 
     @Override
