@@ -34,13 +34,13 @@ public class EnterNameState extends BasicGameState {
     {
         mainGame = stateBasedGame;
         fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
+
         field = new TextField(gameContainer,
                 fieldfont,
                 MainGame.SCREEN_WIDTH / 2 -100,
                 MainGame.SCREEN_HEIGHT / 2 -40,
                 200,
                 80);
-        field.setConsumeEvents(false);
     }
 
     @Override
@@ -72,6 +72,9 @@ public class EnterNameState extends BasicGameState {
     {
         anyKeyPressed = false;
         field.setFocus(true);
+
+        field.setConsumeEvents(false);
+
     }
 
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
