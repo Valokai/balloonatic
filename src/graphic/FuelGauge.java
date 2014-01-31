@@ -9,10 +9,10 @@ import org.newdawn.slick.SlickException;
  * Time: 4:22 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FuelGague extends Sprite {
+public class FuelGauge extends Sprite {
 
-    public FuelGague() throws SlickException {
-        super("data/image/fuelGague.png");
+    public FuelGauge() throws SlickException {
+        super("data/image/fuelGauge.png");
     }
 
 

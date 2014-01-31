@@ -1,9 +1,6 @@
 package game;
 
-import graphic.Balloon;
-import graphic.FuelGague;
-import graphic.Leaf;
-import graphic.Sprite;
+import graphic.*;
 import handlers.SceneHandler;
 import handlers.ScrollingHandler;
 import org.newdawn.slick.GameContainer;
@@ -37,7 +34,8 @@ public class MainState extends BasicGameState {
 
 
     private ParticleManager particleManager = new ParticleManager();
-    private Sprite fuelIndicator;
+    private Sprite fuelGagueCover;
+    private Sprite fuelGague;
 
     @Override
     public int getID() {
@@ -58,9 +56,13 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
         balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
-        fuelIndicator = new FuelGague();
-        fuelIndicator.setX(40);
-        fuelIndicator.setY(400);
+        fuelGague = new FuelGauge();
+        fuelGague.setX(40);
+        fuelGague.setY(400);
+
+        fuelGagueCover = new FuelGaugeCover();
+        fuelGagueCover.setX(40);
+        fuelGagueCover.setY(200);
 
         sceneHandler.spawn(280, 200, Leaf.class, "leaf");
         backlayer = new ScrollingHandler("background", new SecondHills(0.0f,0,false,1)); //create back non collidable scrollable
@@ -91,13 +93,13 @@ public class MainState extends BasicGameState {
         }
 
         //render fuel
-        graphics.drawString("FuelGague: "+balloon.getFuel(), 700, 0);
+        graphics.drawString("FuelGauge: "+balloon.getFuel(), 700, 0);
         graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
         //render score
         graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
-        fuelIndicator.draw(40, 200, 50, balloon.getFuel()/2);
 
-
+        fuelGague.draw(40, 150, 50, 550);
+        fuelGagueCover.draw(40, 200+(500 - balloon.getFuel()/2), 50, 8);
     }
 
     @Override

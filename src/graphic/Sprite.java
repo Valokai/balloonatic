@@ -151,4 +151,8 @@ public abstract class Sprite {
          image.draw(x, y, width, height);
     }
 
+    public void draw(float x, float y, float srcx, float srcy, float srcx2, float srcy2){
+           image.draw(x, y, srcx, srcy, srcx2, srcy2);
+    }
+
 }
