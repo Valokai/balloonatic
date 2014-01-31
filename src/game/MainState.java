@@ -66,7 +66,6 @@ public class MainState extends BasicGameState {
         fuelGagueCover.setX(40);
         fuelGagueCover.setY(200);
 
-        sceneHandler.spawn(280, 200, Leaf.class, "leaf");
         backlayer = new ScrollingHandler("background", new SecondHills(0.0f,0,false,1)); //create back non collidable scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 2)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 3)); //add more map to the back scrollable
@@ -90,9 +89,17 @@ public class MainState extends BasicGameState {
         sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
 
-        if(balloon.isCollided(sceneHandler.getSceneObjectById("leaf"))){
-            graphics.drawString("Collided", 500, 300);
+        for (String s : sceneHandler.getRegisteredSceneObjects().keySet()) {
+            SceneObject so = sceneHandler.getRegisteredSceneObjects().get(s);
+            if(so != balloon){
+                if(balloon.isCollided(so)){
+                    sceneHandler.removeSceneObject(so);
+                    balloon.setFuel(1000);
+                }
+            }
         }
+
+
 
         //render fuel
         graphics.drawString("FuelGauge: "+balloon.getFuel(), 700, 0);

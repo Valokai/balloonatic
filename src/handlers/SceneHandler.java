@@ -115,12 +115,14 @@ public class SceneHandler {
      */
     public void update(GameContainer gameContainer, int delta){
         SceneObject sceneObject;
-        for (String key : registeredSceneObjects.keySet()) {
-            sceneObject = registeredSceneObjects.get(key);
-            if(sceneObject.isReadyForDisposal()){
-                disposedSceneObjects.add(key);
-            }else{
-                sceneObject.update(gameContainer, delta);
+        synchronized (registeredSceneObjects){
+            for (String key : registeredSceneObjects.keySet()) {
+                sceneObject = registeredSceneObjects.get(key);
+                if(sceneObject.isReadyForDisposal()){
+                    disposedSceneObjects.add(key);
+                }else{
+                    sceneObject.update(gameContainer, delta);
+                }
             }
         }
         if(!disposingThread.isRunning){
@@ -147,7 +149,9 @@ public class SceneHandler {
      * @param sceneObject
      */
     public void registerSceneObject(String id, SceneObject sceneObject){
-        registeredSceneObjects.put(id, sceneObject);
+        synchronized (registeredSceneObjects){
+            registeredSceneObjects.put(id, sceneObject);
+        }
     }
 
     public class SceneObjectDisposingThread extends Thread{
@@ -178,4 +182,19 @@ public class SceneHandler {
         disposedSceneObjects.clear();
     }
 
+    public Map<String, SceneObject> getRegisteredSceneObjects() {
+        return registeredSceneObjects;
+    }
+
+    public void setRegisteredSceneObjects(Map<String, SceneObject> registeredSceneObjects) {
+        this.registeredSceneObjects = registeredSceneObjects;
+    }
+
+    public void removeSceneObject(SceneObject sceneObject){
+        disposedSceneObjects.add(String.valueOf(sceneObject.hashCode()));
+    }
+
+    public void removeSceneObjectById(String id){
+        disposedSceneObjects.add(id);
+    }
 }

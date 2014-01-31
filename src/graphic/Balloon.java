@@ -157,5 +157,13 @@ public class Balloon extends SceneObject{
     public boolean isReadyForDisposal() {
         return (x < 0);
     }
+
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
 }
 
