@@ -155,7 +155,7 @@ public class Balloon extends SceneObject{
 
     @Override
     public boolean isReadyForDisposal() {
-        return false;
+        return (x < 0);
     }
 }
 

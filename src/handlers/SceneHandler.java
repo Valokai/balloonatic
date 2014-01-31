@@ -36,12 +36,12 @@ public class SceneHandler {
     /**
      * A set of all scene object registered to this handler.
      */
-    private Map<String, SceneObject> registeredSceneObjects = new HashMap<String, SceneObject>();
+    private volatile Map<String, SceneObject> registeredSceneObjects = new HashMap<String, SceneObject>();
 
     /**
      * keys of scene object marked to be disposed.
      */
-    private List<String> disposedSceneObjects = new ArrayList<String>();
+    private volatile List<String> disposedSceneObjects = new ArrayList<String>();
 
     /**
      * Working thread to dispose sceneobjects
