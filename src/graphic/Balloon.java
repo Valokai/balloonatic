@@ -11,7 +11,7 @@ package graphic;
 import org.newdawn.slick.*;
 
 /**
- * Balloon Sprite, Player of the game
+ * Balloon Sprite, Player of the  game
  */
 public class Balloon extends SceneObject{
 

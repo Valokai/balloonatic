@@ -32,6 +32,7 @@ public class MainGame extends StateBasedGame {
         addState(new MenuState());
         addState(new MainState());
         addState(new HighScoreState());
+        addState(new EnterNameState());
         enterState(Game.STATE.MENU);
     }
 
