@@ -100,12 +100,13 @@ public class MainState extends BasicGameState {
         //render score
         graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
 
-        fuelGague.draw(40, 150, 50, 550);
-        fuelGagueCover.draw(40, 200+(500 - balloon.getFuel()/2), 50, 8);
+        fuelGague.draw(20, 100, 50, 550);
+        fuelGagueCover.draw(20, 150+(500 - balloon.getFuel()/2), 50, 8);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
+
         float deltaTime = delta /1000;
         backgroundMove(background, deltaTime-1, 0, stateBasedGame);
         backgroundMove(backlayer, deltaTime-2, 0, stateBasedGame);
