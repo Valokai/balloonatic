@@ -11,6 +11,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.CombinedTransition;
 import scrollables.BackHills;
 import scrollables.GreenHills;
 import scrollables.SecondHills;
@@ -101,6 +103,15 @@ public class MainState extends BasicGameState {
         backgroundMove(frontground, deltaTime-4, 0, stateBasedGame); //update the front scrollable
         sceneHandler.update(gameContainer, delta);
         particleManager.upate(delta);
+
+
+        if(balloon.getLives() <= 0){
+            EnterNameState enterNameState = (EnterNameState)stateBasedGame.getState(Game.STATE.ENTERNAME);
+            enterNameState.setScore((int)(frontground.getDistance()));
+            stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+        }
+
+
     }
 
     /*moves the background, separate method for clarity*/
