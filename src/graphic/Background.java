@@ -1,6 +1,10 @@
 package graphic;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Vector2f;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,6 +30,8 @@ public class Background extends Sprite{
     protected boolean isCollidable;
 
     protected int width, height;
+
+    protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>();
 
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
         super(x, y, imagePath);
@@ -152,6 +158,13 @@ public class Background extends Sprite{
         catch(SlickException e )     {
             e.printStackTrace();
         }
+    }
 
+    public ArrayList<Vector2f> getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(List<Vector2f> coordinates) {
+        this.coordinates = new ArrayList<Vector2f>(coordinates);
     }
 }
