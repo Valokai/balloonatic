@@ -95,7 +95,8 @@ public class MainState extends BasicGameState {
         }
 
         //render fuel
-        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+        //graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+        graphics.drawString("Balloon y: "+balloon.getY(), 850, 0);
         //render score
         graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
 
@@ -110,10 +111,11 @@ public class MainState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
         float deltaTime = delta /1000;
-        float scrollDeltaTime = (delta / 1000) ;
-        backgroundMove(background, scrollDeltaTime-1, 0, stateBasedGame);
-        backgroundMove(backlayer, scrollDeltaTime-2, 0, stateBasedGame);
-        backgroundMove(frontground, scrollDeltaTime-4, 0, stateBasedGame); //update the front scrollable
+        float speedOffset = 0;
+
+        backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
+        backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
+        backgroundMove(frontground, deltaTime-4 - speedOffset, 0, stateBasedGame); //update the front scrollable
         sceneHandler.update(gameContainer, delta);
         particleManager.upate(delta);
 
