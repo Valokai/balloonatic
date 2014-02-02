@@ -17,6 +17,7 @@ public class HighScoreState extends BasicGameState {
     boolean anyKeyPressed = false;
     String highScore = null;
     private Image skyimage;
+    private StateBasedGame mainGame;
 
 
 
@@ -28,27 +29,29 @@ public class HighScoreState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
+        mainGame = stateBasedGame;
         skyimage = new Image("data/image/sky.png");
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
     {
-        skyimage.draw();
+        mainGame.getState(Game.STATE.MAIN).render(gameContainer,stateBasedGame,graphics);
+        //skyimage.draw();
         graphics.drawString("HIGH SCORES",
-                MainGame.SCREEN_WIDTH / 2.0f,
+                MainGame.SCREEN_WIDTH / 2.0f - 100,
                 MainGame.SCREEN_HEIGHT / 4f);
 
 
         graphics.drawString(
                 highScore,
-                MainGame.SCREEN_WIDTH / 2.0f,
+                MainGame.SCREEN_WIDTH / 2.0f - 100,
                 MainGame.SCREEN_HEIGHT / 3.5f + 80.0f);
 
 
         graphics.drawString(
                 "Press any key...",
-                MainGame.SCREEN_WIDTH / 2.0f,
+                MainGame.SCREEN_WIDTH / 2.0f - 100,
                 MainGame.SCREEN_HEIGHT / 1.1f);
     }
 
