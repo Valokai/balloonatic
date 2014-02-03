@@ -113,7 +113,7 @@ public class SceneHandler {
      * Update handler
      * @param delta
      */
-    public void update(GameContainer gameContainer, int delta){
+    public void update(GameContainer gameContainer, int delta, float speedMultiplier){
         SceneObject sceneObject;
         synchronized (registeredSceneObjects){
             for (String key : registeredSceneObjects.keySet()) {
