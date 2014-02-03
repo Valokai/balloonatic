@@ -21,7 +21,7 @@ public class ScoreBoard {
 
     private void makeUpScores() {
         addScore("Tiff", 40);
-        addScore("RaabbuBairus", 70);
+        addScore("Taeyeon", 70);
         addScore("Diago", 90);
         addScore("KidLeader", 85);
         addScore("lowbie",30);
