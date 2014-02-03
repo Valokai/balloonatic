@@ -29,7 +29,7 @@ public class MainState extends BasicGameState {
     private Image skyimage;
 
     /*the scrollable foreground and backgrounds*/
-    private ScrollingHandler frontground, background, backlayer, birdlayer;
+    private ScrollingHandler frontground, background, backlayer;//, birdlayer;
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
@@ -72,10 +72,10 @@ public class MainState extends BasicGameState {
         backlayer.add(new SecondHills(0.0f, 0, false, 4)); //add more map to the back scrollable
 
 
-        birdlayer = new ScrollingHandler("birds", new Birds(0.0f, 0, true, 1));
-        birdlayer.add(new Birds(0.0f, 0, true, 2));
-        birdlayer.add(new Birds(0.0f, 0, true, 3));
-        birdlayer.add(new Birds(0.0f, 0, true, 4));
+        //birdlayer = new ScrollingHandler("birds", new Birds(0.0f, 0, true, 1));
+        //birdlayer.add(new Birds(0.0f, 0, true, 2));
+        //birdlayer.add(new Birds(0.0f, 0, true, 3));
+        //birdlayer.add(new Birds(0.0f, 0, true, 4));
 
         skyimage = new Image("data/image/sky.png");
 
@@ -90,17 +90,18 @@ public class MainState extends BasicGameState {
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
         particleManager.render(graphics);
-        birdlayer.render(gameContainer, graphics);
+        //birdlayer.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
 
         sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
-        birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
+        //birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
 
         //render fuel
         //graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
-        graphics.drawString("Balloon y: "+balloon.getY(), 850, 0);
+        //graphics.drawString("Balloon y: "+balloon.getY(), 850, 0);
+        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
         //render score
         graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
 
@@ -115,26 +116,17 @@ public class MainState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
         float deltaTime = delta /1000;
-        float speedMultiplier = 1;
+        float speedOffset = 0;
+        sceneHandler.update(gameContainer, delta);
+        backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
+        backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
+        //backgroundMove(birdlayer, deltaTime-5- speedOffset, 0 , stateBasedGame);
+        backgroundMove(frontground, deltaTime-4 - speedOffset, 0, stateBasedGame); //update the front scrollable
 
-        if(balloon.getY() > 300){
-            speedMultiplier = 1f;
-        } else if(balloon.getY() <= 300){
-            speedMultiplier = 1f;
-        }
-
-
-
-        backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
-        backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0 , stateBasedGame);
-        backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
-        backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
-        sceneHandler.update(gameContainer, delta, speedMultiplier);
         particleManager.upate(delta);
 
 
         if(balloon.getLives() <= 0){
-            balloon.stopBurner();
             EnterNameState enterNameState = (EnterNameState)stateBasedGame.getState(Game.STATE.ENTERNAME);
             enterNameState.setScore((int)(frontground.getDistance()));
             stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
