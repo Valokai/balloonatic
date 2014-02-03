@@ -1,5 +1,6 @@
 package graphic.powerup;
 
+import game.Game;
 import graphic.Balloon;
 import graphic.SceneObject;
 import handlers.SceneHandler;
@@ -42,8 +43,10 @@ public abstract class Powerup extends SceneObject{
     @Override
     public void update(GameContainer gameContainer, int delta) {
         super.update(gameContainer, delta);
-        if(isCollided(balloon)){
-            onCollideWithBalloon(balloon);
+        if(x > 0 && x < 400){
+            if(isCollided(balloon)){
+                onCollideWithBalloon(balloon);
+            }
         }
     }
 

@@ -19,15 +19,19 @@ import java.util.List;
  */
 public class Balloon extends SceneObject{
 
+    private Sound burner = new Sound("data/sound/ambient/Burner.ogg");
+
     /*speed of balloon*/
     private float loonspeed = 0;
 
     /*game time*/
     private float gameTime = 0.0f;
 
-    protected int fuel = 1000;
+    protected int fuel = 1000000;
 
     protected int lives = 3;
+
+    protected float olddistance = -3;
 
     private List<Powerup> powerups = new ArrayList<Powerup>();
 
@@ -122,11 +126,16 @@ public class Balloon extends SceneObject{
             fuel--;
             setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
+
+            if (!burner.playing()){
+                burner.loop();
+         }
         }
         else
         {
             setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
+            burner.stop();
         }
     }
 
@@ -146,8 +155,11 @@ public class Balloon extends SceneObject{
         return lives;
     }
 
-    public void editLives(int x) {
-        lives += x;
+    public void editLives(int x, float distance) {
+        //if(distance > olddistance+3) {
+          //  olddistance = distance;
+            lives += x;
+        //}
     }
 
     public void resetBalloonStats() {

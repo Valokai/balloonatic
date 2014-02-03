@@ -10,17 +10,17 @@ import org.newdawn.slick.SlickException;
  * Time: 12:44 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PLife extends Powerup{
+public class PFuel extends Powerup{
 
-    public PLife() throws SlickException {
-        super("data/image/leaf.png");
+    public PFuel() throws SlickException {
+        super("data/image/fuel.png");
     }
 
-    public PLife(String imagePath) throws SlickException {
+    public PFuel(String imagePath) throws SlickException {
         super(imagePath);
     }
 
-    public PLife(float x, float y, String imagePath) throws SlickException {
+    public PFuel(float x, float y, String imagePath) throws SlickException {
         super(x, y, imagePath);
     }
 
