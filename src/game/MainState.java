@@ -35,7 +35,6 @@ public class MainState extends BasicGameState {
 
     private Balloon balloon;
 
-
     private ParticleManager particleManager = new ParticleManager();
     private Sprite fuelGagueCover;
     private Sprite fuelGague;
@@ -98,18 +97,6 @@ public class MainState extends BasicGameState {
         sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
         birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
-
-        for (String s : sceneHandler.getRegisteredSceneObjects().keySet()) {
-            SceneObject so = sceneHandler.getRegisteredSceneObjects().get(s);
-            if(so != balloon){
-                if(balloon.isCollided(so)){
-                    sceneHandler.removeSceneObject(so);
-                    balloon.setFuel(1000);
-                }
-            }
-        }
-
-
 
         //render fuel
         //graphics.drawString("Lives: "+balloon.getLives(), 850, 0);

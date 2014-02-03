@@ -5,6 +5,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.CombinedTransition;
+import util.GameFont;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +17,9 @@ import org.newdawn.slick.state.transition.CombinedTransition;
 public class HighScoreState extends BasicGameState {
     boolean anyKeyPressed = false;
     String highScore = null;
-    private Image skyimage;
+    private GameFont fieldfont = null;
+    private GameFont scorefont = null;
+    private StateBasedGame mainGame;
 
 
 
@@ -28,28 +31,41 @@ public class HighScoreState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
-        skyimage = new Image("data/image/sky.png");
+        mainGame = stateBasedGame;
+        fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
+        scorefont = new GameFont("data/fonts/Corbel16.fnt", "data/fonts/Corbel16.png");
+
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
     {
-        skyimage.draw();
-        graphics.drawString("HIGH SCORES",
+        mainGame.getState(Game.STATE.MAIN).render(gameContainer,stateBasedGame,graphics);
+
+        fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
-                MainGame.SCREEN_HEIGHT / 4f);
+                MainGame.SCREEN_HEIGHT / 4f,
+                "HIGH SCORES",
+                GameFont.Alignment.CENTRE,
+                Color.white);
 
 
-        graphics.drawString(
+        scorefont.drawString(
+                MainGame.SCREEN_WIDTH / 2.0f,
+                MainGame.SCREEN_HEIGHT / 3.5f + 80.0f,
                 highScore,
+                GameFont.Alignment.CENTRE,
+                Color.white
+                );
+
+
+       fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
-                MainGame.SCREEN_HEIGHT / 3.5f + 80.0f);
-
-
-        graphics.drawString(
+                MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press any key...",
-                MainGame.SCREEN_WIDTH / 2.0f,
-                MainGame.SCREEN_HEIGHT / 1.1f);
+                GameFont.Alignment.CENTRE,
+                Color.white
+                );
     }
 
     // Called when we enter this game state, a good place to variables to initial values if needed
