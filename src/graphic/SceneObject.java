@@ -90,7 +90,7 @@ public abstract class SceneObject extends Sprite{
     public boolean isCollided(SceneObject collidable) {
         if(collidable != null && collidable.isCollidable()){
 
-            HashSet<String> maskPlayer1 = getMask();
+            HashSet<String> maskPlayer1 = getMask();                   // I THINK THIS IS WHAT IS CAUSING BAD COLLISION, CALLS A NESTED FOR LOOP EVERY UPDATE, SHOULDN'T WE JUST DO THIS IN INIT???
             HashSet<String> maskPlayer2 = collidable.getMask();
 
             maskPlayer1.retainAll(maskPlayer2);  // Check to see if any pixels in maskPlayer2 are the same as those in maskPlayer1
