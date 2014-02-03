@@ -19,6 +19,8 @@ import java.util.List;
  */
 public class Balloon extends SceneObject{
 
+    private Sound burner = new Sound("data/sound/ambient/Burner.ogg");
+
     /*speed of balloon*/
     private float loonspeed = 0;
 
@@ -122,11 +124,16 @@ public class Balloon extends SceneObject{
             fuel--;
             setSpeed(getSpeed() - (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
+
+            if (!burner.playing()){
+                burner.loop();
+         }
         }
         else
         {
             setSpeed(getSpeed() + (deltaTime * 500.0f));
             move(0.0f, getSpeed() * deltaTime);
+            burner.stop();
         }
     }
 
