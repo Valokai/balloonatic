@@ -124,7 +124,7 @@ public class Balloon extends SceneObject{
         if ((input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) && fuel > 0)
         {
             fuel--;
-            setSpeed(getSpeed() - (deltaTime * 500.0f));
+            setSpeed(getSpeed() - (deltaTime * 200.0f));
             move(0.0f, getSpeed() * deltaTime);
 
             if (!burner.playing()){
@@ -133,7 +133,7 @@ public class Balloon extends SceneObject{
         }
         else
         {
-            setSpeed(getSpeed() + (deltaTime * 500.0f));
+            setSpeed(getSpeed() + (deltaTime * 150.0f));
             move(0.0f, getSpeed() * deltaTime);
             burner.stop();
         }
@@ -167,6 +167,11 @@ public class Balloon extends SceneObject{
         fuel = 1000;
         x = 280;
         y = 200;
+        burner.stop();
+    }
+
+    public void stopBurner(){
+        burner.stop();
     }
 
     @Override

@@ -51,7 +51,7 @@ public class MenuState extends BasicGameState implements ClickListener {
         btnManager.addButton(130, 620,"data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
 
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/title.png", false);
-        bGM.loop();
+        //bGM.loop();
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
     }
 
