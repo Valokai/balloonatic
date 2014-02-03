@@ -100,7 +100,8 @@ public class MainState extends BasicGameState {
 
         //render fuel
         //graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
-        graphics.drawString("Balloon y: "+balloon.getY(), 850, 0);
+        //graphics.drawString("Balloon y: "+balloon.getY(), 850, 0);
+        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
         //render score
         graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
 
