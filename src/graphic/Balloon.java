@@ -29,6 +29,8 @@ public class Balloon extends SceneObject{
 
     protected int lives = 3;
 
+    protected float olddistance = -3;
+
     private List<Powerup> powerups = new ArrayList<Powerup>();
 
     public Balloon() throws SlickException {
@@ -146,8 +148,11 @@ public class Balloon extends SceneObject{
         return lives;
     }
 
-    public void editLives(int x) {
-        lives += x;
+    public void editLives(int x, float distance) {
+        if(distance > olddistance+3) {
+            olddistance = distance;
+            lives += x;
+        }
     }
 
     public void resetBalloonStats() {
