@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 public class PLife extends Powerup{
 
     public PLife() throws SlickException {
-        super("data/image/leaf.png");
+        super("data/image/fuel.png");
     }
 
     public PLife(String imagePath) throws SlickException {
