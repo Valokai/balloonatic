@@ -99,10 +99,12 @@ public abstract class SceneObject extends Sprite{
             int bx2 = bx1 + collidable.getImage().getWidth();
             int by2 = by1 + collidable.getImage().getHeight();
 
-            if(by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1){
-                return false; // Collision is impossible.
-            }
-            else{
+//            if(by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1){
+//                System.out.println("Impossible");
+//                return false; // Collision is impossible.
+//
+//            }
+//            else{
                 // Collision is possible.
                 // get the masks for both images
                 HashSet<String> maskPlayer1 = getMask();
@@ -114,7 +116,7 @@ public abstract class SceneObject extends Sprite{
                     return true;
                 }
             }
-        }
+//        }
         return false;
     }
 }
