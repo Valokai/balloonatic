@@ -31,8 +31,7 @@ public class Leaf extends SceneObject {
 
     @Override
     public boolean isReadyForDisposal() {
-//        return (x > Game.SCREEN_WIDTH ||x < 0);
-        return x < 0;
+        return (x > Game.SCREEN_WIDTH ||x < 0);
     }
 
 }
