@@ -116,12 +116,12 @@ public class MainState extends BasicGameState {
 
         float deltaTime = delta /1000;
         float speedOffset = 0;
-
+        sceneHandler.update(gameContainer, delta);
         backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
         backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
         backgroundMove(birdlayer, deltaTime-5- speedOffset, 0 , stateBasedGame);
         backgroundMove(frontground, deltaTime-4 - speedOffset, 0, stateBasedGame); //update the front scrollable
-        sceneHandler.update(gameContainer, delta);
+
         particleManager.upate(delta);
 
 

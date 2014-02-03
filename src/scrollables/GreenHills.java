@@ -28,12 +28,14 @@ public class GreenHills extends Background {
             this.setImage("data/image/backgrounds/Hills3a.png");
             this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
             setCoordinates( Arrays.asList(
-                    new Vector2f(1036.0f + 1400, 429.0f),
-                    new Vector2f(84.0f + 1400, 525.0f),
-                    new Vector2f(1136.0f + 1400, 378.0f),
-                    new Vector2f(1589.0f + 1400, 437.0f),
-                    new Vector2f(2055.0f + 1400, 505.0f),
-                    new Vector2f(2307.0f + 1400, 403.0f)
+                    new Vector2f(328.0f + 1400, 543.0f),
+                    new Vector2f(529.0f + 1400, 510.0f),
+                    new Vector2f(1016.0f + 1400, 321.0f),
+                    new Vector2f(1030.0f + 1400, 92.0f),
+                    new Vector2f(1385.0f + 1400, 343.0f),
+                    new Vector2f(1777.0f + 1400, 485.0f),
+                    new Vector2f(1952.0f + 1400, 429.0f),
+                    new Vector2f(2225.0f + 1400, 385.0f)
             ));
         }
         if(type==2) {
