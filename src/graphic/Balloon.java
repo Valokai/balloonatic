@@ -27,7 +27,7 @@ public class Balloon extends SceneObject{
     /*game time*/
     private float gameTime = 0.0f;
 
-    protected int fuel = 1000;
+    protected int fuel = 1000000;
 
     protected int lives = 3;
 

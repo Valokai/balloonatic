@@ -89,34 +89,16 @@ public abstract class SceneObject extends Sprite{
 
     public boolean isCollided(SceneObject collidable) {
         if(collidable != null && collidable.isCollidable()){
-            // This method detects to see if the images overlap at all. If they do, collision is possible
-            int ax1 = (int) getX();
-            int ay1 = (int) getY();
-            int ax2 = ax1 + getImage().getWidth();
-            int ay2 = ay1 + getImage().getHeight();
-            int bx1 = (int) collidable.getX();
-            int by1 = (int) collidable.getY();
-            int bx2 = bx1 + collidable.getImage().getWidth();
-            int by2 = by1 + collidable.getImage().getHeight();
 
-//            if(by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1){
-//                System.out.println("Impossible");
-//                return false; // Collision is impossible.
-//
-//            }
-//            else{
-                // Collision is possible.
-                // get the masks for both images
-                HashSet<String> maskPlayer1 = getMask();
-                HashSet<String> maskPlayer2 = collidable.getMask();
+            HashSet<String> maskPlayer1 = getMask();
+            HashSet<String> maskPlayer2 = collidable.getMask();
 
-                maskPlayer1.retainAll(maskPlayer2);  // Check to see if any pixels in maskPlayer2 are the same as those in maskPlayer1
+            maskPlayer1.retainAll(maskPlayer2);  // Check to see if any pixels in maskPlayer2 are the same as those in maskPlayer1
 
-                if(!maskPlayer1.isEmpty()){  // if so, than there exists at least one pixel that is the same in both images, thus
-                    return true;
-                }
+            if(!maskPlayer1.isEmpty()){  // if so, than there exists at least one pixel that is the same in both images, thus
+                return true;
             }
-//        }
+        }
         return false;
     }
 }

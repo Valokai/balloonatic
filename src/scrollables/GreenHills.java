@@ -1,8 +1,7 @@
 package scrollables;
 
 import graphic.Background;
-import graphic.Leaf;
-import graphic.powerup.PLife;
+import graphic.powerup.PFuel;
 import handlers.SceneHandler;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
@@ -70,7 +69,7 @@ public class GreenHills extends Background {
         super.resetToEnd();
         SceneHandler sceneHandler = SceneHandler.getInstance();
         for (Vector2f coordinate : coordinates) {
-            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PLife.class);
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PFuel.class);
         }
     }
 }

@@ -29,7 +29,7 @@ public class ParticleManager{
         try {
             //load the test particle and
             Image image = new Image(particleImage, false);
-            ParticleSystem particleSystem = new ParticleSystem(image,1000);
+            ParticleSystem particleSystem = new ParticleSystem(image,500);
 
             File xmlFile = new File(xmlPath);
             ParticleEmitter emitter = ParticleIO.loadEmitter(xmlFile);

@@ -13,10 +13,7 @@ import graphic.SceneObject;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This singleton class serves as a handler for all sceneobjects. It is responsible to
@@ -115,16 +112,21 @@ public class SceneHandler {
      */
     public void update(GameContainer gameContainer, int delta){
         SceneObject sceneObject;
-        synchronized (registeredSceneObjects){
-            for (String key : registeredSceneObjects.keySet()) {
-                sceneObject = registeredSceneObjects.get(key);
-                if(sceneObject.isReadyForDisposal()){
-                    disposedSceneObjects.add(key);
-                }else{
-                    sceneObject.update(gameContainer, delta);
+        try{
+            synchronized (registeredSceneObjects){
+                for (String key : registeredSceneObjects.keySet()) {
+                    sceneObject = registeredSceneObjects.get(key);
+                    if(sceneObject.isReadyForDisposal()){
+                        disposedSceneObjects.add(key);
+                    }else{
+                        sceneObject.update(gameContainer, delta);
+                    }
                 }
             }
+        }catch (ConcurrentModificationException e){
+            e.printStackTrace();
         }
+
         if(!disposingThread.isRunning){
             disposingThread = null;
             disposingThread = new SceneObjectDisposingThread();
