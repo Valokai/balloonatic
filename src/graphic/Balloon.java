@@ -156,10 +156,10 @@ public class Balloon extends SceneObject{
     }
 
     public void editLives(int x, float distance) {
-        if(distance > olddistance+3) {
-            olddistance = distance;
+        //if(distance > olddistance+3) {
+          //  olddistance = distance;
             lives += x;
-        }
+        //}
     }
 
     public void resetBalloonStats() {
