@@ -43,7 +43,7 @@ public abstract class Powerup extends SceneObject{
     @Override
     public void update(GameContainer gameContainer, int delta) {
         super.update(gameContainer, delta);
-        if(x > 0 && x < 1400){
+        if(x > 0 && x < 600){
             if(isCollided(balloon)){
                 onCollideWithBalloon(balloon);
             }
