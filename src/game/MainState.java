@@ -12,6 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.CombinedTransition;
 import scrollables.BackHills;
+import scrollables.Birds;
 import scrollables.GreenHills;
 import scrollables.SecondHills;
 import util.ParticleManager;
@@ -28,7 +29,7 @@ public class MainState extends BasicGameState {
     private Image skyimage;
 
     /*the scrollable foreground and backgrounds*/
-    private ScrollingHandler frontground, background, backlayer;
+    private ScrollingHandler frontground, background, backlayer, birdlayer;
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
@@ -70,6 +71,13 @@ public class MainState extends BasicGameState {
         backlayer.add(new SecondHills(0.0f, 0, false, 2)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 3)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 4)); //add more map to the back scrollable
+
+
+        birdlayer = new ScrollingHandler("birds", new Birds(0.0f, 0, true, 1));
+        birdlayer.add(new Birds(0.0f, 0, true, 2));
+        birdlayer.add(new Birds(0.0f, 0, true, 3));
+        birdlayer.add(new Birds(0.0f, 0, true, 4));
+
         skyimage = new Image("data/image/sky.png");
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
@@ -83,11 +91,13 @@ public class MainState extends BasicGameState {
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
         particleManager.render(graphics);
+        birdlayer.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
 
         sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
+        birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
 
         for (String s : sceneHandler.getRegisteredSceneObjects().keySet()) {
             SceneObject so = sceneHandler.getRegisteredSceneObjects().get(s);
@@ -122,6 +132,7 @@ public class MainState extends BasicGameState {
 
         backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
         backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
+        backgroundMove(birdlayer, deltaTime-5- speedOffset, 0 , stateBasedGame);
         backgroundMove(frontground, deltaTime-4 - speedOffset, 0, stateBasedGame); //update the front scrollable
         sceneHandler.update(gameContainer, delta);
         particleManager.upate(delta);

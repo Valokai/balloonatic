@@ -48,7 +48,7 @@ public class Balloon extends SceneObject{
      *
      * @param speed the desired y-speed
      */
-    public void setSpeed(float speed){
+    public void setSpeed(float speed) {
         loonspeed = speed;
     }
 
