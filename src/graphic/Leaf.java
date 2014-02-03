@@ -26,7 +26,7 @@ public class Leaf extends SceneObject {
 
     @Override
     public void move(int delta) {
-        x += delta * 0.01;
+        x += delta/1000 - 4;
     }
 
     @Override

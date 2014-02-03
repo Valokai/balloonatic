@@ -1,8 +1,6 @@
 package game;
 
-import graphic.Balloon;
-import graphic.FuelGague;
-import graphic.Leaf;
+import graphic.*;
 import handlers.SceneHandler;
 import handlers.ScrollingHandler;
 import org.newdawn.slick.GameContainer;
@@ -11,6 +9,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.CombinedTransition;
 import scrollables.BackHills;
 import scrollables.GreenHills;
 import scrollables.SecondHills;
@@ -34,9 +34,9 @@ public class MainState extends BasicGameState {
 
     private Balloon balloon;
 
-
     private ParticleManager particleManager = new ParticleManager();
-    private FuelGague fuelIndicator;
+    private Sprite fuelGagueCover;
+    private Sprite fuelGague;
 
     @Override
     public int getID() {
@@ -57,9 +57,14 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
         balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
-        //fuelIndicator = (FuelGague) sceneHandler.spawn(480, 200, FuelGague.class);
+        fuelGague = new FuelGauge();
+        fuelGague.setX(40);
+        fuelGague.setY(400);
 
-        sceneHandler.spawn(280, 200, Leaf.class, "leaf");
+        fuelGagueCover = new FuelGaugeCover();
+        fuelGagueCover.setX(40);
+        fuelGagueCover.setY(200);
+
         backlayer = new ScrollingHandler("background", new SecondHills(0.0f,0,false,1)); //create back non collidable scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 2)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 3)); //add more map to the back scrollable
@@ -83,24 +88,39 @@ public class MainState extends BasicGameState {
         sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
 
-        if(balloon.isCollided(sceneHandler.getSceneObjectById("leaf"))){
-            graphics.drawString("Collided", 500, 300);
-        }
-
         //render fuel
-        graphics.drawString("FuelGague: "+balloon.getFuel(), 700, 0);
-        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+        //graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+        graphics.drawString("Balloon y: "+balloon.getY(), 850, 0);
         //render score
-        graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);    }
+        graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
+
+        //The fuel gauge stuff
+        fuelGague.draw(20, 100, 50, 550);
+        fuelGagueCover.draw(20, 150+(500 - balloon.getFuel()/2), 50, 8);
+
+
+    }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
+
         float deltaTime = delta /1000;
-        backgroundMove(background, deltaTime-1, 0, stateBasedGame);
-        backgroundMove(backlayer, deltaTime-2, 0, stateBasedGame);
-        backgroundMove(frontground, deltaTime-4, 0, stateBasedGame); //update the front scrollable
+        float speedOffset = 0;
+
+        backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
+        backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
+        backgroundMove(frontground, deltaTime-4 - speedOffset, 0, stateBasedGame); //update the front scrollable
         sceneHandler.update(gameContainer, delta);
         particleManager.upate(delta);
+
+
+        if(balloon.getLives() <= 0){
+            EnterNameState enterNameState = (EnterNameState)stateBasedGame.getState(Game.STATE.ENTERNAME);
+            enterNameState.setScore((int)(frontground.getDistance()));
+            stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+        }
+
+
     }
 
     /*moves the background, separate method for clarity*/

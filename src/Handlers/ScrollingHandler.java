@@ -8,9 +8,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import game.MainGame;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.CombinedTransition;
+import scrollables.GreenHills;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,8 @@ public class ScrollingHandler {
     int count = 1;   //count for controlling renderlist and bglist
     private boolean collider = false, collider2 = false;    //two booleans for collisions for when two images are rendered
     private float distance = 0;
+
+    private SceneHandler sceneHandler = SceneHandler.getInstance();
 
     /**constructor, initializes variables
      *
@@ -91,7 +95,7 @@ public class ScrollingHandler {
         for(int i = 0; i<renderlist.size(); i++) {
             renderlist.get(i).render(gameContainer, graphics);
         }
-
+        sceneHandler.render(gameContainer, graphics);
 
     }
 
@@ -108,14 +112,16 @@ public class ScrollingHandler {
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground")){
-        distance -= moveX / 100;
+            distance -= moveX / 100;
         }
 
-        /*handles the images, loads the next one when needed and removes the previous when not needed*/
+        /*handles the images, loads the next one when needed and rsemoves the previous when not needed*/
         if(renderlist.get(0).getX() == -1000.0) {
             renderlist.add(bglist.get(count));
-            renderlist.get(1).resetToEnd();
+            Background backgroundHill = renderlist.get(1);
+            backgroundHill.resetToEnd();
             count++;
+
         }
         if(renderlist.get(0).getX() < -1000.0) {
             renderlist.get(1).move(moveX, moveY);
@@ -132,29 +138,17 @@ public class ScrollingHandler {
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
             if(collider2) {
                 balloon.editLives(-1);  //decrease the lives because they collide*/
-                if(balloon.getLives() <=0) {
-                   // balloon.resetBalloonStats();
-                    stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
-                }
-                else {
                     balloon.reset(280,150);
                     return;
                 }
-            }
+
         }  else {
             if(collider) {
                 balloon.editLives(-1);
-                if(balloon.getLives() <= 0) {
-                   // balloon.resetBalloonStats();
-                    stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
-                }
-                else {
-                     balloon.reset(280,150);
+                balloon.reset(280,150);
                 }
             }
-        }
+
     }
-
-
 
 }

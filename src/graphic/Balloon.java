@@ -8,7 +8,11 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
+import graphic.powerup.Powerup;
 import org.newdawn.slick.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Balloon Sprite, Player of the  game
@@ -22,7 +26,10 @@ public class Balloon extends SceneObject{
     private float gameTime = 0.0f;
 
     protected int fuel = 1000;
+
     protected int lives = 3;
+
+    private List<Powerup> powerups = new ArrayList<Powerup>();
 
     public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
@@ -155,7 +162,15 @@ public class Balloon extends SceneObject{
 
     @Override
     public boolean isReadyForDisposal() {
-        return false;
+        return (x < 0);
+    }
+
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 }
 
