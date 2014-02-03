@@ -27,7 +27,7 @@ public class Balloon extends SceneObject{
     /*game time*/
     private float gameTime = 0.0f;
 
-    protected int fuel = 1000000;
+    protected int fuel = 1000;
 
     protected int lives = 3;
 
@@ -155,7 +155,7 @@ public class Balloon extends SceneObject{
         return lives;
     }
 
-    public void editLives(int x, float distance) {
+    public void editLives(int x) {
         //if(distance > olddistance+3) {
           //  olddistance = distance;
             lives += x;

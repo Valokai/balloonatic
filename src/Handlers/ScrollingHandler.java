@@ -137,14 +137,14 @@ public class ScrollingHandler {
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
             if(collider2) {
-                balloon.editLives(-1, distance);  //decrease the lives because they collide*/
+                balloon.editLives(-1);  //decrease the lives because they collide*/
                     balloon.reset(280,150);
                     return;
                 }
 
         }  else {
             if(collider) {
-                balloon.editLives(-1, distance);
+                balloon.editLives(-1);
                 balloon.reset(280,150);
                 }
             }

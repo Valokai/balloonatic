@@ -31,7 +31,7 @@ public class Background extends Sprite{
 
     protected int width, height;
 
-    protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>();
+    protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>(), birdcoordinates = new ArrayList<Vector2f>();
 
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
         super(x, y, imagePath);
@@ -167,4 +167,9 @@ public class Background extends Sprite{
     public void setCoordinates(List<Vector2f> coordinates) {
         this.coordinates = new ArrayList<Vector2f>(coordinates);
     }
+    public void setBirdCoordinates(List<Vector2f> coordinates) {
+        this.birdcoordinates = new ArrayList<Vector2f>(coordinates);
+    }
+
+
 }

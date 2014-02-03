@@ -1,6 +1,8 @@
 package scrollables;
 
 import graphic.Background;
+import graphic.Leaf;
+import graphic.powerup.Bird;
 import graphic.powerup.PFuel;
 import handlers.SceneHandler;
 import org.newdawn.slick.SlickException;
@@ -36,6 +38,10 @@ public class GreenHills extends Background {
                     new Vector2f(1952.0f + 1400, 429.0f),
                     new Vector2f(2225.0f + 1400, 385.0f)
             ));
+            setBirdCoordinates( Arrays.asList(
+                    new Vector2f(1300.0f + 1400, 149.0f),
+                    new Vector2f(1200.0f + 1400, 418.0f)
+            ));
         }
         if(type==2) {
             this.setImage("data/image/backgrounds/Hills3b.png");
@@ -43,6 +49,10 @@ public class GreenHills extends Background {
             setCoordinates( Arrays.asList(
                     new Vector2f(1742.0f + 1400, 149.0f),
                     new Vector2f(1268.0f + 1400, 418.0f)
+            ));
+            setBirdCoordinates( Arrays.asList(
+                    new Vector2f(1700.0f + 1400, 149.0f),
+                    new Vector2f(1200.0f + 1400, 418.0f)
             ));
         }
         if(type==3) {
@@ -71,5 +81,9 @@ public class GreenHills extends Background {
         for (Vector2f coordinate : coordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PFuel.class);
         }
+        for (Vector2f coordinate : birdcoordinates) {
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), Bird.class);
+        }
+
     }
 }
