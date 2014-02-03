@@ -118,7 +118,7 @@ public class MainState extends BasicGameState {
         float speedMultiplier = 1;
 
         if(balloon.getY() > 300){
-            speedMultiplier = .5f;
+            speedMultiplier = 1f;
         } else if(balloon.getY() <= 300){
             speedMultiplier = 1f;
         }
@@ -134,6 +134,7 @@ public class MainState extends BasicGameState {
 
 
         if(balloon.getLives() <= 0){
+            balloon.stopBurner();
             EnterNameState enterNameState = (EnterNameState)stateBasedGame.getState(Game.STATE.ENTERNAME);
             enterNameState.setScore((int)(frontground.getDistance()));
             stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
