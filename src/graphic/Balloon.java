@@ -155,7 +155,7 @@ public class Balloon extends SceneObject{
         return lives;
     }
 
-    public void editLives(int x, float distance) {
+    public void editLives(int x) {
         //if(distance > olddistance+3) {
           //  olddistance = distance;
             lives += x;
