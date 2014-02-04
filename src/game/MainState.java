@@ -117,7 +117,7 @@ public class MainState extends BasicGameState {
 
         float deltaTime = delta /1000;
         float speedOffset = 0;
-        sceneHandler.update(gameContainer, delta);
+        sceneHandler.update(gameContainer, delta, 0);
         backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
         backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
         //backgroundMove(birdlayer, deltaTime-5- speedOffset, 0 , stateBasedGame);

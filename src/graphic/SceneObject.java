@@ -25,6 +25,10 @@ public abstract class SceneObject extends Sprite{
      */
     protected boolean isCollidable;
 
+    private HashSet<String> mask;
+
+
+
     /**
      * Constructor
      * @param imagePath path to image file
@@ -54,11 +58,13 @@ public abstract class SceneObject extends Sprite{
     }
 
     public HashSet<String> getMask() {
-        HashSet<String> mask = new HashSet<String>();
+        mask = new HashSet<String>();
+        int iw = image.getWidth() / 2;
+        int ih = image.getHeight() /2;
         for(int i = 0; i < image.getWidth(); i++){ // for every (x,y) component in the given box,
             for( int j = 0; j < image.getHeight(); j++){
                 if(image.getColor(i, j).getAlpha() != 0){  // if the alpha is not 0, it must be something other than transparent
-                    mask.add((int)(x+i)+","+(int)(y- j)); // add the absolute x and absolute y coordinates to our set
+                    mask.add((int)(x-iw+i)+","+(int)(y-ih+j)); // add the absolute x and absolute y coordinates to our set
                 }
             }
         }
@@ -87,12 +93,16 @@ public abstract class SceneObject extends Sprite{
         isCollidable = collidable;
     }
 
+
+    public HashSet<String> showMask(){
+        return mask;
+    }
+
     public boolean isCollided(SceneObject collidable) {
         if(collidable != null && collidable.isCollidable()){
 
-            HashSet<String> maskPlayer1 = getMask();
             HashSet<String> maskPlayer2 = collidable.getMask();
-
+            HashSet<String> maskPlayer1 = getMask();
             maskPlayer1.retainAll(maskPlayer2);  // Check to see if any pixels in maskPlayer2 are the same as those in maskPlayer1
 
             if(!maskPlayer1.isEmpty()){  // if so, than there exists at least one pixel that is the same in both images, thus
