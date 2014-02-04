@@ -29,7 +29,7 @@ public class MainState extends BasicGameState {
     /*the scrollable foreground and backgrounds*/
     private ScrollingHandler frontground, background, backlayer;//, birdlayer;
 
-    private SceneHandler sceneHandler = SceneHandler.getInstance();
+    private SceneHandler sceneHandler;
 
     private Balloon balloon;
 
@@ -55,6 +55,9 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f,0,false,3)); //add more map to the front scrollable
         background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
 
+        sceneHandler = SceneHandler.getInstance();
+        sceneHandler.clearAll();
+
         balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
         fuelGague = new FuelGauge();
         fuelGague.setX(40);
@@ -76,6 +79,8 @@ public class MainState extends BasicGameState {
         //birdlayer.add(new Birds(0.0f, 0, true, 4));
 
         skyimage = new Image("data/image/sky.png");
+
+
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
         particleManager.addParticle("data/particles/emitter_fast.xml", "data/particles/particle.png");

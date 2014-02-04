@@ -19,7 +19,7 @@ public class Bird extends Powerup{
 
     public Bird() throws SlickException {
         super("data/image/goldbird.png");
-       birdimages = new Image[]{ new Image("data/image/bird1.png"), new Image("data/image/bird2.png") };
+        birdimages = new Image[]{ new Image("data/image/bird1.png"), new Image("data/image/bird2.png") };
         bird = new Animation(birdimages,50);
         death = new Sound("data/sound/effects/gameover1.wav");
         birdsound = new Sound("data/sound/effects/bird_screech.ogg");
