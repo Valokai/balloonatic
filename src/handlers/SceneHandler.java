@@ -38,12 +38,7 @@ public class SceneHandler {
     /**
      * keys of scene object marked to be disposed.
      */
-    private volatile List<String> disposedSceneObjects = new ArrayList<String>();
-
-    /**
-     * Working thread to dispose sceneobjects
-     */
-    private SceneObjectDisposingThread disposingThread = new SceneObjectDisposingThread();
+    private volatile List<String> disposedSceneObjects = new ArrayList<String>();          
 
     static{
         INSTANCE = new SceneHandler();
@@ -112,25 +107,16 @@ public class SceneHandler {
      */
     public void update(GameContainer gameContainer, int delta, float speedMultiplier){
         SceneObject sceneObject;
-        try{
-            synchronized (registeredSceneObjects){
-                for (String key : registeredSceneObjects.keySet()) {
-                    sceneObject = registeredSceneObjects.get(key);
-                    if(sceneObject.isReadyForDisposal()){
-                        disposedSceneObjects.add(key);
-                    }else{
-                        sceneObject.update(gameContainer, delta);
-                    }
-                }
+        for (String key : registeredSceneObjects.keySet()) {
+            sceneObject = registeredSceneObjects.get(key);
+            if(sceneObject.isReadyForDisposal()){
+                disposedSceneObjects.add(key);
+            }else{
+                sceneObject.update(gameContainer, delta);
             }
-        }catch (ConcurrentModificationException e){
-            e.printStackTrace();
         }
-
-        if(!disposingThread.isRunning){
-            disposingThread = null;
-            disposingThread = new SceneObjectDisposingThread();
-            disposingThread.start();
+        for (String key : disposedSceneObjects) {
+            registeredSceneObjects.remove(key);
         }
     }
 
@@ -153,21 +139,6 @@ public class SceneHandler {
     public void registerSceneObject(String id, SceneObject sceneObject){
         synchronized (registeredSceneObjects){
             registeredSceneObjects.put(id, sceneObject);
-        }
-    }
-
-    public class SceneObjectDisposingThread extends Thread{
-        public boolean isRunning = false;
-
-        @Override
-        public void run() {
-            isRunning = true;
-            synchronized (disposedSceneObjects){
-                for (String key : disposedSceneObjects) {
-                    registeredSceneObjects.remove(key);
-                }
-            }
-            isRunning = false;
         }
     }
 
