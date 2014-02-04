@@ -94,7 +94,7 @@ public abstract class SceneObject extends Sprite{
     }
 
 
-    public HashSet<String> showMask(){
+    public  HashSet<String> showMask(){
         return mask;
     }
 

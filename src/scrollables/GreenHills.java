@@ -40,7 +40,16 @@ public class GreenHills extends Background {
             ));
             setBirdCoordinates( Arrays.asList(
                     new Vector2f(1300.0f + 1400, 149.0f),
-                    new Vector2f(1200.0f + 1400, 418.0f)
+                    new Vector2f(1220.0f + 1400, 160.0f),
+                    new Vector2f(1240.0f + 1400, 180.0f),
+                    new Vector2f(1260.0f + 1400, 200.0f),
+                    new Vector2f(1280.0f + 1400, 220.0f),
+                    new Vector2f(1310.0f + 1400, 249.0f),
+                    new Vector2f(1330.0f + 1400, 270.0f),
+                    new Vector2f(1360.0f + 1400, 290.0f),
+                    new Vector2f(1380.0f + 1400, 310.0f),
+                    new Vector2f(1410.0f + 1400, 340.0f),
+                    new Vector2f(1340.0f + 1400, 370.0f)
             ));
         }
         if(type==2) {
@@ -52,16 +61,54 @@ public class GreenHills extends Background {
             ));
             setBirdCoordinates( Arrays.asList(
                     new Vector2f(1700.0f + 1400, 149.0f),
-                    new Vector2f(1200.0f + 1400, 418.0f)
+                    new Vector2f(1000.0f + 1400, 0.0f),
+                    new Vector2f(800.0f + 1400, 30.0f),
+                    new Vector2f(1900.0f + 1400, 50.0f),
+                    new Vector2f(1200.0f + 1400, 60.0f) ,
+                    new Vector2f(1500.0f + 1400, 80.0f) ,
+                    new Vector2f(1300.0f + 1400, 100.0f) ,
+                    new Vector2f(1200.0f + 1400, 120.0f) ,
+                    new Vector2f(100.0f + 1400, 140.0f)  ,
+                    new Vector2f(200.0f + 1400, 160.0f)  ,
+                    new Vector2f(3000.0f + 1400, 170.0f) ,
+                    new Vector2f(40.0f + 1400, 190.0f)   ,
+                    new Vector2f(400.0f + 1400, 210.0f)  ,
+                    new Vector2f(600.0f + 1400, 240.0f)
             ));
         }
         if(type==3) {
             this.setImage("data/image/backgrounds/Hills3c.png");
             this.setCollisionImage("data/image/backgrounds/Hills3c_mask.png");
+            setBirdCoordinates( Arrays.asList(
+                    new Vector2f(1300.0f + 1400, 149.0f),
+                    new Vector2f(1220.0f + 1400, 160.0f),
+                    new Vector2f(1240.0f + 1400, 180.0f),
+                    new Vector2f(1260.0f + 1400, 200.0f),
+                    new Vector2f(1280.0f + 1400, 220.0f),
+                    new Vector2f(1310.0f + 1400, 249.0f),
+                    new Vector2f(1330.0f + 1400, 270.0f),
+                    new Vector2f(1360.0f + 1400, 290.0f),
+                    new Vector2f(1380.0f + 1400, 310.0f),
+                    new Vector2f(1410.0f + 1400, 340.0f),
+                    new Vector2f(1340.0f + 1400, 370.0f)
+            ));
         }
         if(type==4) {
             this.setImage("data/image/backgrounds/Hills3d.png");
             this.setCollisionImage("data/image/backgrounds/Hills3d_mask.png");
+            setBirdCoordinates( Arrays.asList(
+                    new Vector2f(1300.0f + 1400, 149.0f),
+                    new Vector2f(1220.0f + 1400, 160.0f),
+                    new Vector2f(1240.0f + 1400, 180.0f),
+                    new Vector2f(1260.0f + 1400, 200.0f),
+                    new Vector2f(1280.0f + 1400, 220.0f),
+                    new Vector2f(1310.0f + 1400, 249.0f),
+                    new Vector2f(1330.0f + 1400, 270.0f),
+                    new Vector2f(1360.0f + 1400, 290.0f),
+                    new Vector2f(1380.0f + 1400, 310.0f),
+                    new Vector2f(1410.0f + 1400, 340.0f),
+                    new Vector2f(1340.0f + 1400, 370.0f)
+            ));
         }
 
     }
