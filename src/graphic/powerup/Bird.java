@@ -1,7 +1,7 @@
 package graphic.powerup;
 
 import graphic.Balloon;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.Sound;
 
 /**
@@ -12,13 +12,15 @@ import org.newdawn.slick.Sound;
  * To change this template use File | Settings | File Templates.
  */
 public class Bird extends Powerup{
+    Animation bird;
+    Image[] birdimages;
 
     private Sound death;
 
     public Bird() throws SlickException {
         super("data/image/goldbird.png");
-        death = new Sound("data/sound/effects/gameover1.wav");
-    }
+       birdimages = new Image[]{new Image("data/image/bird1.png"), new Image("data/image/bird2.png")};
+        bird = new Animation(birdimages,50);        death = new Sound("data/sound/effects/gameover1.wav");    }
 
     public Bird(String imagePath) throws SlickException {
         super(imagePath);
@@ -32,12 +34,18 @@ public class Bird extends Powerup{
     public void onCollideWithBalloon(Balloon balloon) {
         sceneHandler.removeSceneObject(this);
         balloon.editLives(1);
-        death.play();
-
-    }
+balloon.setFlashRate(30);
+        balloon.setFlashed(true); death.play();    }
 
     @Override
     public void move(int delta) {
         x += delta/1000 - 14;
+    }
+
+
+
+    @Override
+    public void render(GameContainer gc, Graphics graphics){
+        bird.draw(x - 20, y - 20);
     }
 }
