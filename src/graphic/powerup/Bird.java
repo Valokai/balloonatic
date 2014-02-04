@@ -31,9 +31,10 @@ public class Bird extends Powerup{
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
         sceneHandler.removeSceneObject(this);
-        balloon.editLives(1);
-balloon.setFlashRate(30);
-        balloon.setFlashed(true); death.play();    }
+        balloon.setLives(balloon.getLives() - 1);
+        balloon.setFlashRate(120);
+        balloon.setFlashed(true); death.play();
+    }
     @Override
     public void move(int delta) {
         x += delta/1000 - 14;
