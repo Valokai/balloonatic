@@ -133,7 +133,7 @@ public class Balloon extends SceneObject{
         }
         else
         {
-            setSpeed(getSpeed() + (deltaTime * 150.0f));
+            setSpeed(getSpeed() + (deltaTime * 100.0f));
             move(0.0f, getSpeed() * deltaTime);
             burner.stop();
         }
