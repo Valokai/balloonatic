@@ -33,14 +33,22 @@ public class Balloon extends SceneObject{
 
     protected float olddistance = -3;
 
+    protected boolean isFlashed = false;
+
+    protected int flashRate;
+
     private List<Powerup> powerups = new ArrayList<Powerup>();
+
+    private Image flash;
 
     public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
+        flash = image.getScaledCopy(1f);
     }
 
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/image/balloon.png", false);
+        flash = image.getScaledCopy(1f);
     }
 
 
@@ -68,10 +76,10 @@ public class Balloon extends SceneObject{
      * @return returns a float of the balloons y-speed
      */
     public float getSpeed(){
-        return loonspeed;
-    }
+     return loonspeed;
+     }
 
-    /**move the balloon
+     /**move the balloon
      *
      * @param offsetX  the amount you want to move the balloons x-coordinate
      * @param offsetY  the amount you want to move the balloons y-coordinate
@@ -79,13 +87,6 @@ public class Balloon extends SceneObject{
     public void move(float offsetX, float offsetY){
         x += offsetX;
         y += offsetY;
-    }
-
-    /**render the balloon
-     *
-     */
-    public void render(){
-        image.drawCentered(x, y);
     }
 
     /**print the stats of balloon for error checking
@@ -99,6 +100,32 @@ public class Balloon extends SceneObject{
         g.drawString("Balloon Y: " + getY(), x, y+20);
         g.drawString("Speed: " + getSpeed(), x, y+40);
 
+    }
+
+    public boolean isFlashed() {
+        return isFlashed;
+    }
+
+    public void setFlashed(boolean flashed) {
+        isFlashed = flashed;
+    }
+
+    public int getFlashRate() {
+        return flashRate;
+    }
+
+    public void setFlashRate(int flashRate) {
+        this.flashRate = flashRate;
+    }
+
+    @Override
+    public void render(GameContainer gc, Graphics graphics) {
+        if(isFlashed && flashRate !=0){
+            flash.drawFlash(x - image.getWidth()/2, y - image.getHeight()/2);
+            flashRate--;
+        }else{
+            image.drawCentered(x, y);
+        }
     }
 
     /**update the balloon

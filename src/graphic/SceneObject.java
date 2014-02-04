@@ -18,7 +18,7 @@ import java.util.HashSet;
  * Scene Objects are sprite which does not react or effect the game. They are just used for visual presentation.
  * Flying leaves, for instance
  */
-public abstract class SceneObject extends Sprite{
+public abstract class   SceneObject extends Sprite{
 
     /**
      * Can a player collide with this object.
