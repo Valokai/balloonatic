@@ -2,6 +2,7 @@ package graphic.powerup;
 
 import graphic.Balloon;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,8 +13,11 @@ import org.newdawn.slick.SlickException;
  */
 public class PFuel extends Powerup{
 
+    private Sound pickup;
+
     public PFuel() throws SlickException {
         super("data/image/fuel.png");
+        pickup = new Sound("data/sound/effects/fuel.ogg");
     }
 
     public PFuel(String imagePath) throws SlickException {
@@ -28,5 +32,6 @@ public class PFuel extends Powerup{
     public void onCollideWithBalloon(Balloon balloon) {
         sceneHandler.removeSceneObject(this);
         balloon.setFuel(1000);
+        pickup.play();
     }
 }
