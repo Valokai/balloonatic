@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import util.GameFont;
 import util.ScoreBoard;
 
 /**
@@ -21,9 +22,13 @@ public class MainGame extends StateBasedGame {
 
     public static final int SCREEN_WIDTH = 1280;
     public static final int SCREEN_HEIGHT = 720;
+
     public MainGame() {
         super(Game.TITLE);
     }
+
+    static public GameFont titleFont = null;
+
 
     static ScoreBoard SBoard = new ScoreBoard();
 
@@ -33,15 +38,29 @@ public class MainGame extends StateBasedGame {
         addState(new MainState());
         addState(new HighScoreState());
         addState(new EnterNameState());
+
+        if (titleFont == null) {
+            try {
+                titleFont = new GameFont("data/fonts/Bauhaus93.fnt",
+                        "data/fonts/Bauhaus93_0.png");
+            } catch (SlickException e) {
+                System.out.println("Unable to load title font");
+            }
+        }
+
         enterState(Game.STATE.MENU);
     }
 
     // Main entry point for the game, set up the app and its window etc
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
-        app.setVSync(Game.VSYNC);
-        app.setShowFPS(Game.DEBUG.SHOW_FPS);
-        app.start();
+
+        {
+
+            }
+            AppGameContainer app = new AppGameContainer(new MainGame());
+            app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+            app.setVSync(Game.VSYNC);
+            app.setShowFPS(Game.DEBUG.SHOW_FPS);
+            app.start();
+        }
     }
-}
