@@ -2,6 +2,7 @@ package graphic.powerup;
 
 import graphic.Balloon;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,8 +13,11 @@ import org.newdawn.slick.SlickException;
  */
 public class Bird extends Powerup{
 
+    private Sound death;
+
     public Bird() throws SlickException {
         super("data/image/goldbird.png");
+        death = new Sound("data/sound/effects/gameover1.wav");
     }
 
     public Bird(String imagePath) throws SlickException {
@@ -28,6 +32,8 @@ public class Bird extends Powerup{
     public void onCollideWithBalloon(Balloon balloon) {
         sceneHandler.removeSceneObject(this);
         balloon.editLives(1);
+        death.play();
+
     }
 
     @Override
