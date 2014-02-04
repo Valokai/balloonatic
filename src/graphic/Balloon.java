@@ -178,6 +178,8 @@ public class Balloon extends SceneObject{
     @Override
     public void move(int delta) {}
 
+
+
     @Override
     public boolean isReadyForDisposal() {
         return (x < 0);
