@@ -146,6 +146,7 @@ public class MainState extends BasicGameState {
             EnterNameState enterNameState = (EnterNameState)stateBasedGame.getState(Game.STATE.ENTERNAME);
             enterNameState.setScore((int)(frontground.getDistance()));
             stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+            balloon.stopBurner();
         }
 
 
