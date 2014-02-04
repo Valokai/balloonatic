@@ -139,6 +139,9 @@ public class Balloon extends SceneObject{
         gameTime += deltaTime;
         Input input = gameContainer.getInput();
         updatePlayer(deltaTime, input);
+        if(flashRate != 0){
+
+        }
     }
 
     /**update the player based on inputs
@@ -183,13 +186,6 @@ public class Balloon extends SceneObject{
         return lives;
     }
 
-    public void editLives(int x) {
-        //if(distance > olddistance+3) {
-          //  olddistance = distance;
-            lives += x;
-        //}
-    }
-
     public void resetBalloonStats() {
         lives = 3;
         fuel = 1000;
@@ -217,7 +213,9 @@ public class Balloon extends SceneObject{
     }
 
     public void setLives(int lives) {
-        this.lives = lives;
+        if(flashRate == 0){
+            this.lives = lives;
+        }
     }
 }
 

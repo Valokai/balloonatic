@@ -66,8 +66,8 @@ public class ScrollingHandler {
         //g.drawString(this.name, x, y);
         //g.drawString("bglist: " + bglist.size(), x, y+20);
         //g.drawString("renderlist: " + renderlist.size(), x, y+40);
-       // g.drawString("PosX(0): " + renderlist.get(0).getX(), x, y+60);
-       // g.drawString("count: " + count, x, y+80);
+        // g.drawString("PosX(0): " + renderlist.get(0).getX(), x, y+60);
+        // g.drawString("count: " + count, x, y+80);
 
         if(renderlist.size()>1 && renderlist.get(0).getX()<-2120) {
             if(renderlist.get(1).isCollidable()) { //if its collidable, check for collide
@@ -138,17 +138,17 @@ public class ScrollingHandler {
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
             if(collider2) {
-                balloon.editLives(-1);  //decrease the lives because they collide*/
-                    balloon.reset(280,150);
-                    return;
-                }
+                balloon.setLives(balloon.getLives()-1);  //decrease the lives because they collide*/
+                balloon.reset(280,150);
+                return;
+            }
 
         }  else {
             if(collider) {
-                balloon.editLives(-1);
+                balloon.setLives(balloon.getLives()-1);
                 balloon.reset(280,150);
-                }
             }
+        }
 
     }
 

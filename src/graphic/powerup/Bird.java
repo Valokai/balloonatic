@@ -16,7 +16,6 @@ public class Bird extends Powerup{
 
     public Bird() throws SlickException {
         super("data/image/goldbird.png");
-
         birdimages = new Image[]{new Image("data/image/bird1.png"), new Image("data/image/bird2.png")};
         bird = new Animation(birdimages,50);
 
@@ -33,8 +32,8 @@ public class Bird extends Powerup{
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
         sceneHandler.removeSceneObject(this);
-        balloon.editLives(1);
-        balloon.setFlashRate(30);
+        balloon.setLives(balloon.getLives() - 1);
+        balloon.setFlashRate(50);
         balloon.setFlashed(true);
     }
 
