@@ -15,12 +15,17 @@ public class Bird extends Powerup{
     Animation bird;
     Image[] birdimages;
 
-    private Sound death;
+    private Sound death, birdsound;
 
     public Bird() throws SlickException {
         super("data/image/goldbird.png");
-       birdimages = new Image[]{new Image("data/image/bird1.png"), new Image("data/image/bird2.png")};
-        bird = new Animation(birdimages,50);        death = new Sound("data/sound/effects/gameover1.wav");    }    public Bird(String imagePath) throws SlickException {
+       birdimages = new Image[]{ new Image("data/image/bird1.png"), new Image("data/image/bird2.png") };
+        bird = new Animation(birdimages,50);
+        death = new Sound("data/sound/effects/gameover1.wav");
+        birdsound = new Sound("data/sound/effects/bird_screech.ogg");
+    }
+
+    public Bird(String imagePath) throws SlickException {
         super(imagePath);
     }
 
@@ -34,7 +39,7 @@ public class Bird extends Powerup{
         //balloon.setLives(balloon.getLives() - 1);
         balloon.setFuel(balloon.getFuel() - 100);
         balloon.setFlashRate(120);
-        balloon.setFlashed(true); death.play();
+        balloon.setFlashed(true); death.play(); birdsound.play();
     }
     @Override
     public void move(int delta) {
