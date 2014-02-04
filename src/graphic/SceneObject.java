@@ -76,6 +76,8 @@ public abstract class   SceneObject extends Sprite{
      */
     public abstract void move(int delta);
 
+
+
     /**
      * Check if this object is out of screen
      * @return true if this object is out of screen, otherwise false

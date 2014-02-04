@@ -113,6 +113,7 @@ public class ScrollingHandler {
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground")){
             distance -= moveX / 100;
+            distance -= moveX / 10     ;
         }
 
         /*handles the images, loads the next one when needed and rsemoves the previous when not needed*/

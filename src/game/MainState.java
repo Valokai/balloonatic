@@ -3,10 +3,7 @@ package game;
 import graphic.*;
 import handlers.SceneHandler;
 import handlers.ScrollingHandler;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
@@ -15,6 +12,7 @@ import scrollables.BackHills;
 import scrollables.Birds;
 import scrollables.GreenHills;
 import scrollables.SecondHills;
+import util.GameFont;
 import util.ParticleManager;
 
 /**
@@ -101,9 +99,25 @@ public class MainState extends BasicGameState {
         //render fuel
         //graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
         //graphics.drawString("Balloon y: "+balloon.getY(), 850, 0);
-        graphics.drawString("Lives: "+balloon.getLives(), 850, 0);
+
+
+
+        MainGame.titleFont.drawString(
+                20,
+                70,
+                "Lives: " + balloon.getLives(),
+                GameFont.Alignment.LEFT,
+                Color.yellow);
+
+
         //render score
-        graphics.drawString("Distance: "+(int)frontground.getDistance()+"m",1000,0);
+        String dist = String.format("%4d", (int)frontground.getDistance());
+        MainGame.titleFont.drawString(
+                20,
+                100,
+                "Distance : " + dist,
+                GameFont.Alignment.LEFT,
+                Color.yellow);
 
         //The fuel gauge stuff
         fuelGague.draw(20, 100, 50, 550);
@@ -116,12 +130,14 @@ public class MainState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
         float deltaTime = delta /1000;
-        float speedOffset = 0;
-        sceneHandler.update(gameContainer, delta, 0);
-        backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
-        backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
-        //backgroundMove(birdlayer, deltaTime-5- speedOffset, 0 , stateBasedGame);
-        backgroundMove(frontground, deltaTime-4 - speedOffset, 0, stateBasedGame); //update the front scrollable
+
+        float speedMultiplier = 1f;
+        sceneHandler.update(gameContainer, delta, speedMultiplier);
+        backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
+        backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0 , stateBasedGame);
+        //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
+        backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
+
 
         particleManager.upate(delta);
 

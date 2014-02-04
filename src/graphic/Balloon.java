@@ -153,15 +153,16 @@ public class Balloon extends SceneObject{
             fuel--;
             setSpeed(getSpeed() - (deltaTime * 200.0f));
             move(0.0f, getSpeed() * deltaTime);
-
+            super.setImage("data/image/balloon2.png");
             if (!burner.playing()){
                 burner.loop();
          }
         }
         else
         {
-            setSpeed(getSpeed() + (deltaTime * 150.0f));
+            setSpeed(getSpeed() + (deltaTime * 100.0f));
             move(0.0f, getSpeed() * deltaTime);
+            super.setImage("data/image/balloon.png");
             burner.stop();
         }
     }
@@ -203,6 +204,8 @@ public class Balloon extends SceneObject{
 
     @Override
     public void move(int delta) {}
+
+
 
     @Override
     public boolean isReadyForDisposal() {
