@@ -127,7 +127,7 @@ public class SceneHandler {
      */
     public void render(GameContainer gc, Graphics graphics){
         for (String key : registeredSceneObjects.keySet()) {
-            registeredSceneObjects.get(key).render(gc, graphics);
+              registeredSceneObjects.get(key).render(gc, graphics);
         }
         printStat(graphics);
     }
