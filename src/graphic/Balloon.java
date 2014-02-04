@@ -29,7 +29,7 @@ public class Balloon extends SceneObject{
 
     protected int fuel = 1000;
 
-    protected int lives = 3;
+    protected int lives = 1;
 
     protected float olddistance = -3;
 

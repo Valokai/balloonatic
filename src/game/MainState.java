@@ -102,13 +102,14 @@ public class MainState extends BasicGameState {
 
 
 
+        /*
         MainGame.titleFont.drawString(
                 20,
                 70,
                 "Lives: " + balloon.getLives(),
                 GameFont.Alignment.LEFT,
                 Color.yellow);
-
+         */
 
         //render score
         String dist = String.format("%4d", (int)frontground.getDistance());
