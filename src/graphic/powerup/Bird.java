@@ -31,7 +31,8 @@ public class Bird extends Powerup{
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
         sceneHandler.removeSceneObject(this);
-        balloon.setLives(balloon.getLives() - 1);
+        //balloon.setLives(balloon.getLives() - 1);
+        balloon.setFuel(balloon.getFuel() - 100);
         balloon.setFlashRate(120);
         balloon.setFlashed(true); death.play();
     }
