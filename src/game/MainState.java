@@ -130,21 +130,14 @@ public class MainState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
         float deltaTime = delta /1000;
-<<<<<<< HEAD
+
         float speedMultiplier = 1f;
         sceneHandler.update(gameContainer, delta, speedMultiplier);
         backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
         backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0 , stateBasedGame);
         //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
         backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
-=======
-        float speedOffset = 0;
-        sceneHandler.update(gameContainer, delta, 0);
-        backgroundMove(background, deltaTime-1 - speedOffset, 0, stateBasedGame);
-        backgroundMove(backlayer, deltaTime-2- speedOffset, 0 , stateBasedGame);
-        //backgroundMove(birdlayer, deltaTime-5- speedOffset, 0 , stateBasedGame);
-        backgroundMove(frontground, deltaTime-4 - speedOffset, 0, stateBasedGame); //update the front scrollable
->>>>>>> 600b711330cafdbe74bc18a966dbbba7a161f048
+
 
         particleManager.upate(delta);
 
