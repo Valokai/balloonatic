@@ -20,10 +20,10 @@ public class ScoreBoard {
     }
 
     private void makeUpScores() {
-        addScore("Tiff", 40);
-        addScore("Taeyeon", 70);
-        addScore("Diago", 90);
-        addScore("KidLeader", 85);
+        addScore("Tiffany", 800);
+        addScore("Taeyeon", 1000);
+        addScore("Diago", 5000);
+        addScore("KidLeader", 3000);
         addScore("lowbie",30);
         addScore("skwex",22);
     }

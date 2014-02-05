@@ -38,8 +38,10 @@ public class Bird extends Powerup{
         sceneHandler.removeSceneObject(this);
         //balloon.setLives(balloon.getLives() - 1);
         balloon.setFuel(balloon.getFuel() - 100);
-        balloon.setFlashRate(120);
-        balloon.setFlashed(true); death.play(); birdsound.play();
+        balloon.setFlashRate(300);
+        balloon.setFlashed(true);
+        death.play();
+        birdsound.play();
     }
     @Override
     public void move(int delta) {
