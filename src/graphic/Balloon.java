@@ -54,7 +54,7 @@ public class Balloon extends SceneObject{
     }
 
 
-    /**reset the ballon to fuelCoordinates
+    /**reset the ballon to coordinates
      *
      * @param x     reset balloon x coordinate
      * @param y     reset balloon y coordinate
@@ -78,10 +78,10 @@ public class Balloon extends SceneObject{
      * @return returns a float of the balloons y-speed
      */
     public float getSpeed(){
-     return loonspeed;
-     }
+        return loonspeed;
+    }
 
-     /**move the balloon
+    /**move the balloon
      *
      * @param offsetX  the amount you want to move the balloons x-coordinate
      * @param offsetY  the amount you want to move the balloons y-coordinate
@@ -106,15 +106,16 @@ public class Balloon extends SceneObject{
 
     @Override
     public void render(GameContainer gc, Graphics graphics) {
-            image.drawCentered(x, y);        if(burneron){
-            burnerimage.draw(x-burnerimage.getWidth()/2,y-burnerimage.getHeight()/2);
-		 } else{
-			 for (String key : balloonEffects.keySet()) {
+
+        for (String key : balloonEffects.keySet()) {
             balloonEffects.get(key).drawOnBalloon(this, graphics);
         }
         if(!isRenderLock){
-            image.drawCentered(x, y);
-        }            image.drawCentered(x,y);
+            if(burneron){
+                burnerimage.draw(x-burnerimage.getWidth()/2,y-burnerimage.getHeight()/2);
+            }else{
+                image.drawCentered(x, y);
+            }
         }
     }
 
@@ -152,7 +153,7 @@ public class Balloon extends SceneObject{
             burneron = true;
             if (!burner.playing()){
                 burner.loop();
-         }
+            }
         }
         else{
             setSpeed(getSpeed() + (deltaTime * 400.0f));

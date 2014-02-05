@@ -1,20 +1,13 @@
 package handlers;
 
 
-import game.Game;
-import graphic.*;
-import graphic.powerup.Bird;
-import graphic.powerup.PFuel;
-import org.newdawn.slick.Color;
+import graphic.Background;
+import graphic.Balloon;
+import graphic.powerup.PBird;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import game.MainGame;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.BlobbyTransition;
-import org.newdawn.slick.state.transition.CombinedTransition;
-import scrollables.GreenHills;
 import util.BirdFormations;
 
 import java.util.ArrayList;
@@ -164,7 +157,7 @@ public class ScrollingHandler {
 
     public void spawnBirds() {
         for (Vector2f coordinate : birdformations.getRandomBirdFormation((random.nextFloat() * 1300) + 0, (random.nextFloat() * 420) + 0)) {
-            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), Bird.class);
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PBird.class);
         }
     }
 

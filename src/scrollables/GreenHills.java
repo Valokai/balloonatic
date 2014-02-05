@@ -1,15 +1,12 @@
 package scrollables;
 
 import graphic.Background;
-import graphic.Leaf;
-import graphic.powerup.Bird;
 import graphic.powerup.PFuel;
 import handlers.SceneHandler;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import java.util.Arrays;
-import java.util.Random;
 
 
 /**
@@ -30,7 +27,7 @@ public class GreenHills extends Background {
         if(type==1) {
             this.setImage("data/image/backgrounds/Hills3a.png");
             this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
-            setCoordinates( Arrays.asList(
+            setCoordinates(Arrays.asList(
                     new Vector2f(328.0f + 1400, 543.0f),
                     new Vector2f(529.0f + 1400, 510.0f),
                     new Vector2f(1016.0f + 1400, 321.0f),
@@ -45,7 +42,7 @@ public class GreenHills extends Background {
         if(type==2) {
             this.setImage("data/image/backgrounds/Hills3b.png");
             this.setCollisionImage("data/image/backgrounds/Hills3b_mask.png");
-            setCoordinates( Arrays.asList(
+            setCoordinates(Arrays.asList(
                     new Vector2f(1742.0f + 1400, 149.0f),
                     new Vector2f(1268.0f + 1400, 418.0f)
             ));
