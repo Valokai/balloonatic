@@ -51,7 +51,7 @@ public class MainGame extends StateBasedGame {
         enterState(Game.STATE.MENU);
     }
 
-    // Main entry point for the game, set up the app and its window etc
+    // Main entry point for the game, set up the app and its window etc u
     public static void main(String[] args) throws SlickException {
 
         {
