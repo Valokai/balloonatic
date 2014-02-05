@@ -2,6 +2,7 @@ package scrollables;
 
 import graphic.Background;
 import graphic.powerup.PFuel;
+import graphic.powerup.PShield;
 import handlers.SceneHandler;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
@@ -36,6 +37,10 @@ public class GreenHills extends Background {
                     new Vector2f(1777.0f + 1400, 485.0f),
                     new Vector2f(1952.0f + 1400, 429.0f),
                     new Vector2f(2225.0f + 1400, 385.0f)
+            ));
+            setShieldCoordinates(Arrays.asList(
+                    new Vector2f(897.0f + 1400, 353.0f),
+                    new Vector2f(2326.0f + 1400, 454.0f)
             ));
         }
 
@@ -74,6 +79,9 @@ public class GreenHills extends Background {
         SceneHandler sceneHandler = SceneHandler.getInstance();
         for (Vector2f coordinate : coordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PFuel.class);
+        }
+        for (Vector2f coordinate : shieldCoordinates) {
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PShield.class);
         }
 
     }

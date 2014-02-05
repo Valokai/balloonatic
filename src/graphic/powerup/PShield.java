@@ -38,6 +38,7 @@ public class PShield extends Powerup implements BalloonEffect{
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
         balloon.addBalloonEffect(this, "shield");
+        sceneHandler.removeSceneObject(this);
     }
 
     @Override
