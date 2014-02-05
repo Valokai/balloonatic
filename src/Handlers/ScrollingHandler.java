@@ -115,7 +115,7 @@ public class ScrollingHandler {
             distance -= moveX / 10;
         }
 
-        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.96) {      //chance to spawn a bird formation
+        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.98) {      //chance to spawn a bird formation
            spawnBirds();
         }
 

@@ -152,7 +152,7 @@ public class Balloon extends SceneObject{
             move(0.0f, getSpeed() * deltaTime);
             burneron = true;
             if (!burner.playing()){
-                burner.loop();
+                burner.loop(1.0f, 0.3f);
             }
         }
         else{
