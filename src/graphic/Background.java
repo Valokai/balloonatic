@@ -110,11 +110,11 @@ public class Background extends Sprite{
 
     public void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y) {
         g.setColor(Color.black);
-        g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
-        g.drawOval(balloon.getX(), balloon.getY()+50, 2, 2);
-        g.drawOval(balloon.getX(), balloon.getY()-50, 2, 2);
-        g.drawOval(balloon.getX()-30, balloon.getY()-20, 2, 2);
-        g.drawOval(balloon.getX()+30, balloon.getY()-20, 2, 2);
+       // g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
+        //g.drawOval(balloon.getX(), balloon.getY()+50, 2, 2);
+        //g.drawOval(balloon.getX(), balloon.getY()-50, 2, 2);
+        //g.drawOval(balloon.getX()-30, balloon.getY()-20, 2, 2);
+        //g.drawOval(balloon.getX()+30, balloon.getY()-20, 2, 2);
         //g.drawString(name, x, y-20);
         //g.drawString(""+balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey),x,y);
 

@@ -38,9 +38,12 @@ public class PBird extends Powerup implements BalloonEffect{
     public void onCollideWithBalloon(Balloon balloon) {
         balloon.addBalloonEffect(this, "bird");
         sceneHandler.removeSceneObject(this);
-        balloon.setFuel(balloon.getFuel() - 40);
-        death.play(0.5f, 0.3f);
-        birdsound.play(0.8f, 0.1f);
+        balloon.setBirdCounter(1);
+        if(!balloon.isLockLife()) {
+            balloon.setFuel(balloon.getFuel()-40 < 0 ? 0 : balloon.getFuel() - 40);
+            death.play(0.5f, 0.3f);
+            birdsound.play(0.8f, 0.1f);
+        }
     }
     @Override
     public void move(int delta) {

@@ -125,6 +125,8 @@ public class MainState extends BasicGameState {
                 GameFont.Alignment.LEFT,
                 Color.yellow);
 
+        graphics.drawString("Slain Birds: " + balloon.getBirdCounter(), 600, 0);
+
         //The fuel gauge stuff
         fuelGague.draw(20, 100, 50, 550);
         fuelGagueCover.draw(20, 150+(500 - balloon.getFuel()/2), 50, 8);

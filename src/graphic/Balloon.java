@@ -37,6 +37,7 @@ public class Balloon extends SceneObject{
     protected boolean islockFuel;
 
     protected boolean isRenderLock;
+    protected int birdhitcounter = 0;
 
     private HashMap<String, BalloonEffect> balloonEffects = new HashMap<String, BalloonEffect>();
     private List<String> balloonEffectsRecycler = new ArrayList<String>();
@@ -243,6 +244,13 @@ public class Balloon extends SceneObject{
 
     public void setRenderLock(boolean renderLock) {
         isRenderLock = renderLock;
+    }
+
+    public void setBirdCounter(int x) {
+        birdhitcounter += x;
+    }
+    public int getBirdCounter(){
+        return birdhitcounter;
     }
 }
 
