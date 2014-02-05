@@ -122,7 +122,7 @@ public class ScrollingHandler {
             distance -= moveX / 10;
         }
 
-        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.95) {      //chance to spawn a bird formation
+        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.96) {      //chance to spawn a bird formation
            spawnBirds();
         }
 
@@ -163,7 +163,7 @@ public class ScrollingHandler {
     }
 
     public void spawnBirds() {
-        for (Vector2f coordinate : birdformations.getRandomBirdFormation((random.nextFloat() * 2400) + 0, (random.nextFloat() * 420) + 0)) {
+        for (Vector2f coordinate : birdformations.getRandomBirdFormation((random.nextFloat() * 1300) + 0, (random.nextFloat() * 420) + 0)) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), Bird.class);
         }
     }
