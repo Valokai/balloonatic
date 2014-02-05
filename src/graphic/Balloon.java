@@ -209,7 +209,9 @@ public class Balloon extends SceneObject{
     }
 
     public void setFuel(int fuel) {
-        this.fuel = fuel;
+        if(flashRate == 0){
+            this.fuel = fuel;
+        }
     }
 
     public void setLives(int lives) {
