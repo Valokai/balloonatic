@@ -31,7 +31,7 @@ public class Background extends Sprite{
 
     protected int width, height;
 
-    protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>(), birdcoordinates = new ArrayList<Vector2f>();
+    protected ArrayList<Vector2f> fuelCoordinates = new ArrayList<Vector2f>(), birdcoordinates = new ArrayList<Vector2f>();
 
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
         super(x, y, imagePath);
@@ -119,7 +119,7 @@ public class Background extends Sprite{
         else collider = false;
     }
 
-    /**checks to see the colour of the pixel associated with coordinates - used for collisions
+    /**checks to see the colour of the pixel associated with fuelCoordinates - used for collisions
      *
      * @param bx    the x coordinate of the pixel you want to check
      * @param by    the y coordinate of the pixel you want to check
@@ -160,12 +160,12 @@ public class Background extends Sprite{
         }
     }
 
-    public ArrayList<Vector2f> getCoordinates() {
-        return coordinates;
+    public ArrayList<Vector2f> getFuelCoordinates() {
+        return fuelCoordinates;
     }
 
-    public void setCoordinates(List<Vector2f> coordinates) {
-        this.coordinates = new ArrayList<Vector2f>(coordinates);
+    public void setFuelCoordinates(List<Vector2f> fuelCoordinates) {
+        this.fuelCoordinates = new ArrayList<Vector2f>(fuelCoordinates);
     }
     public void setBirdCoordinates(List<Vector2f> coordinates) {
         this.birdcoordinates = new ArrayList<Vector2f>(coordinates);

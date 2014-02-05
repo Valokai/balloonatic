@@ -1,6 +1,7 @@
 package graphic.powerup;
 
 import graphic.Balloon;
+import graphic.BalloonEffect;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Sound;
 
@@ -11,35 +12,32 @@ import org.newdawn.slick.Sound;
  * Time: 12:44 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Bird extends Powerup{
-    Animation bird;
-    Image[] birdimages;
+public class PBird extends Powerup implements BalloonEffect{
+
+    private Animation bird;
+    private Image[] birdimages;
 
     private Sound death, birdsound;
+    private Image flashImage;
 
-    public Bird() throws SlickException {
+    private int effectInterval;
+    private int counter;
+
+
+    public PBird() throws SlickException {
         super("data/image/goldbird.png");
         birdimages = new Image[]{ new Image("data/image/bird1.png"), new Image("data/image/bird2.png") };
         bird = new Animation(birdimages,50);
         death = new Sound("data/sound/effects/gameover1.wav");
         birdsound = new Sound("data/sound/effects/bird_screech.ogg");
-    }
-
-    public Bird(String imagePath) throws SlickException {
-        super(imagePath);
-    }
-
-    public Bird(float x, float y, String imagePath) throws SlickException {
-        super(x, y, imagePath);
+        flashImage = new Image("data/image/balloon.png");
+        this.effectInterval = 300;
     }
 
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
+        balloon.addBalloonEffect(this, "bird");
         sceneHandler.removeSceneObject(this);
-        //balloon.setLives(balloon.getLives() - 1);
-        balloon.setFuel(balloon.getFuel() - 100);
-        balloon.setFlashRate(300);
-        balloon.setFlashed(true);
         death.play();
         birdsound.play();
     }
@@ -48,10 +46,22 @@ public class Bird extends Powerup{
         x += delta/1000 - 14;
     }
 
-
-
     @Override
     public void render(GameContainer gc, Graphics graphics){
         bird.draw(x - 20, y - 20);
+    }
+
+    @Override
+    public void drawOnBalloon(Balloon balloon, Graphics graphics) {
+        balloon.setlockFuel(true);
+        balloon.setRenderLock(true);
+        flashImage.drawFlash(balloon.getX() - balloon.getImage().getWidth()/2, balloon.getY() - balloon.getImage().getHeight()/2);
+        counter++;
+        if(counter == effectInterval){
+            balloon.removeBalloonEffect("bird");
+            balloon.setlockFuel(false);
+            balloon.setRenderLock(false);
+        }
+
     }
 }

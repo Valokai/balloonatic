@@ -59,7 +59,7 @@ public class SceneHandler {
     }
 
     /**
-     * Spwan a given sceneobject at given x,y coordinates
+     * Spwan a given sceneobject at given x,y fuelCoordinates
      * @param x x position of scene object to be spawned
      * @param y y position of scene object to be spawned
      * @param clazz class decedanded from SceneObject to be spwaned (this class must have default constructor)
@@ -81,7 +81,7 @@ public class SceneHandler {
     }
 
     /**
-     * Spwan a given sceneobject at given x,y coordinates
+     * Spwan a given sceneobject at given x,y fuelCoordinates
      * @param x x position of scene object to be spawned
      * @param y y position of scene object to be spawned
      * @param clazz class decedanded from SceneObject to be spwaned (this class must have default constructor)
@@ -118,6 +118,7 @@ public class SceneHandler {
         for (String key : disposedSceneObjects) {
             registeredSceneObjects.remove(key);
         }
+        disposedSceneObjects.clear();
     }
 
     /**

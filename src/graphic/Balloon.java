@@ -8,11 +8,10 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
-import graphic.powerup.Powerup;
+import graphic.powerup.PShield;
 import org.newdawn.slick.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Balloon Sprite, Player of the  game
@@ -24,35 +23,29 @@ public class Balloon extends SceneObject{
     /*speed of balloon*/
     private float loonspeed = 0;
 
-    /*game time*/
-    private float gameTime = 0.0f;
-
     protected int fuel = 1000;
 
     protected int lives = 1;
 
-    protected float olddistance = -3;
+    protected boolean isLockLife;
 
-    protected boolean isFlashed = false;
+    protected boolean islockFuel;
 
-    protected int flashRate;
+    protected boolean isRenderLock;
 
-    private List<Powerup> powerups = new ArrayList<Powerup>();
-
-    private Image flash;
+    private HashMap<String, BalloonEffect> balloonEffects = new HashMap<String, BalloonEffect>();
+    private List<String> balloonEffectsRecycler = new ArrayList<String>();
 
     public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
-        flash = image.getScaledCopy(1f);
     }
 
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/image/balloon.png", false);
-        flash = image.getScaledCopy(1f);
     }
 
 
-    /**reset the ballon to coordinates
+    /**reset the ballon to fuelCoordinates
      *
      * @param x     reset balloon x coordinate
      * @param y     reset balloon y coordinate
@@ -102,28 +95,12 @@ public class Balloon extends SceneObject{
 
     }
 
-    public boolean isFlashed() {
-        return isFlashed;
-    }
-
-    public void setFlashed(boolean flashed) {
-        isFlashed = flashed;
-    }
-
-    public int getFlashRate() {
-        return flashRate;
-    }
-
-    public void setFlashRate(int flashRate) {
-        this.flashRate = flashRate;
-    }
-
     @Override
     public void render(GameContainer gc, Graphics graphics) {
-        if(isFlashed && flashRate !=0){
-            flash.drawFlash(x - image.getWidth()/2, y - image.getHeight()/2);
-            flashRate--;
-        }else{
+        for (String key : balloonEffects.keySet()) {
+            balloonEffects.get(key).drawOnBalloon(this, graphics);
+        }
+        if(!isRenderLock){
             image.drawCentered(x, y);
         }
     }
@@ -136,12 +113,16 @@ public class Balloon extends SceneObject{
     @Override
     public void update(GameContainer gameContainer, int delta){
         float deltaTime = delta / 1000.0f;
-        gameTime += deltaTime;
         Input input = gameContainer.getInput();
         updatePlayer(deltaTime, input);
-        if(flashRate != 0){
+        recycleBalloonEffects();
+    }
 
+    public void recycleBalloonEffects(){
+        for (String key : balloonEffectsRecycler) {
+            balloonEffects.remove(key);
         }
+        balloonEffectsRecycler.clear();
     }
 
     /**update the player based on inputs
@@ -149,8 +130,7 @@ public class Balloon extends SceneObject{
      * @param deltaTime     deltatime (delta / 1000)
      * @param input         Input object
      */
-    private void updatePlayer(float deltaTime, Input input)
-    {
+    private void updatePlayer(float deltaTime, Input input){
         if ((input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) && fuel > 0 && getY()>0)
         {
             fuel--;
@@ -161,8 +141,7 @@ public class Balloon extends SceneObject{
                 burner.loop();
          }
         }
-        else
-        {
+        else{
             setSpeed(getSpeed() + (deltaTime * 400.0f));
             move(0.0f, getSpeed() * deltaTime);
             super.setImage("data/image/balloon.png");
@@ -201,23 +180,53 @@ public class Balloon extends SceneObject{
     @Override
     public void move(int delta) {}
 
-
-
     @Override
     public boolean isReadyForDisposal() {
         return (x < 0);
     }
 
     public void setFuel(int fuel) {
-        if(flashRate == 0){
+        if(!islockFuel){
             this.fuel = fuel;
         }
     }
 
     public void setLives(int lives) {
-        if(flashRate == 0){
+        if(!isLockLife){
             this.lives = lives;
         }
+    }
+
+    public void addBalloonEffect(BalloonEffect effect, String key){
+        balloonEffects.put(key, effect);
+    }
+
+    public void removeBalloonEffect(String key){
+        balloonEffectsRecycler.add(key);
+    }
+
+    public boolean isLockLife() {
+        return isLockLife;
+    }
+
+    public void setLockLife(boolean lockLife) {
+        isLockLife = lockLife;
+    }
+
+    public boolean islockFuel() {
+        return islockFuel;
+    }
+
+    public void setlockFuel(boolean islockFuel) {
+        this.islockFuel = islockFuel;
+    }
+
+    public boolean isRenderLock() {
+        return isRenderLock;
+    }
+
+    public void setRenderLock(boolean renderLock) {
+        isRenderLock = renderLock;
     }
 }
 

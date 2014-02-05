@@ -1,6 +1,8 @@
 package graphic.powerup;
 
 import graphic.Balloon;
+import graphic.BalloonEffect;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
@@ -11,7 +13,7 @@ import org.newdawn.slick.Sound;
  * Time: 12:44 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PFuel extends Powerup{
+public class PFuel extends Powerup implements BalloonEffect{
 
     private Sound pickup;
 
@@ -33,5 +35,10 @@ public class PFuel extends Powerup{
         sceneHandler.removeSceneObject(this);
         balloon.setFuel(1000);
         pickup.play();
+    }
+
+    @Override
+    public void drawOnBalloon(Balloon balloon, Graphics graphics) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }
