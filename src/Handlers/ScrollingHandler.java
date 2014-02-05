@@ -3,6 +3,8 @@ package handlers;
 
 import game.Game;
 import graphic.*;
+import graphic.powerup.Bird;
+import graphic.powerup.PFuel;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,8 +15,10 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.CombinedTransition;
 import scrollables.GreenHills;
+import util.BirdFormations;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,6 +34,8 @@ public class ScrollingHandler {
     int count = 1;   //count for controlling renderlist and bglist
     private boolean collider = false, collider2 = false;    //two booleans for collisions for when two images are rendered
     private float distance = 0;
+    private Random random = new Random();
+    private BirdFormations birdformations = new BirdFormations();
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
@@ -113,7 +119,11 @@ public class ScrollingHandler {
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground")){
             distance -= moveX / 100;
-            distance -= moveX / 10     ;
+            distance -= moveX / 10;
+        }
+
+        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.95) {      //chance to spawn a bird formation
+           spawnBirds();
         }
 
         /*handles the images, loads the next one when needed and rsemoves the previous when not needed*/
@@ -138,18 +148,24 @@ public class ScrollingHandler {
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
             if(collider2) {
-                balloon.setLives(balloon.getLives()-1);  //decrease the lives because they collide*/
+                balloon.setLives(balloon.getLives() - 1);  //decrease the lives because they collide*/
                 balloon.reset(280,150);
                 return;
             }
 
         }  else {
             if(collider) {
-                balloon.setLives(balloon.getLives()-1);
+                balloon.setLives(balloon.getLives() - 1);
                 balloon.reset(280,150);
             }
         }
 
+    }
+
+    public void spawnBirds() {
+        for (Vector2f coordinate : birdformations.getRandomBirdFormation((random.nextFloat() * 2400) + 0, (random.nextFloat() * 420) + 0)) {
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), Bird.class);
+        }
     }
 
 }
