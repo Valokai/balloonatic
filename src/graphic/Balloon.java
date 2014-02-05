@@ -19,6 +19,9 @@ import java.util.List;
  */
 public class Balloon extends SceneObject{
 
+    Animation burnerimage;
+    Image[] burnerimages;
+
     private Sound burner = new Sound("data/sound/ambient/Burner.ogg");
 
     /*speed of balloon*/
@@ -26,6 +29,8 @@ public class Balloon extends SceneObject{
 
     /*game time*/
     private float gameTime = 0.0f;
+
+    private boolean burneron = false;
 
     protected int fuel = 1000;
 
@@ -44,11 +49,15 @@ public class Balloon extends SceneObject{
     public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
         flash = image.getScaledCopy(1f);
+        burnerimages = new Image[]{ new Image("data/image/balloon2-3.png"), new Image("data/image/balloon2-4.png") };
+        burnerimage = new Animation(burnerimages,50);
     }
 
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/image/balloon.png", false);
         flash = image.getScaledCopy(1f);
+        burnerimages = new Image[]{ new Image("data/image/balloon2-3.png"), new Image("data/image/balloon2-4.png") };
+        burnerimage = new Animation(burnerimages,50);
     }
 
 
@@ -120,11 +129,12 @@ public class Balloon extends SceneObject{
 
     @Override
     public void render(GameContainer gc, Graphics graphics) {
-        if(isFlashed && flashRate !=0){
-            flash.drawFlash(x - image.getWidth()/2, y - image.getHeight()/2);
-            flashRate--;
-        }else{
-            image.drawCentered(x, y);
+
+        if(burneron){
+            burnerimage.draw(x-burnerimage.getWidth()/2,y-burnerimage.getHeight()/2);
+        }
+        else{
+            image.drawCentered(x,y);
         }
     }
 
@@ -156,7 +166,7 @@ public class Balloon extends SceneObject{
             fuel--;
             setSpeed(getSpeed() - (deltaTime * 600.0f));
             move(0.0f, getSpeed() * deltaTime);
-            super.setImage("data/image/balloon2.png");
+            burneron = true;
             if (!burner.playing()){
                 burner.loop();
          }
@@ -165,8 +175,10 @@ public class Balloon extends SceneObject{
         {
             setSpeed(getSpeed() + (deltaTime * 400.0f));
             move(0.0f, getSpeed() * deltaTime);
+            burneron =false;
             super.setImage("data/image/balloon.png");
             burner.stop();
+
         }
     }
 
