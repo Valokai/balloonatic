@@ -27,7 +27,7 @@ public class PShield extends Powerup implements BalloonEffect{
 
     public PShield() throws SlickException {
         super("data/image/shield.png");
-        this.invisibleInterval = 600;
+        this.invisibleInterval = 2500;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class PFuel extends Powerup implements BalloonEffect{
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
         sceneHandler.removeSceneObject(this);
-        balloon.setFuel(1000);
+        balloon.setFuel(balloon.getFuel()+200 > 1000 ? 1000 : balloon.getFuel()+200);
         pickup.play();
     }
 
