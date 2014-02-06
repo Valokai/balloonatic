@@ -22,20 +22,20 @@ import util.ParticleManager;
  * Time: 1:42 PM
  * To change this template use File | Settings | File Templates.
  */
-public class MenuState extends BasicGameState implements ClickListener {
+public class SettingsState extends BasicGameState implements ClickListener {
 
     private ButtonManager btnManager;
     private Background background;
     private Music bGM = null;
     private ParticleManager particleManager = new ParticleManager();
-    private TextGraphic titleText;
+    private TextGraphic titleText, difficultyText, miniBalloon;
 
     private StateBasedGame stateBasedGame;
     private GameContainer gameContainer;
 
     @Override
     public int getID() {
-        return Game.STATE.MENU;
+        return Game.STATE.SETTINGS;
     }
 
     @Override
@@ -45,14 +45,16 @@ public class MenuState extends BasicGameState implements ClickListener {
         this.stateBasedGame = stateBasedGame;
         this.gameContainer = gameContainer;
 
-        btnManager = new ButtonManager(this);
-        btnManager.addButton(130, 280, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
-        btnManager.addButton(140, 365, "data/buttons/cheatCode_1.png", "data/buttons/cheatCode_2.png", "data/sound/critical.ogg", "btnCheckpoint");
-        btnManager.addButton(140, 455, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
-        btnManager.addButton(140, 540, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
-        background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
-        titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
+        titleText= new TextGraphic(400, 200, "data/image/text/settings.png");
+        difficultyText = new TextGraphic(350, 300, "data/image/text/difficulty.png");
+
+        btnManager = new ButtonManager(this);
+        btnManager.addButton(80, 360, "data/buttons/learnerText_1.png", "data/buttons/learnerText_2.png", "data/sound/critical.ogg", "btnLearner");
+        btnManager.addButton(80, 410, "data/buttons/pilotText_1.png", "data/buttons/pilotText_2.png", "data/sound/critical.ogg", "btnPilot");
+        btnManager.addButton(80, 460, "data/buttons/balloonaticText_1.png", "data/buttons/balloonaticText_2.png", "data/sound/critical.ogg", "btnHard");
+
+        background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
 
         bGM.loop();
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
@@ -70,6 +72,7 @@ public class MenuState extends BasicGameState implements ClickListener {
         particleManager.render(graphics);
         btnManager.render(gameContainer, graphics);
         titleText.render(gameContainer, graphics);
+        difficultyText.render(gameContainer, graphics);
     }
 
     @Override
@@ -93,10 +96,6 @@ public class MenuState extends BasicGameState implements ClickListener {
 
         if (clicked == btnManager.getById("btnCheckpoint")) {
             stateBasedGame.enterState(Game.STATE.ENTERCHEATCODE, new CombinedTransition(), new BlobbyTransition());
-        }
-
-        if (clicked == btnManager.getById("btnSettings")) {
-            stateBasedGame.enterState(Game.STATE.SETTINGS, new CombinedTransition(), new BlobbyTransition());
         }
     }
 

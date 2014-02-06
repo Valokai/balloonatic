@@ -47,11 +47,13 @@ public class Game {
     }
 
     public static class STATE {
+        public static final int SETTINGS = 5;
         public static final int ENTERCHEATCODE = 4;
         public static final int ENTERNAME = 3;
         public static final int HISCORE = 2;
         public static final int MAIN = 1;
         public static final int MENU = 0;
+
 
     }
 

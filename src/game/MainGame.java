@@ -39,6 +39,7 @@ public class MainGame extends StateBasedGame {
         addState(new HighScoreState());
         addState(new EnterNameState());
         addState(new EnterCheatcodeState());
+        addState(new SettingsState());
 
         if (titleFont == null) {
             try {
