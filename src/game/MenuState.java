@@ -4,7 +4,7 @@ import com.aem.sticky.button.Button;
 import com.aem.sticky.button.SimpleButton;
 import com.aem.sticky.button.events.ClickListener;
 import graphic.Background;
-import graphic.Sprite;
+import graphic.TextGraphic;
 import handlers.SceneHandler;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -28,7 +28,7 @@ public class MenuState extends BasicGameState implements ClickListener {
     private Background background;
     private Music bGM = null;
     private ParticleManager particleManager = new ParticleManager();
-    private Sprite titleText;
+    private TextGraphic titleText;
 
     private StateBasedGame stateBasedGame;
     private GameContainer gameContainer;
@@ -52,8 +52,7 @@ public class MenuState extends BasicGameState implements ClickListener {
         btnManager.addButton(130, 540,"data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
         btnManager.addButton(130, 620,"data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
-        titleText = new Sprite(350, 150, "data/image/text/Balloonatic.png") {
-        };
+        titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
 
         bGM.loop();
