@@ -100,12 +100,12 @@ public class SettingsState extends BasicGameState implements ClickListener {
     public void onClick(Button clicked, float mx, float my) {
         if (clicked == btnManager.getById("btnSoundOn")) {
             miniBalloonMusic.setY(370f);
-            //do something to affect difficulty
+            //switch music on
         }
 
         if (clicked == btnManager.getById("btnSoundOff")) {
             miniBalloonMusic.setY(420f);
-            //do something to affect difficulty
+            //switch music on
 
         }
 
@@ -115,13 +115,13 @@ public class SettingsState extends BasicGameState implements ClickListener {
 
         }
 
-        if (clicked == btnManager.getById("btnHard")) {
+        if (clicked == btnManager.getById("btnLearner")) {
             miniBalloonDiff.setY(360f);
             //do something to affect difficulty
 
         }
 
-        if (clicked == btnManager.getById("btnHard")) {
+        if (clicked == btnManager.getById("btnPilot")) {
             miniBalloonDiff.setY(410f);
             //do something to affect difficulty
 
