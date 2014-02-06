@@ -26,9 +26,8 @@ public class SettingsState extends BasicGameState implements ClickListener {
 
     private ButtonManager btnManager;
     private Background background;
-    private Music bGM = null;
     private ParticleManager particleManager = new ParticleManager();
-    private TextGraphic titleText, difficultyText, miniBalloon;
+    private TextGraphic titleText, difficultyText, musicText, miniBalloonDiff,  miniBalloonMusic ;
 
     private StateBasedGame stateBasedGame;
     private GameContainer gameContainer;
@@ -40,23 +39,29 @@ public class SettingsState extends BasicGameState implements ClickListener {
 
     @Override
     public void init(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-        bGM = new Music("data/sound/field/fieldbgm.ogg");
-
         this.stateBasedGame = stateBasedGame;
         this.gameContainer = gameContainer;
 
-
         titleText= new TextGraphic(400, 200, "data/image/text/settings.png");
         difficultyText = new TextGraphic(350, 300, "data/image/text/difficulty.png");
+        musicText = new TextGraphic(600, 300, "data/image/text/music.png");
+
+        miniBalloonDiff = new TextGraphic(250, 420, "data/image/balloon.png");
+        miniBalloonDiff.setScale(.5f);
+
+        miniBalloonMusic = new TextGraphic(580, 370, "data/image/balloon.png");
+        miniBalloonMusic.setScale(.5f);
 
         btnManager = new ButtonManager(this);
         btnManager.addButton(80, 360, "data/buttons/learnerText_1.png", "data/buttons/learnerText_2.png", "data/sound/critical.ogg", "btnLearner");
         btnManager.addButton(80, 410, "data/buttons/pilotText_1.png", "data/buttons/pilotText_2.png", "data/sound/critical.ogg", "btnPilot");
         btnManager.addButton(80, 460, "data/buttons/balloonaticText_1.png", "data/buttons/balloonaticText_2.png", "data/sound/critical.ogg", "btnHard");
 
+        btnManager.addButton(500, 360, "data/buttons/on_1.png", "data/buttons/on_2.png", "data/sound/critical.ogg", "btnSoundOn");
+        btnManager.addButton(500, 410, "data/buttons/off_1.png", "data/buttons/off_2.png", "data/sound/critical.ogg", "btnSoundOff");
+
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
 
-        bGM.loop();
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
     }
 
@@ -73,6 +78,9 @@ public class SettingsState extends BasicGameState implements ClickListener {
         btnManager.render(gameContainer, graphics);
         titleText.render(gameContainer, graphics);
         difficultyText.render(gameContainer, graphics);
+        miniBalloonDiff.render(gameContainer, graphics);
+        miniBalloonMusic.render(gameContainer,graphics);
+        musicText.render(gameContainer, graphics);
     }
 
     @Override
@@ -90,12 +98,33 @@ public class SettingsState extends BasicGameState implements ClickListener {
 
     @Override
     public void onClick(Button clicked, float mx, float my) {
-        if (clicked == btnManager.getById("btnQuit")) {
-            gameContainer.exit();
+        if (clicked == btnManager.getById("btnSoundOn")) {
+            miniBalloonMusic.setY(370f);
+            //do something to affect difficulty
         }
 
-        if (clicked == btnManager.getById("btnCheckpoint")) {
-            stateBasedGame.enterState(Game.STATE.ENTERCHEATCODE, new CombinedTransition(), new BlobbyTransition());
+        if (clicked == btnManager.getById("btnSoundOff")) {
+            miniBalloonMusic.setY(420f);
+            //do something to affect difficulty
+
+        }
+
+        if (clicked == btnManager.getById("btnHard")) {
+            miniBalloonDiff.setY(470f);
+            //do something to affect difficulty
+
+        }
+
+        if (clicked == btnManager.getById("btnHard")) {
+            miniBalloonDiff.setY(360f);
+            //do something to affect difficulty
+
+        }
+
+        if (clicked == btnManager.getById("btnHard")) {
+            miniBalloonDiff.setY(410f);
+            //do something to affect difficulty
+
         }
     }
 
