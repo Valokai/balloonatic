@@ -45,15 +45,15 @@ public class MainState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        frontground = new ScrollingHandler("frontground", new GreenHills(0.0f,0,true,1)); //create front collidable scrollable
+        frontground = new ScrollingHandler("frontground", new GreenHills(0.0f, 0, true, 1)); //create front collidable scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 2)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 3)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 4)); //add more map to the front scrollable
 
-        background = new ScrollingHandler("background", new BackHills(0.0f,0,false,1)); //create front collidable scrollable
+        background = new ScrollingHandler("background", new BackHills(0.0f, 0, false, 1)); //create front collidable scrollable
         background.add(new BackHills(0.0f, 0, false, 2)); //add more map to the front scrollable
-        background.add(new BackHills(0.0f,0,false,3)); //add more map to the front scrollable
-        background.add(new BackHills(0.0f,0,false,4)); //add more map to the front scrollable
+        background.add(new BackHills(0.0f, 0, false, 3)); //add more map to the front scrollable
+        background.add(new BackHills(0.0f, 0, false, 4)); //add more map to the front scrollable
 
         sceneHandler = SceneHandler.getInstance();
         sceneHandler.clearAll();
@@ -67,7 +67,7 @@ public class MainState extends BasicGameState {
         fuelGagueCover.setX(40);
         fuelGagueCover.setY(200);
 
-        backlayer = new ScrollingHandler("background", new SecondHills(0.0f,0,false,1)); //create back non collidable scrollable
+        backlayer = new ScrollingHandler("background", new SecondHills(0.0f, 0, false, 1)); //create back non collidable scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 2)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 3)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 4)); //add more map to the back scrollable
@@ -79,7 +79,6 @@ public class MainState extends BasicGameState {
         //birdlayer.add(new Birds(0.0f, 0, true, 4));
 
         skyimage = new Image("data/image/sky.png");
-
 
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
@@ -117,7 +116,7 @@ public class MainState extends BasicGameState {
          */
 
         //render score
-        String dist = String.format("%4d", (int)frontground.getDistance());
+        String dist = String.format("%4d", (int) frontground.getDistance());
         MainGame.titleFont.drawString(
                 20,
                 100,
@@ -129,7 +128,7 @@ public class MainState extends BasicGameState {
 
         //The fuel gauge stuff
         fuelGague.draw(20, 100, 50, 550);
-        fuelGagueCover.draw(20, 150+(500 - balloon.getFuel()/2), 50, 8);
+        fuelGagueCover.draw(20, 150 + (500 - balloon.getFuel() / 2), 50, 8);
 
 
     }
@@ -137,12 +136,12 @@ public class MainState extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
-        float deltaTime = delta /1000;
+        float deltaTime = delta / 1000;
 
         float speedMultiplier = 1f;
         sceneHandler.update(gameContainer, delta, speedMultiplier);
         backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
-        backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0 , stateBasedGame);
+        backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0, stateBasedGame);
         //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
         backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
@@ -150,11 +149,11 @@ public class MainState extends BasicGameState {
 //        particleManager.upate(delta);
 
 
-        if(balloon.getLives() <= 0){
-            EnterNameState enterNameState = (EnterNameState)stateBasedGame.getState(Game.STATE.ENTERNAME);
-            enterNameState.setScore((int)(frontground.getDistance()));
-            stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+        if (balloon.getLives() <= 0) {
             balloon.stopBurner();
+            EnterNameState enterNameState = (EnterNameState) stateBasedGame.getState(Game.STATE.ENTERNAME);
+            enterNameState.setScore((int) (frontground.getDistance()));
+            stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
         }
 
 

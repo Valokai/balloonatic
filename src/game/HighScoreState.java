@@ -22,15 +22,13 @@ public class HighScoreState extends BasicGameState {
     private StateBasedGame mainGame;
 
 
-
     @Override
     public int getID() {
         return Game.STATE.HISCORE;
     }
 
     @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
-    {
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         mainGame = stateBasedGame;
         fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
         scorefont = new GameFont("data/fonts/Corbel16.fnt", "data/fonts/Corbel16.png");
@@ -38,9 +36,8 @@ public class HighScoreState extends BasicGameState {
     }
 
     @Override
-    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
-    {
-        mainGame.getState(Game.STATE.MAIN).render(gameContainer,stateBasedGame,graphics);
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+        mainGame.getState(Game.STATE.MAIN).render(gameContainer, stateBasedGame, graphics);
 
         fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
@@ -56,42 +53,37 @@ public class HighScoreState extends BasicGameState {
                 highScore,
                 GameFont.Alignment.CENTRE,
                 Color.white
-                );
+        );
 
 
-       fieldfont.drawString(
+        fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press any key...",
                 GameFont.Alignment.CENTRE,
                 Color.white
-                );
+        );
     }
 
     // Called when we enter this game state, a good place to variables to initial values if needed
-    public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
-    {
+    public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         anyKeyPressed = false;
         setHighScore(MainGame.SBoard.displayScore());
     }
 
     // Event called on key down, we just flag that a key was pressed, and let the update handle it from there
-    public void keyPressed(int key, char c)
-    {
+    public void keyPressed(int key, char c) {
         anyKeyPressed = true;
     }
 
 
-    public void setHighScore(String highScores)
-    {
+    public void setHighScore(String highScores) {
         highScore = highScores;
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException
-    {
-        if (anyKeyPressed)
-        {
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+        if (anyKeyPressed) {
             stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
         }
     }

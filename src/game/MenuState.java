@@ -46,11 +46,11 @@ public class MenuState extends BasicGameState implements ClickListener {
         this.gameContainer = gameContainer;
 
         btnManager = new ButtonManager(this);
-        btnManager.addButton(130, 280,"data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
-        btnManager.addButton(140, 365,"data/buttons/cheatCode_1.png", "data/buttons/cheatCode_2.png", "data/sound/critical.ogg", "btnCheckpoint");
-        btnManager.addButton(140, 455,"data/buttons/Difficulty_1.png", "data/buttons/Difficulty_2.png", "data/sound/critical.ogg", "btnDifficult");
-        btnManager.addButton(140, 540,"data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
-        btnManager.addButton(140, 620,"data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
+        btnManager.addButton(130, 280, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
+        btnManager.addButton(140, 365, "data/buttons/cheatCode_1.png", "data/buttons/cheatCode_2.png", "data/sound/critical.ogg", "btnCheckpoint");
+        btnManager.addButton(140, 455, "data/buttons/Difficulty_1.png", "data/buttons/Difficulty_2.png", "data/sound/critical.ogg", "btnDifficult");
+        btnManager.addButton(140, 540, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
+        btnManager.addButton(140, 620, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
@@ -61,8 +61,7 @@ public class MenuState extends BasicGameState implements ClickListener {
 
 
     @Override
-    public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException
-    {
+    public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
 
     }
 
@@ -89,8 +88,12 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     @Override
     public void onClick(Button clicked, float mx, float my) {
-        if(clicked == btnManager.getById("btnQuit")){
+        if (clicked == btnManager.getById("btnQuit")) {
             gameContainer.exit();
+        }
+
+        if (clicked == btnManager.getById("btnCheckpoint")) {
+            stateBasedGame.enterState(Game.STATE.ENTERCHEATCODE, new CombinedTransition(), new BlobbyTransition());
         }
     }
 
@@ -107,7 +110,7 @@ public class MenuState extends BasicGameState implements ClickListener {
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if(key == Input.KEY_SPACE){
+        if (key == Input.KEY_SPACE) {
             stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
         }
     }

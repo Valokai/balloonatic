@@ -36,24 +36,23 @@ public class Game {
     /**
      * Debugging Infromation
      */
-    public static class DEBUG{
+    public static class DEBUG {
 
-        /**s
+        /**
+         * s
          * Is FPS String show on screen?
          */
-        public static boolean SHOW_FPS = true;
+        public static boolean SHOW_FPS = false;
 
     }
 
-    public static class STATE{
-
+    public static class STATE {
+        public static final int ENTERCHEATCODE = 4;
         public static final int ENTERNAME = 3;
-
         public static final int HISCORE = 2;
-
         public static final int MAIN = 1;
-
         public static final int MENU = 0;
+
     }
 
 

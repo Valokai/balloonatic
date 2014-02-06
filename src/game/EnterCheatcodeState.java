@@ -15,40 +15,42 @@ import util.GameFont;
  * Time: 1:06 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EnterNameState extends BasicGameState {
-    boolean anyKeyPressed = false;
-    private StateBasedGame mainGame;
+public class EnterCheatcodeState extends BasicGameState {
+    int keyNum = -1;
+    private StateBasedGame mainMenu;
     TextField field = null;
-    int score = 0;
+    String cheatCode;
+
+
     String name;
     private GameFont fieldfont = null;
 
 
     @Override
     public int getID() {
-        return Game.STATE.ENTERNAME;
+        return Game.STATE.ENTERCHEATCODE;
     }
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        mainGame = stateBasedGame;
+        mainMenu = stateBasedGame;
         fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
 
         field = new TextField(gameContainer,
                 fieldfont,
-                MainGame.SCREEN_WIDTH / 2 - 100,
+                MainGame.SCREEN_WIDTH / 2 - 300,
                 MainGame.SCREEN_HEIGHT / 2 - 40,
-                200,
+                600,
                 80);
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        mainGame.getState(Game.STATE.MAIN).render(gameContainer, stateBasedGame, graphics);
+        mainMenu.getState(Game.STATE.MENU).render(gameContainer, stateBasedGame, graphics);
         fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 4f,
-                "Enter Name",
+                "Enter Cheat Code",
                 GameFont.Alignment.CENTRE,
                 Color.white);
 
@@ -59,16 +61,30 @@ public class EnterNameState extends BasicGameState {
         fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 1.1f,
-                "Press Enter...",
+                "Press Enter To Confirm Or Esc To Return",
                 GameFont.Alignment.CENTRE,
                 Color.white);
     }
 
+    @Override
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+
+        if (keyNum == 28) {
+            //get cheatcode and jump to appropriate point in game
+            cheatCode = field.getText();
+            // but until then
+            stateBasedGame.enterState(Game.STATE.MENU);
+        }
+        if (keyNum == 1) {
+            stateBasedGame.enterState(Game.STATE.MENU);
+        }
+
+    }
+
     // Called when we enter this game state, a good place to variables to initial values if needed
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        anyKeyPressed = false;
         field.setFocus(true);
-
+        keyNum = -1;
         field.setConsumeEvents(false);
 
     }
@@ -79,24 +95,15 @@ public class EnterNameState extends BasicGameState {
 
     // Event called on key down, we just flag that a key was pressed, and let the update handle it from there
     public void keyPressed(int key, char c) {
-        if (key == 28) {  //checks if enter key pressed
-            anyKeyPressed = true;
+        if (key > -1) {  //checks if enter key pressed
+            keyNum = key;
+            System.out.println(keyNum);
         }
+
+
     }
 
 
-    public void setScore(int scoreNum) {
-        score = scoreNum;
-    }
-
-    @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        if (anyKeyPressed) {
-            MainGame.SBoard.addScore(field.getText(), score);
-            stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
-
-        }
-    }
 }
 
 
