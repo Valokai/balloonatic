@@ -12,7 +12,7 @@ package game;
  * Game Properties class
  */
 public class Game {
-
+    public static boolean music = true;
     /**
      * Game Screen Width
      */

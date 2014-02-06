@@ -26,7 +26,7 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     private ButtonManager btnManager;
     private Background background;
-    private Music bGM = null;
+    public static  Music bGM = null;
     private ParticleManager particleManager = new ParticleManager();
     private TextGraphic titleText;
 
@@ -54,7 +54,9 @@ public class MenuState extends BasicGameState implements ClickListener {
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
 
-        bGM.loop();
+        if(Game.music){
+            bGM.loop();
+        }
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
     }
 

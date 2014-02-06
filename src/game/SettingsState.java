@@ -102,12 +102,16 @@ public class SettingsState extends BasicGameState implements ClickListener {
     public void onClick(Button clicked, float mx, float my) {
         if (clicked == btnManager.getById("btnSoundOn")) {
             miniBalloonMusic.setY(370f);
+            Game.music = true;
+            MenuState.bGM.loop();
             //switch music on
         }
 
         if (clicked == btnManager.getById("btnSoundOff")) {
             miniBalloonMusic.setY(420f);
-            //switch music on
+            Game.music = false;
+            MenuState.bGM.stop();
+            //switch music off
 
         }
 
