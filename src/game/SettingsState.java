@@ -54,11 +54,13 @@ public class SettingsState extends BasicGameState implements ClickListener {
 
         btnManager = new ButtonManager(this);
         btnManager.addButton(80, 360, "data/buttons/learnerText_1.png", "data/buttons/learnerText_2.png", "data/sound/critical.ogg", "btnLearner");
-        btnManager.addButton(80, 410, "data/buttons/pilotText_1.png", "data/buttons/pilotText_2.png", "data/sound/critical.ogg", "btnPilot");
+        btnManager
+        .addButton(80, 410, "data/buttons/pilotText_1.png", "data/buttons/pilotText_2.png", "data/sound/critical.ogg", "btnPilot");
         btnManager.addButton(80, 460, "data/buttons/balloonaticText_1.png", "data/buttons/balloonaticText_2.png", "data/sound/critical.ogg", "btnHard");
-
         btnManager.addButton(500, 360, "data/buttons/on_1.png", "data/buttons/on_2.png", "data/sound/critical.ogg", "btnSoundOn");
         btnManager.addButton(500, 410, "data/buttons/off_1.png", "data/buttons/off_2.png", "data/sound/critical.ogg", "btnSoundOff");
+
+        btnManager.addButton(350, 550, "data/buttons/back_1.png", "data/buttons/back_2.png", "data/sound/critical.ogg", "btnBack");
 
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
 
@@ -124,6 +126,11 @@ public class SettingsState extends BasicGameState implements ClickListener {
         if (clicked == btnManager.getById("btnPilot")) {
             miniBalloonDiff.setY(410f);
             //do something to affect difficulty
+
+        }
+
+        if (clicked == btnManager.getById("btnBack")) {
+            stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
 
         }
     }
