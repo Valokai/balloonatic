@@ -45,12 +45,27 @@ public class PShield extends Powerup implements BalloonEffect{
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
         balloon.setLockLife(true);
         balloon.setRenderLock(false);
-        circle = new Circle(balloon.getX(), balloon.getY(), balloon.getImage().getHeight()/2 + 10);
-        Color color = graphics.getColor();
-        graphics.setColor(new Color(45, 45, 45, 50));
-        graphics.fill(circle);
-        graphics.setColor(color);
         counter ++;
+        if(counter > 2000) {        //shield blinks when about to expire
+            if(counter%10==0) {
+                circle = new Circle(balloon.getX(), balloon.getY(), balloon.getImage().getHeight()/2 + 10);
+                Color color = graphics.getColor();
+                graphics.setColor(new Color(45, 45, 45, 50));
+                graphics.fill(circle);
+                graphics.setColor(color);
+            }
+        //counter ++;
+        }
+        else {
+            circle = new Circle(balloon.getX(), balloon.getY(), balloon.getImage().getHeight()/2 + 10);
+            Color color = graphics.getColor();
+            graphics.setColor(new Color(45, 45, 45, 50));
+            graphics.fill(circle);
+            graphics.setColor(color);
+        }
+
+
+
         if(counter == invisibleInterval){
             balloon.removeBalloonEffect("shield");
             balloon.setLockLife(false);
