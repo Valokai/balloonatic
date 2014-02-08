@@ -54,4 +54,9 @@ public class PFuel extends Powerup implements BalloonEffect{
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    @Override
+    public boolean isDrawnOnFront() {
+        return false;
+    }
 }

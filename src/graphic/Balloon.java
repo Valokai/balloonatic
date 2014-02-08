@@ -8,7 +8,6 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
-import graphic.powerup.PShield;
 import org.newdawn.slick.*;
 
 import java.util.*;
@@ -39,7 +38,8 @@ public class Balloon extends SceneObject{
     protected boolean isRenderLock;
     protected int birdhitcounter = 0;
 
-    private HashMap<String, BalloonEffect> balloonEffects = new HashMap<String, BalloonEffect>();
+    private HashMap<String, BalloonEffect> balloonEffectsBehind = new HashMap<String, BalloonEffect>();
+    private HashMap<String, BalloonEffect> balloonEffectsFront = new HashMap<String, BalloonEffect>();
     private List<String> balloonEffectsRecycler = new ArrayList<String>();
 
     public Balloon() throws SlickException {
@@ -107,9 +107,8 @@ public class Balloon extends SceneObject{
 
     @Override
     public void render(GameContainer gc, Graphics graphics) {
-
-        for (String key : balloonEffects.keySet()) {
-            balloonEffects.get(key).drawOnBalloon(this, graphics);
+        for (String key : balloonEffectsBehind.keySet()) {
+            balloonEffectsBehind.get(key).drawOnBalloon(this, graphics);
         }
         if(!isRenderLock){
             if(burneron){
@@ -117,6 +116,12 @@ public class Balloon extends SceneObject{
             }else{
                 image.drawCentered(x, y);
             }
+        }
+        for (String key : balloonEffectsBehind.keySet()) {
+            balloonEffectsBehind.get(key).drawOnBalloon(this, graphics);
+        }
+        for (String key : balloonEffectsFront.keySet()) {
+            balloonEffectsFront.get(key).drawOnBalloon(this, graphics);
         }
     }
 
@@ -135,7 +140,10 @@ public class Balloon extends SceneObject{
 
     public void recycleBalloonEffects(){
         for (String key : balloonEffectsRecycler) {
-            balloonEffects.remove(key);
+            balloonEffectsBehind.remove(key);
+        }
+        for (String key : balloonEffectsRecycler) {
+            balloonEffectsFront.remove(key);
         }
         balloonEffectsRecycler.clear();
     }
@@ -215,7 +223,11 @@ public class Balloon extends SceneObject{
     }
 
     public void addBalloonEffect(BalloonEffect effect, String key){
-        balloonEffects.put(key, effect);
+        if(effect.isDrawnOnFront()){
+            balloonEffectsFront.put(key, effect);
+        }else{
+            balloonEffectsBehind.put(key, effect);
+        }
     }
 
     public void removeBalloonEffect(String key){
@@ -249,6 +261,7 @@ public class Balloon extends SceneObject{
     public void setBirdCounter(int x) {
         birdhitcounter += x;
     }
+
     public int getBirdCounter(){
         return birdhitcounter;
     }
