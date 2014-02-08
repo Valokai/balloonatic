@@ -28,6 +28,9 @@ public class Balloon extends SceneObject{
 
     private boolean burneron = false;
 
+    private int fuelstate = 0;            //these control the glow effects on the fuelguage
+    private float fuelstatetimer = 0;
+
     protected int fuel = 1000;
 
     protected int lives = 1;
@@ -92,6 +95,19 @@ public class Balloon extends SceneObject{
         y += offsetY;
     }
 
+    /**sets the Fuel state, ie whether you are losing or gaining fuel
+     *
+     * @param fuelstate  0 for normal, 1 for gaining, 2 for losing
+     */
+    public void setFuelState(int fuelstate){
+        this.fuelstate = fuelstate;
+        fuelstatetimer = 5;
+    }
+
+    public int getFuelState(){
+        return fuelstate;
+    }
+
     /**print the stats of balloon for error checking
      *
      * @param g     Graphics object
@@ -120,6 +136,23 @@ public class Balloon extends SceneObject{
         }
     }
 
+
+    /**update the timer controlling the glow effect on the fuel gauge
+     *
+     * @param deltaTime             deltaTime
+     */
+    private void updateFuelState(float deltaTime){
+        if (fuelstatetimer ==0 && getFuelState() == 0){
+            return;
+        }
+        if (fuelstatetimer > 0){
+            fuelstatetimer = fuelstatetimer - deltaTime*10;
+        } else {
+            setFuelState(0);
+        }
+    }
+
+
     /**update the balloon
      *
      * @param gameContainer     the game container
@@ -130,7 +163,9 @@ public class Balloon extends SceneObject{
         float deltaTime = delta / 1000.0f;
         Input input = gameContainer.getInput();
         updatePlayer(deltaTime, input);
+        updateFuelState(deltaTime);
         recycleBalloonEffects();
+
     }
 
     public void recycleBalloonEffects(){

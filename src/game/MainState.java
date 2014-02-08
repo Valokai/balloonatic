@@ -59,7 +59,7 @@ public class MainState extends BasicGameState {
         sceneHandler.clearAll();
 
         balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
-        fuelGague = new FuelGauge();
+        fuelGague = new FuelGauge(balloon);
         fuelGague.setX(40);
         fuelGague.setY(400);
 
@@ -127,11 +127,19 @@ public class MainState extends BasicGameState {
         graphics.drawString("Slain Birds: " + balloon.getBirdCounter(), 600, 0);
 
         //The fuel gauge stuff
-        fuelGague.draw(20, 100, 50, 550);
-        fuelGagueCover.draw(20, 150 + (500 - balloon.getFuel() / 2), 50, 8);
+
+        fuelGague.draw(0,80,90,590);
+        fuelGagueCover.draw(20,150 + (500 - balloon.getFuel()/2), 50, 8);
+
 
 
     }
+
+
+
+
+
+
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
@@ -156,6 +164,7 @@ public class MainState extends BasicGameState {
             stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
         }
 
+        fuelGague.update(gameContainer, delta); // really bad practice but I just wanted to get it working for now, see git notes.
 
     }
 

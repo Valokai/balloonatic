@@ -41,6 +41,7 @@ public class PBird extends Powerup implements BalloonEffect{
         balloon.setBirdCounter(1);
         if(!balloon.isLockLife()) {
             balloon.setFuel(balloon.getFuel()-40 < 0 ? 0 : balloon.getFuel() - 40);
+            balloon.setFuelState(2);
             death.play(0.5f, 0.3f);
             birdsound.play(0.8f, 0.1f);
         }
