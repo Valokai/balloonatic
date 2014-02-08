@@ -1,13 +1,11 @@
 package game;
 
 import com.aem.sticky.button.Button;
-import com.aem.sticky.button.SimpleButton;
 import com.aem.sticky.button.events.ClickListener;
 import graphic.Background;
 import graphic.TextGraphic;
 import handlers.SceneHandler;
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;

@@ -69,4 +69,9 @@ public class PBird extends Powerup implements BalloonEffect{
 //        }
 
     }
+
+    @Override
+    public boolean isDrawnOnFront() {
+        return false;
+    }
 }

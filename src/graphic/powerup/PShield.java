@@ -28,11 +28,6 @@ public class PShield extends Powerup implements BalloonEffect{
     }
 
     @Override
-    public void render(GameContainer gc, Graphics graphics) {
-        super.render(gc, graphics);
-    }
-
-    @Override
     public void onCollideWithBalloon(Balloon balloon) {
         balloon.addBalloonEffect(this, "shield");
         sceneHandler.removeSceneObject(this);
@@ -45,26 +40,21 @@ public class PShield extends Powerup implements BalloonEffect{
         counter ++;
         if(counter > 2000) {        //shield blinks when about to expire
             if(counter%10==0) {
-
-                Color color = graphics.getColor();
-                graphics.setColor(new Color(45, 45, 45, 50));
-                graphics.setColor(color);
                 circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
             }
         //counter ++;
         }
         else {
-            Color color = graphics.getColor();
-            graphics.setColor(new Color(45, 45, 45, 50));
-            graphics.setColor(color);
             circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
         }
-
-
-
         if(counter == invisibleInterval){
             balloon.removeBalloonEffect("shield");
             balloon.setLockLife(false);
         }
+    }
+
+    @Override
+    public boolean isDrawnOnFront() {
+        return true;
     }
 }
