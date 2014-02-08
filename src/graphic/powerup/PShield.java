@@ -2,10 +2,7 @@ package graphic.powerup;
 
 import graphic.Balloon;
 import graphic.BalloonEffect;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Circle;
 
 /**
@@ -17,7 +14,7 @@ import org.newdawn.slick.geom.Circle;
  */
 public class PShield extends Powerup implements BalloonEffect{
 
-    private Circle circle;
+    private Image circle = new Image("data/image/bubble.png");
 
     private int invisibleInterval;
 
@@ -48,20 +45,19 @@ public class PShield extends Powerup implements BalloonEffect{
         counter ++;
         if(counter > 2000) {        //shield blinks when about to expire
             if(counter%10==0) {
-                circle = new Circle(balloon.getX(), balloon.getY(), balloon.getImage().getHeight()/2 + 10);
+
                 Color color = graphics.getColor();
                 graphics.setColor(new Color(45, 45, 45, 50));
-                graphics.fill(circle);
                 graphics.setColor(color);
+                circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
             }
         //counter ++;
         }
         else {
-            circle = new Circle(balloon.getX(), balloon.getY(), balloon.getImage().getHeight()/2 + 10);
             Color color = graphics.getColor();
             graphics.setColor(new Color(45, 45, 45, 50));
-            graphics.fill(circle);
             graphics.setColor(color);
+            circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
         }
 
 
