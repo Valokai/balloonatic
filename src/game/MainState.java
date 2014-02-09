@@ -91,7 +91,7 @@ public class MainState extends BasicGameState {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
-//        particleManager.render(graphics);
+        particleManager.render(graphics);
         //birdlayer.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
@@ -154,7 +154,7 @@ public class MainState extends BasicGameState {
         backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
 
-//        particleManager.upate(delta);
+        particleManager.upate(delta);
 
 
         if (balloon.getLives() <= 0) {
