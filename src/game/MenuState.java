@@ -56,6 +56,7 @@ public class MenuState extends BasicGameState implements ClickListener {
             bGM.loop();
         }
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
+//        particleManager.addParticle("data/particles/feather.xml", "data/particles/feather.png");
     }
 
 
@@ -101,14 +102,10 @@ public class MenuState extends BasicGameState implements ClickListener {
     }
 
     @Override
-    public void onRightClick(Button clicked, float mx, float my) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+    public void onRightClick(Button clicked, float mx, float my) {}
 
     @Override
-    public void onDoubleClick(Button clicked, float mx, float my) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+    public void onDoubleClick(Button clicked, float mx, float my) {}
 
     @Override
     public void keyPressed(int key, char c) {

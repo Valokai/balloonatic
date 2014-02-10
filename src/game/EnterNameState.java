@@ -61,6 +61,15 @@ public class EnterNameState extends BasicGameState {
 
         fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
+                250,
+                "Your Distance: " + score,
+                GameFont.Alignment.CENTRE,
+                Color.black);
+
+
+
+        fieldfont.drawString(
+                MainGame.SCREEN_WIDTH / 2.0f,
                 500,
                 "Enter Name",
                 GameFont.Alignment.CENTRE,

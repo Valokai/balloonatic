@@ -17,14 +17,11 @@ public class PFuel extends Powerup implements BalloonEffect{
 
     private Sound pickup;
 
-
-
     public PFuel() throws SlickException {
         super("data/image/fuel.png");
         pickup = new Sound("data/sound/effects/fuel.ogg");
 
     }
-
 
     public PFuel(String imagePath) throws SlickException {
         super(imagePath);
@@ -32,14 +29,6 @@ public class PFuel extends Powerup implements BalloonEffect{
 
     public PFuel(float x, float y, String imagePath) throws SlickException {
         super(x, y, imagePath);
-    }
-
-
-
-    @Override
-    public void update(GameContainer gameContainer, int delta) {
-        super.update(gameContainer, delta);
-
     }
 
 
@@ -52,9 +41,7 @@ public class PFuel extends Powerup implements BalloonEffect{
     }
 
     @Override
-    public void drawOnBalloon(Balloon balloon, Graphics graphics) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+    public void drawOnBalloon(Balloon balloon, Graphics graphics) {}
 
     @Override
     public boolean isDrawnOnFront() {

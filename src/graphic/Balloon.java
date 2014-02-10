@@ -8,13 +8,12 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
-import game.*;
 import org.newdawn.slick.*;
-import org.newdawn.slick.Game;
-import org.newdawn.slick.state.transition.BlobbyTransition;
-import org.newdawn.slick.state.transition.CombinedTransition;
+import util.ParticleManager;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Balloon Sprite, Player of the  game
@@ -43,22 +42,33 @@ public class Balloon extends SceneObject{
     protected boolean islockFuel;
 
     protected boolean isRenderLock;
+
     protected int birdhitcounter = 0;
+
+    private int particleTimer;
+
+    int shakeAngle = -100;
+
+    private ParticleManager particleManager = new ParticleManager();
+
 
     private HashMap<String, BalloonEffect> balloonEffectsBehind = new HashMap<String, BalloonEffect>();
     private HashMap<String, BalloonEffect> balloonEffectsFront = new HashMap<String, BalloonEffect>();
     private List<String> balloonEffectsRecycler = new ArrayList<String>();
+    private boolean isOnShake;
 
     public Balloon() throws SlickException {
         super("data/image/balloon.png", true);
         burnerimages = new Image[]{ new Image("data/image/balloon2-3.png"), new Image("data/image/balloon2-4.png") };
         burnerimage = new Animation(burnerimages,50);
+        particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/particle.png");
     }
 
     public Balloon(float x, float y) throws SlickException {
         super(x, y, "data/image/balloon.png", false);
         burnerimages = new Image[]{ new Image("data/image/balloon2-3.png"), new Image("data/image/balloon2-4.png") };
         burnerimage = new Animation(burnerimages,50);
+        particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/blood.png");
     }
 
 
@@ -112,6 +122,14 @@ public class Balloon extends SceneObject{
         return fuelstate;
     }
 
+    public boolean isOnShake() {
+        return isOnShake;
+    }
+
+    public void setOnShake(boolean onShake) {
+        isOnShake = onShake;
+    }
+
     /**print the stats of balloon for error checking
      *
      * @param g     Graphics object
@@ -121,6 +139,7 @@ public class Balloon extends SceneObject{
     public void printStats(Graphics g, int x, int y) {
         g.drawString("Balloon X: " + getX(), x, y);
         g.drawString("Balloon Y: " + getY(), x, y+20);
+
         g.drawString("Speed: " + getSpeed(), x, y+40);
 
     }
@@ -128,20 +147,44 @@ public class Balloon extends SceneObject{
     @Override
     public void render(GameContainer gc, Graphics graphics) {
         for (String key : balloonEffectsBehind.keySet()) {
-            balloonEffectsBehind.get(key).drawOnBalloon(this, graphics);
+            BalloonEffect balloonEffect = balloonEffectsBehind.get(key);
+            balloonEffect.drawOnBalloon(this, graphics);
+            if(key.equals("bird")){
+                if(particleTimer <= 0){
+                    particleTimer = 200;
+                }
+            }
         }
         if(!isRenderLock){
+            if(isOnShake){
+                if(shakeAngle != 100){
+                    image.setRotation(shakeAngle / 10);
+                    shakeAngle++;
+                }else{
+                    image.setRotation(0);
+                    isOnShake = false;
+                    shakeAngle = -100;
+                }
+
+            }
             if(burneron){
-                burnerimage.draw(x-burnerimage.getWidth()/2,y-burnerimage.getHeight()/2);
+                burnerimage.draw(x-burnerimage.getWidth()/2, y-burnerimage.getHeight()/2);
             }else{
                 image.drawCentered(x, y);
             }
+
         }
         for (String key : balloonEffectsBehind.keySet()) {
             balloonEffectsBehind.get(key).drawOnBalloon(this, graphics);
         }
         for (String key : balloonEffectsFront.keySet()) {
             balloonEffectsFront.get(key).drawOnBalloon(this, graphics);
+        }
+
+        if(particleTimer > 0){
+            particleTimer--;
+            particleManager.render(x, y);
+            if(particleTimer == 0)particleManager.reset();
         }
     }
 
@@ -170,6 +213,9 @@ public class Balloon extends SceneObject{
     @Override
     public void update(GameContainer gameContainer, int delta){
         float deltaTime = delta / 1000.0f;
+        if(particleTimer > 0){
+            particleManager.upate(delta);
+        }
         Input input = gameContainer.getInput();
         updatePlayer(deltaTime, input);
         updateFuelState(deltaTime);
@@ -204,7 +250,12 @@ public class Balloon extends SceneObject{
             }
         }
         else{
-            setSpeed(getSpeed() + (deltaTime * 400.0f));
+            if(getSpeed() >= 350) {
+                setSpeed(350);
+            }
+            else {
+                setSpeed(getSpeed() + (deltaTime * 400.0f));
+            }
             move(0.0f, getSpeed() * deltaTime);
             burneron =false;
             super.setImage("data/image/balloon.png");
@@ -304,6 +355,12 @@ public class Balloon extends SceneObject{
 
     public int getBirdCounter(){
         return birdhitcounter;
+    }
+
+    public BalloonEffect findEffect(String id){
+        BalloonEffect balloonEffect = balloonEffectsFront.get(id);
+        if(balloonEffect == null)balloonEffect = balloonEffectsBehind.get(id);
+        return balloonEffect;
     }
 }
 

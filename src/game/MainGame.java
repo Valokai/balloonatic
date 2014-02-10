@@ -4,8 +4,6 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
-import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.GameFont;
 import util.ScoreBoard;
 
@@ -57,12 +55,10 @@ public class MainGame extends StateBasedGame {
     // Main entry point for the game, set up the app and its window etc u
     public static void main(String[] args) throws SlickException {
 
-        {
-
-        }
         AppGameContainer app = new AppGameContainer(new MainGame());
         app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
         app.setVSync(Game.VSYNC);
+//        app.setFullscreen(true);
         //app.setShowFPS(Game.DEBUG.SHOW_FPS);
         app.start();
     }

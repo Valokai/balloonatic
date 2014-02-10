@@ -37,9 +37,9 @@ public class MainState extends BasicGameState {
     private ParticleManager particleManager = new ParticleManager();
     private Sprite fuelGagueCover;
     private Sprite fuelGague;
-    private boolean introduction = true;
+    private boolean introduction = true, paused = false;
 
-    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 4, 36), false);
+    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), false);
 
     @Override
     public int getID() {
@@ -53,6 +53,9 @@ public class MainState extends BasicGameState {
         frontground.add(new GreenHills(0.0f, 0, true, 2)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 3)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 4)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 5)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 6)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 7)); //add more map to the front scrollable
 
         background = new ScrollingHandler("background", new BackHills(0.0f, 0, false, 1)); //create front collidable scrollable
         background.add(new BackHills(0.0f, 0, false, 2)); //add more map to the front scrollable
@@ -88,6 +91,7 @@ public class MainState extends BasicGameState {
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
         particleManager.addParticle("data/particles/emitter_fast.xml", "data/particles/particle.png");
         introduction = true;
+        paused = false;
 
     }
 
@@ -98,12 +102,13 @@ public class MainState extends BasicGameState {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
-        particleManager.render(graphics);
+//        particleManager.render(graphics);
 //        birdlayer.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
 
-        sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
+        sceneHandler.render(gameContainer, graphics);    //render the balloon
+        //balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
         //birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
 
@@ -127,7 +132,7 @@ public class MainState extends BasicGameState {
         MainGame.titleFont.drawString(
                 20,
                 100,
-                "Distance : " + dist,
+                "Distance : " + dist + "m",
                 GameFont.Alignment.LEFT,
                 Color.yellow);
 
@@ -142,30 +147,38 @@ public class MainState extends BasicGameState {
 
 
             graphics.setFont(font);
-            graphics.setColor(new Color(0,0,0,0.3f));
+            graphics.setColor(new Color(0,0,0,0.1f));
             graphics.fillRect(0,0,1280,720);
 
             graphics.setColor(Color.white);
-            graphics.drawString("Hold space to go up.", 400, 200.0f);
+            graphics.drawString("Hold space to go up.", 450, 200.0f);
+            if(paused) {
+                graphics.setColor(Color.red);
+                graphics.drawString("PAUSED", 500, 50.0f);
+            }
         }
+
 
 
 
     }
 
 
-
-
-
-
-
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
+        Input input = gameContainer.getInput();
+        particleManager.upate(delta);
+        if(input.isKeyDown(Input.KEY_ESCAPE)) {
+
+            introduction = true;
+            paused = true;
+        }
         if(introduction) {
-            Input input = gameContainer.getInput();
+
             if(input.isKeyDown(Input.KEY_SPACE)) {
                 introduction = false;
+                paused = false;
             }
 
         } else {
@@ -176,11 +189,11 @@ public class MainState extends BasicGameState {
             sceneHandler.update(gameContainer, delta, speedMultiplier);
             backgroundMove(background,  -(1 * speedMultiplier), 0, stateBasedGame);
             backgroundMove(backlayer, -(2 * speedMultiplier), 0, stateBasedGame);
-            //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
             backgroundMove(frontground, -(4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
 
             //particleManager.upate(delta);
+
 
 
             if (balloon.getLives() <= 0) {

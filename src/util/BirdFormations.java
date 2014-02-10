@@ -43,12 +43,10 @@ public class BirdFormations {
      */
     private List<Vector2f> birdTriangle(float x, float y) {
         return Arrays.asList(
-                new Vector2f(80 + 1400, y + 80),
                 new Vector2f(60 + 1400, y + 60),
                 new Vector2f(40 + 1400, y + 40),
                 new Vector2f(20 + 1400, y + 20),
                 new Vector2f(0 + 1400, y),
-                new Vector2f(80 + 1400, y - 80),
                 new Vector2f(60 + 1400, y - 60),
                 new Vector2f(40 + 1400, y - 40),
                 new Vector2f(20 + 1400, y - 20)
@@ -69,11 +67,7 @@ public class BirdFormations {
                 new Vector2f(x + 1400 + 20, y),
                 new Vector2f(x + 1400 + 40, y+30),
                 new Vector2f(x + 1400 + 60, y),
-                new Vector2f(x + 1400 + 80, y+30),
-                new Vector2f(x + 1400 + 100, y),
-                new Vector2f(x + 1400 + 120, y+30),
-                new Vector2f(x + 1400 + 140, y),
-                new Vector2f(x + 1400 + 160, y+30)
+                new Vector2f(x + 1400 + 80, y+30)
         );
     }
 
