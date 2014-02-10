@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ScoreBoard {
 
-    List<ScoreData> scores = new ArrayList<ScoreData>();
+    public List<ScoreData> scores = new ArrayList<ScoreData>();
 
     public ScoreBoard() {
         makeUpScores();
@@ -91,6 +91,10 @@ public class ScoreBoard {
         return results;
     }
 
+    public float showScore(int i) {
+        return scores.get(i).showMeYourScore();
+    }
+
 
     private class ScoreData {
         String name;
@@ -99,6 +103,10 @@ public class ScoreBoard {
         ScoreData(String name, int score) {
             this.name = name;
             this.score = score;
+        }
+
+        public float showMeYourScore(){
+            return score +.0f;
         }
 
         public String toString() {
