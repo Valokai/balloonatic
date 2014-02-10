@@ -99,6 +99,7 @@ public class ScoreBoard {
     private class ScoreData {
         String name;
         int score;
+        int pixels;
 
         ScoreData(String name, int score) {
             this.name = name;

@@ -108,7 +108,7 @@ public class ScrollingHandler {
      * @param moveY   amount to move the y-coordinate by
      * @param balloon original balloon object needed for collision
      */
-    public void update(float moveX, float moveY, Balloon balloon, StateBasedGame stateBasedGame) {
+        public void update(float moveX, float moveY, Balloon balloon, StateBasedGame stateBasedGame) {
 
 
         if (DeadPlayersSpawned == false){
@@ -121,7 +121,7 @@ public class ScrollingHandler {
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground")){
-            distance -= moveX / 100;
+//            distance -= moveX / 100;
             distance -= moveX / 10;
         }
 
@@ -176,8 +176,9 @@ public class ScrollingHandler {
     }
 
      public void spawnDeadPlayers() {
-         for (int i = 0; i < MainGame.SBoard.scores.size() -1; i++){
-             sceneHandler.spawn(MainGame.SBoard.showScore(i),650, DeadPlayer.class);
+         for (int i = 0; i < MainGame.SBoard.scores.size(); i++){
+             System.err.println(MainGame.SBoard.showScore(i));
+             sceneHandler.spawn(MainGame.SBoard.showScore(i)*10+280,650, DeadPlayer.class);
          }
 
      }

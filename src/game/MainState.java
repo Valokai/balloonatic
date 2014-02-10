@@ -99,7 +99,7 @@ public class MainState extends BasicGameState {
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
         particleManager.render(graphics);
-        //birdlayer.render(gameContainer, graphics);
+//        birdlayer.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
 
@@ -174,13 +174,13 @@ public class MainState extends BasicGameState {
 
             float speedMultiplier = 1f;
             sceneHandler.update(gameContainer, delta, speedMultiplier);
-            backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
-            backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0, stateBasedGame);
+            backgroundMove(background,  -(1 * speedMultiplier), 0, stateBasedGame);
+            backgroundMove(backlayer, -(2 * speedMultiplier), 0, stateBasedGame);
             //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
-            backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
+            backgroundMove(frontground, -(4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
 
-            particleManager.upate(delta);
+            //particleManager.upate(delta);
 
 
             if (balloon.getLives() <= 0) {

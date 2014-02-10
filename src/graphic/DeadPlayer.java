@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 public class DeadPlayer extends SceneObject {
 
     public DeadPlayer() throws SlickException {
-        super("data/image/balloon.png", true);
+        super("data/image/deadballoon.png", true);
     }
 
     protected DeadPlayer(String imagePath, boolean isCollidable) throws SlickException {
@@ -23,7 +23,6 @@ public class DeadPlayer extends SceneObject {
     protected DeadPlayer(float x, float y, String imagePath, boolean isCollidable) throws SlickException {
         super(x, y, imagePath, isCollidable);
     }
-
     @Override
     public void move(int delta) {
         x += delta/1000 - 4;
@@ -31,7 +30,7 @@ public class DeadPlayer extends SceneObject {
 
     @Override
     public boolean isReadyForDisposal() {
-        return (x > Game.SCREEN_WIDTH ||x < 0);
+        return (x < 0);
     }
 
 }
