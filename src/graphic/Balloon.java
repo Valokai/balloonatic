@@ -68,7 +68,7 @@ public class Balloon extends SceneObject{
         super(x, y, "data/image/balloon.png", false);
         burnerimages = new Image[]{ new Image("data/image/balloon2-3.png"), new Image("data/image/balloon2-4.png") };
         burnerimage = new Animation(burnerimages,50);
-        particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/particle.png");
+        particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/blood.png");
     }
 
 
