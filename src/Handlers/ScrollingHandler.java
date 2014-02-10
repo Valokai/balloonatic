@@ -6,6 +6,7 @@ import graphic.Background;
 import graphic.Balloon;
 import graphic.DeadPlayer;
 import graphic.powerup.PBird;
+import graphic.powerup.PSpiral;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
@@ -128,6 +129,9 @@ public class ScrollingHandler {
         if(((Math.random() * 9000) + 1000) / 1000.0 > 9.98) {      //chance to spawn a bird formation
            spawnBirds();
         }
+        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.99) {      //chance to spawn a bird formation
+           spawnSpiral();
+        }
 
         /*handles the images, loads the next one when needed and rsemoves the previous when not needed*/
         if(renderlist.get(0).getX() == -1000.0) {
@@ -179,7 +183,12 @@ public class ScrollingHandler {
          for (int i = 0; i < MainGame.SBoard.scores.size() -1; i++){
              sceneHandler.spawn(MainGame.SBoard.showScore(i),650, DeadPlayer.class);
          }
-
      }
+
+    public void spawnSpiral() {
+        sceneHandler.spawn(1400, 400, PSpiral.class);
+
+    }
+
 
 }
