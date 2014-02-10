@@ -53,6 +53,9 @@ public class MainState extends BasicGameState {
         frontground.add(new GreenHills(0.0f, 0, true, 2)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 3)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 4)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 5)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 6)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 7)); //add more map to the front scrollable
 
         background = new ScrollingHandler("background", new BackHills(0.0f, 0, false, 1)); //create front collidable scrollable
         background.add(new BackHills(0.0f, 0, false, 2)); //add more map to the front scrollable
