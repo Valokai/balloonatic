@@ -39,12 +39,15 @@ public class HighScoreState extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         mainGame.getState(Game.STATE.MAIN).render(gameContainer, stateBasedGame, graphics);
 
+        graphics.setColor(new Color(0,0,0,0.3f));
+        graphics.fillRect(0,0,1280,720);
+
         fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 4f,
                 "HIGH SCORES",
                 GameFont.Alignment.CENTRE,
-                Color.white);
+                Color.black);
 
 
         scorefont.drawString(
@@ -52,7 +55,7 @@ public class HighScoreState extends BasicGameState {
                 MainGame.SCREEN_HEIGHT / 3.5f + 80.0f,
                 highScore,
                 GameFont.Alignment.CENTRE,
-                Color.white
+                Color.orange
         );
 
 
@@ -61,7 +64,7 @@ public class HighScoreState extends BasicGameState {
                 MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press any key...",
                 GameFont.Alignment.CENTRE,
-                Color.white
+                Color.black
         );
     }
 

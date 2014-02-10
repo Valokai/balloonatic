@@ -15,6 +15,7 @@ import scrollables.SecondHills;
 import util.GameFont;
 import util.ParticleManager;
 
+
 /**
  * Created with IntelliJ IDEA.
  * User: user360
@@ -36,6 +37,9 @@ public class MainState extends BasicGameState {
     private ParticleManager particleManager = new ParticleManager();
     private Sprite fuelGagueCover;
     private Sprite fuelGague;
+    private boolean introduction = true;
+
+    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 4, 36), false);
 
     @Override
     public int getID() {
@@ -58,7 +62,7 @@ public class MainState extends BasicGameState {
         sceneHandler = SceneHandler.getInstance();
         sceneHandler.clearAll();
 
-        balloon = (Balloon) sceneHandler.spawn(280, 200, Balloon.class, "balloon");
+        balloon = (Balloon) sceneHandler.spawn(280, 500, Balloon.class, "balloon");
         fuelGague = new FuelGauge(balloon);
         fuelGague.setX(40);
         fuelGague.setY(400);
@@ -83,11 +87,14 @@ public class MainState extends BasicGameState {
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
         particleManager.addParticle("data/particles/emitter_fast.xml", "data/particles/particle.png");
+        introduction = true;
 
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+
+
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
@@ -131,6 +138,17 @@ public class MainState extends BasicGameState {
         fuelGague.draw(0,80,90,590);
         fuelGagueCover.draw(20,150 + (500 - balloon.getFuel()/2), 50, 8);
 
+        if(introduction) {
+
+
+            graphics.setFont(font);
+            graphics.setColor(new Color(0,0,0,0.3f));
+            graphics.fillRect(0,0,1280,720);
+
+            graphics.setColor(Color.white);
+            graphics.drawString("Hold space to go up.", 400, 200.0f);
+        }
+
 
 
     }
@@ -144,27 +162,36 @@ public class MainState extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
-        float deltaTime = delta / 1000;
+        if(introduction) {
+            Input input = gameContainer.getInput();
+            if(input.isKeyDown(Input.KEY_SPACE)) {
+                introduction = false;
+            }
 
-        float speedMultiplier = 1f;
-        sceneHandler.update(gameContainer, delta, speedMultiplier);
-        backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
-        backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0, stateBasedGame);
-        //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
-        backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
+        } else {
+
+            float deltaTime = delta / 1000;
+
+            float speedMultiplier = 1f;
+            sceneHandler.update(gameContainer, delta, speedMultiplier);
+            backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
+            backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0, stateBasedGame);
+            //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
+            backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
 
-        particleManager.upate(delta);
+            particleManager.upate(delta);
 
 
-        if (balloon.getLives() <= 0) {
-            balloon.stopBurner();
-            EnterNameState enterNameState = (EnterNameState) stateBasedGame.getState(Game.STATE.ENTERNAME);
-            enterNameState.setScore((int) (frontground.getDistance()));
-            stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+            if (balloon.getLives() <= 0) {
+                balloon.stopBurner();
+                EnterNameState enterNameState = (EnterNameState) stateBasedGame.getState(Game.STATE.ENTERNAME);
+                enterNameState.setScore((int) (frontground.getDistance()));
+                stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+            }
+
+            fuelGague.update(gameContainer, delta); // really bad practice but I just wanted to get it working for now, see git notes.
         }
-
-        fuelGague.update(gameContainer, delta); // really bad practice but I just wanted to get it working for now, see git notes.
 
     }
 
