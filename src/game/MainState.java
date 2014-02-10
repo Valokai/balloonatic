@@ -37,9 +37,9 @@ public class MainState extends BasicGameState {
     private ParticleManager particleManager = new ParticleManager();
     private Sprite fuelGagueCover;
     private Sprite fuelGague;
-    private boolean introduction = true;
+    private boolean introduction = true, paused = false;
 
-    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 4, 36), false);
+    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), false);
 
     @Override
     public int getID() {
@@ -88,6 +88,7 @@ public class MainState extends BasicGameState {
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
         particleManager.addParticle("data/particles/emitter_fast.xml", "data/particles/particle.png");
         introduction = true;
+        paused = false;
 
     }
 
@@ -98,7 +99,7 @@ public class MainState extends BasicGameState {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
-
+        particleManager.render(graphics);
         //birdlayer.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
@@ -146,10 +147,14 @@ public class MainState extends BasicGameState {
             graphics.fillRect(0,0,1280,720);
 
             graphics.setColor(Color.white);
-            graphics.drawString("Hold space to go up.", 400, 200.0f);
+            graphics.drawString("Hold space to go up.", 450, 200.0f);
+            if(paused) {
+                graphics.setColor(Color.red);
+                graphics.drawString("PAUSED", 500, 50.0f);
+            }
         }
 
-        particleManager.render(graphics);
+
 
 
     }
@@ -164,14 +169,17 @@ public class MainState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
         Input input = gameContainer.getInput();
+        particleManager.upate(delta);
         if(input.isKeyDown(Input.KEY_ESCAPE)) {
 
             introduction = true;
+            paused = true;
         }
         if(introduction) {
 
             if(input.isKeyDown(Input.KEY_SPACE)) {
                 introduction = false;
+                paused = false;
             }
 
         } else {
@@ -186,7 +194,7 @@ public class MainState extends BasicGameState {
             backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
 
-            particleManager.upate(delta);
+
 
 
             if (balloon.getLives() <= 0) {
