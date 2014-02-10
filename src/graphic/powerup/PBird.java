@@ -2,8 +2,11 @@ package graphic.powerup;
 
 import graphic.Balloon;
 import graphic.BalloonEffect;
+import graphic.Feather;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Sound;
+import util.ParticleManager;
+import util.Utils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,10 +21,7 @@ public class PBird extends Powerup implements BalloonEffect{
     private Image[] birdimages;
 
     private Sound death, birdsound;
-    private Image flashImage;
 
-    private int effectInterval;
-    private int counter;
 
 
     public PBird() throws SlickException {
@@ -30,21 +30,35 @@ public class PBird extends Powerup implements BalloonEffect{
         bird = new Animation(birdimages,50);
         death = new Sound("data/sound/effects/gameover1.wav");
         birdsound = new Sound("data/sound/effects/bird_screech.ogg");
-        flashImage = new Image("data/image/balloon.png");
-        this.effectInterval = 300;
+
+    }
+
+    @Override
+    public void update(GameContainer gameContainer, int delta) {
+        super.update(gameContainer, delta);
+
     }
 
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
+        balloon.setOnShake(true);
         balloon.addBalloonEffect(this, "bird");
         sceneHandler.removeSceneObject(this);
+        for(int i = 0 ; i < Utils.randomizer.nextInt(10); i++){
+            sceneHandler.spawn(x - Utils.randomizer.nextInt(100) - 50, y + Utils.randomizer.nextInt(100) - 50, Feather.class, "Feather" + i);
+        }
+
         balloon.setBirdCounter(1);
-        if(!balloon.isLockLife()) {
+        if(!balloon.isLockLife() && balloon.findEffect("charge") == null) {
             balloon.setFuel(balloon.getFuel()-40 < 0 ? 0 : balloon.getFuel() - 40);
             balloon.setFuelState(2);
-            death.play(0.5f, 0.3f);
-            birdsound.play(0.8f, 0.1f);
+        }else{
+            balloon.setFuel(balloon.getFuel()-40 < 0 ? 0 : balloon.getFuel() - 40);
+            balloon.setFuelState(1);
         }
+        death.play(0.5f, 0.3f);
+        birdsound.play(0.8f, 0.1f);
+        balloon.removeBalloonEffect("bird");
     }
     @Override
     public void move(int delta) {
@@ -57,18 +71,7 @@ public class PBird extends Powerup implements BalloonEffect{
     }
 
     @Override
-    public void drawOnBalloon(Balloon balloon, Graphics graphics) {
-//        balloon.setlockFuel(true);
-//        balloon.setRenderLock(true);
-//        flashImage.drawFlash(balloon.getX() - balloon.getImage().getWidth()/2, balloon.getY() - balloon.getImage().getHeight()/2);
-//        counter++;
-//        if(counter == effectInterval){
-//            balloon.removeBalloonEffect("bird");
-//            balloon.setlockFuel(false);
-//            balloon.setRenderLock(false);
-//        }
-
-    }
+    public void drawOnBalloon(Balloon balloon, Graphics graphics) {}
 
     @Override
     public boolean isDrawnOnFront() {

@@ -33,6 +33,18 @@ public class Background extends Sprite{
 
     protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>();
 
+    protected ArrayList<Vector2f> shieldCoordinates = new ArrayList<Vector2f>();
+
+    protected ArrayList<Vector2f> chargeCoordinates = new ArrayList<Vector2f>();
+
+    public ArrayList<Vector2f> getChargeCoordinates() {
+        return chargeCoordinates;
+    }
+
+    public void setChargeCoordinates(List<Vector2f> chargeCoordinates) {
+        this.chargeCoordinates = new ArrayList<Vector2f>(chargeCoordinates);
+    }
+
     public ArrayList<Vector2f> getShieldCoordinates() {
         return shieldCoordinates;
     }
@@ -41,7 +53,7 @@ public class Background extends Sprite{
         this.shieldCoordinates = new ArrayList<Vector2f>(shieldCoordinates);
     }
 
-    protected ArrayList<Vector2f> shieldCoordinates = new ArrayList<Vector2f>();
+
 
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
         super(x, y, imagePath);

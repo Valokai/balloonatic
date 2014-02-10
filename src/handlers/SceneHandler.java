@@ -107,18 +107,20 @@ public class SceneHandler {
      */
     public void update(GameContainer gameContainer, int delta, float speedMultiplier){
         SceneObject sceneObject;
-        for (String key : registeredSceneObjects.keySet()) {
-            sceneObject = registeredSceneObjects.get(key);
-            if(sceneObject.isReadyForDisposal()){
-                disposedSceneObjects.add(key);
-            }else{
-                sceneObject.update(gameContainer, delta);
+        try{
+            for (String key : registeredSceneObjects.keySet()) {
+                sceneObject = registeredSceneObjects.get(key);
+                if(sceneObject.isReadyForDisposal()){
+                    disposedSceneObjects.add(key);
+                }else{
+                    sceneObject.update(gameContainer, delta);
+                }
             }
-        }
-        for (String key : disposedSceneObjects) {
-            registeredSceneObjects.remove(key);
-        }
-        disposedSceneObjects.clear();
+            for (String key : disposedSceneObjects) {
+                registeredSceneObjects.remove(key);
+            }
+            disposedSceneObjects.clear();
+        }catch (ConcurrentModificationException e){}
     }
 
     /**
