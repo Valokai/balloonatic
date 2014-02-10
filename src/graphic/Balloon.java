@@ -150,9 +150,10 @@ public class Balloon extends SceneObject{
             BalloonEffect balloonEffect = balloonEffectsBehind.get(key);
             balloonEffect.drawOnBalloon(this, graphics);
             if(key.equals("bird")){
-                if(particleTimer <= 0){
+
+                //if(particleTimer <= 0){
                     particleTimer = 200;
-                }
+                //}
             }
         }
         if(!isRenderLock){
@@ -361,6 +362,10 @@ public class Balloon extends SceneObject{
         BalloonEffect balloonEffect = balloonEffectsFront.get(id);
         if(balloonEffect == null)balloonEffect = balloonEffectsBehind.get(id);
         return balloonEffect;
+    }
+
+    public void setParticleTimer(int x) {
+        particleTimer = x;
     }
 }
 
