@@ -29,7 +29,7 @@ public class MainGame extends StateBasedGame {
     static public GameFont titleFont = null;
 
 
-    static ScoreBoard SBoard = new ScoreBoard();
+    public static ScoreBoard SBoard = new ScoreBoard();
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {

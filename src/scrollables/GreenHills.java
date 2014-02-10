@@ -1,7 +1,6 @@
 package scrollables;
 
 import graphic.Background;
-import graphic.powerup.PCharge;
 import graphic.powerup.PFuel;
 import graphic.powerup.PShield;
 import handlers.SceneHandler;
@@ -31,14 +30,8 @@ public class GreenHills extends Background {
             this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
             setCoordinates(Arrays.asList(
                     new Vector2f(529.0f + 1400, 510.0f),
-                    //new Vector2f(1016.0f + 1400, 321.0f),
-                    //new Vector2f(1030.0f + 1400, 92.0f),
                     new Vector2f(1385.0f + 1400, 343.0f)
             ));
-//            setChargeCoordinates(Arrays.asList(
-//                    new Vector2f(534.0f + 1400, 425.0f),
-//                    new Vector2f(2313.0f + 1400, 177.0f)
-//            ));
         }
 
         if(type==2) {
@@ -51,22 +44,11 @@ public class GreenHills extends Background {
             setShieldCoordinates(Arrays.asList(
                     new Vector2f(1400, 353.0f)
             ));
-//            setChargeCoordinates(Arrays.asList(
-//                    new Vector2f(866.0f + 1400, 243.0f),
-//                    new Vector2f(1499.0f + 1400, 223.0f)
-//            ));
         }
 
         if(type==3) {
             this.setImage("data/image/backgrounds/Hills3c.png");
             this.setCollisionImage("data/image/backgrounds/Hills3c_mask.png");
-            setShieldCoordinates(Arrays.asList(
-                    new Vector2f(897.0f + 1400, 353.0f)
-            ));
-//            setChargeCoordinates(Arrays.asList(
-//                    new Vector2f(732.0f + 1400, 225.0f),
-//                    new Vector2f(1957.0f + 1400, 320.0f)
-//            ));
         }
 
         if(type==4) {
@@ -78,12 +60,41 @@ public class GreenHills extends Background {
             setShieldCoordinates(Arrays.asList(
                     new Vector2f(700.0f + 1400, 650.0f)
             ));
-//            setChargeCoordinates(Arrays.asList(
-//                    new Vector2f(655.0f + 1400, 547.0f),
-//                    new Vector2f(1880.0f + 1400, 518.0f)
-//            ));
         }
 
+        if(type==5) {
+            this.setImage("data/image/backgrounds/Hills3e.png");
+            this.setCollisionImage("data/image/backgrounds/Hills3e_mask.png");
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
+        }
+
+        if(type==6) {
+            this.setImage("data/image/backgrounds/Hills3f.png");
+            this.setCollisionImage("data/image/backgrounds/Hills3f_mask.png");
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
+        }
+
+        if(type==7) {
+            this.setImage("data/image/backgrounds/Hills3g.png");
+            this.setCollisionImage("data/image/backgrounds/Hills3g_mask.png");
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
+        }
+
+
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     @Override
@@ -96,9 +107,6 @@ public class GreenHills extends Background {
         for (Vector2f coordinate : shieldCoordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PShield.class);
         }
-//        for (Vector2f coordinate : chargeCoordinates) {
-//             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PCharge.class);
-//        }
 
     }
 }

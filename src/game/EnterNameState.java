@@ -34,6 +34,7 @@ public class EnterNameState extends BasicGameState {
         mainGame = stateBasedGame;
         fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
 
+
         field = new TextField(gameContainer,
                 fieldfont,
                 MainGame.SCREEN_WIDTH / 2 - 100,
@@ -45,12 +46,34 @@ public class EnterNameState extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         mainGame.getState(Game.STATE.MAIN).render(gameContainer, stateBasedGame, graphics);
+
+
+        graphics.setColor(new Color(0,0,0,0.2f));
+        graphics.fillRect(0,0,1280,720);
+
+        graphics.setColor(Color.orange);
         fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
-                MainGame.SCREEN_HEIGHT / 4f,
+                100,
+                "You have crashed!",
+                GameFont.Alignment.CENTRE,
+                Color.red);
+
+        fieldfont.drawString(
+                MainGame.SCREEN_WIDTH / 2.0f,
+                250,
+                "Your Distance: " + score,
+                GameFont.Alignment.CENTRE,
+                Color.black);
+
+
+
+        fieldfont.drawString(
+                MainGame.SCREEN_WIDTH / 2.0f,
+                500,
                 "Enter Name",
                 GameFont.Alignment.CENTRE,
-                Color.white);
+                Color.black);
 
 
         field.render(gameContainer, graphics);
@@ -61,7 +84,7 @@ public class EnterNameState extends BasicGameState {
                 MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press Enter...",
                 GameFont.Alignment.CENTRE,
-                Color.white);
+                Color.black);
     }
 
     // Called when we enter this game state, a good place to variables to initial values if needed
