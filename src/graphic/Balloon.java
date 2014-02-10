@@ -8,7 +8,11 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
+import game.*;
 import org.newdawn.slick.*;
+import org.newdawn.slick.Game;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.CombinedTransition;
 
 import java.util.*;
 
@@ -254,6 +258,7 @@ public class Balloon extends SceneObject{
     public void setLives(int lives) {
         if(!isLockLife){
             this.lives = lives;
+
         }
     }
 
