@@ -104,7 +104,8 @@ public class MainState extends BasicGameState {
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
 
-        sceneHandler.render(gameContainer, graphics);    //render the balloon        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
+        sceneHandler.render(gameContainer, graphics);    //render the balloon
+        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
         //birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
 

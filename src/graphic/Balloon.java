@@ -204,7 +204,12 @@ public class Balloon extends SceneObject{
             }
         }
         else{
-            setSpeed(getSpeed() + (deltaTime * 400.0f));
+            if(getSpeed() >= 350) {
+                setSpeed(350);
+            }
+            else {
+                setSpeed(getSpeed() + (deltaTime * 400.0f));
+            }
             move(0.0f, getSpeed() * deltaTime);
             burneron =false;
             super.setImage("data/image/balloon.png");
