@@ -53,6 +53,9 @@ public class MainState extends BasicGameState {
         frontground.add(new GreenHills(0.0f, 0, true, 2)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 3)); //add more map to the front scrollable
         frontground.add(new GreenHills(0.0f, 0, true, 4)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 5)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 6)); //add more map to the front scrollable
+        frontground.add(new GreenHills(0.0f, 0, true, 7)); //add more map to the front scrollable
 
         background = new ScrollingHandler("background", new BackHills(0.0f, 0, false, 1)); //create front collidable scrollable
         background.add(new BackHills(0.0f, 0, false, 2)); //add more map to the front scrollable
@@ -105,7 +108,7 @@ public class MainState extends BasicGameState {
 
 
         sceneHandler.render(gameContainer, graphics);    //render the balloon
-        balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
+        //balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
         //birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
 
@@ -129,7 +132,7 @@ public class MainState extends BasicGameState {
         MainGame.titleFont.drawString(
                 20,
                 100,
-                "Distance : " + dist,
+                "Distance : " + dist + "m",
                 GameFont.Alignment.LEFT,
                 Color.yellow);
 
@@ -191,7 +194,6 @@ public class MainState extends BasicGameState {
             sceneHandler.update(gameContainer, delta, speedMultiplier);
             backgroundMove(background, deltaTime - (1 * speedMultiplier), 0, stateBasedGame);
             backgroundMove(backlayer, deltaTime - (2 * speedMultiplier), 0, stateBasedGame);
-            //backgroundMove(birdlayer, deltaTime - (5 * speedMultiplier), 0 , stateBasedGame);
             backgroundMove(frontground, deltaTime - (4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
 
