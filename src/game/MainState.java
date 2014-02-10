@@ -62,7 +62,7 @@ public class MainState extends BasicGameState {
         sceneHandler = SceneHandler.getInstance();
         sceneHandler.clearAll();
 
-        balloon = (Balloon) sceneHandler.spawn(280, 500, Balloon.class, "balloon");
+        balloon = (Balloon) sceneHandler.spawn(280, 595, Balloon.class, "balloon");
         fuelGague = new FuelGauge(balloon);
         fuelGague.setX(40);
         fuelGague.setY(400);

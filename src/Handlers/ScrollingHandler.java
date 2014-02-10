@@ -141,15 +141,19 @@ public class ScrollingHandler {
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
             if(collider2) {
-                balloon.setLives(balloon.getLives() - 1);  //decrease the lives because they collide*/
-                balloon.reset(280,150);
+                balloon.setLives(0);  //decrease the lives because they collide*/
+                if(balloon.isLockLife()) {
+                    balloon.reset(280,150);
+                }
                 return;
             }
 
         }  else {
             if(collider) {
-                balloon.setLives(balloon.getLives() - 1);
-                balloon.reset(280,150);
+                balloon.setLives(0);
+                if(balloon.isLockLife()) {
+                    balloon.reset(280,150);
+                }
             }
         }
 
