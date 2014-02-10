@@ -30,8 +30,6 @@ public class GreenHills extends Background {
             this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
             setCoordinates(Arrays.asList(
                     new Vector2f(529.0f + 1400, 510.0f),
-                    //new Vector2f(1016.0f + 1400, 321.0f),
-                    //new Vector2f(1030.0f + 1400, 92.0f),
                     new Vector2f(1385.0f + 1400, 343.0f)
             ));
         }
@@ -41,7 +39,6 @@ public class GreenHills extends Background {
             this.setCollisionImage("data/image/backgrounds/Hills3b_mask.png");
             setCoordinates(Arrays.asList(
                     new Vector2f(120.0f + 1400, 450.0f),
-                    //new Vector2f(1742.0f + 1400, 149.0f),
                     new Vector2f(1268.0f + 1400, 418.0f)
             ));
             setShieldCoordinates(Arrays.asList(
@@ -52,9 +49,6 @@ public class GreenHills extends Background {
         if(type==3) {
             this.setImage("data/image/backgrounds/Hills3c.png");
             this.setCollisionImage("data/image/backgrounds/Hills3c_mask.png");
-            //setShieldCoordinates(Arrays.asList(
-            //        new Vector2f(897.0f + 1400, 353.0f)
-           // ));
         }
 
         if(type==4) {
