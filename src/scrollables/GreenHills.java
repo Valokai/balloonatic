@@ -62,6 +62,31 @@ public class GreenHills extends Background {
             ));
         }
 
+        if(type==5) {
+            this.setImage("data/image/backgrounds/Hills3e.png");
+            this.setCollisionImage("data/image/backgrounds/Hills3e_mask.png");
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
+        }
+
+        if(type==6) {
+            this.setImage("data/image/backgrounds/Hills3f.png");
+            this.setCollisionImage("data/image/backgrounds/Hills3f_mask.png");
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
+        }
+
+        if(type==7) {
+            this.setImage("data/image/backgrounds/Hills3g.png");
+            this.setCollisionImage("data/image/backgrounds/Hills3g_mask.png");
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
+        }
+
+
     }
 
     public int getType() {
