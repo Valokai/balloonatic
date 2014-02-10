@@ -8,12 +8,12 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
-import game.*;
 import org.newdawn.slick.*;
-import org.newdawn.slick.Game;
-import org.newdawn.slick.state.transition.BlobbyTransition;
-import org.newdawn.slick.state.transition.CombinedTransition;import util.ParticleManager;
-import java.util.*;
+import util.ParticleManager;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Balloon Sprite, Player of the  game
@@ -158,7 +158,7 @@ public class Balloon extends SceneObject{
         if(!isRenderLock){
             if(isOnShake){
                 if(shakeAngle != 100){
-                    image.setRotation(shakeAngle/10);
+                    image.setRotation(shakeAngle / 10);
                     shakeAngle++;
                 }else{
                     image.setRotation(0);
