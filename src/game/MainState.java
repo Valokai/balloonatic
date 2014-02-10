@@ -98,7 +98,7 @@ public class MainState extends BasicGameState {
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
-        particleManager.render(graphics);
+
         //birdlayer.render(gameContainer, graphics);
         frontground.render(gameContainer, graphics);   //render the frontground scrollables
 
@@ -142,13 +142,14 @@ public class MainState extends BasicGameState {
 
 
             graphics.setFont(font);
-            graphics.setColor(new Color(0,0,0,0.3f));
+            graphics.setColor(new Color(0,0,0,0.1f));
             graphics.fillRect(0,0,1280,720);
 
             graphics.setColor(Color.white);
             graphics.drawString("Hold space to go up.", 400, 200.0f);
         }
 
+        particleManager.render(graphics);
 
 
     }
@@ -162,8 +163,13 @@ public class MainState extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
+        Input input = gameContainer.getInput();
+        if(input.isKeyDown(Input.KEY_ESCAPE)) {
+
+            introduction = true;
+        }
         if(introduction) {
-            Input input = gameContainer.getInput();
+
             if(input.isKeyDown(Input.KEY_SPACE)) {
                 introduction = false;
             }
