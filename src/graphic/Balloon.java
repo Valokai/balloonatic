@@ -8,7 +8,11 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
+import game.*;
 import org.newdawn.slick.*;
+import org.newdawn.slick.Game;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.CombinedTransition;
 
 import java.util.*;
 
@@ -200,7 +204,12 @@ public class Balloon extends SceneObject{
             }
         }
         else{
-            setSpeed(getSpeed() + (deltaTime * 400.0f));
+            if(getSpeed() >= 350) {
+                setSpeed(350);
+            }
+            else {
+                setSpeed(getSpeed() + (deltaTime * 400.0f));
+            }
             move(0.0f, getSpeed() * deltaTime);
             burneron =false;
             super.setImage("data/image/balloon.png");
@@ -254,6 +263,7 @@ public class Balloon extends SceneObject{
     public void setLives(int lives) {
         if(!isLockLife){
             this.lives = lives;
+
         }
     }
 

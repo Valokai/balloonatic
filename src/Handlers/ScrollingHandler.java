@@ -1,14 +1,17 @@
 package handlers;
 
 
+import game.MainGame;
 import graphic.Background;
 import graphic.Balloon;
+import graphic.DeadPlayer;
 import graphic.powerup.PBird;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import util.BirdFormations;
+import util.ScoreBoard;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,6 +32,7 @@ public class ScrollingHandler {
     private float distance = 0;
     private Random random = new Random();
     private BirdFormations birdformations = new BirdFormations();
+    private boolean DeadPlayersSpawned = false;
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
@@ -107,6 +111,12 @@ public class ScrollingHandler {
     public void update(float moveX, float moveY, Balloon balloon, StateBasedGame stateBasedGame) {
 
 
+        if (DeadPlayersSpawned == false){
+            spawnDeadPlayers();
+            DeadPlayersSpawned = true;
+        }
+
+
         renderlist.get(0).move(moveX, moveY);
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
@@ -141,15 +151,19 @@ public class ScrollingHandler {
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
             if(collider2) {
-                balloon.setLives(balloon.getLives() - 1);  //decrease the lives because they collide*/
-                balloon.reset(280,150);
+                balloon.setLives(0);  //decrease the lives because they collide*/
+                if(balloon.isLockLife()) {
+                    balloon.reset(280,150);
+                }
                 return;
             }
 
         }  else {
             if(collider) {
-                balloon.setLives(balloon.getLives() - 1);
-                balloon.reset(280,150);
+                balloon.setLives(0);
+                if(balloon.isLockLife()) {
+                    balloon.reset(280,150);
+                }
             }
         }
 
@@ -160,5 +174,12 @@ public class ScrollingHandler {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PBird.class);
         }
     }
+
+     public void spawnDeadPlayers() {
+         for (int i = 0; i < MainGame.SBoard.scores.size() -1; i++){
+             sceneHandler.spawn(MainGame.SBoard.showScore(i),650, DeadPlayer.class);
+         }
+
+     }
 
 }
