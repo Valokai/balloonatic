@@ -34,6 +34,7 @@ public class ScrollingHandler {
     private Random random = new Random();
     private BirdFormations birdformations = new BirdFormations();
     private boolean DeadPlayersSpawned = false;
+    private int balloonbouncetimer = 3;
 
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
@@ -150,12 +151,29 @@ public class ScrollingHandler {
         if(count == bglist.size()) {
             count = 0;
         }
-        //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
+
+          collideCheck(balloon);
+
+
+
+    }
+
+    public void collideCheck(Balloon balloon){
         if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && (name.equals("frontground") || name.equals("cavefront"))) {
             if(collider2) {
                 balloon.setLives(0);  //decrease the lives because they collide*/
                 if(balloon.isLockLife()) {
-                    balloon.reset(280,150);
+                 //   if(balloonbouncetimer<3){
+                    balloon.setSpeed(-200);
+              //      } else{
+               //         balloon.setSpeed(220);
+              //      }
+              //      if (balloonbouncetimer<=6){
+                    balloonbouncetimer++;
+              //      } else{
+              //          balloonbouncetimer=0;
+
+
                 }
                 return;
             }
@@ -164,8 +182,19 @@ public class ScrollingHandler {
             if(collider) {
                 balloon.setLives(0);
                 if(balloon.isLockLife()) {
-                    balloon.reset(280,150);
+             //       if(balloonbouncetimer<3){
+                        balloon.setSpeed(-200);
+//                    } else {
+//                        balloon.setSpeed(220);
+//                    }
+//                    if (balloonbouncetimer<=6){
+                        balloonbouncetimer++;
+//                    } else{
+//                        balloonbouncetimer=0;
+//                    }
+
                 }
+
             }
         }
 
