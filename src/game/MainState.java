@@ -132,7 +132,7 @@ public class MainState extends BasicGameState {
                 GameFont.Alignment.LEFT,
                 Color.yellow);
 
-        graphics.drawString("Birds Slain: " + balloon.getBirdCounter(), 600, 0);
+        graphics.drawString("Birds Slain: " + balloon.getBirdCounter(), 900, 0);
 
         //The fuel gauge stuff
 
@@ -161,7 +161,7 @@ public class MainState extends BasicGameState {
                 graphics.drawString("The Birds and the Bees deplete your fuel.", 250, 400.0f);
             }
         }
-        //graphics.drawString("Repeats: " + frontground.getRepeat(), 500, 0);
+        graphics.drawString("Level: " + frontground.getLevel(), 500, 0);
 
 
 

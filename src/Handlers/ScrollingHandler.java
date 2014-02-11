@@ -124,10 +124,10 @@ public class ScrollingHandler {
             moveDeadPlayerText(moveX);
         }
 
-        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.98) {      //chance to spawn a bird formation
+        if((((Math.random() * 9000) + 1000) / 1000.0 > 9.98) && getLevel().equals("hills")) {      //chance to spawn a bird formation
             spawnBirds();
         }
-        if(((Math.random() * 9000) + 1000) / 1000.0 > 9.99) {      //chance to spawn a bird formation
+        if((((Math.random() * 9000) + 1000) / 1000.0 > 9.99) && getLevel().equals("hills")) {      //chance to spawn a bird formation
             spawnSpiral();
         }
 
@@ -226,6 +226,10 @@ public class ScrollingHandler {
 
     public int getRepeat() {
         return repeat;
+    }
+
+    public String getLevel() {
+        return renderlist.get(0).getName();
     }
 
 

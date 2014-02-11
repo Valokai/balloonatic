@@ -62,7 +62,9 @@ public class Cave extends Background {
             this.setImage("data/image/cave/cave_fg_exit.png");
             this.setCollisionImage("data/image/cave/cave_fg_exit_mask.png");
             setCoordinates(Arrays.asList(
-                    new Vector2f(1742.0f + 1400, 149.0f)
+                    new Vector2f(742.0f + 1400, 449.0f),
+                    new Vector2f(1742.0f + 1400, 249.0f)
+
             ));
 
         }

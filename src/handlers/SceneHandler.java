@@ -173,4 +173,5 @@ public class SceneHandler {
     public void removeSceneObjectById(String id){
         disposedSceneObjects.add(id);
     }
+
 }
