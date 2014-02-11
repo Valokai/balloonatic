@@ -143,13 +143,14 @@ public class MainState extends BasicGameState {
             graphics.fillRect(0,0,1280,720);
 
             graphics.setColor(Color.white);
-            graphics.drawString("Hold space to go up.", 450, 200.0f);
+            graphics.drawString("Hold space to go up.", 450, 280.0f);
+            graphics.drawString("Birds deplete your fuel.", 450, 400.0f);
             if(paused) {
                 graphics.setColor(Color.red);
                 graphics.drawString("PAUSED", 500, 50.0f);
             }
         }
-        graphics.drawString("Repeats: " + frontground.getRepeat(), 500, 0);
+        //graphics.drawString("Repeats: " + frontground.getRepeat(), 500, 0);
 
 
 
