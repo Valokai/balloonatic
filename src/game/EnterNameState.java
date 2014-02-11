@@ -20,8 +20,6 @@ public class EnterNameState extends BasicGameState {
     private StateBasedGame mainGame;
     TextField field = null;
     int score = 0;
-    String name;
-    private GameFont fieldfont = null;
 
 
     @Override
@@ -32,11 +30,8 @@ public class EnterNameState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         mainGame = stateBasedGame;
-        fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
-
-
         field = new TextField(gameContainer,
-                fieldfont,
+                Game.fieldFont,
                 MainGame.SCREEN_WIDTH / 2 - 100,
                 MainGame.SCREEN_HEIGHT / 2 - 40,
                 200,
@@ -52,14 +47,14 @@ public class EnterNameState extends BasicGameState {
         graphics.fillRect(0,0,1280,720);
 
         graphics.setColor(Color.orange);
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 100,
                 "You have crashed!",
                 GameFont.Alignment.CENTRE,
                 Color.red);
 
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 250,
                 "Your Distance: " + score,
@@ -68,7 +63,7 @@ public class EnterNameState extends BasicGameState {
 
 
 
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 500,
                 "Enter Name",
@@ -79,7 +74,7 @@ public class EnterNameState extends BasicGameState {
         field.render(gameContainer, graphics);
 
 
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press Enter...",

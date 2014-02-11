@@ -17,8 +17,6 @@ import util.GameFont;
 public class HighScoreState extends BasicGameState {
     boolean anyKeyPressed = false;
     String highScore = null;
-    private GameFont fieldfont = null;
-    private GameFont scorefont = null;
     private StateBasedGame mainGame;
 
 
@@ -30,8 +28,7 @@ public class HighScoreState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         mainGame = stateBasedGame;
-        fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
-        scorefont = new GameFont("data/fonts/Corbel16.fnt", "data/fonts/Corbel16.png");
+
 
     }
 
@@ -42,7 +39,7 @@ public class HighScoreState extends BasicGameState {
         graphics.setColor(new Color(0,0,0,0.3f));
         graphics.fillRect(0,0,1280,720);
 
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 4f,
                 "HIGH SCORES",
@@ -50,7 +47,7 @@ public class HighScoreState extends BasicGameState {
                 Color.black);
 
 
-        scorefont.drawString(
+        Game.highscoreFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 3.5f + 80.0f,
                 highScore,
@@ -59,7 +56,7 @@ public class HighScoreState extends BasicGameState {
         );
 
 
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press any key...",

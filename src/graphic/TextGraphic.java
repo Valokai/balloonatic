@@ -13,8 +13,6 @@ public class TextGraphic extends Sprite {
         super(x, y, path);
     }
 
-
-
     /**render the image
      *
      */
