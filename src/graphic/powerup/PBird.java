@@ -3,6 +3,7 @@ package graphic.powerup;
 import graphic.Balloon;
 import graphic.BalloonEffect;
 import graphic.Feather;
+import graphic.Blood;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Sound;
 import util.ParticleManager;
@@ -42,10 +43,17 @@ public class PBird extends Powerup implements BalloonEffect{
     @Override
     public void onCollideWithBalloon(Balloon balloon) {
         balloon.setOnShake(true);
+        balloon.removeBalloonEffect("bird");
         balloon.addBalloonEffect(this, "bird");
         sceneHandler.removeSceneObject(this);
-        for(int i = 0 ; i < Utils.randomizer.nextInt(10); i++){
-            sceneHandler.spawn(x - Utils.randomizer.nextInt(100) - 50, y + Utils.randomizer.nextInt(100) - 50, Feather.class, "Feather" + i);
+        balloon.setParticleTimer(200);
+        for(int i = 0 ; i < 6; i++){
+            sceneHandler.spawn(x, y, Feather.class, "Feather" + i);
+           // int count = 5;
+            //while (count>0) {
+            //    sceneHandler.spawn(x, y, Blood.class);
+             //   count--;
+            //}
         }
 
         balloon.setBirdCounter(1);

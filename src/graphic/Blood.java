@@ -16,11 +16,11 @@ import java.util.Random;
  * Time: 12:38 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Feather extends SceneObject{
+public class Blood extends SceneObject{
 
-    public Feather() throws SlickException {
-        super("data/particles/feather.png", false);
-        image = image.getScaledCopy(0.12f);
+    public Blood() throws SlickException {
+        super("data/particles/path3011.png", false);
+        image = image.getScaledCopy(0.05f);
 
     }
 
@@ -36,9 +36,9 @@ public class Feather extends SceneObject{
 
     @Override
     public void move(int delta) {
-        x -= delta * 0.2;
+        x -= delta * 0.182 + Utils.randomizer.nextInt(9) / 10;
         y += delta * 0.15 * Utils.randomizer.nextInt(3) -  Utils.randomizer.nextInt(2);
-            image.setRotation(Utils.randomizer.nextInt(80) - Utils.randomizer.nextInt(40));
+        //image.setRotation(Utils.randomizer.nextInt(80) - Utils.randomizer.nextInt(40));
     }
 
     @Override
