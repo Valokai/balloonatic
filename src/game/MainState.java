@@ -144,7 +144,7 @@ public class MainState extends BasicGameState {
 
             graphics.setColor(Color.white);
             graphics.drawString("Hold space to go up.", 450, 280.0f);
-            graphics.drawString("Birds deplete your fuel.", 450, 400.0f);
+            graphics.drawString("The Birds and the Bees deplete your fuel.", 250, 400.0f);
             if(paused) {
                 graphics.setColor(Color.red);
                 graphics.drawString("PAUSED", 500, 50.0f);
