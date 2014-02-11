@@ -23,7 +23,7 @@ public class ScoreBoard {
         addScore("Taeyeon", 1000);
         addScore("Diago", 5000);
         addScore("KidLeader", 3000);
-        addScore("lowbie",30);
+        addScore("lowbie",250);
         addScore("skwex",22);
     }
 
