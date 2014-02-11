@@ -91,7 +91,9 @@ public class MenuState extends BasicGameState implements ClickListener {
         if (clicked == btnManager.getById("btnQuit")) {
             gameContainer.exit();
         }
-
+        if (clicked == btnManager.getById("btnStart")) {
+            stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
+        }
         if (clicked == btnManager.getById("btnCheckpoint")) {
             stateBasedGame.enterState(Game.STATE.ENTERCHEATCODE, new CombinedTransition(), new BlobbyTransition());
         }
