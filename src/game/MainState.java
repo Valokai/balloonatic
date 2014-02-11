@@ -80,7 +80,9 @@ public class MainState extends BasicGameState {
 
 
         frontground.add(new Cave(0.0f, 0, true, 1)); //create front collidable scrollable
-        frontground.add(new Cave(0.0f, 0, true, 1)); //add more map to the front scrollable
+        frontground.add(new Cave(0.0f, 0, true, 2)); //add more map to the front scrollable
+        frontground.add(new Cave(0.0f, 0, true, 3)); //add more map to the front scrollable
+        frontground.add(new Cave(0.0f, 0, true, 4)); //add more map to the front scrollable
 
         skyimage = new Image("data/image/sky.png");
 

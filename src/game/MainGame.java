@@ -40,7 +40,7 @@ public class MainGame extends StateBasedGame {
     public static void main(String[] args) throws SlickException {
 
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
         app.setVSync(Game.VSYNC);
         app.setFullscreen(false);
         //app.setShowFPS(Game.DEBUG.SHOW_FPS);

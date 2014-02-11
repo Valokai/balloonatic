@@ -2,6 +2,7 @@ package scrollables;
 
 import graphic.Background;
 import graphic.powerup.PFuel;
+import graphic.powerup.PGoldFuel;
 import graphic.powerup.PShield;
 import handlers.SceneHandler;
 import org.newdawn.slick.SlickException;
@@ -75,11 +76,10 @@ public class GreenHills extends Background {
             this.setImage("data/image/backgrounds/Hills3f.png");
             this.setCollisionImage("data/image/backgrounds/Hills3f_mask.png");
             setCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
                     new Vector2f(1385.0f + 1400, 343.0f)
+            ));
+            setGoldCoordinates(Arrays.asList(
+                new Vector2f(529.0f + 1400, 210.0f)
             ));
         }
 
@@ -87,12 +87,10 @@ public class GreenHills extends Background {
             this.setImage("data/image/backgrounds/Hills3g.png");
             this.setCollisionImage("data/image/backgrounds/Hills3g_mask.png");
             setCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(1385.0f + 1400, 343.0f)
+                    new Vector2f(2385.0f + 1400, 343.0f)
             ));
+
+
         }
 
 
@@ -104,6 +102,9 @@ public class GreenHills extends Background {
         SceneHandler sceneHandler = SceneHandler.getInstance();
         for (Vector2f coordinate : coordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PFuel.class);
+        }
+        for (Vector2f coordinate : goldCoordinates) {
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PGoldFuel.class);
         }
         for (Vector2f coordinate : shieldCoordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PShield.class);
