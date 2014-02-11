@@ -29,8 +29,8 @@ public class PSpiral extends Powerup implements BalloonEffect{
 
 
     public PSpiral() throws SlickException {
-        super("data/image/haunter.png");
-        birdimages = new Image[]{ new Image("data/image/haunter.png"), new Image("data/image/haunter.png") };
+        super("data/image/bee1.png");
+        birdimages = new Image[]{ new Image("data/image/bee1.png"), new Image("data/image/bee2.png") };
         bird = new Animation(birdimages,50);
         death = new Sound("data/sound/effects/gameover1.wav");
         birdsound = new Sound("data/sound/effects/bird_screech.ogg");
