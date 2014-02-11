@@ -30,6 +30,7 @@ public class ScrollingHandler {
     int count = 1;   //count for controlling renderlist and bglist
     private boolean collider = false, collider2 = false;    //two booleans for collisions for when two images are rendered
     private float distance = 0;
+    private int repeat = 1;
     private Random random = new Random();
     private BirdFormations birdformations = new BirdFormations();
     private boolean DeadPlayersSpawned = false;
@@ -116,7 +117,7 @@ public class ScrollingHandler {
         renderlist.get(0).move(moveX, moveY);
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
-        if (name.equals("frontground")){
+        if (name.equals("frontground") || name.equals("cavefront")){
 //            distance -= moveX / 100;
             distance -= moveX / 10;
             moveDeadPlayerText(moveX);
@@ -132,6 +133,7 @@ public class ScrollingHandler {
         /*handles the images, loads the next one when needed and rsemoves the previous when not needed*/
         if(renderlist.get(0).getX() == -1000.0) {
             renderlist.add(bglist.get(count));
+            repeat++;
             Background backgroundHill = renderlist.get(1);
             backgroundHill.resetToEnd();
             count++;
@@ -149,7 +151,7 @@ public class ScrollingHandler {
             count = 0;
         }
         //if(collider && name.equals("frontground") || collider2) balloon.reset(280,100);
-        if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && name.equals("frontground")) {
+        if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && (name.equals("frontground") || name.equals("cavefront"))) {
             if(collider2) {
                 balloon.setLives(0);  //decrease the lives because they collide*/
                 if(balloon.isLockLife()) {
@@ -191,7 +193,10 @@ public class ScrollingHandler {
 
     public void spawnSpiral() {
         sceneHandler.spawn(1400, 400, PSpiral.class);
+    }
 
+    public int getRepeat() {
+        return repeat;
     }
 
 

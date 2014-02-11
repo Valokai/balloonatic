@@ -23,6 +23,7 @@ public class Background extends Sprite{
 
     /*image map of collision points*/
     protected Image collisionImage;
+    public String name ="";
 
     /*colliding status, true for colliding*/
     protected boolean collider;
@@ -37,6 +38,9 @@ public class Background extends Sprite{
 
     protected ArrayList<Vector2f> chargeCoordinates = new ArrayList<Vector2f>();
 
+    public String getName() {
+        return name;
+    }
     public ArrayList<Vector2f> getChargeCoordinates() {
         return chargeCoordinates;
     }
