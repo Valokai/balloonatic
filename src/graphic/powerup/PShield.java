@@ -35,7 +35,7 @@ public class PShield extends Powerup implements BalloonEffect{
 
     @Override
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
-        balloon.setLockLife(true);
+        //balloon.setLockLife(true);
         balloon.setRenderLock(false);
         counter ++;
         if(counter > 2000) {        //shield blinks when about to expire

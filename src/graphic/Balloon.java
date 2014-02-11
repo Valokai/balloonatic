@@ -118,7 +118,7 @@ public class Balloon extends SceneObject{
         fuelstatetimer = 5;
     }
 
-    public int getFuelState(){
+    public int getFuelState() {
         return fuelstate;
     }
 
@@ -239,6 +239,7 @@ public class Balloon extends SceneObject{
     private void updatePlayer(float deltaTime, Input input){
         if ((input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) && fuel > 0 && getY()>0)
         {
+
             fuel--;
             setSpeed(getSpeed() - (deltaTime * 600.0f));
             move(0.0f, getSpeed() * deltaTime);
