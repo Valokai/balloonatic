@@ -35,7 +35,7 @@ public abstract class   SceneObject extends Sprite{
      * @throws SlickException
      */
     protected SceneObject(String imagePath, boolean isCollidable) throws SlickException {
-        super(imagePath);
+            super(imagePath);
         this.isCollidable = isCollidable;
     }
 

@@ -7,13 +7,16 @@ import graphic.Balloon;
 import graphic.DeadPlayer;
 import graphic.powerup.PBird;
 import graphic.powerup.PSpiral;
+import org.newdawn.slick.*;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import util.BirdFormations;
-import util.ScoreBoard;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -34,6 +37,7 @@ public class ScrollingHandler {
     private Random random = new Random();
     private BirdFormations birdformations = new BirdFormations();
     private boolean DeadPlayersSpawned = false;
+    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), false);
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
@@ -100,6 +104,14 @@ public class ScrollingHandler {
             renderlist.get(i).render(gameContainer, graphics);
         }
         sceneHandler.render(gameContainer, graphics);
+              graphics.setFont(font);
+            for (int i = 0; i < MainGame.SBoard.scores.size(); i++){
+              if(-20<(MainGame.SBoard.getX(i)) && MainGame.SBoard.getX(i)<1400){
+                font.drawString(MainGame.SBoard.getX(i), 590, MainGame.SBoard.showName(i));
+
+                }
+            }
+
 
     }
 
@@ -118,12 +130,16 @@ public class ScrollingHandler {
         }
 
 
+
+
+
         renderlist.get(0).move(moveX, moveY);
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground")){
 //            distance -= moveX / 100;
             distance -= moveX / 10;
+            moveDeadPlayerText(moveX);
         }
 
         if(((Math.random() * 9000) + 1000) / 1000.0 > 9.98) {      //chance to spawn a bird formation
@@ -183,8 +199,15 @@ public class ScrollingHandler {
          for (int i = 0; i < MainGame.SBoard.scores.size(); i++){
              System.err.println(MainGame.SBoard.showScore(i));
              sceneHandler.spawn(MainGame.SBoard.showScore(i)*10+280,650, DeadPlayer.class);
+             MainGame.SBoard.setX(i,MainGame.SBoard.showScore(i)*10+280); // set initial hiscore name text position
          }
      }
+
+    public void moveDeadPlayerText(float movex) {
+        for (int i = 0; i < MainGame.SBoard.scores.size(); i++){
+            MainGame.SBoard.setX(i,MainGame.SBoard.getX(i)+movex);
+        }
+    }
 
     public void spawnSpiral() {
         sceneHandler.spawn(1400, 400, PSpiral.class);
