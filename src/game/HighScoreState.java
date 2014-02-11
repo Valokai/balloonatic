@@ -71,7 +71,7 @@ public class HighScoreState extends BasicGameState {
     // Called when we enter this game state, a good place to variables to initial values if needed
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         anyKeyPressed = false;
-        setHighScore(MainGame.SBoard.displayScore());
+        setHighScore(Game.SBoard.displayScore());
     }
 
     // Event called on key down, we just flag that a key was pressed, and let the update handle it from there
