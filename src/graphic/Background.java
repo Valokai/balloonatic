@@ -33,6 +33,7 @@ public class Background extends Sprite{
     protected int width, height;
 
     protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>();
+    protected ArrayList<Vector2f> goldCoordinates = new ArrayList<Vector2f>();
 
     protected ArrayList<Vector2f> shieldCoordinates = new ArrayList<Vector2f>();
 
@@ -187,5 +188,8 @@ public class Background extends Sprite{
         this.coordinates = new ArrayList<Vector2f>(coordinates);
     }
 
+    public void setGoldCoordinates(List<Vector2f> coordinates) {
+        this.goldCoordinates = new ArrayList<Vector2f>(coordinates);
+    }
 
 }
