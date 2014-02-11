@@ -164,7 +164,7 @@ public class ScrollingHandler {
                 balloon.setLives(0);  //decrease the lives because they collide*/
                 if(balloon.isLockLife()) {
                  //   if(balloonbouncetimer<3){
-                    balloon.setSpeed(-200);
+                    balloon.setSpeed(-300);
               //      } else{
                //         balloon.setSpeed(220);
               //      }
@@ -183,7 +183,7 @@ public class ScrollingHandler {
                 balloon.setLives(0);
                 if(balloon.isLockLife()) {
              //       if(balloonbouncetimer<3){
-                        balloon.setSpeed(-200);
+                        balloon.setSpeed(-300);
 //                    } else {
 //                        balloon.setSpeed(220);
 //                    }
