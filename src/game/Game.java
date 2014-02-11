@@ -57,7 +57,8 @@ public class Game {
         }
 
         if(scoreFont == null){
-            scoreFont = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), false);
+           // scoreFont = new TrueTypeFont(new java.awt.Font("Hyperfont", 1, 28), false);
+            scoreFont = new TrueTypeFont(new java.awt.Font("Lucida Sans Typewriter", Font.BOLD, 28), true);
         }
     }
 
