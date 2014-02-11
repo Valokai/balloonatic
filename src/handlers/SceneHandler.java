@@ -13,10 +13,7 @@ import graphic.SceneObject;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This singleton class serves as a handler for all sceneobjects. It is responsible to
@@ -41,12 +38,7 @@ public class SceneHandler {
     /**
      * keys of scene object marked to be disposed.
      */
-    private volatile List<String> disposedSceneObjects = new ArrayList<String>();
-
-    /**
-     * Working thread to dispose sceneobjects
-     */
-    private SceneObjectDisposingThread disposingThread = new SceneObjectDisposingThread();
+    private volatile List<String> disposedSceneObjects = new ArrayList<String>();          
 
     static{
         INSTANCE = new SceneHandler();
@@ -113,9 +105,9 @@ public class SceneHandler {
      * Update handler
      * @param delta
      */
-    public void update(GameContainer gameContainer, int delta){
+    public void update(GameContainer gameContainer, int delta, float speedMultiplier){
         SceneObject sceneObject;
-        synchronized (registeredSceneObjects){
+        try{
             for (String key : registeredSceneObjects.keySet()) {
                 sceneObject = registeredSceneObjects.get(key);
                 if(sceneObject.isReadyForDisposal()){
@@ -124,12 +116,11 @@ public class SceneHandler {
                     sceneObject.update(gameContainer, delta);
                 }
             }
-        }
-        if(!disposingThread.isRunning){
-            disposingThread = null;
-            disposingThread = new SceneObjectDisposingThread();
-            disposingThread.start();
-        }
+            for (String key : disposedSceneObjects) {
+                registeredSceneObjects.remove(key);
+            }
+            disposedSceneObjects.clear();
+        }catch (ConcurrentModificationException e){}
     }
 
     /**
@@ -139,7 +130,7 @@ public class SceneHandler {
      */
     public void render(GameContainer gc, Graphics graphics){
         for (String key : registeredSceneObjects.keySet()) {
-            registeredSceneObjects.get(key).render(gc, graphics);
+              registeredSceneObjects.get(key).render(gc, graphics);
         }
         printStat(graphics);
     }
@@ -151,21 +142,6 @@ public class SceneHandler {
     public void registerSceneObject(String id, SceneObject sceneObject){
         synchronized (registeredSceneObjects){
             registeredSceneObjects.put(id, sceneObject);
-        }
-    }
-
-    public class SceneObjectDisposingThread extends Thread{
-        public boolean isRunning = false;
-
-        @Override
-        public void run() {
-            isRunning = true;
-            synchronized (disposedSceneObjects){
-                for (String key : disposedSceneObjects) {
-                    registeredSceneObjects.remove(key);
-                }
-            }
-            isRunning = false;
         }
     }
 

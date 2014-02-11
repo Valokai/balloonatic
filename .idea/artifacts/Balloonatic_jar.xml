@@ -2,15 +2,12 @@
   <artifact type="jar" name="Balloonatic:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Balloonatic_jar</output-path>
     <root id="archive" name="Balloonatic.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/../META-INF/MANIFEST.MF" />
-      </element>
       <element id="module-output" name="Balloonatic" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/sticky.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lwjgl.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jogg-0.0.7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jorbis-0.0.15.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/sticky.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/slick.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lwjgl.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

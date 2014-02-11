@@ -12,18 +12,17 @@ import java.util.List;
  */
 public class ScoreBoard {
 
-    List<ScoreData> scores = new ArrayList<ScoreData>();
+    public List<ScoreData> scores = new ArrayList<ScoreData>();
 
     public ScoreBoard() {
         makeUpScores();
-        System.err.println(displayScore());
     }
 
     private void makeUpScores() {
-        addScore("Tiff", 40);
-        addScore("RaabbuBairus", 70);
-        addScore("Diago", 90);
-        addScore("KidLeader", 85);
+        addScore("Tiffany", 800);
+        addScore("Taeyeon", 1000);
+        addScore("Diago", 5000);
+        addScore("KidLeader", 3000);
         addScore("lowbie",30);
         addScore("skwex",22);
     }
@@ -91,14 +90,35 @@ public class ScoreBoard {
         return results;
     }
 
+    public float showScore(int i) {
+        return scores.get(i).showMeYourScore();
+    }
+
+    public String showName(int i) {
+        return scores.get(i).name;
+    }
+
+    public void setX(int i, float x){
+        scores.get(i).x = x;
+    }
+
+    public float getX(int i){
+       return scores.get(i).x;
+    }
 
     private class ScoreData {
         String name;
         int score;
+        float x;
+
 
         ScoreData(String name, int score) {
             this.name = name;
             this.score = score;
+        }
+
+        public float showMeYourScore(){
+            return score +.0f;
         }
 
         public String toString() {

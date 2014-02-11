@@ -30,33 +30,53 @@ public class EnterNameState extends BasicGameState {
     }
 
     @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
-    {
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         mainGame = stateBasedGame;
         fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
 
+
         field = new TextField(gameContainer,
                 fieldfont,
-                MainGame.SCREEN_WIDTH / 2 -100,
-                MainGame.SCREEN_HEIGHT / 2 -40,
+                MainGame.SCREEN_WIDTH / 2 - 100,
+                MainGame.SCREEN_HEIGHT / 2 - 40,
                 200,
                 80);
     }
 
     @Override
-    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
-    {
-        mainGame.getState(Game.STATE.MAIN).render(gameContainer,stateBasedGame,graphics);
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+        mainGame.getState(Game.STATE.MAIN).render(gameContainer, stateBasedGame, graphics);
+
+
+        graphics.setColor(new Color(0,0,0,0.2f));
+        graphics.fillRect(0,0,1280,720);
+
+        graphics.setColor(Color.orange);
         fieldfont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
-                MainGame.SCREEN_HEIGHT / 4f,
+                100,
+                "You have crashed!",
+                GameFont.Alignment.CENTRE,
+                Color.red);
+
+        fieldfont.drawString(
+                MainGame.SCREEN_WIDTH / 2.0f,
+                250,
+                "Your Distance: " + score,
+                GameFont.Alignment.CENTRE,
+                Color.black);
+
+
+
+        fieldfont.drawString(
+                MainGame.SCREEN_WIDTH / 2.0f,
+                500,
                 "Enter Name",
                 GameFont.Alignment.CENTRE,
-                Color.white);
+                Color.black);
 
 
-
-        field.render(gameContainer,graphics);
+        field.render(gameContainer, graphics);
 
 
         fieldfont.drawString(
@@ -64,12 +84,11 @@ public class EnterNameState extends BasicGameState {
                 MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press Enter...",
                 GameFont.Alignment.CENTRE,
-                Color.white);
+                Color.black);
     }
 
     // Called when we enter this game state, a good place to variables to initial values if needed
-    public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
-    {
+    public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         anyKeyPressed = false;
         field.setFocus(true);
 
@@ -77,31 +96,26 @@ public class EnterNameState extends BasicGameState {
 
     }
 
-    public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
-    {
+    public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         field.setFocus(false);
     }
 
     // Event called on key down, we just flag that a key was pressed, and let the update handle it from there
-    public void keyPressed(int key, char c)
-    {
-        if(key == 28){  //checks if enter key pressed
+    public void keyPressed(int key, char c) {
+        if (key == 28) {  //checks if enter key pressed
             anyKeyPressed = true;
         }
     }
 
 
-    public void setScore(int scoreNum)
-    {
+    public void setScore(int scoreNum) {
         score = scoreNum;
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException
-    {
-        if (anyKeyPressed)
-        {
-            MainGame.SBoard.addScore(field.getText(),score);
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+        if (anyKeyPressed) {
+            Game.SBoard.addScore(field.getText(), score);
             stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
 
         }

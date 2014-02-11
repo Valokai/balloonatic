@@ -11,8 +11,8 @@
     <orderEntry type="library" name="lwjgl" level="project" />
     <orderEntry type="library" name="lwjgl" level="project" />
     <orderEntry type="library" name="slick" level="project" />
-    <orderEntry type="library" name="sticky" level="project" />
     <orderEntry type="library" name="jogg-0.0.7" level="project" />
+    <orderEntry type="library" name="sticky" level="project" />
   </component>
 </module>
 

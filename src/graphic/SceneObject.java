@@ -18,12 +18,16 @@ import java.util.HashSet;
  * Scene Objects are sprite which does not react or effect the game. They are just used for visual presentation.
  * Flying leaves, for instance
  */
-public abstract class SceneObject extends Sprite{
+public abstract class   SceneObject extends Sprite{
 
     /**
      * Can a player collide with this object.
      */
     protected boolean isCollidable;
+
+    private HashSet<String> mask;
+
+
 
     /**
      * Constructor
@@ -31,7 +35,7 @@ public abstract class SceneObject extends Sprite{
      * @throws SlickException
      */
     protected SceneObject(String imagePath, boolean isCollidable) throws SlickException {
-        super(imagePath);
+            super(imagePath);
         this.isCollidable = isCollidable;
     }
 
@@ -54,11 +58,13 @@ public abstract class SceneObject extends Sprite{
     }
 
     public HashSet<String> getMask() {
-        HashSet<String> mask = new HashSet<String>();
+        mask = new HashSet<String>();
+        int iw = image.getWidth() / 2;
+        int ih = image.getHeight() /2;
         for(int i = 0; i < image.getWidth(); i++){ // for every (x,y) component in the given box,
             for( int j = 0; j < image.getHeight(); j++){
                 if(image.getColor(i, j).getAlpha() != 0){  // if the alpha is not 0, it must be something other than transparent
-                    mask.add((int)(x+i)+","+(int)(y- j)); // add the absolute x and absolute y coordinates to our set
+                    mask.add((int)(x-iw+i)+","+(int)(y-ih+j)); // add the absolute x and absolute y coordinates to our set
                 }
             }
         }
@@ -69,6 +75,8 @@ public abstract class SceneObject extends Sprite{
      * Move the scene object
      */
     public abstract void move(int delta);
+
+
 
     /**
      * Check if this object is out of screen
@@ -87,32 +95,20 @@ public abstract class SceneObject extends Sprite{
         isCollidable = collidable;
     }
 
+
+    public  HashSet<String> showMask(){
+        return mask;
+    }
+
     public boolean isCollided(SceneObject collidable) {
         if(collidable != null && collidable.isCollidable()){
-            // This method detects to see if the images overlap at all. If they do, collision is possible
-            int ax1 = (int) getX();
-            int ay1 = (int) getY();
-            int ax2 = ax1 + getImage().getWidth();
-            int ay2 = ay1 + getImage().getHeight();
-            int bx1 = (int) collidable.getX();
-            int by1 = (int) collidable.getY();
-            int bx2 = bx1 + collidable.getImage().getWidth();
-            int by2 = by1 + collidable.getImage().getHeight();
 
-            if(by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1){
-                return false; // Collision is impossible.
-            }
-            else{
-                // Collision is possible.
-                // get the masks for both images
-                HashSet<String> maskPlayer1 = getMask();
-                HashSet<String> maskPlayer2 = collidable.getMask();
+            HashSet<String> maskPlayer2 = collidable.getMask();
+            HashSet<String> maskPlayer1 = getMask();
+            maskPlayer1.retainAll(maskPlayer2);  // Check to see if any pixels in maskPlayer2 are the same as those in maskPlayer1
 
-                maskPlayer1.retainAll(maskPlayer2);  // Check to see if any pixels in maskPlayer2 are the same as those in maskPlayer1
-
-                if(!maskPlayer1.isEmpty()){  // if so, than there exists at least one pixel that is the same in both images, thus
-                    return true;
-                }
+            if(!maskPlayer1.isEmpty()){  // if so, than there exists at least one pixel that is the same in both images, thus
+                return true;
             }
         }
         return false;

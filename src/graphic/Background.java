@@ -23,6 +23,7 @@ public class Background extends Sprite{
 
     /*image map of collision points*/
     protected Image collisionImage;
+    public String name ="";
 
     /*colliding status, true for colliding*/
     protected boolean collider;
@@ -32,6 +33,31 @@ public class Background extends Sprite{
     protected int width, height;
 
     protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>();
+
+    protected ArrayList<Vector2f> shieldCoordinates = new ArrayList<Vector2f>();
+
+    protected ArrayList<Vector2f> chargeCoordinates = new ArrayList<Vector2f>();
+
+    public String getName() {
+        return name;
+    }
+    public ArrayList<Vector2f> getChargeCoordinates() {
+        return chargeCoordinates;
+    }
+
+    public void setChargeCoordinates(List<Vector2f> chargeCoordinates) {
+        this.chargeCoordinates = new ArrayList<Vector2f>(chargeCoordinates);
+    }
+
+    public ArrayList<Vector2f> getShieldCoordinates() {
+        return shieldCoordinates;
+    }
+
+    public void setShieldCoordinates(List<Vector2f> shieldCoordinates) {
+        this.shieldCoordinates = new ArrayList<Vector2f>(shieldCoordinates);
+    }
+
+
 
     public Background(float x, float y, String imagePath, String collisionImage, boolean collidable) throws SlickException {
         super(x, y, imagePath);
@@ -100,11 +126,11 @@ public class Background extends Sprite{
 
     public void checkCollide(String name, float imagex, float imagey, Graphics g, Balloon balloon, int x, int y) {
         g.setColor(Color.black);
-        g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
-        g.drawOval(balloon.getX(), balloon.getY()+50, 2, 2);
-        g.drawOval(balloon.getX(), balloon.getY()-50, 2, 2);
-        g.drawOval(balloon.getX()-30, balloon.getY()-20, 2, 2);
-        g.drawOval(balloon.getX()+30, balloon.getY()-20, 2, 2);
+       // g.drawOval(balloon.getX(), balloon.getY(), 2, 2);
+        //g.drawOval(balloon.getX(), balloon.getY()+50, 2, 2);
+        //g.drawOval(balloon.getX(), balloon.getY()-50, 2, 2);
+        //g.drawOval(balloon.getX()-30, balloon.getY()-20, 2, 2);
+        //g.drawOval(balloon.getX()+30, balloon.getY()-20, 2, 2);
         //g.drawString(name, x, y-20);
         //g.drawString(""+balloonColliding(balloon.getX(), balloon.getY(), (int)imagex, (int)imagey),x,y);
 
@@ -167,4 +193,6 @@ public class Background extends Sprite{
     public void setCoordinates(List<Vector2f> coordinates) {
         this.coordinates = new ArrayList<Vector2f>(coordinates);
     }
+
+
 }
