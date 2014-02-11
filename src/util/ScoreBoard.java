@@ -16,7 +16,6 @@ public class ScoreBoard {
 
     public ScoreBoard() {
         makeUpScores();
-        System.err.println(displayScore());
     }
 
     private void makeUpScores() {

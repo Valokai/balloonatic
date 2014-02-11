@@ -129,7 +129,7 @@ public class MainState extends BasicGameState {
 
         //render score
         String dist = String.format("%4d", (int) frontground.getDistance());
-        MainGame.titleFont.drawString(
+        Game.titleFont.drawString(
                 20,
                 100,
                 "Distance : " + dist + "m",

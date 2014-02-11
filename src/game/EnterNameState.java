@@ -115,7 +115,7 @@ public class EnterNameState extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         if (anyKeyPressed) {
-            MainGame.SBoard.addScore(field.getText(), score);
+            Game.SBoard.addScore(field.getText(), score);
             stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
 
         }

@@ -26,10 +26,7 @@ public class MainGame extends StateBasedGame {
         super(Game.TITLE);
     }
 
-    static public GameFont titleFont = null;
 
-
-    public static ScoreBoard SBoard = new ScoreBoard();
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
@@ -39,16 +36,6 @@ public class MainGame extends StateBasedGame {
         addState(new EnterNameState());
         addState(new EnterCheatcodeState());
         addState(new SettingsState());
-
-        if (titleFont == null) {
-            try {
-                titleFont = new GameFont("data/fonts/Bauhaus93.fnt",
-                        "data/fonts/Bauhaus93_0.png");
-            } catch (SlickException e) {
-                System.out.println("Unable to load title font");
-            }
-        }
-
         enterState(Game.STATE.MENU);
     }
 

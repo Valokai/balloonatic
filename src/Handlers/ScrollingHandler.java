@@ -1,22 +1,18 @@
 package handlers;
 
 
-import game.MainGame;
+import game.Game;
 import graphic.Background;
 import graphic.Balloon;
 import graphic.DeadPlayer;
 import graphic.powerup.PBird;
 import graphic.powerup.PSpiral;
-import org.newdawn.slick.*;
-import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import util.BirdFormations;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,7 +33,7 @@ public class ScrollingHandler {
     private Random random = new Random();
     private BirdFormations birdformations = new BirdFormations();
     private boolean DeadPlayersSpawned = false;
-    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), false);
+
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
@@ -104,15 +100,6 @@ public class ScrollingHandler {
             renderlist.get(i).render(gameContainer, graphics);
         }
         sceneHandler.render(gameContainer, graphics);
-              graphics.setFont(font);
-            for (int i = 0; i < MainGame.SBoard.scores.size(); i++){
-              if(-20<(MainGame.SBoard.getX(i)) && MainGame.SBoard.getX(i)<1400){
-                font.drawString(MainGame.SBoard.getX(i), 590, MainGame.SBoard.showName(i));
-
-                }
-            }
-
-
     }
 
     /**updates image locations, sets new images to be rendered, recycles images for infinite loop
@@ -121,18 +108,11 @@ public class ScrollingHandler {
      * @param moveY   amount to move the y-coordinate by
      * @param balloon original balloon object needed for collision
      */
-        public void update(float moveX, float moveY, Balloon balloon, StateBasedGame stateBasedGame) {
-
-
+    public void update(float moveX, float moveY, Balloon balloon, StateBasedGame stateBasedGame) {
         if (DeadPlayersSpawned == false){
             spawnDeadPlayers();
             DeadPlayersSpawned = true;
         }
-
-
-
-
-
         renderlist.get(0).move(moveX, moveY);
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
@@ -143,10 +123,10 @@ public class ScrollingHandler {
         }
 
         if(((Math.random() * 9000) + 1000) / 1000.0 > 9.98) {      //chance to spawn a bird formation
-           spawnBirds();
+            spawnBirds();
         }
         if(((Math.random() * 9000) + 1000) / 1000.0 > 9.99) {      //chance to spawn a bird formation
-           spawnSpiral();
+            spawnSpiral();
         }
 
         /*handles the images, loads the next one when needed and rsemoves the previous when not needed*/
@@ -195,17 +175,17 @@ public class ScrollingHandler {
         }
     }
 
-     public void spawnDeadPlayers() {
-         for (int i = 0; i < MainGame.SBoard.scores.size(); i++){
-             System.err.println(MainGame.SBoard.showScore(i));
-             sceneHandler.spawn(MainGame.SBoard.showScore(i)*10+280,650, DeadPlayer.class);
-             MainGame.SBoard.setX(i,MainGame.SBoard.showScore(i)*10+280); // set initial hiscore name text position
-         }
-     }
+    public void spawnDeadPlayers() {
+        for (int i = 0; i < Game.SBoard.scores.size(); i++){
+            System.err.println(Game.SBoard.showScore(i));
+            sceneHandler.spawn(Game.SBoard.showScore(i)*10+280,650, DeadPlayer.class, "Dead Player" + i);
+            Game.SBoard.setX(i,Game.SBoard.showScore(i)*10+280); // set initial hiscore name text position
+        }
+    }
 
     public void moveDeadPlayerText(float movex) {
-        for (int i = 0; i < MainGame.SBoard.scores.size(); i++){
-            MainGame.SBoard.setX(i,MainGame.SBoard.getX(i)+movex);
+        for (int i = 0; i < Game.SBoard.scores.size(); i++){
+            Game.SBoard.setX(i,Game.SBoard.getX(i)+movex);
         }
     }
 
