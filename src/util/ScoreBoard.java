@@ -95,11 +95,23 @@ public class ScoreBoard {
         return scores.get(i).showMeYourScore();
     }
 
+    public String showName(int i) {
+        return scores.get(i).name;
+    }
+
+    public void setX(int i, float x){
+        scores.get(i).x = x;
+    }
+
+    public float getX(int i){
+       return scores.get(i).x;
+    }
 
     private class ScoreData {
         String name;
         int score;
-        int pixels;
+        float x;
+
 
         ScoreData(String name, int score) {
             this.name = name;
