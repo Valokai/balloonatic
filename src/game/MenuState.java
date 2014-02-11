@@ -113,5 +113,8 @@ public class MenuState extends BasicGameState implements ClickListener {
         if (key == Input.KEY_SPACE) {
             stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
         }
+        if (key == Input.KEY_ESCAPE){
+            gameContainer.exit();
+        }
     }
 }

@@ -12,6 +12,8 @@ import scrollables.*;
 import util.GameFont;
 import util.ParticleManager;
 
+import static org.newdawn.slick.util.FontUtils.drawCenter;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,7 +38,7 @@ public class MainState extends BasicGameState {
     private Sprite fuelGague;
     private boolean introduction = true, paused = false;
 
-    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), false);
+    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), true);
 
     @Override
     public int getID() {
@@ -142,12 +144,19 @@ public class MainState extends BasicGameState {
             graphics.setColor(new Color(0,0,0,0.1f));
             graphics.fillRect(0,0,1280,720);
 
-            graphics.setColor(Color.white);
-            graphics.drawString("Hold space to go up.", 450, 280.0f);
-            graphics.drawString("The Birds and the Bees deplete your fuel.", 250, 400.0f);
             if(paused) {
-                graphics.setColor(Color.red);
-                graphics.drawString("PAUSED", 500, 50.0f);
+                drawCenter(font,"PRESS SPACE TO CONTINUE",gameContainer.getWidth()/2,280,50,Color.white);
+                drawCenter(font,"PAUSED",gameContainer.getWidth()/2,50,50,Color.red);
+                drawCenter(font,"PRESS ESC TO QUIT",gameContainer.getWidth()/2,600,50,Color.red);
+//                graphics.setColor(Color.white);
+//                graphics.drawString("PRESS SPACE TO CONTINUE", 450, 280.0f);
+//                graphics.setColor(Color.red);
+//                graphics.drawString("PAUSED", 500, 50.0f);
+//                graphics.drawString("PRESS ESC TO EXIT",250, 400);
+            } else {
+                graphics.setColor(Color.white);
+                graphics.drawString("Hold space to go up.", 450, 280.0f);
+                graphics.drawString("The Birds and the Bees deplete your fuel.", 250, 400.0f);
             }
         }
         //graphics.drawString("Repeats: " + frontground.getRepeat(), 500, 0);
@@ -163,10 +172,13 @@ public class MainState extends BasicGameState {
 
         Input input = gameContainer.getInput();
         particleManager.upate(delta);
-        if(input.isKeyDown(Input.KEY_ESCAPE)) {
-
+        if(input.isKeyPressed(Input.KEY_ESCAPE)) {
+            if(paused){
+                stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
+            } else {
             introduction = true;
             paused = true;
+         }
         }
         if(introduction) {      //if paused for introduction
 
