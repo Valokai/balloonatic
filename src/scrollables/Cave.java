@@ -17,21 +17,24 @@ import java.util.Arrays;
  * Time: 12:38 PM
  * To change this template use File | Settings | File Templates.
  */
-public class GreenHills extends Background {
+public class Cave extends Background {
 
     private int type;
 
-    public GreenHills(float x, float y, boolean collidable, int type) throws SlickException {
-        super(x, y, "data/image/backgrounds/Hills3a.png", "data/image/backgrounds/Hills3a_mask.png", collidable);
+    public Cave(float x, float y, boolean collidable, int type) throws SlickException {
+        super(x, y, "data/image/cave/cave_fg1.png", "data/image/cave/cave_fg1_mask.png", collidable);
         this.type = type;
-        this.name = "hills";
+        this.name = "cave";
 
         if(type==1) {
-            this.setImage("data/image/backgrounds/Hills3a.png");
-            this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
+            this.setImage("data/image/cave/cave_fg1.png");
+            this.setCollisionImage("data/image/cave/cave_fg1_mask.png");
             setCoordinates(Arrays.asList(
                     new Vector2f(529.0f + 1400, 510.0f),
                     new Vector2f(1385.0f + 1400, 343.0f)
+            ));
+            setShieldCoordinates(Arrays.asList(
+                    new Vector2f(1400, 353.0f)
             ));
         }
 
@@ -66,33 +69,25 @@ public class GreenHills extends Background {
         if(type==5) {
             this.setImage("data/image/backgrounds/Hills3e.png");
             this.setCollisionImage("data/image/backgrounds/Hills3e_mask.png");
-            setShieldCoordinates(Arrays.asList(
-                    new Vector2f(897.0f + 1400, 353.0f)
-             ));
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
         }
 
         if(type==6) {
             this.setImage("data/image/backgrounds/Hills3f.png");
             this.setCollisionImage("data/image/backgrounds/Hills3f_mask.png");
-            setCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(1385.0f + 1400, 343.0f)
-            ));
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
         }
 
         if(type==7) {
             this.setImage("data/image/backgrounds/Hills3g.png");
             this.setCollisionImage("data/image/backgrounds/Hills3g_mask.png");
-            setCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(1385.0f + 1400, 343.0f)
-            ));
+            //setShieldCoordinates(Arrays.asList(
+            //        new Vector2f(897.0f + 1400, 353.0f)
+            // ));
         }
 
 
