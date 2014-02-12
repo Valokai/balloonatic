@@ -19,11 +19,7 @@ public class PSpiral extends Powerup implements BalloonEffect{
     private Animation bird;
     private Image[] birdimages;
 
-    private Sound death, birdsound;
-    private Image flashImage;
-
-    private int effectInterval;
-    private int counter;
+    private Sound death;
     private boolean up;
     Random random = new Random();
 
@@ -33,9 +29,6 @@ public class PSpiral extends Powerup implements BalloonEffect{
         birdimages = new Image[]{ new Image("data/image/bee1.png"), new Image("data/image/bee2.png") };
         bird = new Animation(birdimages,50);
         death = new Sound("data/sound/effects/gameover1.wav");
-        birdsound = new Sound("data/sound/effects/bird_screech.ogg");
-        flashImage = new Image("data/image/balloon.png");
-        this.effectInterval = 300;
         up = random.nextBoolean();
     }
 
@@ -75,18 +68,7 @@ public class PSpiral extends Powerup implements BalloonEffect{
     }
 
     @Override
-    public void drawOnBalloon(Balloon balloon, Graphics graphics) {
-//        balloon.setlockFuel(true);
-//        balloon.setRenderLock(true);
-//        flashImage.drawFlash(balloon.getX() - balloon.getImage().getWidth()/2, balloon.getY() - balloon.getImage().getHeight()/2);
-//        counter++;
-//        if(counter == effectInterval){
-//            balloon.removeBalloonEffect("bird");
-//            balloon.setlockFuel(false);
-//            balloon.setRenderLock(false);
-//        }
-
-    }
+    public void drawOnBalloon(Balloon balloon, Graphics graphics) {}
 
     @Override
     public boolean isDrawnOnFront() {

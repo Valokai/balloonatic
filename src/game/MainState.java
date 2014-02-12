@@ -61,8 +61,6 @@ public class MainState extends BasicGameState {
         background.add(new BackHills(0.0f, 0, false, 3)); //add more map to the front scrollable
         background.add(new BackHills(0.0f, 0, false, 4)); //add more map to the front scrollable
 
-
-
         sceneHandler = SceneHandler.getInstance();
         sceneHandler.clearAll();
 
@@ -86,16 +84,12 @@ public class MainState extends BasicGameState {
         frontground.add(new Cave(0.0f, 0, true, 3)); //add more map to the front scrollable
         frontground.add(new Cave(0.0f, 0, true, 4)); //add more map to the front scrollable
 
-        //birdlayer = new ScrollingHandler("birds", new Birds(0.0f, 0, true, 1));
-        //birdlayer.add(new Birds(0.0f, 0, true, 2));
-        //birdlayer.add(new Birds(0.0f, 0, true, 3));
-        //birdlayer.add(new Birds(0.0f, 0, true, 4));
-
         skyimage = new Image("data/image/sky.png");
 
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
         particleManager.addParticle("data/particles/emitter_fast.xml", "data/particles/particle.png");
+
         introduction = true;
         paused = false;
 
@@ -103,24 +97,12 @@ public class MainState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
-
         skyimage.draw(0, 0, MainGame.SCREEN_WIDTH, MainGame.SCREEN_HEIGHT);
         background.render(gameContainer, graphics);
         backlayer.render(gameContainer, graphics);
-//        particleManager.render(graphics);
-//        birdlayer.render(gameContainer, graphics);
-        //if(frontground.getRepeat() < 3) {
-            frontground.render(gameContainer, graphics);   //render the frontground scrollables
-        //} else {
-        //    cavefront.render(gameContainer, graphics);
-        //}
-
-
+        frontground.render(gameContainer, graphics);   //render the frontground scrollables
         sceneHandler.render(gameContainer, graphics);    //render the balloon
-        //balloon.printStats(graphics, 400, 0);   //error checking, print stats of ballon
         frontground.printStats(graphics, 200, 0, balloon);  //error checking of frontground scrollable
-        //birdlayer.printStats(graphics, 400, 0, balloon);  //error checking of frontground scrollable
 
 
         //render score
@@ -140,8 +122,6 @@ public class MainState extends BasicGameState {
         fuelGagueCover.draw(20,150 + (500 - balloon.getFuel()/2), 50, 8);
 
         if(introduction) {
-
-
             graphics.setFont(font);
             graphics.setColor(new Color(0,0,0,0.1f));
             graphics.fillRect(0,0,1280,720);
@@ -150,63 +130,48 @@ public class MainState extends BasicGameState {
                 drawCenter(font,"PRESS SPACE TO CONTINUE",gameContainer.getWidth()/2,280,50,Color.white);
                 drawCenter(font,"PAUSED",gameContainer.getWidth()/2,50,50,Color.red);
                 drawCenter(font,"PRESS ESC TO QUIT",gameContainer.getWidth()/2,600,50,Color.red);
-//                graphics.setColor(Color.white);
-//                graphics.drawString("PRESS SPACE TO CONTINUE", 450, 280.0f);
-//                graphics.setColor(Color.red);
-//                graphics.drawString("PAUSED", 500, 50.0f);
-//                graphics.drawString("PRESS ESC TO EXIT",250, 400);
             } else {
                 graphics.setColor(Color.white);
                 graphics.drawString("Hold space to go up.", 450, 280.0f);
                 graphics.drawString("The Birds and the Bees deplete your fuel.", 250, 400.0f);
             }
         }
+<<<<<<< HEAD
         graphics.drawString("Level: " + frontground.getLevel(), 500, 0);
 
 
 
 
+=======
+>>>>>>> d02fd960b1bd1e85831bfcc1943690cb9e59d3a9
     }
 
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
-
         Input input = gameContainer.getInput();
         particleManager.upate(delta);
         if(input.isKeyPressed(Input.KEY_ESCAPE)) {
             if(paused){
                 stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
             } else {
-            introduction = true;
-            paused = true;
-         }
+                introduction = true;
+                paused = true;
+                sceneHandler.pause();
+            }
         }
         if(introduction) {      //if paused for introduction
-
             if(input.isKeyDown(Input.KEY_SPACE)) {
                 introduction = false;
                 paused = false;
+                sceneHandler.unpause();
             }
-
         } else {
-
-            float deltaTime = delta / 1000;
-
             float speedMultiplier = 1f;
             sceneHandler.update(gameContainer, delta, speedMultiplier);
             backgroundMove(background,  -(1 * speedMultiplier), 0, stateBasedGame);
             backgroundMove(backlayer, -(2 * speedMultiplier), 0, stateBasedGame);
-            //if(frontground.getRepeat() < 3) {
-                backgroundMove(frontground, -(4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
-            //} else {
-            //    backgroundMove(cavefront, -(4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
-            //}
-
-
-            //particleManager.upate(delta);
-
-
+            backgroundMove(frontground, -(4 * speedMultiplier), 0, stateBasedGame); //update the front scrollable
 
             if (balloon.getLives() <= 0) {
                 balloon.stopBurner();
@@ -214,15 +179,9 @@ public class MainState extends BasicGameState {
                 enterNameState.setScore((int) (frontground.getDistance()));
                 stateBasedGame.enterState(Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
             }
-
             fuelGague.update(gameContainer, delta); // really bad practice but I just wanted to get it working for now, see git notes.
         }
 
-    }
-
-    /*moves the background, separate method for clarity*/
-    public void backgroundMove(ScrollingHandler bg, float x, float y, StateBasedGame sbg) {
-        bg.update(x, y, balloon, sbg);
     }
 
     @Override
@@ -230,8 +189,8 @@ public class MainState extends BasicGameState {
         init(container, game);
     }
 
-    @Override
-    public void leave(GameContainer container, StateBasedGame game) throws SlickException {
-        super.leave(container, game);    //To change body of overridden methods use File | Settings | File Templates.
+    /*moves the background, separate method for clarity*/
+    public void backgroundMove(ScrollingHandler bg, float x, float y, StateBasedGame sbg) {
+        bg.update(x, y, balloon, sbg);
     }
 }

@@ -35,21 +35,23 @@ public class PShield extends Powerup implements BalloonEffect{
 
     @Override
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
-        balloon.setLockLife(true);
-        balloon.setRenderLock(false);
-        counter ++;
-        if(counter > 2000) {        //shield blinks when about to expire
-            if(counter%10==0) {
+        if(!sceneHandler.isPaused()){
+            balloon.setLockLife(true);
+            balloon.setRenderLock(false);
+            counter ++;
+            if(counter > 2000) {        //shield blinks when about to expire
+                if(counter%10==0) {
+                    circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
+                }
+                //counter ++;
+            }
+            else {
                 circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
             }
-        //counter ++;
-        }
-        else {
-            circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
-        }
-        if(counter == invisibleInterval){
-            balloon.removeBalloonEffect("shield");
-            balloon.setLockLife(false);
+            if(counter == invisibleInterval){
+                balloon.removeBalloonEffect("shield");
+                balloon.setLockLife(false);
+            }
         }
     }
 

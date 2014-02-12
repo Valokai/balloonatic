@@ -38,7 +38,9 @@ public class SceneHandler {
     /**
      * keys of scene object marked to be disposed.
      */
-    private volatile List<String> disposedSceneObjects = new ArrayList<String>();          
+    private volatile List<String> disposedSceneObjects = new ArrayList<String>();
+
+    private boolean isPaused;
 
     static{
         INSTANCE = new SceneHandler();
@@ -106,21 +108,23 @@ public class SceneHandler {
      * @param delta
      */
     public void update(GameContainer gameContainer, int delta, float speedMultiplier){
-        SceneObject sceneObject;
-        try{
-            for (String key : registeredSceneObjects.keySet()) {
-                sceneObject = registeredSceneObjects.get(key);
-                if(sceneObject.isReadyForDisposal()){
-                    disposedSceneObjects.add(key);
-                }else{
-                    sceneObject.update(gameContainer, delta);
+        if(!isPaused){
+            SceneObject sceneObject;
+            try{
+                for (String key : registeredSceneObjects.keySet()) {
+                    sceneObject = registeredSceneObjects.get(key);
+                    if(sceneObject.isReadyForDisposal()){
+                        disposedSceneObjects.add(key);
+                    }else{
+                        sceneObject.update(gameContainer, delta);
+                    }
                 }
-            }
-            for (String key : disposedSceneObjects) {
-                registeredSceneObjects.remove(key);
-            }
-            disposedSceneObjects.clear();
-        }catch (ConcurrentModificationException e){}
+                for (String key : disposedSceneObjects) {
+                    registeredSceneObjects.remove(key);
+                }
+                disposedSceneObjects.clear();
+            }catch (ConcurrentModificationException e){}
+        }
     }
 
     /**
@@ -129,10 +133,12 @@ public class SceneHandler {
      * @param graphics
      */
     public void render(GameContainer gc, Graphics graphics){
-        for (String key : registeredSceneObjects.keySet()) {
-              registeredSceneObjects.get(key).render(gc, graphics);
-        }
-        printStat(graphics);
+//        if(!isPaused){
+            for (String key : registeredSceneObjects.keySet()) {
+                registeredSceneObjects.get(key).render(gc, graphics);
+            }
+//        }
+
     }
 
     /**
@@ -174,4 +180,18 @@ public class SceneHandler {
         disposedSceneObjects.add(id);
     }
 
+<<<<<<< HEAD
+=======
+    public void pause(){
+        this.isPaused = true;
+    }
+
+    public void unpause(){
+        this.isPaused = false;
+    }
+
+    public boolean isPaused() {
+        return isPaused;
+    }
+>>>>>>> d02fd960b1bd1e85831bfcc1943690cb9e59d3a9
 }

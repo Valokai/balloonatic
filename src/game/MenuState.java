@@ -38,11 +38,9 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     @Override
     public void init(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-        bGM = new Music("data/sound/field/fieldbgm.ogg");
-
         this.stateBasedGame = stateBasedGame;
         this.gameContainer = gameContainer;
-
+        bGM = new Music("data/sound/field/fieldbgm.ogg");
         btnManager = new ButtonManager(this);
         btnManager.addButton(130, 280, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
         btnManager.addButton(140, 365, "data/buttons/cheatCode_1.png", "data/buttons/cheatCode_2.png", "data/sound/critical.ogg", "btnCheckpoint");
@@ -51,18 +49,16 @@ public class MenuState extends BasicGameState implements ClickListener {
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
-
-        if(Game.music){
-            bGM.loop();
-        }
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
-//        particleManager.addParticle("data/particles/feather.xml", "data/particles/feather.png");
+
     }
 
 
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-
+        if(Game.music){
+            bGM.loop();
+        }
     }
 
     @Override
@@ -119,4 +115,5 @@ public class MenuState extends BasicGameState implements ClickListener {
             gameContainer.exit();
         }
     }
+
 }
