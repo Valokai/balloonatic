@@ -1,9 +1,11 @@
 package graphic.powerup;
 
+import game.Game;
 import graphic.Balloon;
 import graphic.BalloonEffect;
-import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,6 +33,7 @@ public class PShield extends Powerup implements BalloonEffect{
     public void onCollideWithBalloon(Balloon balloon) {
         balloon.addBalloonEffect(this, "shield");
         sceneHandler.removeSceneObject(this);
+        Game.AUDIO.SHIELD_POP.play();
     }
 
     @Override
@@ -51,6 +54,7 @@ public class PShield extends Powerup implements BalloonEffect{
             if(counter == invisibleInterval){
                 balloon.removeBalloonEffect("shield");
                 balloon.setLockLife(false);
+                Game.AUDIO.SHIELD_POP.play();
             }
         }
     }
