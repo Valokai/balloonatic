@@ -86,8 +86,8 @@ public class EnterNameState extends BasicGameState {
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         anyKeyPressed = false;
         field.setFocus(true);
-
         field.setConsumeEvents(false);
+//        Game.AUDIO.NO.play();
 
     }
 

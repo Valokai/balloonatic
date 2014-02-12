@@ -35,9 +35,9 @@ public class Balloon extends SceneObject{
     private int fuelstate = 0;            //these control the glow effects on the fuelguage
     private float fuelstatetimer = 0;
 
-    protected int fuel = 1000;
+    protected int fuel = 1000000;
 
-    protected int lives = 1;
+    protected int lives = 100000;
 
     protected boolean isLockLife;
 

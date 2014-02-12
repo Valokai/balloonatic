@@ -9,6 +9,7 @@ package game;
  */
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.TrueTypeFont;
 import util.GameFont;
 import util.ScoreBoard;
@@ -103,9 +104,22 @@ public class Game {
         public static final int HISCORE = 2;
         public static final int MAIN = 1;
         public static final int MENU = 0;
-
-
     }
 
+    public static class AUDIO{
+
+        public static Sound SHIELD_POP;
+
+//        public static Sound NO;
+
+
+        static {
+            try{
+                SHIELD_POP = new Sound("data/sound/effects/pop.wav");
+//                NO = new Sound("data/sound/effects/no.wav");
+            }catch(SlickException e){};
+        }
+
+    }
 
 }
