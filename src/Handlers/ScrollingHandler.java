@@ -158,7 +158,7 @@ public class ScrollingHandler {
             count = 0;
         }
 
-          collideCheck(balloon);
+        collideCheck(balloon);
 
 
 

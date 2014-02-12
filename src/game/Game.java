@@ -110,9 +110,13 @@ public class Game {
 
         public static Sound SHIELD_POP;
 
+//        public static Sound NO;
+
+
         static {
             try{
                 SHIELD_POP = new Sound("data/sound/effects/pop.wav");
+//                NO = new Sound("data/sound/effects/no.wav");
             }catch(SlickException e){};
         }
 

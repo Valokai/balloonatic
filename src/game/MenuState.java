@@ -42,10 +42,9 @@ public class MenuState extends BasicGameState implements ClickListener {
         this.gameContainer = gameContainer;
         bGM = new Music("data/sound/field/fieldbgm.ogg");
         btnManager = new ButtonManager(this);
-        btnManager.addButton(130, 280, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
-        btnManager.addButton(140, 365, "data/buttons/cheatCode_1.png", "data/buttons/cheatCode_2.png", "data/sound/critical.ogg", "btnCheckpoint");
-        btnManager.addButton(140, 455, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
-        btnManager.addButton(140, 540, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
+        btnManager.addButton(130, 300, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
+        btnManager.addButton(140, 430, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
+        btnManager.addButton(140, 550, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
@@ -90,10 +89,6 @@ public class MenuState extends BasicGameState implements ClickListener {
         if (clicked == btnManager.getById("btnStart")) {
             stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
         }
-        if (clicked == btnManager.getById("btnCheckpoint")) {
-            stateBasedGame.enterState(Game.STATE.ENTERCHEATCODE, new CombinedTransition(), new BlobbyTransition());
-        }
-
         if (clicked == btnManager.getById("btnSettings")) {
             stateBasedGame.enterState(Game.STATE.SETTINGS, new CombinedTransition(), new BlobbyTransition());
         }
