@@ -19,7 +19,9 @@ import java.util.List;
  * Balloon Sprite, Player of the  game
  */
 public class Balloon extends SceneObject{
-
+    Image grad = null;
+    Image grad2 = null;
+    float scale = 1f;
     Animation burnerimage;
     Image[] burnerimages;
 
@@ -62,6 +64,8 @@ public class Balloon extends SceneObject{
         burnerimages = new Image[]{ new Image("data/image/balloon2-3.png"), new Image("data/image/balloon2-4.png") };
         burnerimage = new Animation(burnerimages,50);
         particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/particle.png");
+        grad = new Image("data/image/gradcent.png");
+        grad2 = grad.getScaledCopy(scale);
     }
 
     public Balloon(float x, float y) throws SlickException {
@@ -69,6 +73,8 @@ public class Balloon extends SceneObject{
         burnerimages = new Image[]{ new Image("data/image/balloon2-3.png"), new Image("data/image/balloon2-4.png") };
         burnerimage = new Animation(burnerimages,50);
         particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/blood.png");
+        grad = new Image("data/image/gradcent.png");
+        grad2 = grad.getScaledCopy(scale);
     }
 
 
@@ -81,6 +87,7 @@ public class Balloon extends SceneObject{
         this.x = x;
         this.y = y;
         loonspeed = 0;
+        scale = 1;
     }
 
     /** set the y-speed of the balloon
@@ -169,6 +176,7 @@ public class Balloon extends SceneObject{
                 burnerimage.draw(x-burnerimage.getWidth()/2, y-burnerimage.getHeight()/2);
             }else{
                 image.drawCentered(x, y);
+
             }
 
         }
@@ -184,6 +192,7 @@ public class Balloon extends SceneObject{
         //    particleManager.render(x, y);
         //    if(particleTimer == 0)particleManager.reset();
         //}
+//        grad2.drawCentered(x,y+20);
     }
 
 
@@ -247,6 +256,7 @@ public class Balloon extends SceneObject{
             if (!burner.playing()){
                 burner.loop(1.0f, 0.3f);
             }
+            scaleUp(deltaTime,scale);
         }
         else{
             if(getSpeed() >= 350) {
@@ -259,7 +269,7 @@ public class Balloon extends SceneObject{
             burneron =false;
             super.setImage("data/image/balloon.png");
             burner.stop();
-
+            scaleDown(deltaTime,scale);
         }
     }
 
@@ -366,5 +376,24 @@ public class Balloon extends SceneObject{
     public void setParticleTimer(int x) {
         particleTimer = x;
     }
+
+    private void scaleDown(float deltaTime, float scale){
+        if(scale > 1){
+            this.scale = scale - 2* deltaTime;
+        }
+        grad2 = grad.getScaledCopy(scale);
+    }
+    private void scaleUp(float deltaTime, float scale){
+        if(scale < 1.4){
+            this.scale = scale + 2 *deltaTime;
+        }
+        grad2 = grad.getScaledCopy(scale);
+    }
+
+
 }
+
+
+
+
 
