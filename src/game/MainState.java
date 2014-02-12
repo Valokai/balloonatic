@@ -136,14 +136,14 @@ public class MainState extends BasicGameState {
                 graphics.drawString("The Birds and the Bees deplete your fuel.", 250, 400.0f);
             }
         }
-<<<<<<< HEAD
+//<<<<<<< HEAD
         graphics.drawString("Level: " + frontground.getLevel(), 500, 0);
 
 
 
 
-=======
->>>>>>> d02fd960b1bd1e85831bfcc1943690cb9e59d3a9
+//=======
+//>>>>>>> d02fd960b1bd1e85831bfcc1943690cb9e59d3a9
     }
 
 

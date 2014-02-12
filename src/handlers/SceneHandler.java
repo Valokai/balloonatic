@@ -180,8 +180,8 @@ public class SceneHandler {
         disposedSceneObjects.add(id);
     }
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
     public void pause(){
         this.isPaused = true;
     }
@@ -193,5 +193,5 @@ public class SceneHandler {
     public boolean isPaused() {
         return isPaused;
     }
->>>>>>> d02fd960b1bd1e85831bfcc1943690cb9e59d3a9
+//>>>>>>> d02fd960b1bd1e85831bfcc1943690cb9e59d3a9
 }
