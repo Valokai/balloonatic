@@ -7,6 +7,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import util.GameFont;
 import util.ScoreBoard;
 
+import java.awt.*;
+
 /**
  * User: Tin Htoo Aung
  * Date: 14/01/14
@@ -18,11 +20,22 @@ import util.ScoreBoard;
  */
 public class MainGame extends StateBasedGame {
 
-    public static final int SCREEN_WIDTH = 1280;
-    public static final int SCREEN_HEIGHT = 720;
+    public static int SCREEN_WIDTH;
+    public static int SCREEN_HEIGHT;
+
+    private static String OS = System.getProperty("os.name").toLowerCase();
 
     public MainGame() {
         super(Game.TITLE);
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        if(OS.indexOf("mac") >= 0){
+            SCREEN_WIDTH = gd.getDisplayMode().getWidth();
+            SCREEN_HEIGHT = gd.getDisplayMode().getHeight();
+        }else{
+            SCREEN_WIDTH = 1280;
+            SCREEN_HEIGHT = 720;
+        }
+
     }
 
     @Override
@@ -40,9 +53,9 @@ public class MainGame extends StateBasedGame {
     public static void main(String[] args) throws SlickException {
 
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, true);
         app.setVSync(Game.VSYNC);
-        app.setFullscreen(true);
+//        app.setFullscreen(true);
         //app.setShowFPS(Game.DEBUG.SHOW_FPS);
         app.setShowFPS(false);
         app.start();
