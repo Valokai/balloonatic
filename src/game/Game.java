@@ -44,6 +44,10 @@ public class Game {
 
     public static TrueTypeFont scoreFont = null;
 
+    public static GameFont fieldFont = null;
+
+    public static GameFont highscoreFont;
+
     public static ScoreBoard SBoard = new ScoreBoard();
 
     static{
@@ -59,6 +63,22 @@ public class Game {
         if(scoreFont == null){
            // scoreFont = new TrueTypeFont(new java.awt.Font("Hyperfont", 1, 28), false);
             scoreFont = new TrueTypeFont(new java.awt.Font("Lucida Sans Typewriter", Font.BOLD, 28), true);
+        }
+
+        if(fieldFont == null){
+            try {
+                fieldFont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(highscoreFont == null){
+            try {
+                highscoreFont = new GameFont("data/fonts/Corbel16.fnt", "data/fonts/Corbel16.png");
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
         }
     }
 

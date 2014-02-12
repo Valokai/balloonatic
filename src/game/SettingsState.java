@@ -30,7 +30,6 @@ public class SettingsState extends BasicGameState implements ClickListener {
     private TextGraphic titleText, difficultyText, musicText, miniBalloonDiff,  miniBalloonMusic ;
 
     private StateBasedGame stateBasedGame;
-    private GameContainer gameContainer;
 
     @Override
     public int getID() {
@@ -40,7 +39,6 @@ public class SettingsState extends BasicGameState implements ClickListener {
     @Override
     public void init(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
         this.stateBasedGame = stateBasedGame;
-        this.gameContainer = gameContainer;
 
         titleText= new TextGraphic(400, 200, "data/image/text/settings.png");
         difficultyText = new TextGraphic(350, 300, "data/image/text/difficulty.png");

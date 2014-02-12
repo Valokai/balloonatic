@@ -1,11 +1,12 @@
 package game;
 
-import org.newdawn.slick.*;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.BlobbyTransition;
-import org.newdawn.slick.state.transition.CombinedTransition;
 import util.GameFont;
 
 /**
@@ -18,13 +19,8 @@ import util.GameFont;
 public class EnterCheatcodeState extends BasicGameState {
     int keyNum = -1;
     private StateBasedGame mainMenu;
-    TextField field = null;
-    String cheatCode;
-
-
-    String name;
-    private GameFont fieldfont = null;
-
+    private TextField field = null;
+    private String cheatCode;
 
     @Override
     public int getID() {
@@ -34,10 +30,8 @@ public class EnterCheatcodeState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         mainMenu = stateBasedGame;
-        fieldfont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
-
         field = new TextField(gameContainer,
-                fieldfont,
+                Game.fieldFont,
                 MainGame.SCREEN_WIDTH / 2 - 300,
                 MainGame.SCREEN_HEIGHT / 2 - 40,
                 600,
@@ -47,18 +41,14 @@ public class EnterCheatcodeState extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         mainMenu.getState(Game.STATE.MENU).render(gameContainer, stateBasedGame, graphics);
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 4f,
                 "Enter Cheat Code",
                 GameFont.Alignment.CENTRE,
                 Color.white);
-
-
         field.render(gameContainer, graphics);
-
-
-        fieldfont.drawString(
+        Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,
                 MainGame.SCREEN_HEIGHT / 1.1f,
                 "Press Enter To Confirm Or Esc To Return",
