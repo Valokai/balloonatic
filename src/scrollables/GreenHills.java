@@ -60,7 +60,7 @@ public class GreenHills extends Background {
                     new Vector2f(1742.0f + 1400, 149.0f)
             ));
             setShieldCoordinates(Arrays.asList(
-                    new Vector2f(700.0f + 1400, 650.0f)
+                    new Vector2f(730.0f + 1400, 650.0f)
             ));
         }
 
@@ -68,7 +68,7 @@ public class GreenHills extends Background {
             this.setImage("data/image/backgrounds/Hills3e.png");
             this.setCollisionImage("data/image/backgrounds/Hills3e_mask.png");
             setShieldCoordinates(Arrays.asList(
-                    new Vector2f(897.0f + 1400, 353.0f)
+                    new Vector2f(990.0f + 1400, 353.0f)
              ));
         }
 

@@ -35,6 +35,7 @@ public class ScrollingHandler {
     private BirdFormations birdformations = new BirdFormations();
     private boolean DeadPlayersSpawned = false;
     private int balloonbouncetimer = 3;
+    private double difficulty = 0;
 
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
@@ -117,6 +118,10 @@ public class ScrollingHandler {
         }
         renderlist.get(0).move(moveX, moveY);
 
+        if(getRepeat()%9==0) {
+            difficulty = -0.01;
+        }
+
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground") || name.equals("cavefront")){
 //            distance -= moveX / 100;
@@ -124,7 +129,7 @@ public class ScrollingHandler {
             moveDeadPlayerText(moveX);
         }
 
-        if((((Math.random() * 9000) + 1000) / 1000.0 > 9.98) && getLevel().equals("hills")) {      //chance to spawn a bird formation
+        if((((Math.random() * 9000) + 1000) / 1000.0 > (9.97 + difficulty)) && getLevel().equals("hills")) {      //chance to spawn a bird formation
             spawnBirds();
         }
         if((((Math.random() * 9000) + 1000) / 1000.0 > 9.99) && getLevel().equals("hills")) {      //chance to spawn a bird formation
