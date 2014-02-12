@@ -44,6 +44,7 @@ public class MainGame extends StateBasedGame {
         app.setVSync(Game.VSYNC);
         app.setFullscreen(true);
         //app.setShowFPS(Game.DEBUG.SHOW_FPS);
+        app.setShowFPS(false);
         app.start();
     }
 }

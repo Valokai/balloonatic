@@ -114,7 +114,7 @@ public class MainState extends BasicGameState {
                 GameFont.Alignment.LEFT,
                 Color.yellow);
 
-        //graphics.drawString("Birds Slain: " + balloon.getBirdCounter(), 1000, 0);
+        // graphics.drawString("Birds Slain: " + balloon.getBirdCounter(), 1000, 0);
 
         //The fuel gauge stuff
 
