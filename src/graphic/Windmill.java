@@ -14,7 +14,8 @@ public class Windmill extends Powerup implements BalloonEffect {
 
     private SpriteSheet wmSheet;
     private Animation wm;
-    float scale;
+    protected float scale;
+    protected Color colour;
 
 
     public Windmill() throws SlickException {
@@ -23,13 +24,26 @@ public class Windmill extends Powerup implements BalloonEffect {
         wm = new Animation(wmSheet, 100);
         wm.setAutoUpdate(false);
         // wm.addFrame(wmSheet.getSprite(0, 0), 50);
-        scale = 2f;
+        scale = 1f;
+        colour = null;
     }
 
     public Windmill(float s) throws SlickException {
         super("data/image/goldbird.png");
         scale = 1f;
         this.scale = s;
+        colour = null;
+        wmSheet = new SpriteSheet("data/image/SmallWindmill.png", 103, 104);
+        wm = new Animation(wmSheet, 100);
+        wm.setAutoUpdate(false);
+        // wm.addFrame(wmSheet.getSprite(0, 0), 50);
+    }
+
+    public Windmill(float s, Color c) throws SlickException {
+        super("data/image/goldbird.png");
+        scale = 1f;
+        this.scale = s;
+        this.colour = c;
         wmSheet = new SpriteSheet("data/image/SmallWindmill.png", 103, 104);
         wm = new Animation(wmSheet, 100);
         wm.setAutoUpdate(false);
@@ -59,8 +73,11 @@ public class Windmill extends Powerup implements BalloonEffect {
 
     @Override
     public void render(GameContainer gc, Graphics graphics) {
-        wm.draw(x - 50, y - 50, 100 * scale, 100 * scale);
-
+        if(this.colour == null){
+            wm.draw(x - 50, y - 50, 100 * scale, 100 * scale);
+        }else{
+        wm.draw(x - 50, y - 50, 100 * scale, 100 * scale, colour);
+        }
     }
 
     @Override
