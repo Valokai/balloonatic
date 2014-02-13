@@ -77,17 +77,13 @@ public class MainState extends BasicGameState {
         backlayer.add(new SecondHills(0.0f, 0, false, 3)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 4)); //add more map to the back scrollable
 
-
         frontground.add(new Cave(0.0f, 0, true, 1));  //add more map to the front scrollable
         frontground.add(new Cave(0.0f, 0, true, 2)); //add more map to the front scrollable
         frontground.add(new Cave(0.0f, 0, true, 3)); //add more map to the front scrollable
         frontground.add(new Cave(0.0f, 0, true, 4)); //add more map to the front scrollable
-
         skyimage = new Image("data/image/sky.png");
-
         introduction = true;
         paused = false;
-
     }
 
     @Override
@@ -173,7 +169,6 @@ public class MainState extends BasicGameState {
                 fuelGague.update(gameContainer, delta); // really bad practice but I just wanted to get it working for now, see git notes.
             }
         }
-
     }
 
     @Override
