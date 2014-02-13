@@ -47,13 +47,4 @@ public class Cloud extends Powerup implements BalloonEffect {
     public boolean isDrawnOnFront() {
         return false;
     }
-
-    public class CloudCoordinate extends Vector2f{
-        public int step;
-
-        public CloudCoordinate(float x, float y, int step) {
-            super(x, y);
-            this.step = step;
-        }
-    }
 }
