@@ -159,9 +159,6 @@ public class ScrollingHandler {
         }
 
         collideCheck(balloon);
-
-
-
     }
 
     public void collideCheck(Balloon balloon){
@@ -169,17 +166,8 @@ public class ScrollingHandler {
             if(collider2) {
                 balloon.setLives(0);  //decrease the lives because they collide*/
                 if(balloon.isLockLife()) {
-                 //   if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
-              //      } else{
-               //         balloon.setSpeed(220);
-              //      }
-              //      if (balloonbouncetimer<=6){
                     balloonbouncetimer++;
-              //      } else{
-              //          balloonbouncetimer=0;
-
-
                 }
                 return;
             }
