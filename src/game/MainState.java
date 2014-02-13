@@ -1,9 +1,6 @@
 package game;
 
-import graphic.Balloon;
-import graphic.FuelGauge;
-import graphic.FuelGaugeCover;
-import graphic.Sprite;
+import graphic.*;
 import handlers.SceneHandler;
 import handlers.ScrollingHandler;
 import org.newdawn.slick.*;
@@ -172,7 +169,7 @@ public class MainState extends BasicGameState {
                 }
                 shakeTimer--;
             }else{
-                backgroundMove(background,  -(1 * speedMultiplier), 0, stateBasedGame);
+                backgroundMove(background, -(1 * speedMultiplier), 0, stateBasedGame);
                 backgroundMove(backlayer, -(2 * speedMultiplier), 0, stateBasedGame);
                 backgroundMove(frontground, -(4 * speedMultiplier), 0, stateBasedGame);
                 fuelGague.update(gameContainer, delta); // really bad practice but I just wanted to get it working for now, see git notes.

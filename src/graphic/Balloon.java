@@ -235,7 +235,8 @@ public class Balloon extends SceneObject {
      * @param deltaTime deltatime (delta / 1000)
      * @param input     Input object
      */
-        {        if ((input.isKeyDown(Input.KEY_SPACE)) && fuel > 0 && getY()>0){
+    public void updatePlayer(float deltaTime, Input input){
+        if ((input.isKeyDown(Input.KEY_SPACE)) && fuel > 0 && getY()>0){
             fuel--;
             setSpeed(getSpeed() - (deltaTime * 600.0f));
             move(0.0f, getSpeed() * deltaTime);
