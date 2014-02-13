@@ -33,7 +33,6 @@ public class MainGame extends StateBasedGame {
             SCREEN_WIDTH = 1280;
             SCREEN_HEIGHT = 720;
         }
-
     }
 
     @Override
@@ -52,7 +51,7 @@ public class MainGame extends StateBasedGame {
     public static void main(String[] args) throws SlickException {
 
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
         app.setVSync(Game.VSYNC);
 //        app.setFullscreen(true);
         //app.setShowFPS(Game.DEBUG.SHOW_FPS);

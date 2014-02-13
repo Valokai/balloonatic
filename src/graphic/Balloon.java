@@ -8,7 +8,11 @@ package graphic;
  * To change this template use File | Settings | File Templates.
  */
 
+import game.*;
 import org.newdawn.slick.*;
+import org.newdawn.slick.Game;
+import org.newdawn.slick.state.transition.BlobbyTransition;
+import org.newdawn.slick.state.transition.CombinedTransition;
 import util.ParticleManager;
 
 import java.util.ArrayList;
@@ -19,41 +23,26 @@ import java.util.List;
  * Balloon Sprite, Player of the  game
  */
 public class Balloon extends SceneObject {
-    Image grad = null;
-    Image grad2 = null;
-    float scale = 1f;
-    Animation burnerimage;
-    Image[] burnerimages;
-
+    private Image grad = null;
+    private Image grad2 = null;
+    private float scale = 1f;
+    private Animation burnerimage;
+    private Image[] burnerimages;
     private Sound burner = new Sound("data/sound/ambient/Burner.ogg");
-
     /*speed of balloon*/
     private float loonspeed = 0;
-
     private boolean burneron = false;
-
     private int fuelstate = 0;            //these control the glow effects on the fuelguage
     private float fuelstatetimer = 0;
-
     protected int fuel = 1000;
-
     protected int lives = 1;
-
     protected boolean isLockLife;
-
     protected boolean islockFuel;
-
     protected boolean isRenderLock;
-
     protected int birdhitcounter = 0;
-
     private int particleTimer;
-
     int shakeAngle = -100;
-
     private ParticleManager particleManager = new ParticleManager();
-
-
     private HashMap<String, BalloonEffect> balloonEffectsBehind = new HashMap<String, BalloonEffect>();
     private HashMap<String, BalloonEffect> balloonEffectsFront = new HashMap<String, BalloonEffect>();
     private List<String> balloonEffectsRecycler = new ArrayList<String>();
@@ -66,7 +55,6 @@ public class Balloon extends SceneObject {
         particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/particle.png");
         grad = new Image("data/image/gradcent.png");
         grad2 = grad.getScaledCopy(scale);
-
     }
 
     public Balloon(float x, float y) throws SlickException {
@@ -185,7 +173,6 @@ public class Balloon extends SceneObject {
                 image.drawCentered(x, y);
 
             }
-
         }
         for (String key : balloonEffectsBehind.keySet()) {
             balloonEffectsBehind.get(key).drawOnBalloon(this, graphics);
@@ -193,13 +180,6 @@ public class Balloon extends SceneObject {
         for (String key : balloonEffectsFront.keySet()) {
             balloonEffectsFront.get(key).drawOnBalloon(this, graphics);
         }
-
-        //if(particleTimer > 0){
-        //    particleTimer--;
-        //    particleManager.render(x, y);
-        //    if(particleTimer == 0)particleManager.reset();
-        //}
-//        grad2.drawCentered(x,y+20);
     }
 
 
@@ -255,9 +235,8 @@ public class Balloon extends SceneObject {
      * @param deltaTime deltatime (delta / 1000)
      * @param input     Input object
      */
-    private void updatePlayer(float deltaTime, Input input) {
-        if ((input.isKeyDown(Input.KEY_SPACE) || input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) && fuel > 0 && getY() > 0) {
-
+    public void updatePlayer(float deltaTime, Input input){
+        if ((input.isKeyDown(Input.KEY_SPACE)) && fuel > 0 && getY()>0){
             fuel--;
             setSpeed(getSpeed() - (deltaTime * 600.0f));
             move(0.0f, getSpeed() * deltaTime);
@@ -394,13 +373,12 @@ public class Balloon extends SceneObject {
         grad2 = grad.getScaledCopy(scale);
     }
 
-    private void scaleUp(float deltaTime, float scale) {
-        if (scale < 1.4) {
-            this.scale = scale + 2 * deltaTime;
+    private void scaleUp(float deltaTime, float scale){
+        if(scale < 1.4){
+            this.scale = scale + 2 *deltaTime;
         }
         grad2 = grad.getScaledCopy(scale);
     }
-
 
 }
 

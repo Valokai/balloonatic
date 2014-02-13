@@ -83,9 +83,9 @@ public class GreenHills extends Background {
             setCoordinates(Arrays.asList(
                     new Vector2f(1385.0f + 1400, 343.0f)
             ));
-            setGoldCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 210.0f)
-            ));
+            //setGoldCoordinates(Arrays.asList(
+            //        new Vector2f(529.0f + 1400, 210.0f)
+            //));
         }
 
         if (type == 7) {
