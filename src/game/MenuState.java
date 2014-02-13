@@ -59,7 +59,7 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-<<<<<<< HEAD
+
 
         if (Game.music) {
             bGM.loop();
@@ -67,15 +67,10 @@ public class MenuState extends BasicGameState implements ClickListener {
 
 
 
-=======
-<<<<<<< HEAD
         if (Game.music) {
             bGM.loop();
         }
-=======
 
->>>>>>> 396c7f69183600ed0ebb9d956b54c629a5291a68
->>>>>>> 8d3d95dd38a771a5584b55681c5b3d7e12541d4b
     }
 
     @Override
