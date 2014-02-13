@@ -26,12 +26,12 @@ public class Leaf extends SceneObject {
 
     @Override
     public void move(int delta) {
-        x += delta/1000 - 4;
+        x += delta / 1000 - 4;
     }
 
     @Override
     public boolean isReadyForDisposal() {
-        return (x > Game.SCREEN_WIDTH ||x < 0);
+        return (x > Game.SCREEN_WIDTH || x < 0);
     }
 
 }

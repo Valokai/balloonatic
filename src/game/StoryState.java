@@ -1,13 +1,13 @@
 package game;
 
 import com.aem.sticky.button.Button;
+import com.aem.sticky.button.SimpleButton;
 import com.aem.sticky.button.events.ClickListener;
 import graphic.Background;
 import graphic.TextGraphic;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
+import handlers.SceneHandler;
+import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
@@ -22,43 +22,31 @@ import util.ParticleManager;
  * Time: 1:42 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SettingsState extends BasicGameState implements ClickListener {
+public class StoryState extends BasicGameState implements ClickListener {
 
     private ButtonManager btnManager;
     private Background background;
     private ParticleManager particleManager = new ParticleManager();
-    private TextGraphic titleText, difficultyText, musicText, miniBalloonDiff, miniBalloonMusic;
+    Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), true);
 
     private StateBasedGame stateBasedGame;
 
     @Override
     public int getID() {
-        return Game.STATE.SETTINGS;
+        return Game.STATE.STORY;
     }
 
     @Override
     public void init(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
         this.stateBasedGame = stateBasedGame;
 
-        titleText = new TextGraphic(400, 200, "data/image/text/settings.png");
-        difficultyText = new TextGraphic(350, 300, "data/image/text/difficulty.png");
-        musicText = new TextGraphic(600, 300, "data/image/text/music.png");
 
-        miniBalloonDiff = new TextGraphic(250, 420, "data/image/balloon.png");
-        miniBalloonDiff.setScale(.5f);
 
-        miniBalloonMusic = new TextGraphic(580, 370, "data/image/balloon.png");
-        miniBalloonMusic.setScale(.5f);
 
         btnManager = new ButtonManager(this);
-        //btnManager.addButton(80, 360, "data/buttons/learnerText_1.png", "data/buttons/learnerText_2.png", "data/sound/critical.ogg", "btnLearner");
-        btnManager
-                .addButton(80, 410, "data/buttons/pilotText_1.png", "data/buttons/pilotText_2.png", "data/sound/critical.ogg", "btnPilot");
-        btnManager.addButton(80, 460, "data/buttons/balloonaticText_1.png", "data/buttons/balloonaticText_2.png", "data/sound/critical.ogg", "btnHard");
-        btnManager.addButton(500, 360, "data/buttons/on_1.png", "data/buttons/on_2.png", "data/sound/critical.ogg", "btnSoundOn");
-        btnManager.addButton(500, 410, "data/buttons/off_1.png", "data/buttons/off_2.png", "data/sound/critical.ogg", "btnSoundOff");
 
-        btnManager.addButton(350, 550, "data/buttons/back_1.png", "data/buttons/back_2.png", "data/sound/critical.ogg", "btnBack");
+
+        btnManager.addButton(350, 620, "data/buttons/back_1.png", "data/buttons/back_2.png", "data/sound/critical.ogg", "btnBack");
 
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
 
@@ -76,11 +64,21 @@ public class SettingsState extends BasicGameState implements ClickListener {
         background.render(gameContainer, graphics);
         particleManager.render(graphics);
         btnManager.render(gameContainer, graphics);
-        titleText.render(gameContainer, graphics);
-        difficultyText.render(gameContainer, graphics);
-        miniBalloonDiff.render(gameContainer, graphics);
-        miniBalloonMusic.render(gameContainer, graphics);
-        musicText.render(gameContainer, graphics);
+        graphics.setColor(new Color(0,0,0,0.3f));
+        graphics.fillRect(60,130,790,450);
+        graphics.setColor(Color.white);
+        font.drawString(70,150, "The International Balloonatic Challenge");
+        font.drawString(70,200, "is an annual event where Balloonatics");
+        font.drawString(70,250, "challenge themselves against the harsh");
+        font.drawString(70,300, "terrain.");
+        font.drawString(70,400, "Diago is the reigning champion, it ");
+        font.drawString(70,450, "is up to you to beat him.");
+        font.drawString(70,500, "Are you a true Ballonatic?");
+
+
+
+
+
     }
 
     @Override
@@ -98,38 +96,6 @@ public class SettingsState extends BasicGameState implements ClickListener {
 
     @Override
     public void onClick(Button clicked, float mx, float my) {
-        if (clicked == btnManager.getById("btnSoundOn")) {
-            miniBalloonMusic.setY(370f);
-            Game.music = true;
-            MenuState.bGM.loop();
-            //switch music on
-        }
-
-        if (clicked == btnManager.getById("btnSoundOff")) {
-            miniBalloonMusic.setY(420f);
-            Game.music = false;
-            MenuState.bGM.stop();
-            //switch music off
-
-        }
-
-        if (clicked == btnManager.getById("btnHard")) {
-            miniBalloonDiff.setY(470f);
-            //do something to affect difficulty
-
-        }
-
-        //if (clicked == btnManager.getById("btnLearner")) {
-            //miniBalloonDiff.setY(360f);
-            //do something to affect difficulty
-
-       // }
-
-        if (clicked == btnManager.getById("btnPilot")) {
-            miniBalloonDiff.setY(410f);
-            //do something to affect difficulty
-
-        }
 
         if (clicked == btnManager.getById("btnBack")) {
             stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());

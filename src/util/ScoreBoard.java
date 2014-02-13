@@ -48,36 +48,29 @@ public class ScoreBoard {
         int i = scores.size() - 1;                                    //index set to size of array -1
 
         if (score <= (scores.get(i).score)) {
-            if (scores.size()>4){
+            if (scores.size() > 4) {
                 return false;
-            }else{
+            } else {
                 scores.add(new ScoreData(name, score));
                 return true;
             }
         } else {
 
 
-
             while (i > 0 && score > (scores.get(i).score)) {                         //while the score is greater than the score at the index
                 i--;
             }
-            if(score>=(scores.get(i).score))
-            {
-                scores.add(i,new ScoreData(name,score));
-            }
-            else{
-                scores.add(i+1,new ScoreData(name,score));
+            if (score >= (scores.get(i).score)) {
+                scores.add(i, new ScoreData(name, score));
+            } else {
+                scores.add(i + 1, new ScoreData(name, score));
             }
         }
-        if (scores.size()>5)
-        {
-            scores.remove(scores.size()-1);
+        if (scores.size() > 5) {
+            scores.remove(scores.size() - 1);
         }
         return true;
     }
-
-
-
 
 
     public String displayScore() {
@@ -98,12 +91,12 @@ public class ScoreBoard {
         return scores.get(i).name;
     }
 
-    public void setX(int i, float x){
+    public void setX(int i, float x) {
         scores.get(i).x = x;
     }
 
-    public float getX(int i){
-       return scores.get(i).x;
+    public float getX(int i) {
+        return scores.get(i).x;
     }
 
     private class ScoreData {
@@ -117,8 +110,8 @@ public class ScoreBoard {
             this.score = score;
         }
 
-        public float showMeYourScore(){
-            return score +.0f;
+        public float showMeYourScore() {
+            return score + .0f;
         }
 
         public String toString() {

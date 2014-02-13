@@ -4,10 +4,7 @@ import game.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import util.ParticleManager;
 import util.Utils;
-
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +13,7 @@ import java.util.Random;
  * Time: 12:38 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Feather extends SceneObject{
+public class Feather extends SceneObject {
 
     public Feather() throws SlickException {
         super("data/particles/feather.png", false);
@@ -37,8 +34,8 @@ public class Feather extends SceneObject{
     @Override
     public void move(int delta) {
         x -= delta * 0.2;
-        y += delta * 0.15 * Utils.randomizer.nextInt(3) -  Utils.randomizer.nextInt(2);
-            image.setRotation(Utils.randomizer.nextInt(80) - Utils.randomizer.nextInt(40));
+        y += delta * 0.15 * Utils.randomizer.nextInt(3) - Utils.randomizer.nextInt(2);
+        image.setRotation(Utils.randomizer.nextInt(80) - Utils.randomizer.nextInt(40));
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.newdawn.slick.Sound;
  * Time: 1:15 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PShield extends Powerup implements BalloonEffect{
+public class PShield extends Powerup implements BalloonEffect {
 
     private Image circle = new Image("data/image/bubble.png");
 
@@ -24,8 +24,11 @@ public class PShield extends Powerup implements BalloonEffect{
     private int counter;
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6006a949df11b0e9770a198d519df3f1fbee513f
     public PShield() throws SlickException {
         super("data/image/shield.png");
         this.invisibleInterval = 2500;
@@ -41,20 +44,19 @@ public class PShield extends Powerup implements BalloonEffect{
 
     @Override
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
-        if(!sceneHandler.isPaused()){
+        if (!sceneHandler.isPaused()) {
             balloon.setLockLife(true);
             balloon.setRenderLock(false);
-            counter ++;
-            if(counter > 2000) {        //shield blinks when about to expire
-                if(counter%10==0) {
-                    circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
+            counter++;
+            if (counter > 2000) {        //shield blinks when about to expire
+                if (counter % 10 == 0) {
+                    circle.draw(balloon.getX() - balloon.getImage().getWidth(), balloon.getY() - balloon.getImage().getWidth());
                 }
                 //counter ++;
+            } else {
+                circle.draw(balloon.getX() - balloon.getImage().getWidth(), balloon.getY() - balloon.getImage().getWidth());
             }
-            else {
-                circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
-            }
-            if(counter == invisibleInterval){
+            if (counter == invisibleInterval) {
                 balloon.removeBalloonEffect("shield");
                 balloon.setLockLife(false);
                 Game.AUDIO.SHIELD_POP.play(1,.8f);

@@ -1,7 +1,7 @@
 package graphic.powerup;
 
 import graphic.Balloon;
-import org.newdawn.slick.GameContainer;import graphic.BalloonEffect;
+import graphic.BalloonEffect;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -13,7 +13,7 @@ import org.newdawn.slick.Sound;
  * Time: 12:44 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PFuel extends Powerup implements BalloonEffect{
+public class PFuel extends Powerup implements BalloonEffect {
 
     private Sound pickup;
 
@@ -41,7 +41,8 @@ public class PFuel extends Powerup implements BalloonEffect{
     }
 
     @Override
-    public void drawOnBalloon(Balloon balloon, Graphics graphics) {}
+    public void drawOnBalloon(Balloon balloon, Graphics graphics) {
+    }
 
     @Override
     public boolean isDrawnOnFront() {

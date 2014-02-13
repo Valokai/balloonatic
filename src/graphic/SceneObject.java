@@ -2,7 +2,6 @@ package graphic;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.util.Log;
 
 import java.util.HashSet;
 
@@ -18,7 +17,7 @@ import java.util.HashSet;
  * Scene Objects are sprite which does not react or effect the game. They are just used for visual presentation.
  * Flying leaves, for instance
  */
-public abstract class   SceneObject extends Sprite{
+public abstract class SceneObject extends Sprite {
 
     /**
      * Can a player collide with this object.
@@ -28,21 +27,22 @@ public abstract class   SceneObject extends Sprite{
     private HashSet<String> mask;
 
 
-
     /**
      * Constructor
+     *
      * @param imagePath path to image file
      * @throws SlickException
      */
     protected SceneObject(String imagePath, boolean isCollidable) throws SlickException {
-            super(imagePath);
+        super(imagePath);
         this.isCollidable = isCollidable;
     }
 
     /**
      * Constructor
-     * @param x x position
-     * @param y y position
+     *
+     * @param x         x position
+     * @param y         y position
      * @param imagePath path to image file
      * @throws SlickException
      */
@@ -60,11 +60,11 @@ public abstract class   SceneObject extends Sprite{
     public HashSet<String> getMask() {
         mask = new HashSet<String>();
         int iw = image.getWidth() / 2;
-        int ih = image.getHeight() /2;
-        for(int i = 0; i < image.getWidth(); i++){ // for every (x,y) component in the given box,
-            for( int j = 0; j < image.getHeight(); j++){
-                if(image.getColor(i, j).getAlpha() != 0){  // if the alpha is not 0, it must be something other than transparent
-                    mask.add((int)(x-iw+i)+","+(int)(y-ih+j)); // add the absolute x and absolute y coordinates to our set
+        int ih = image.getHeight() / 2;
+        for (int i = 0; i < image.getWidth(); i++) { // for every (x,y) component in the given box,
+            for (int j = 0; j < image.getHeight(); j++) {
+                if (image.getColor(i, j).getAlpha() != 0) {  // if the alpha is not 0, it must be something other than transparent
+                    mask.add((int) (x - iw + i) + "," + (int) (y - ih + j)); // add the absolute x and absolute y coordinates to our set
                 }
             }
         }
@@ -77,14 +77,16 @@ public abstract class   SceneObject extends Sprite{
     public abstract void move(int delta);
 
 
-
     /**
      * Check if this object is out of screen
+     *
      * @return true if this object is out of screen, otherwise false
      */
     public abstract boolean isReadyForDisposal();
 
-    /**colliding status
+    /**
+     * colliding status
+     *
      * @return true if the sprite is collidable, false for not
      */
     public boolean isCollidable() {
@@ -96,18 +98,18 @@ public abstract class   SceneObject extends Sprite{
     }
 
 
-    public  HashSet<String> showMask(){
+    public HashSet<String> showMask() {
         return mask;
     }
 
     public boolean isCollided(SceneObject collidable) {
-        if(collidable != null && collidable.isCollidable()){
+        if (collidable != null && collidable.isCollidable()) {
 
             HashSet<String> maskPlayer2 = collidable.getMask();
             HashSet<String> maskPlayer1 = getMask();
             maskPlayer1.retainAll(maskPlayer2);  // Check to see if any pixels in maskPlayer2 are the same as those in maskPlayer1
 
-            if(!maskPlayer1.isEmpty()){  // if so, than there exists at least one pixel that is the same in both images, thus
+            if (!maskPlayer1.isEmpty()) {  // if so, than there exists at least one pixel that is the same in both images, thus
                 return true;
             }
         }

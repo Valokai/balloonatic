@@ -13,7 +13,7 @@ import org.newdawn.slick.geom.Circle;
  * Time: 11:25 AM
  * To change this template use File | Settings | File Templates.
  */
-public class PCharge extends Powerup implements BalloonEffect{
+public class PCharge extends Powerup implements BalloonEffect {
 
     private Circle circle;
     private int counter;
@@ -34,21 +34,20 @@ public class PCharge extends Powerup implements BalloonEffect{
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
         balloon.setLockLife(false);
         balloon.setRenderLock(false);
-        counter ++;
-        if(counter > 2000) {        //shield blinks when about to expire
-            if(counter%10==0) {
-                circle.setX(balloon.getX()-balloon.getImage().getWidth());
-                circle.setY(balloon.getY()-balloon.getImage().getWidth());
+        counter++;
+        if (counter > 2000) {        //shield blinks when about to expire
+            if (counter % 10 == 0) {
+                circle.setX(balloon.getX() - balloon.getImage().getWidth());
+                circle.setY(balloon.getY() - balloon.getImage().getWidth());
                 graphics.fill(circle);
             }
             //counter ++;
-        }
-        else {
-            circle.setX(balloon.getX()-balloon.getImage().getWidth());
-            circle.setY(balloon.getY()-balloon.getImage().getWidth());
+        } else {
+            circle.setX(balloon.getX() - balloon.getImage().getWidth());
+            circle.setY(balloon.getY() - balloon.getImage().getWidth());
             graphics.fill(circle);
         }
-        if(counter == invisibleInterval){
+        if (counter == invisibleInterval) {
             balloon.removeBalloonEffect("charge");
             balloon.setLockLife(false);
         }

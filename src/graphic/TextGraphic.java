@@ -13,10 +13,10 @@ public class TextGraphic extends Sprite {
         super(x, y, path);
     }
 
-    /**render the image
-     *
+    /**
+     * render the image
      */
-    public void render(){
+    public void render() {
         image.drawCentered(x, y);
     }
 }
