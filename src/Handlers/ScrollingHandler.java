@@ -123,10 +123,10 @@ public class ScrollingHandler {
         }
         renderlist.get(0).move(moveX, moveY);
 
-        if (getRepeat() % 8 == 0 && this.name.equals("frontground")) {
-            if (difficulty != -0.01) difficulty = -0.01;
+       // if (getRepeat() % 8 == 0 && this.name.equals("frontground")) {
+        //    if (difficulty != -0.01) difficulty = -0.01;
 
-        }
+        //}
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground") || name.equals("cavefront")) {
