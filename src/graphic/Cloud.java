@@ -47,4 +47,9 @@ public class Cloud extends Powerup implements BalloonEffect {
     public boolean isDrawnOnFront() {
         return false;
     }
+
+    @Override
+    public boolean isReadyForDisposal() {
+        return (x < - image.getWidth()- 100);
+    }
 }

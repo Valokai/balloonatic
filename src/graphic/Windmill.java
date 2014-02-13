@@ -105,4 +105,9 @@ public class Windmill extends Powerup implements BalloonEffect {
     public boolean isDrawnOnFront() {
         return false;
     }
+
+    @Override
+    public boolean isReadyForDisposal() {
+        return (x < - image.getWidth()- 100);    //To change body of overridden methods use File | Settings | File Templates.
+    }
 }

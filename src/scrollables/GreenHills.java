@@ -35,7 +35,6 @@ public class GreenHills extends Background {
             this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
             setCoordinates(Arrays.asList(
                     new Vector2f(529.0f + 1400, 510.0f)
-                   // new Vector2f(1385.0f + 1400, 343.0f)
             ));
             setWindmillCoordinates(Arrays.asList(
                     new Vector2f(100.0f + 1400, 550.0f),
@@ -61,8 +60,8 @@ public class GreenHills extends Background {
             ));
             setWindmillCoordinates(Arrays.asList(
                     new Vector2f(729.0f + 1400, 300.0f),
-                    new Vector2f(1029.0f + 1400, 600.0f),
-                    new Vector2f(2009.0f + 1400, 450.0f)
+                    new Vector2f(1029.0f + 1400, 600.0f)
+                   // new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
             setCloudCoordinates(Arrays.asList(
@@ -76,8 +75,8 @@ public class GreenHills extends Background {
             this.setImage("data/image/backgrounds/Hills3c.png");
             this.setCollisionImage("data/image/backgrounds/Hills3c_mask.png");
 
-            setWindmillCoordinates(Arrays.asList(
-                    new Vector2f(100.0f + 1400, 550.0f)
+           setWindmillCoordinates(Arrays.asList(
+                    new Vector2f(0f + 1400, 650.0f)
             ));
 
             setCloudCoordinates(Arrays.asList(
@@ -97,8 +96,7 @@ public class GreenHills extends Background {
             ));
 
             setWindmillCoordinates(Arrays.asList(
-                    new Vector2f(100.0f + 1400, 550.0f),
-                    new Vector2f(2009.0f + 1400, 450.0f)
+                    new Vector2f(100.0f + 1400, 550.0f)
             ));
 
             setCloudCoordinates(Arrays.asList(
@@ -134,10 +132,10 @@ public class GreenHills extends Background {
             //        new Vector2f(529.0f + 1400, 210.0f)
             //));
 
-            setWindmillCoordinates(Arrays.asList(
+            /*setWindmillCoordinates(Arrays.asList(
                     new Vector2f(100.0f + 1400, 550.0f),
                     new Vector2f(2009.0f + 1400, 450.0f)
-            ));
+            ));*/
 
             setCloudCoordinates(Arrays.asList(
                     new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
@@ -152,10 +150,10 @@ public class GreenHills extends Background {
                     new Vector2f(2385.0f + 1400, 343.0f)
             ));
 
-            setWindmillCoordinates(Arrays.asList(
+            /*setWindmillCoordinates(Arrays.asList(
                     new Vector2f(100.0f + 1400, 550.0f),
                     new Vector2f(2009.0f + 1400, 450.0f)
-            ));
+            )); */
 
             setCloudCoordinates(Arrays.asList(
                     new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
