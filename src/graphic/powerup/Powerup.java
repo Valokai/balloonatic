@@ -35,7 +35,8 @@ public abstract class Powerup extends SceneObject {
 
     @Override
     public void move(int delta) {
-        x += delta / 1000 - 4;
+        if(balloon.getLives()>0)
+            x += delta / 1000 - 4;
     }
 
     @Override

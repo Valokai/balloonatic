@@ -87,10 +87,6 @@ public class Windmill extends Powerup implements BalloonEffect {
 
     }
 
-    @Override
-    public void move(int delta) {
-        x += delta / 1000 + this.step;
-    }
 
     @Override
     public void render(GameContainer gc, Graphics graphics) {
