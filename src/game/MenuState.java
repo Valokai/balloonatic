@@ -42,7 +42,7 @@ public class MenuState extends BasicGameState implements ClickListener {
         bGM = new Music("data/sound/field/fieldbgm.ogg");
         btnManager = new ButtonManager(this);
         btnManager.addButton(130, 300, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
-        btnManager.addButton(140, 400, "data/buttons/CheatCode_1.png", "data/buttons/CheatCode_1.png", "data/sound/critical.ogg", "btnStory");
+        btnManager.addButton(140, 400, "data/image/text/Story.png", "data/image/text/Story2.png", "data/sound/critical.ogg", "btnStory");
         btnManager.addButton(140, 500, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
         btnManager.addButton(140, 600, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
         //btnManager.addButton(140, 150, "data/buttons/CheatCode_1.png", "data/buttons/CheatCode_1.png", "data/sound/critical.ogg", "btnStory");
@@ -59,18 +59,6 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-
-
-        if (Game.music) {
-            bGM.loop();
-        }
-
-
-
-        if (Game.music) {
-            bGM.loop();
-        }
-
     }
 
     @Override
