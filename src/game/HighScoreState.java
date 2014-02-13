@@ -1,6 +1,9 @@
 package game;
 
-import org.newdawn.slick.*;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
@@ -36,8 +39,8 @@ public class HighScoreState extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         mainGame.getState(Game.STATE.MAIN).render(gameContainer, stateBasedGame, graphics);
 
-        graphics.setColor(new Color(0,0,0,0.3f));
-        graphics.fillRect(0,0,1280,720);
+        graphics.setColor(new Color(0, 0, 0, 0.3f));
+        graphics.fillRect(0, 0, 1280, 720);
 
         Game.fieldFont.drawString(
                 MainGame.SCREEN_WIDTH / 2.0f,

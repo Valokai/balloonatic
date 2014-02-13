@@ -40,10 +40,11 @@ public class ScrollingHandler {
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
 
-    /**constructor, initializes variables
+    /**
+     * constructor, initializes variables
      *
-     * @param name       name of this object
-     * @param firstbackground  the first image in the list
+     * @param name            name of this object
+     * @param firstbackground the first image in the list
      */
     public ScrollingHandler(String name, Background firstbackground) {
         renderlist = new ArrayList<Background>();
@@ -53,16 +54,18 @@ public class ScrollingHandler {
         this.name = name;
     }
 
-    /**add a new scrollable sprite to this scrollable
+    /**
+     * add a new scrollable sprite to this scrollable
      *
-     * @param bg  background you want to add to this scrollable
+     * @param bg background you want to add to this scrollable
      */
     public void add(Background bg) {
         bglist.add(bg);
     }
 
 
-    /**print the stats for error checking
+    /**
+     * print the stats for error checking
      *
      * @param g
      * @param x
@@ -76,14 +79,13 @@ public class ScrollingHandler {
         // g.drawString("PosX(0): " + renderlist.get(0).getX(), x, y+60);
         // g.drawString("count: " + count, x, y+80);
 
-        if(renderlist.size()>1 && renderlist.get(0).getX()<-2120) {
-            if(renderlist.get(1).isCollidable()) { //if its collidable, check for collide
+        if (renderlist.size() > 1 && renderlist.get(0).getX() < -2120) {
+            if (renderlist.get(1).isCollidable()) { //if its collidable, check for collide
                 renderlist.get(1).checkCollide(name, renderlist.get(1).getX(), renderlist.get(1).getY(), g, balloon, 400, (name.equals("background")) ? 400 : 500);
                 collider2 = renderlist.get(1).isColliding();
             }
-        }
-        else {
-            if(renderlist.get(0).isCollidable()) {    //if its collidable, check for collide
+        } else {
+            if (renderlist.get(0).isCollidable()) {    //if its collidable, check for collide
                 renderlist.get(0).checkCollide(name, renderlist.get(0).getX(), renderlist.get(0).getY(), g, balloon, 400, (name.equals("background")) ? 400 : 500);
                 collider = renderlist.get(0).isColliding();
             }
@@ -91,54 +93,55 @@ public class ScrollingHandler {
 
     }
 
-    public float getDistance(){
+    public float getDistance() {
         return distance;
     }
 
-    /**renders all the images in the renderlist
-     *
+    /**
+     * renders all the images in the renderlist
      */
     public void render(GameContainer gameContainer, Graphics graphics) {
-        for(int i = 0; i<renderlist.size(); i++) {
+        for (int i = 0; i < renderlist.size(); i++) {
             renderlist.get(i).render(gameContainer, graphics);
         }
         sceneHandler.render(gameContainer, graphics);
     }
 
-    /**updates image locations, sets new images to be rendered, recycles images for infinite loop
+    /**
+     * updates image locations, sets new images to be rendered, recycles images for infinite loop
      *
      * @param moveX   amount to move the x-coordinate by
      * @param moveY   amount to move the y-coordinate by
      * @param balloon original balloon object needed for collision
      */
     public void update(float moveX, float moveY, Balloon balloon, StateBasedGame stateBasedGame) {
-        if (DeadPlayersSpawned == false){
+        if (DeadPlayersSpawned == false) {
             spawnDeadPlayers();
             DeadPlayersSpawned = true;
         }
         renderlist.get(0).move(moveX, moveY);
 
-        if(getRepeat()%8==0 && this.name.equals("frontground")) {
-            if(difficulty != -0.01) difficulty = -0.01;
+        if (getRepeat() % 8 == 0 && this.name.equals("frontground")) {
+            if (difficulty != -0.01) difficulty = -0.01;
 
         }
 
         /*calculate the balloons horizontal movement if it's the collidable frontground */
-        if (name.equals("frontground") || name.equals("cavefront")){
+        if (name.equals("frontground") || name.equals("cavefront")) {
 //            distance -= moveX / 100;
             distance -= moveX / 10;
             moveDeadPlayerText(moveX);
         }
 
-        if((((Math.random() * 9000) + 1000) / 1000.0 > (9.97 + difficulty)) && getLevel().equals("hills")) {      //chance to spawn a bird formation
+        if ((((Math.random() * 9000) + 1000) / 1000.0 > (9.97 + difficulty)) && getLevel().equals("hills")) {      //chance to spawn a bird formation
             spawnBirds();
         }
-        if((((Math.random() * 9000) + 1000) / 1000.0 > 9.99) && getLevel().equals("hills")) {      //chance to spawn a bird formation
+        if ((((Math.random() * 9000) + 1000) / 1000.0 > 9.99) && getLevel().equals("hills")) {      //chance to spawn a bird formation
             spawnSpiral();
         }
 
         /*handles the images, loads the next one when needed and rsemoves the previous when not needed*/
-        if(renderlist.get(0).getX() == -1000.0) {
+        if (renderlist.get(0).getX() == -1000.0) {
             renderlist.add(bglist.get(count));
             repeat++;
             Background backgroundHill = renderlist.get(1);
@@ -146,43 +149,44 @@ public class ScrollingHandler {
             count++;
 
         }
-        if(renderlist.get(0).getX() < -1000.0) {
+        if (renderlist.get(0).getX() < -1000.0) {
             renderlist.get(1).move(moveX, moveY);
         }
 
-        if(renderlist.get(0).getX() == -2600.0) {
+        if (renderlist.get(0).getX() == -2600.0) {
             renderlist.remove(0);
         }
 
-        if(count == bglist.size()) {
+        if (count == bglist.size()) {
             count = 0;
         }
 
-        collideCheck(balloon);
-    }
+        collideCheck(balloon);    }
 
-    public void collideCheck(Balloon balloon){
-        if(renderlist.size()==2 && renderlist.get(0).getX() <= -2120 && (name.equals("frontground") || name.equals("cavefront"))) {
-            if(collider2) {
+    public void collideCheck(Balloon balloon) {
+        if (renderlist.size() == 2 && renderlist.get(0).getX() <= -2120 && (name.equals("frontground") || name.equals("cavefront"))) {
+            if (collider2) {
                 balloon.setLives(0);  //decrease the lives because they collide*/
                 if(balloon.isLockLife()) {
                     balloon.setSpeed(-300);
+              //      if (balloonbouncetimer<=6){
                     balloonbouncetimer++;
+              //          balloonbouncetimer=0;
                 }
                 return;
             }
 
-        }  else {
-            if(collider) {
+        } else {
+            if (collider) {
                 balloon.setLives(0);
-                if(balloon.isLockLife()) {
-             //       if(balloonbouncetimer<3){
-                        balloon.setSpeed(-300);
+                if (balloon.isLockLife()) {
+                    //       if(balloonbouncetimer<3){
+                    balloon.setSpeed(-300);
 //                    } else {
 //                        balloon.setSpeed(220);
 //                    }
 //                    if (balloonbouncetimer<=6){
-                        balloonbouncetimer++;
+                    balloonbouncetimer++;
 //                    } else{
 //                        balloonbouncetimer=0;
 //                    }
@@ -201,16 +205,16 @@ public class ScrollingHandler {
     }
 
     public void spawnDeadPlayers() {
-        for (int i = 0; i < Game.SBoard.scores.size(); i++){
+        for (int i = 0; i < Game.SBoard.scores.size(); i++) {
             System.err.println(Game.SBoard.showScore(i));
-            sceneHandler.spawn(Game.SBoard.showScore(i)*10+280,650, DeadPlayer.class, "Dead Player" + i);
-            Game.SBoard.setX(i,Game.SBoard.showScore(i)*10+280); // set initial hiscore name text position
+            sceneHandler.spawn(Game.SBoard.showScore(i) * 10 + 280, 650, DeadPlayer.class, "Dead Player" + i);
+            Game.SBoard.setX(i, Game.SBoard.showScore(i) * 10 + 280); // set initial hiscore name text position
         }
     }
 
     public void moveDeadPlayerText(float movex) {
-        for (int i = 0; i < Game.SBoard.scores.size(); i++){
-            Game.SBoard.setX(i,Game.SBoard.getX(i)+movex);
+        for (int i = 0; i < Game.SBoard.scores.size(); i++) {
+            Game.SBoard.setX(i, Game.SBoard.getX(i) + movex);
         }
     }
 

@@ -1,6 +1,5 @@
 package graphic.powerup;
 
-import game.Game;
 import graphic.Balloon;
 import graphic.SceneObject;
 import handlers.SceneHandler;
@@ -14,7 +13,7 @@ import org.newdawn.slick.SlickException;
  * Time: 12:36 PM
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Powerup extends SceneObject{
+public abstract class Powerup extends SceneObject {
 
     private Balloon balloon;
     private int timesrotated;
@@ -36,7 +35,7 @@ public abstract class Powerup extends SceneObject{
 
     @Override
     public void move(int delta) {
-        x += delta/1000 - 4;
+        x += delta / 1000 - 4;
     }
 
     @Override
@@ -44,19 +43,18 @@ public abstract class Powerup extends SceneObject{
         return x < 0;
     }
 
-    public void rotate(){
-        if (timesrotated == 10){
+    public void rotate() {
+        if (timesrotated == 10) {
             clockwise = false;
         }
-        if (timesrotated == -10){
+        if (timesrotated == -10) {
             clockwise = true;
         }
 
-        if (clockwise){
+        if (clockwise) {
             getImage().rotate(3);
             timesrotated++;
-        }
-        else if (!clockwise){
+        } else if (!clockwise) {
             getImage().rotate(-3);
             timesrotated--;
         }
@@ -67,8 +65,8 @@ public abstract class Powerup extends SceneObject{
     @Override
     public void update(GameContainer gameContainer, int delta) {
         super.update(gameContainer, delta);
-        if(x > 0 && x < 400){
-            if(isCollided(balloon)){
+        if (x > 0 && x < 400) {
+            if (isCollided(balloon)) {
                 onCollideWithBalloon(balloon);
             }
         }

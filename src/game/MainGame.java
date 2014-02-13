@@ -4,8 +4,6 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import util.GameFont;
-import util.ScoreBoard;
 
 import java.awt.*;
 
@@ -28,10 +26,10 @@ public class MainGame extends StateBasedGame {
     public MainGame() {
         super(Game.TITLE);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        if(OS.indexOf("mac") >= 0){
+        if (OS.indexOf("mac") >= 0) {
             SCREEN_WIDTH = gd.getDisplayMode().getWidth();
             SCREEN_HEIGHT = gd.getDisplayMode().getHeight();
-        }else{
+        } else {
             SCREEN_WIDTH = 1280;
             SCREEN_HEIGHT = 720;
         }
@@ -45,6 +43,7 @@ public class MainGame extends StateBasedGame {
         addState(new EnterNameState());
         addState(new EnterCheatcodeState());
         addState(new SettingsState());
+        addState(new StoryState());
         enterState(Game.STATE.MENU);
     }
 

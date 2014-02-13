@@ -1,6 +1,9 @@
 package game;
 
-import graphic.*;
+import graphic.Balloon;
+import graphic.FuelGauge;
+import graphic.FuelGaugeCover;
+import graphic.Sprite;
 import handlers.SceneHandler;
 import handlers.ScrollingHandler;
 import org.newdawn.slick.*;
@@ -8,7 +11,10 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.state.transition.CombinedTransition;
-import scrollables.*;
+import scrollables.BackHills;
+import scrollables.Cave;
+import scrollables.GreenHills;
+import scrollables.SecondHills;
 import util.GameFont;
 import util.ParticleManager;
 
@@ -106,33 +112,32 @@ public class MainState extends BasicGameState {
                 GameFont.Alignment.LEFT,
                 Color.yellow);
 
-        fuelGague.draw(0,80,90,590);
-        fuelGagueCover.draw(20,150 + (500 - balloon.getFuel()/2), 50, 8);
+        fuelGague.draw(0, 80, 90, 590);
+        fuelGagueCover.draw(20, 150 + (500 - balloon.getFuel() / 2), 50, 8);
 
-        if(introduction) {
+        if (introduction) {
             graphics.setFont(font);
-            graphics.setColor(new Color(0,0,0,0.1f));
-            graphics.fillRect(0,0,1280,720);
+            graphics.setColor(new Color(0, 0, 0, 0.1f));
+            graphics.fillRect(0, 0, 1280, 720);
 
-            if(paused) {
-                drawCenter(font,"PRESS SPACE TO CONTINUE",gameContainer.getWidth()/2,280,50,Color.white);
-                drawCenter(font,"PAUSED",gameContainer.getWidth()/2,50,50,Color.red);
-                drawCenter(font,"PRESS ESC TO QUIT",gameContainer.getWidth()/2,600,50,Color.red);
+            if (paused) {
+                drawCenter(font, "PRESS SPACE TO CONTINUE", gameContainer.getWidth() / 2, 280, 50, Color.white);
+                drawCenter(font, "PAUSED", gameContainer.getWidth() / 2, 50, 50, Color.red);
+                drawCenter(font, "PRESS ESC TO QUIT", gameContainer.getWidth() / 2, 600, 50, Color.red);
             } else {
                 graphics.setColor(Color.white);
                 graphics.drawString("Hold space to go up.", 450, 280.0f);
                 graphics.drawString("The Birds and the Bees deplete your fuel.", 250, 400.0f);
             }
         }
-
     }
 
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         Input input = gameContainer.getInput();
-        if(input.isKeyPressed(Input.KEY_ESCAPE)) {
-            if(paused){
+        if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+            if (paused) {
                 stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
             } else {
                 introduction = true;
@@ -140,8 +145,8 @@ public class MainState extends BasicGameState {
                 sceneHandler.pause();
             }
         }
-        if(introduction) {      //if paused for introduction
-            if(input.isKeyDown(Input.KEY_SPACE)) {
+        if (introduction) {      //if paused for introduction
+            if (input.isKeyDown(Input.KEY_SPACE)) {
                 introduction = false;
                 paused = false;
                 sceneHandler.unpause();
