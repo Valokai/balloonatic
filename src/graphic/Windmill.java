@@ -24,7 +24,7 @@ public class Windmill extends Powerup implements BalloonEffect {
         wm = new Animation(wmSheet, 100);
         wm.setAutoUpdate(false);
 
-        this.scale = .5f + (int)(Math.random() * ((2.5 - .5) + 1));
+        this.scale = .8f + (int)(Math.random() * ((1.8 - .8) + 1));
         this.colour = null;
         this.step = -4;
     }
