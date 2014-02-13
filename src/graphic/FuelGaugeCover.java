@@ -9,18 +9,17 @@ import org.newdawn.slick.SlickException;
  * Time: 12:58 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FuelGaugeCover extends Sprite{
+public class FuelGaugeCover extends Sprite {
 
     public FuelGaugeCover() throws SlickException {
         super("data/image/fuelPointer.png");
     }
 
 
-
-    /**render the image
-     *
+    /**
+     * render the image
      */
-    public void render(){
+    public void render() {
         image.drawCentered(x, y);
     }
 }

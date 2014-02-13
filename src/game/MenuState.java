@@ -4,7 +4,6 @@ import com.aem.sticky.button.Button;
 import com.aem.sticky.button.events.ClickListener;
 import graphic.Background;
 import graphic.TextGraphic;
-import handlers.SceneHandler;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -24,7 +23,7 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     private ButtonManager btnManager;
     private Background background;
-    public static  Music bGM = null;
+    public static Music bGM = null;
     private ParticleManager particleManager = new ParticleManager();
     private TextGraphic titleText;
 
@@ -38,31 +37,28 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     @Override
     public void init(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-        bGM = new Music("data/sound/field/fieldbgm.ogg");
-
         this.stateBasedGame = stateBasedGame;
         this.gameContainer = gameContainer;
-
+        bGM = new Music("data/sound/field/fieldbgm.ogg");
         btnManager = new ButtonManager(this);
-        btnManager.addButton(130, 280, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
-        btnManager.addButton(140, 365, "data/buttons/cheatCode_1.png", "data/buttons/cheatCode_2.png", "data/sound/critical.ogg", "btnCheckpoint");
-        btnManager.addButton(140, 455, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
-        btnManager.addButton(140, 540, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
+        btnManager.addButton(130, 300, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
+        btnManager.addButton(140, 400, "data/image/text/Story.png", "data/image/text/Story.png", "data/sound/critical.ogg", "btnStory");
+        btnManager.addButton(140, 500, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
+        btnManager.addButton(140, 600, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
+        //btnManager.addButton(140, 150, "data/buttons/CheatCode_1.png", "data/buttons/CheatCode_1.png", "data/sound/critical.ogg", "btnStory");
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
-
+        particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
         if(Game.music){
             bGM.loop();
         }
-        particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
-//        particleManager.addParticle("data/particles/feather.xml", "data/particles/feather.png");
+
     }
 
 
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-
     }
 
     @Override
@@ -91,21 +87,24 @@ public class MenuState extends BasicGameState implements ClickListener {
         if (clicked == btnManager.getById("btnQuit")) {
             gameContainer.exit();
         }
-
-        if (clicked == btnManager.getById("btnCheckpoint")) {
-            stateBasedGame.enterState(Game.STATE.ENTERCHEATCODE, new CombinedTransition(), new BlobbyTransition());
+        if (clicked == btnManager.getById("btnStart")) {
+            stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
         }
-
         if (clicked == btnManager.getById("btnSettings")) {
             stateBasedGame.enterState(Game.STATE.SETTINGS, new CombinedTransition(), new BlobbyTransition());
+        }
+        if (clicked == btnManager.getById("btnStory")) {
+            stateBasedGame.enterState(Game.STATE.STORY, new CombinedTransition(), new BlobbyTransition());
         }
     }
 
     @Override
-    public void onRightClick(Button clicked, float mx, float my) {}
+    public void onRightClick(Button clicked, float mx, float my) {
+    }
 
     @Override
-    public void onDoubleClick(Button clicked, float mx, float my) {}
+    public void onDoubleClick(Button clicked, float mx, float my) {
+    }
 
     @Override
     public void keyPressed(int key, char c) {
@@ -113,5 +112,9 @@ public class MenuState extends BasicGameState implements ClickListener {
         if (key == Input.KEY_SPACE) {
             stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
         }
+        if (key == Input.KEY_ESCAPE) {
+            gameContainer.exit();
+        }
     }
+
 }

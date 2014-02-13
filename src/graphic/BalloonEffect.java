@@ -11,5 +11,6 @@ import org.newdawn.slick.Graphics;
  */
 public interface BalloonEffect {
     public void drawOnBalloon(Balloon balloon, Graphics graphics);
+
     public boolean isDrawnOnFront();
 }

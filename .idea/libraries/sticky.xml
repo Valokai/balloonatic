@@ -4,6 +4,8 @@
       <root url="jar://$PROJECT_DIR$/lib/sticky.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/sticky.zip!/Sticky/src" />
+    </SOURCES>
   </library>
 </component>

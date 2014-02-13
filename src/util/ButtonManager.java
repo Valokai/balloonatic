@@ -22,7 +22,7 @@ public class ButtonManager {
 
     private ClickListener clickListener;
 
-    public ButtonManager(ClickListener listener){
+    public ButtonManager(ClickListener listener) {
         this.clickListener = listener;
     }
 
@@ -37,13 +37,13 @@ public class ButtonManager {
         buttons.put(id, simpleButton);
     }
 
-    public void update(GameContainer gameContainer, int delta){
+    public void update(GameContainer gameContainer, int delta) {
         for (String s : buttons.keySet()) {
             buttons.get(s).update(gameContainer, delta);
         }
     }
 
-    public void render(GameContainer gameContainer, Graphics graphics){
+    public void render(GameContainer gameContainer, Graphics graphics) {
         for (String s : buttons.keySet()) {
             buttons.get(s).render(gameContainer, graphics);
         }
@@ -55,7 +55,7 @@ public class ButtonManager {
         }
     }
 
-    public SimpleButton getById(String id){
+    public SimpleButton getById(String id) {
         return buttons.get(id);
     }
 }

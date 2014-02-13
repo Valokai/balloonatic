@@ -1,13 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="Balloonatic:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Balloonatic_jar</output-path>
+  <artifact type="jar" build-on-make="true" name="Balloonatic:jar">
+    <output-path>$PROJECT_DIR$/../Balloonatic-Production</output-path>
     <root id="archive" name="Balloonatic.jar">
       <element id="module-output" name="Balloonatic" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/sticky.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lwjgl.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jogg-0.0.7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jorbis-0.0.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lwjgl.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/slick.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/sticky.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

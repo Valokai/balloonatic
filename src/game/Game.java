@@ -9,6 +9,7 @@ package game;
  */
 
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.TrueTypeFont;
 import util.GameFont;
 import util.ScoreBoard;
@@ -44,9 +45,13 @@ public class Game {
 
     public static TrueTypeFont scoreFont = null;
 
+    public static GameFont fieldFont = null;
+
+    public static GameFont highscoreFont;
+
     public static ScoreBoard SBoard = new ScoreBoard();
 
-    static{
+    static {
         if (titleFont == null) {
             try {
                 titleFont = new GameFont("data/fonts/Bauhaus93.fnt",
@@ -56,8 +61,25 @@ public class Game {
             }
         }
 
-        if(scoreFont == null){
-            scoreFont = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), false);
+        if (scoreFont == null) {
+            // scoreFont = new TrueTypeFont(new java.awt.Font("Hyperfont", 1, 28), false);
+            scoreFont = new TrueTypeFont(new java.awt.Font("Lucida Sans Typewriter", Font.BOLD, 28), true);
+        }
+
+        if (fieldFont == null) {
+            try {
+                fieldFont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (highscoreFont == null) {
+            try {
+                highscoreFont = new GameFont("data/fonts/Corbel16.fnt", "data/fonts/Corbel16.png");
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -76,15 +98,31 @@ public class Game {
     }
 
     public static class STATE {
+        public static final int STORY = 6;
         public static final int SETTINGS = 5;
         public static final int ENTERCHEATCODE = 4;
         public static final int ENTERNAME = 3;
         public static final int HISCORE = 2;
         public static final int MAIN = 1;
         public static final int MENU = 0;
-
-
     }
 
+    public static class AUDIO {
+
+        public static Sound SHIELD_POP;
+
+//        public static Sound NO;
+
+
+        static {
+            try {
+                SHIELD_POP = new Sound("data/sound/effects/pop.wav");
+//                NO = new Sound("data/sound/effects/no.wav");
+            } catch (SlickException e) {
+            }
+            ;
+        }
+
+    }
 
 }

@@ -8,7 +8,6 @@ package handlers;
  * To change this template use File | Settings | File Templates.
  */
 
-import game.Game;
 import graphic.SceneObject;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,9 +17,9 @@ import java.util.*;
 /**
  * This singleton class serves as a handler for all sceneobjects. It is responsible to
  * <ul>
- *     <li>Spwan Scene Object</li>
- *     <li>Maintain the life cycle of each scene object</li>
- *     <li>Detect Collision</li>
+ * <li>Spwan Scene Object</li>
+ * <li>Maintain the life cycle of each scene object</li>
+ * <li>Detect Collision</li>
  * </ul>
  */
 public class SceneHandler {
@@ -38,17 +37,20 @@ public class SceneHandler {
     /**
      * keys of scene object marked to be disposed.
      */
-    private volatile List<String> disposedSceneObjects = new ArrayList<String>();          
+    private volatile List<String> disposedSceneObjects = new ArrayList<String>();
 
-    static{
+    private boolean isPaused;
+
+    static {
         INSTANCE = new SceneHandler();
     }
 
     /**
      * Get SceneHandler Instance
+     *
      * @return SceneHandler instance
      */
-    public static SceneHandler getInstance(){
+    public static SceneHandler getInstance() {
         return INSTANCE;
     }
 
@@ -60,12 +62,13 @@ public class SceneHandler {
 
     /**
      * Spwan a given sceneobject at given x,y coordinates
-     * @param x x position of scene object to be spawned
-     * @param y y position of scene object to be spawned
+     *
+     * @param x     x position of scene object to be spawned
+     * @param y     y position of scene object to be spawned
      * @param clazz class decedanded from SceneObject to be spwaned (this class must have default constructor)
-     * @param id id for sceneobject to be spawned
+     * @param id    id for sceneobject to be spawned
      */
-    public SceneObject spawn(float x, float y, Class<? extends SceneObject> clazz, String id){
+    public SceneObject spawn(float x, float y, Class<? extends SceneObject> clazz, String id) {
         SceneObject sceneObject = null;
         try {
             sceneObject = clazz.newInstance();
@@ -82,11 +85,12 @@ public class SceneHandler {
 
     /**
      * Spwan a given sceneobject at given x,y coordinates
-     * @param x x position of scene object to be spawned
-     * @param y y position of scene object to be spawned
+     *
+     * @param x     x position of scene object to be spawned
+     * @param y     y position of scene object to be spawned
      * @param clazz class decedanded from SceneObject to be spwaned (this class must have default constructor)
      */
-    public SceneObject spawn(float x, float y, Class<? extends SceneObject> clazz){
+    public SceneObject spawn(float x, float y, Class<? extends SceneObject> clazz) {
         SceneObject sceneObject = null;
         try {
             sceneObject = clazz.newInstance();
@@ -103,57 +107,65 @@ public class SceneHandler {
 
     /**
      * Update handler
+     *
      * @param delta
      */
-    public void update(GameContainer gameContainer, int delta, float speedMultiplier){
-        SceneObject sceneObject;
-        try{
-            for (String key : registeredSceneObjects.keySet()) {
-                sceneObject = registeredSceneObjects.get(key);
-                if(sceneObject.isReadyForDisposal()){
-                    disposedSceneObjects.add(key);
-                }else{
-                    sceneObject.update(gameContainer, delta);
+    public void update(GameContainer gameContainer, int delta, float speedMultiplier) {
+        if (!isPaused) {
+            SceneObject sceneObject;
+            try {
+                for (String key : registeredSceneObjects.keySet()) {
+                    sceneObject = registeredSceneObjects.get(key);
+                    if (sceneObject.isReadyForDisposal()) {
+                        disposedSceneObjects.add(key);
+                    } else {
+                        sceneObject.update(gameContainer, delta);
+                    }
                 }
+                for (String key : disposedSceneObjects) {
+                    registeredSceneObjects.remove(key);
+                }
+                disposedSceneObjects.clear();
+            } catch (ConcurrentModificationException e) {
             }
-            for (String key : disposedSceneObjects) {
-                registeredSceneObjects.remove(key);
-            }
-            disposedSceneObjects.clear();
-        }catch (ConcurrentModificationException e){}
+        }
     }
 
     /**
      * Render SceneObjects
+     *
      * @param gc
      * @param graphics
      */
-    public void render(GameContainer gc, Graphics graphics){
+    public void render(GameContainer gc, Graphics graphics) {
+//        if(!isPaused){
         for (String key : registeredSceneObjects.keySet()) {
-              registeredSceneObjects.get(key).render(gc, graphics);
+            registeredSceneObjects.get(key).render(gc, graphics);
         }
-        printStat(graphics);
+//        }
+
     }
 
     /**
      * Register a sceneObject to this handler
+     *
      * @param sceneObject
      */
-    public void registerSceneObject(String id, SceneObject sceneObject){
-        synchronized (registeredSceneObjects){
+    public void registerSceneObject(String id, SceneObject sceneObject) {
+        synchronized (registeredSceneObjects) {
             registeredSceneObjects.put(id, sceneObject);
         }
     }
 
-    private void printStat(Graphics graphics){
+    private void printStat(Graphics graphics) {
         graphics.drawString("Number of SO : " + registeredSceneObjects.size(), 10, 30);
     }
 
-    public SceneObject getSceneObjectById(String id){
+    public SceneObject getSceneObjectById(String id) {
         return registeredSceneObjects.get(id);
     }
 
-    public void clearAll(){
+    public void clearAll() {
         registeredSceneObjects.clear();
         disposedSceneObjects.clear();
     }
@@ -166,11 +178,23 @@ public class SceneHandler {
         this.registeredSceneObjects = registeredSceneObjects;
     }
 
-    public void removeSceneObject(SceneObject sceneObject){
+    public void removeSceneObject(SceneObject sceneObject) {
         disposedSceneObjects.add(String.valueOf(sceneObject.hashCode()));
     }
 
-    public void removeSceneObjectById(String id){
+    public void removeSceneObjectById(String id) {
         disposedSceneObjects.add(id);
+    }
+
+    public void pause() {
+        this.isPaused = true;
+    }
+
+    public void unpause() {
+        this.isPaused = false;
+    }
+
+    public boolean isPaused() {
+        return isPaused;
     }
 }

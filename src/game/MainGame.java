@@ -4,8 +4,8 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import util.GameFont;
-import util.ScoreBoard;
+
+import java.awt.*;
 
 /**
  * User: Tin Htoo Aung
@@ -18,15 +18,14 @@ import util.ScoreBoard;
  */
 public class MainGame extends StateBasedGame {
 
-    public static final int SCREEN_WIDTH = 1280;
-    public static final int SCREEN_HEIGHT = 720;
-    public static boolean music = true;
+    public static int SCREEN_WIDTH = 1280;
+    public static int SCREEN_HEIGHT = 720;
+
+    private static String OS = System.getProperty("os.name").toLowerCase();
 
     public MainGame() {
         super(Game.TITLE);
     }
-
-
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
@@ -36,17 +35,22 @@ public class MainGame extends StateBasedGame {
         addState(new EnterNameState());
         addState(new EnterCheatcodeState());
         addState(new SettingsState());
+        addState(new StoryState());
         enterState(Game.STATE.MENU);
     }
 
     // Main entry point for the game, set up the app and its window etc u
     public static void main(String[] args) throws SlickException {
-
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        if (OS.indexOf("mac") >= 0) {
+            app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+        } else {
+            app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+        }
+
         app.setVSync(Game.VSYNC);
-//        app.setFullscreen(true);
-        //app.setShowFPS(Game.DEBUG.SHOW_FPS);
+        app.setShowFPS(false);
         app.start();
     }
 }

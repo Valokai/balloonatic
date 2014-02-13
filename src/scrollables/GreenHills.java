@@ -1,7 +1,9 @@
 package scrollables;
 
 import graphic.Background;
+import graphic.Windmill;
 import graphic.powerup.PFuel;
+import graphic.powerup.PGoldFuel;
 import graphic.powerup.PShield;
 import handlers.SceneHandler;
 import org.newdawn.slick.SlickException;
@@ -26,16 +28,17 @@ public class GreenHills extends Background {
         this.type = type;
         this.name = "hills";
 
-        if(type==1) {
+        if (type == 1) {
             this.setImage("data/image/backgrounds/Hills3a.png");
             this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
             setCoordinates(Arrays.asList(
                     new Vector2f(529.0f + 1400, 510.0f),
                     new Vector2f(1385.0f + 1400, 343.0f)
             ));
+
         }
 
-        if(type==2) {
+        if (type == 2) {
             this.setImage("data/image/backgrounds/Hills3b.png");
             this.setCollisionImage("data/image/backgrounds/Hills3b_mask.png");
             setCoordinates(Arrays.asList(
@@ -45,65 +48,57 @@ public class GreenHills extends Background {
             setShieldCoordinates(Arrays.asList(
                     new Vector2f(1400, 353.0f)
             ));
+            setWindmillCoordinates(Arrays.asList(
+                    new Vector2f(529.0f + 1400, 510.0f)
+            ));
         }
 
-        if(type==3) {
+        if (type == 3) {
             this.setImage("data/image/backgrounds/Hills3c.png");
             this.setCollisionImage("data/image/backgrounds/Hills3c_mask.png");
         }
 
-        if(type==4) {
+        if (type == 4) {
             this.setImage("data/image/backgrounds/Hills3d.png");
             this.setCollisionImage("data/image/backgrounds/Hills3d_mask.png");
             setCoordinates(Arrays.asList(
                     new Vector2f(1742.0f + 1400, 149.0f)
             ));
             setShieldCoordinates(Arrays.asList(
-                    new Vector2f(700.0f + 1400, 650.0f)
+                    new Vector2f(730.0f + 1400, 650.0f)
             ));
         }
 
-        if(type==5) {
+        if (type == 5) {
             this.setImage("data/image/backgrounds/Hills3e.png");
             this.setCollisionImage("data/image/backgrounds/Hills3e_mask.png");
             setShieldCoordinates(Arrays.asList(
-                    new Vector2f(897.0f + 1400, 353.0f)
-             ));
+                    new Vector2f(990.0f + 1400, 353.0f)
+            ));
         }
 
-        if(type==6) {
+        if (type == 6) {
             this.setImage("data/image/backgrounds/Hills3f.png");
             this.setCollisionImage("data/image/backgrounds/Hills3f_mask.png");
             setCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
                     new Vector2f(1385.0f + 1400, 343.0f)
             ));
+            //setGoldCoordinates(Arrays.asList(
+            //        new Vector2f(529.0f + 1400, 210.0f)
+            //));
         }
 
-        if(type==7) {
+        if (type == 7) {
             this.setImage("data/image/backgrounds/Hills3g.png");
             this.setCollisionImage("data/image/backgrounds/Hills3g_mask.png");
             setCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(529.0f + 1400, 210.0f),
-                    new Vector2f(1385.0f + 1400, 343.0f)
+                    new Vector2f(2385.0f + 1400, 343.0f)
             ));
+
+
         }
 
 
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
     @Override
@@ -112,6 +107,12 @@ public class GreenHills extends Background {
         SceneHandler sceneHandler = SceneHandler.getInstance();
         for (Vector2f coordinate : coordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PFuel.class);
+        }
+        for (Vector2f coordinate : goldCoordinates) {
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PGoldFuel.class);
+        }
+        for (Vector2f coordinate : windmillCoordinates) {
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), Windmill.class);
         }
         for (Vector2f coordinate : shieldCoordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PShield.class);
