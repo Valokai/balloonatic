@@ -2,6 +2,7 @@ package scrollables;
 
 import graphic.Background;
 import graphic.Windmill;
+import graphic.Cloud;
 import graphic.powerup.PFuel;
 import graphic.powerup.PGoldFuel;
 import graphic.powerup.PShield;
@@ -10,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -54,6 +56,10 @@ public class GreenHills extends Background {
                     new Vector2f(1029.0f + 1400, 600.0f),
                     new Vector2f(1729.0f + 1400, 300.0f),
                     new Vector2f(2009.0f + 1400, 450.0f)
+            ));
+
+            setCloudCoordinates(Arrays.asList(
+                    new Vector2f(529.0f + 1400, 50.0f)
             ));
 
         }
@@ -102,6 +108,7 @@ public class GreenHills extends Background {
         }
     }
 
+
     @Override
     public void resetToEnd() {
         super.resetToEnd();
@@ -115,6 +122,10 @@ public class GreenHills extends Background {
         for (Vector2f coordinate : windmillCoordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), Windmill.class);
         }
+        for (Vector2f coordinate : cloudCoordinates) {
+            sceneHandler.spawn(coordinate.getX(), coordinate.getY(), Cloud.class);
+        }
+
         for (Vector2f coordinate : shieldCoordinates) {
             sceneHandler.spawn(coordinate.getX(), coordinate.getY(), PShield.class);
         }
