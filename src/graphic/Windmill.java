@@ -18,8 +18,9 @@ public class Windmill extends Powerup implements BalloonEffect {
 
     public Windmill() throws SlickException {
         super("data/image/goldbird.png");
-        wmSheet = new SpriteSheet("data/image/Windmill.png", 352, 374);
+        wmSheet = new SpriteSheet("data/image/SmallWindmill.png", 103, 104);
         wm = new Animation(wmSheet, 100);
+        wm.setAutoUpdate(false);
         // wm.addFrame(wmSheet.getSprite(0, 0), 50);
     }
 
@@ -27,7 +28,7 @@ public class Windmill extends Powerup implements BalloonEffect {
     public void update(GameContainer gameContainer, int delta) {
         super.update(gameContainer, delta);
         wm.update(delta);
-        if (wm.getFrame() == 32) {
+        if (wm.getFrame() == 9) {
             wm.restart();
         }
 
