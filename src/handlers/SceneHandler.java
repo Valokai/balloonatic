@@ -105,6 +105,13 @@ public class SceneHandler {
         return sceneObject;
     }
 
+    public SceneObject spawn(float x, float y, SceneObject sceneObject) {
+        registerSceneObject(String.valueOf(sceneObject.hashCode()), sceneObject);
+        sceneObject.setX(x);
+        sceneObject.setY(y);
+        return sceneObject;
+    }
+
     /**
      * Update handler
      *
