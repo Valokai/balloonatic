@@ -19,12 +19,12 @@ public class ScoreBoard {
     }
 
     private void makeUpScores() {
-        addScore("Tiffany", 800);
-        addScore("Taeyeon", 1000);
+        addScore("Sica", 800);
+        addScore("Tae", 1500);
         addScore("Diago", 5000);
-        addScore("KidLeader", 3000);
-        addScore("lowbie", 250);
-        addScore("skwex", 22);
+        addScore("Hyo", 3000);
+        addScore("Yoona",400);
+        addScore("skwex",22);
     }
 
     public Boolean addScore(String name, int score) {
