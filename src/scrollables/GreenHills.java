@@ -62,7 +62,6 @@ public class GreenHills extends Background {
             setWindmillCoordinates(Arrays.asList(
                     new Vector2f(729.0f + 1400, 300.0f),
                     new Vector2f(1029.0f + 1400, 600.0f),
-                    new Vector2f(1729.0f + 1400, 300.0f),
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
@@ -78,8 +77,7 @@ public class GreenHills extends Background {
             this.setCollisionImage("data/image/backgrounds/Hills3c_mask.png");
 
             setWindmillCoordinates(Arrays.asList(
-                    new Vector2f(100.0f + 1400, 550.0f),
-                    new Vector2f(2009.0f + 1400, 450.0f)
+                    new Vector2f(100.0f + 1400, 550.0f)
             ));
 
             setCloudCoordinates(Arrays.asList(
