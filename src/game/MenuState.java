@@ -42,21 +42,30 @@ public class MenuState extends BasicGameState implements ClickListener {
         bGM = new Music("data/sound/field/fieldbgm.ogg");
         btnManager = new ButtonManager(this);
         btnManager.addButton(130, 300, "data/buttons/PressToStart_1.png", "data/buttons/PressToStart_2.png", "data/sound/critical.ogg", "btnStart");
-        btnManager.addButton(140, 430, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
-        btnManager.addButton(140, 550, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
+        btnManager.addButton(140, 400, "data/buttons/CheatCode_1.png", "data/buttons/CheatCode_1.png", "data/sound/critical.ogg", "btnStory");
+        btnManager.addButton(140, 500, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
+        btnManager.addButton(140, 600, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
+        //btnManager.addButton(140, 150, "data/buttons/CheatCode_1.png", "data/buttons/CheatCode_1.png", "data/sound/critical.ogg", "btnStory");
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
+        if(Game.music){
+            bGM.loop();
+        }
 
     }
 
 
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
+
         if (Game.music) {
             bGM.loop();
         }
+
+
+
     }
 
     @Override
@@ -90,6 +99,9 @@ public class MenuState extends BasicGameState implements ClickListener {
         }
         if (clicked == btnManager.getById("btnSettings")) {
             stateBasedGame.enterState(Game.STATE.SETTINGS, new CombinedTransition(), new BlobbyTransition());
+        }
+        if (clicked == btnManager.getById("btnStory")) {
+            stateBasedGame.enterState(Game.STATE.STORY, new CombinedTransition(), new BlobbyTransition());
         }
     }
 

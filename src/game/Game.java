@@ -98,6 +98,7 @@ public class Game {
     }
 
     public static class STATE {
+        public static final int STORY = 6;
         public static final int SETTINGS = 5;
         public static final int ENTERCHEATCODE = 4;
         public static final int ENTERNAME = 3;

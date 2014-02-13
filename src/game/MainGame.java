@@ -44,6 +44,7 @@ public class MainGame extends StateBasedGame {
         addState(new EnterNameState());
         addState(new EnterCheatcodeState());
         addState(new SettingsState());
+        addState(new StoryState());
         enterState(Game.STATE.MENU);
     }
 
