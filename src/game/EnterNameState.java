@@ -1,6 +1,9 @@
 package game;
 
-import org.newdawn.slick.*;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -43,8 +46,8 @@ public class EnterNameState extends BasicGameState {
         mainGame.getState(Game.STATE.MAIN).render(gameContainer, stateBasedGame, graphics);
 
 
-        graphics.setColor(new Color(0,0,0,0.2f));
-        graphics.fillRect(0,0,1280,720);
+        graphics.setColor(new Color(0, 0, 0, 0.2f));
+        graphics.fillRect(0, 0, 1280, 720);
 
         graphics.setColor(Color.orange);
         Game.fieldFont.drawString(
@@ -60,7 +63,6 @@ public class EnterNameState extends BasicGameState {
                 "Your Distance: " + score,
                 GameFont.Alignment.CENTRE,
                 Color.black);
-
 
 
         Game.fieldFont.drawString(

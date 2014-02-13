@@ -21,21 +21,20 @@ public class BirdFormations {
     public List<Vector2f> getRandomBirdFormation(float x, float y) {
         float nextFloat = random.nextFloat();
 
-        if(nextFloat > 0.8) {
+        if (nextFloat > 0.8) {
             return birdTriangle(x, y);
         } else if (nextFloat > 0.6 && nextFloat < 0.8) {
             return birdBlock(x, y);
-        } else if(nextFloat > 0.4 && nextFloat < 0.6) {
+        } else if (nextFloat > 0.4 && nextFloat < 0.6) {
             return birdLine(x, y);
-        }
-
-        else return randomBirds(x, y);
+        } else return randomBirds(x, y);
 
 
     }
 
 
-    /**returns a bird triangle formation
+    /**
+     * returns a bird triangle formation
      *
      * @param x
      * @param y
@@ -53,7 +52,8 @@ public class BirdFormations {
         );
     }
 
-    /**returns a block of birds, similar to copter blocks
+    /**
+     * returns a block of birds, similar to copter blocks
      *
      * @param x
      * @param y
@@ -63,40 +63,42 @@ public class BirdFormations {
 
         return Arrays.asList(
                 new Vector2f(x + 1400 - 20, y),
-                new Vector2f(x + 1400, y+30),
+                new Vector2f(x + 1400, y + 30),
                 new Vector2f(x + 1400 + 20, y),
-                new Vector2f(x + 1400 + 40, y+30),
+                new Vector2f(x + 1400 + 40, y + 30),
                 new Vector2f(x + 1400 + 60, y),
-                new Vector2f(x + 1400 + 80, y+30)
+                new Vector2f(x + 1400 + 80, y + 30)
         );
     }
 
-    /**returns two random birds
+    /**
+     * returns two random birds
      *
      * @param x
      * @param y
      * @return
      */
     private List<Vector2f> randomBirds(float x, float y) {
-        return  Arrays.asList(
+        return Arrays.asList(
                 new Vector2f(((random.nextFloat() * 2399) + 0) + 1400, (random.nextFloat() * 520) + 0),
                 new Vector2f(((random.nextFloat() * 2399) + 0) + 1400, (random.nextFloat() * 520) + 0)
         );
     }
 
-    /**returns a verticle line of 5 birds
+    /**
+     * returns a verticle line of 5 birds
      *
      * @param x
      * @param y
      * @return
      */
     private List<Vector2f> birdLine(float x, float y) {
-        return  Arrays.asList(
-                new Vector2f(x+1400, y),
-                new Vector2f(x+1400, y+30),
-                new Vector2f(x+1400, y+60),
-                new Vector2f(x+1400, y+90),
-                new Vector2f(x+1400, y+120)
+        return Arrays.asList(
+                new Vector2f(x + 1400, y),
+                new Vector2f(x + 1400, y + 30),
+                new Vector2f(x + 1400, y + 60),
+                new Vector2f(x + 1400, y + 90),
+                new Vector2f(x + 1400, y + 120)
         );
     }
 

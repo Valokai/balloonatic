@@ -19,11 +19,12 @@ import java.util.List;
  * Time: 2:59 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ParticleManager{
+public class ParticleManager {
 
     List<ParticleSystem> particleSystemList = new ArrayList<ParticleSystem>();
 
-    public ParticleManager(){}
+    public ParticleManager() {
+    }
 
     private String emitterPath;
 
@@ -31,7 +32,7 @@ public class ParticleManager{
         try {
             //load the test particle and
             Image image = new Image(particleImage, false);
-            ParticleSystem particleSystem = new ParticleSystem(image,5000);
+            ParticleSystem particleSystem = new ParticleSystem(image, 5000);
             this.emitterPath = xmlPath;
             File xmlFile = new File(xmlPath);
             ParticleEmitter emitter = ParticleIO.loadEmitter(xmlFile);
@@ -48,7 +49,7 @@ public class ParticleManager{
         try {
             //load the test particle and
             Image image = new Image(particleImage, false);
-            ParticleSystem particleSystem = new ParticleSystem(image,5000);
+            ParticleSystem particleSystem = new ParticleSystem(image, 5000);
 
             File xmlFile = new File(xmlPath);
             ParticleEmitter emitter = ParticleIO.loadEmitter(xmlFile);
@@ -61,31 +62,31 @@ public class ParticleManager{
         }
     }
 
-    public void setVisible(boolean visible){
+    public void setVisible(boolean visible) {
         for (ParticleSystem particleSystem : particleSystemList) {
             particleSystem.setVisible(visible);
         }
     }
 
-    public void upate(int delta){
+    public void upate(int delta) {
         for (ParticleSystem particleSystem : particleSystemList) {
-            if(particleSystem.isVisible()){
+            if (particleSystem.isVisible()) {
                 particleSystem.update(delta);
             }
         }
     }
 
-    public void render(Graphics graphics){
+    public void render(Graphics graphics) {
         for (ParticleSystem particleSystem : particleSystemList) {
             particleSystem.render();
         }
     }
 
-    public void render(){
+    public void render() {
         render(null);
     }
 
-    public void render(float x, float y){
+    public void render(float x, float y) {
         for (ParticleSystem particleSystem : particleSystemList) {
             particleSystem.render(x, y);
         }

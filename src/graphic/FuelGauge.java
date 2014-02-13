@@ -24,16 +24,16 @@ public class FuelGauge extends Sprite {
         this.balloon = balloon;
     }
 
-    public void setState(int fuelstate){
+    public void setState(int fuelstate) {
         this.fuelstate = fuelstate;
         timer = 2;
     }
 
 
-    public void updateImage(GameContainer gameContainer, int delta){
-        if(balloon.getFuelState() == 0){
+    public void updateImage(GameContainer gameContainer, int delta) {
+        if (balloon.getFuelState() == 0) {
             setImage("data/image/fuelGauge.png");
-        } else if (balloon.getFuelState() == 1){
+        } else if (balloon.getFuelState() == 1) {
             setImage("data/image/fuelGaugeup.png");
         } else if (balloon.getFuelState() == 2) {
             setImage("data/image/fuelGaugedown.png");
@@ -41,17 +41,15 @@ public class FuelGauge extends Sprite {
     }
 
 
-
-
-    public void update(GameContainer gameContainer, int delta){
+    public void update(GameContainer gameContainer, int delta) {
         updateImage(gameContainer, delta);
     }
 
 
-    /**render the image
-     *
+    /**
+     * render the image
      */
-    public void render(){
-        image.getScaledCopy(50,50).drawCentered(x, y);
+    public void render() {
+        image.getScaledCopy(50, 50).drawCentered(x, y);
     }
 }

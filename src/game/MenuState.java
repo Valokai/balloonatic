@@ -4,7 +4,6 @@ import com.aem.sticky.button.Button;
 import com.aem.sticky.button.events.ClickListener;
 import graphic.Background;
 import graphic.TextGraphic;
-import handlers.SceneHandler;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -24,7 +23,7 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     private ButtonManager btnManager;
     private Background background;
-    public static  Music bGM = null;
+    public static Music bGM = null;
     private ParticleManager particleManager = new ParticleManager();
     private TextGraphic titleText;
 
@@ -55,7 +54,7 @@ public class MenuState extends BasicGameState implements ClickListener {
 
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-        if(Game.music){
+        if (Game.music) {
             bGM.loop();
         }
     }
@@ -95,10 +94,12 @@ public class MenuState extends BasicGameState implements ClickListener {
     }
 
     @Override
-    public void onRightClick(Button clicked, float mx, float my) {}
+    public void onRightClick(Button clicked, float mx, float my) {
+    }
 
     @Override
-    public void onDoubleClick(Button clicked, float mx, float my) {}
+    public void onDoubleClick(Button clicked, float mx, float my) {
+    }
 
     @Override
     public void keyPressed(int key, char c) {
@@ -106,7 +107,7 @@ public class MenuState extends BasicGameState implements ClickListener {
         if (key == Input.KEY_SPACE) {
             stateBasedGame.enterState(Game.STATE.MAIN, new CombinedTransition(), new BlobbyTransition());
         }
-        if (key == Input.KEY_ESCAPE){
+        if (key == Input.KEY_ESCAPE) {
             gameContainer.exit();
         }
     }

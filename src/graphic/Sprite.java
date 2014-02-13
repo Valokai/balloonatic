@@ -36,7 +36,7 @@ public abstract class Sprite {
      */
     protected float scale;
 
-    protected Sprite(String imagePath){
+    protected Sprite(String imagePath) {
         try {
             this.image = new Image(imagePath);
         } catch (SlickException e) {
@@ -48,8 +48,9 @@ public abstract class Sprite {
 
     /**
      * Contructor
-     * @param x Position of Sprite on x coordinate
-     * @param y Position of Sprite on y coordinate
+     *
+     * @param x         Position of Sprite on x coordinate
+     * @param y         Position of Sprite on y coordinate
      * @param imagePath Path to image to render as Sprite
      * @throws SlickException
      */
@@ -61,6 +62,7 @@ public abstract class Sprite {
 
     /**
      * Get position of Sprite on x coordinate
+     *
      * @return position of Sprite on x coordinate
      */
     public float getX() {
@@ -69,6 +71,7 @@ public abstract class Sprite {
 
     /**
      * Set position of Sprite on x coordinate
+     *
      * @param x position of Sprite on x coordinate
      */
     public void setX(float x) {
@@ -77,6 +80,7 @@ public abstract class Sprite {
 
     /**
      * Get position of Sprite on y coordinate
+     *
      * @return position of Sprite on y coordinate
      */
     public float getY() {
@@ -85,6 +89,7 @@ public abstract class Sprite {
 
     /**
      * Set position of Sprite on y coordinate
+     *
      * @param y position of Sprite on y coordinate
      */
     public void setY(float y) {
@@ -93,13 +98,16 @@ public abstract class Sprite {
 
     /**
      * Get <code>Image</code> reference of this
+     *
      * @return
      */
     public Image getImage() {
         return image;
     }
 
-    /**sets the image - used for setting different types of backgrounds
+    /**
+     * sets the image - used for setting different types of backgrounds
+     *
      * @param image string to image location
      */
     public void setImage(String image) {
@@ -116,22 +124,26 @@ public abstract class Sprite {
 
     /**
      * Render this sprite on the screen
+     *
      * @param graphics graphics object attached to current scene
      */
 
-    public void render(GameContainer gc, Graphics graphics){
+    public void render(GameContainer gc, Graphics graphics) {
         image.drawCentered(x, y);
     }
 
     /**
      * Update sprite on screen
+     *
      * @param delta
      */
-    public void update(GameContainer gameContainer, int delta){}
+    public void update(GameContainer gameContainer, int delta) {
+    }
 
 
     /**
      * Get the scale of this sprite
+     *
      * @return scale of this sprite
      */
     public float getScale() {
@@ -140,6 +152,7 @@ public abstract class Sprite {
 
     /**
      * Set the scale of this sprite
+     *
      * @param scale scale of this sprite
      */
     public void setScale(float scale) {
@@ -147,12 +160,12 @@ public abstract class Sprite {
         this.scale = scale;
     }
 
-    public void draw(float x, float y, float width, float height){
-         image.draw(x, y, width, height);
+    public void draw(float x, float y, float width, float height) {
+        image.draw(x, y, width, height);
     }
 
-    public void draw(float x, float y, float srcx, float srcy, float srcx2, float srcy2){
-           image.draw(x, y, srcx, srcy, srcx2, srcy2);
+    public void draw(float x, float y, float srcx, float srcy, float srcx2, float srcy2) {
+        image.draw(x, y, srcx, srcy, srcx2, srcy2);
     }
 
 }

@@ -27,7 +27,7 @@ public class Cave extends Background {
         this.type = type;
         this.name = "cave";
 
-        if(type==1) {
+        if (type == 1) {
             this.setImage("data/image/cave/cave_fg1.png");
             this.setCollisionImage("data/image/cave/cave_fg1_mask.png");
             setCoordinates(Arrays.asList(
@@ -39,7 +39,7 @@ public class Cave extends Background {
             //));
         }
 
-        if(type==2) {
+        if (type == 2) {
             this.setImage("data/image/cave/cave_fg_mid1.png");
             this.setCollisionImage("data/image/cave/cave_fg_mid1_mask.png");
             setCoordinates(Arrays.asList(
@@ -49,7 +49,7 @@ public class Cave extends Background {
 
         }
 
-        if(type==3) {
+        if (type == 3) {
             this.setImage("data/image/cave/cave_fg_mid2.png");
             this.setCollisionImage("data/image/cave/cave_fg_mid2_mask.png");
             setGoldCoordinates(Arrays.asList(
@@ -58,7 +58,7 @@ public class Cave extends Background {
             ));
         }
 
-        if(type==4) {
+        if (type == 4) {
             this.setImage("data/image/cave/cave_fg_exit.png");
             this.setCollisionImage("data/image/cave/cave_fg_exit_mask.png");
             setCoordinates(Arrays.asList(
@@ -69,19 +69,19 @@ public class Cave extends Background {
 
         }
 
-        if(type==5) {
+        if (type == 5) {
             this.setImage("data/image/backgrounds/Hills3e.png");
             this.setCollisionImage("data/image/backgrounds/Hills3e_mask.png");
 
         }
 
-        if(type==6) {
+        if (type == 6) {
             this.setImage("data/image/backgrounds/Hills3f.png");
             this.setCollisionImage("data/image/backgrounds/Hills3f_mask.png");
 
         }
 
-        if(type==7) {
+        if (type == 7) {
             this.setImage("data/image/backgrounds/Hills3g.png");
             this.setCollisionImage("data/image/backgrounds/Hills3g_mask.png");
             setGoldCoordinates(Arrays.asList(

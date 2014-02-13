@@ -51,7 +51,7 @@ public class Game {
 
     public static ScoreBoard SBoard = new ScoreBoard();
 
-    static{
+    static {
         if (titleFont == null) {
             try {
                 titleFont = new GameFont("data/fonts/Bauhaus93.fnt",
@@ -61,12 +61,12 @@ public class Game {
             }
         }
 
-        if(scoreFont == null){
-           // scoreFont = new TrueTypeFont(new java.awt.Font("Hyperfont", 1, 28), false);
+        if (scoreFont == null) {
+            // scoreFont = new TrueTypeFont(new java.awt.Font("Hyperfont", 1, 28), false);
             scoreFont = new TrueTypeFont(new java.awt.Font("Lucida Sans Typewriter", Font.BOLD, 28), true);
         }
 
-        if(fieldFont == null){
+        if (fieldFont == null) {
             try {
                 fieldFont = new GameFont("data/fonts/AbadiMTCondensed.fnt", "data/fonts/AbadiMTCondensed.png");
             } catch (SlickException e) {
@@ -74,7 +74,7 @@ public class Game {
             }
         }
 
-        if(highscoreFont == null){
+        if (highscoreFont == null) {
             try {
                 highscoreFont = new GameFont("data/fonts/Corbel16.fnt", "data/fonts/Corbel16.png");
             } catch (SlickException e) {
@@ -106,7 +106,7 @@ public class Game {
         public static final int MENU = 0;
     }
 
-    public static class AUDIO{
+    public static class AUDIO {
 
         public static Sound SHIELD_POP;
 
@@ -114,10 +114,12 @@ public class Game {
 
 
         static {
-            try{
+            try {
                 SHIELD_POP = new Sound("data/sound/effects/pop.wav");
 //                NO = new Sound("data/sound/effects/no.wav");
-            }catch(SlickException e){};
+            } catch (SlickException e) {
+            }
+            ;
         }
 
     }

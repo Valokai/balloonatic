@@ -14,14 +14,13 @@ import org.newdawn.slick.SlickException;
  * Time: 1:15 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PShield extends Powerup implements BalloonEffect{
+public class PShield extends Powerup implements BalloonEffect {
 
     private Image circle = new Image("data/image/bubble.png");
 
     private int invisibleInterval;
 
     private int counter;
-
 
 
     public PShield() throws SlickException {
@@ -38,20 +37,19 @@ public class PShield extends Powerup implements BalloonEffect{
 
     @Override
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
-        if(!sceneHandler.isPaused()){
+        if (!sceneHandler.isPaused()) {
             balloon.setLockLife(true);
             balloon.setRenderLock(false);
-            counter ++;
-            if(counter > 2000) {        //shield blinks when about to expire
-                if(counter%10==0) {
-                    circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
+            counter++;
+            if (counter > 2000) {        //shield blinks when about to expire
+                if (counter % 10 == 0) {
+                    circle.draw(balloon.getX() - balloon.getImage().getWidth(), balloon.getY() - balloon.getImage().getWidth());
                 }
                 //counter ++;
+            } else {
+                circle.draw(balloon.getX() - balloon.getImage().getWidth(), balloon.getY() - balloon.getImage().getWidth());
             }
-            else {
-                circle.draw(balloon.getX()-balloon.getImage().getWidth(),balloon.getY()-balloon.getImage().getWidth());
-            }
-            if(counter == invisibleInterval){
+            if (counter == invisibleInterval) {
                 balloon.removeBalloonEffect("shield");
                 balloon.setLockLife(false);
                 Game.AUDIO.SHIELD_POP.play();

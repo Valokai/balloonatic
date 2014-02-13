@@ -1,8 +1,7 @@
 package scrollables;
 
-import org.newdawn.slick.Image;
+import graphic.Background;
 import org.newdawn.slick.SlickException;
-import graphic.*;
 
 
 /**
@@ -17,16 +16,16 @@ public class CaveSecond extends Background {
     public CaveSecond(float x, float y, boolean collidable, int type) throws SlickException {
         super(x, y, "data/image/backgrounds/cave_bg1.png", collidable);
 
-        if(type==1) {
+        if (type == 1) {
             this.setImage("data/image/backgrounds/cave_bg1.png");
         }
-        if(type==2) {
+        if (type == 2) {
             this.setImage("data/image/backgrounds/cave_bg1.png");
         }
-        if(type==3) {
+        if (type == 3) {
             this.setImage("data/image/backgrounds/cave_bg1.png");
         }
-        if(type==4) {
+        if (type == 4) {
             this.setImage("data/image/backgrounds/cave_bg1.png");
         }
 
