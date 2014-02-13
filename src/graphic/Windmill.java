@@ -14,10 +14,22 @@ public class Windmill extends Powerup implements BalloonEffect {
 
     private SpriteSheet wmSheet;
     private Animation wm;
+    float scale;
 
 
     public Windmill() throws SlickException {
         super("data/image/goldbird.png");
+        wmSheet = new SpriteSheet("data/image/SmallWindmill.png", 103, 104);
+        wm = new Animation(wmSheet, 100);
+        wm.setAutoUpdate(false);
+        // wm.addFrame(wmSheet.getSprite(0, 0), 50);
+        scale = 2f;
+    }
+
+    public Windmill(float s) throws SlickException {
+        super("data/image/goldbird.png");
+        scale = 1f;
+        this.scale = s;
         wmSheet = new SpriteSheet("data/image/SmallWindmill.png", 103, 104);
         wm = new Animation(wmSheet, 100);
         wm.setAutoUpdate(false);
@@ -47,7 +59,8 @@ public class Windmill extends Powerup implements BalloonEffect {
 
     @Override
     public void render(GameContainer gc, Graphics graphics) {
-        wm.draw(x - 175, y - 175, 50, 50);
+        wm.draw(x - 50, y - 50, 100 * scale, 100 * scale);
+
     }
 
     @Override
