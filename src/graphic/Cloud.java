@@ -2,6 +2,7 @@ package graphic;
 
 import graphic.powerup.Powerup;
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  * User: Nick Meek
@@ -45,5 +46,14 @@ public class Cloud extends Powerup implements BalloonEffect {
     @Override
     public boolean isDrawnOnFront() {
         return false;
+    }
+
+    public class CloudCoordinate extends Vector2f{
+        public int step;
+
+        public CloudCoordinate(float x, float y, int step) {
+            super(x, y);
+            this.step = step;
+        }
     }
 }

@@ -35,7 +35,7 @@ public class Background extends Sprite {
     protected ArrayList<Vector2f> coordinates = new ArrayList<Vector2f>();
     protected ArrayList<Vector2f> goldCoordinates = new ArrayList<Vector2f>();
     protected ArrayList<Vector2f> windmillCoordinates = new ArrayList<Vector2f>();
-    protected ArrayList<Vector2f> cloudCoordinates = new ArrayList<Vector2f>();
+    protected ArrayList<Cloud.CloudCoordinate> cloudCoordinates = new ArrayList<Cloud.CloudCoordinate>();
     protected ArrayList<Vector2f> shieldCoordinates = new ArrayList<Vector2f>();
 
     protected ArrayList<Vector2f> chargeCoordinates = new ArrayList<Vector2f>();
@@ -200,8 +200,8 @@ public class Background extends Sprite {
     public void setWindmillCoordinates(List<Vector2f> coordinates) {
         this.windmillCoordinates = new ArrayList<Vector2f>(coordinates);
     }
-    public void setCloudCoordinates(List<Vector2f> coordinates) {
-        this.cloudCoordinates = new ArrayList<Vector2f>(coordinates);
+    public void setCloudCoordinates(List<Cloud.CloudCoordinate> coordinates) {
+        this.cloudCoordinates = new ArrayList<Cloud.CloudCoordinate>(coordinates);
     }
 
 }

@@ -42,10 +42,10 @@ public class GreenHills extends Background {
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
-            setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400, 20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
-            ));
+//            setCloudCoordinates(Arrays.asList(
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400, 20f + (int)(Math.random() * ((100 - 20) + 1))),
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+//            ));
 
         }
 
@@ -66,10 +66,10 @@ public class GreenHills extends Background {
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
-            setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
-            ));
+//            setCloudCoordinates(Arrays.asList(
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+//            ));
 
         }
 
@@ -82,10 +82,10 @@ public class GreenHills extends Background {
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
-            setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
-            ));
+//            setCloudCoordinates(Arrays.asList(
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+//            ));
         }
 
         if (type == 4) {
@@ -103,9 +103,9 @@ public class GreenHills extends Background {
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
-            setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
-            ));
+//            setCloudCoordinates(Arrays.asList(
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+//            ));
         }
 
         if (type == 5) {
@@ -120,10 +120,10 @@ public class GreenHills extends Background {
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
-            setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
-            ));
+//            setCloudCoordinates(Arrays.asList(
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+//            ));
         }
 
         if (type == 6) {
@@ -141,10 +141,10 @@ public class GreenHills extends Background {
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
-            setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
-            ));
+//            setCloudCoordinates(Arrays.asList(
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+//            ));
         }
 
         if (type == 7) {
@@ -159,11 +159,11 @@ public class GreenHills extends Background {
                     new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
-            setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
-            ));
+//            setCloudCoordinates(Arrays.asList(
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
+//                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+//            ));
         }
     }
 
