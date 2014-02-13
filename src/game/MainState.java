@@ -147,7 +147,7 @@ public class MainState extends BasicGameState {
 
 
             CrashedBalloon crashedBalloon = (CrashedBalloon) sceneHandler.getSceneObjectById("crashedBalloon");
-            if(crashedBalloon != null){
+            if(crashedBalloon != null && sceneHandler.getSceneObjectById("balloon") == null){
                 if(crashedBalloon.isReadyForDisposal()){
                     EnterNameState enterNameState = (EnterNameState) stateBasedGame.getState(game.Game.STATE.ENTERNAME);
                     enterNameState.setScore((int) (frontground.getDistance()));
@@ -162,7 +162,6 @@ public class MainState extends BasicGameState {
                 balloon.stopBurner();
                 if(crashedBalloon == null){
                     sceneHandler.removeSceneObjectById("balloon");
-                    balloon.getImage().setAlpha(0);
                     sceneHandler.spawn(balloon.getX(), balloon.getY(), CrashedBalloon.class, "crashedBalloon");
                 }
 
