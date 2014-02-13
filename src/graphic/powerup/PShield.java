@@ -6,6 +6,7 @@ import graphic.BalloonEffect;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,6 +25,7 @@ public class PShield extends Powerup implements BalloonEffect{
 
 
 
+
     public PShield() throws SlickException {
         super("data/image/shield.png");
         this.invisibleInterval = 2500;
@@ -33,8 +35,9 @@ public class PShield extends Powerup implements BalloonEffect{
     public void onCollideWithBalloon(Balloon balloon) {
         balloon.addBalloonEffect(this, "shield");
         sceneHandler.removeSceneObject(this);
-        Game.AUDIO.SHIELD_POP.play();
+        Game.AUDIO.SHIELD_POP.play(1,0.8f);
     }
+
 
     @Override
     public void drawOnBalloon(Balloon balloon, Graphics graphics) {
@@ -54,7 +57,7 @@ public class PShield extends Powerup implements BalloonEffect{
             if(counter == invisibleInterval){
                 balloon.removeBalloonEffect("shield");
                 balloon.setLockLife(false);
-                Game.AUDIO.SHIELD_POP.play();
+                Game.AUDIO.SHIELD_POP.play(1,.8f);
             }
         }
     }

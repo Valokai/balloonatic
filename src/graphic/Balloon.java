@@ -66,6 +66,7 @@ public class Balloon extends SceneObject{
         particleManager.addParticle(x, y, "data/particles/feather.xml", "data/particles/particle.png");
         grad = new Image("data/image/gradcent.png");
         grad2 = grad.getScaledCopy(scale);
+
     }
 
     public Balloon(float x, float y) throws SlickException {

@@ -9,6 +9,8 @@ import graphic.powerup.PBird;
 import graphic.powerup.PSpiral;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import util.BirdFormations;
@@ -36,6 +38,7 @@ public class ScrollingHandler {
     private boolean DeadPlayersSpawned = false;
     private int balloonbouncetimer = 3;
     private double difficulty = 0;
+    private Sound bubblebounce;
 
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
@@ -45,12 +48,14 @@ public class ScrollingHandler {
      * @param name       name of this object
      * @param firstbackground  the first image in the list
      */
-    public ScrollingHandler(String name, Background firstbackground) {
+    public ScrollingHandler(String name, Background firstbackground) throws SlickException {
+        bubblebounce = new Sound("data/sound/effects/bubblebounce.wav");
         renderlist = new ArrayList<Background>();
         bglist = new ArrayList<Background>();
         renderlist.add(firstbackground);
         bglist.add(firstbackground);
         this.name = name;
+
     }
 
     /**add a new scrollable sprite to this scrollable
@@ -157,11 +162,7 @@ public class ScrollingHandler {
         if(count == bglist.size()) {
             count = 0;
         }
-
         collideCheck(balloon);
-
-
-
     }
 
     public void collideCheck(Balloon balloon){
@@ -171,6 +172,10 @@ public class ScrollingHandler {
                 if(balloon.isLockLife()) {
                  //   if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
+                    if (!bubblebounce.playing()){
+                    bubblebounce.play();
+                }
+
               //      } else{
                //         balloon.setSpeed(220);
               //      }
@@ -190,6 +195,9 @@ public class ScrollingHandler {
                 if(balloon.isLockLife()) {
              //       if(balloonbouncetimer<3){
                         balloon.setSpeed(-300);
+                    if (!bubblebounce.playing()){
+                        bubblebounce.play();
+                    }
 //                    } else {
 //                        balloon.setSpeed(220);
 //                    }
@@ -222,7 +230,7 @@ public class ScrollingHandler {
 
     public void moveDeadPlayerText(float movex) {
         for (int i = 0; i < Game.SBoard.scores.size(); i++){
-            Game.SBoard.setX(i,Game.SBoard.getX(i)+movex);
+            Game.SBoard.setX(i,Game.SBoard.getX(i)-4);
         }
     }
 
