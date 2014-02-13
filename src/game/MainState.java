@@ -160,6 +160,7 @@ public class MainState extends BasicGameState {
             }
 
             if (balloon.getLives() <= 0) {
+                balloon.stopBurner();
                 balloon.setOnShake(true);
                 if(crashedBalloon == null){
                     sceneHandler.removeSceneObjectById("balloon");
