@@ -28,7 +28,7 @@ public class Windmill extends Powerup implements BalloonEffect {
     public void update(GameContainer gameContainer, int delta) {
         super.update(gameContainer, delta);
         wm.update(delta);
-        if (wm.getFrame() == 9) {
+        if (wm.getFrame() == 6) {
             wm.restart();
         }
 
