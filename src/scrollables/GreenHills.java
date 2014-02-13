@@ -32,8 +32,8 @@ public class GreenHills extends Background {
             this.setImage("data/image/backgrounds/Hills3a.png");
             this.setCollisionImage("data/image/backgrounds/Hills3a_mask.png");
             setCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 510.0f),
-                    new Vector2f(1385.0f + 1400, 343.0f)
+                    new Vector2f(529.0f + 1400, 510.0f)
+                   // new Vector2f(1385.0f + 1400, 343.0f)
             ));
 
         }
