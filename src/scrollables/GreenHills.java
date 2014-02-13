@@ -49,8 +49,13 @@ public class GreenHills extends Background {
                     new Vector2f(1400, 353.0f)
             ));
             setWindmillCoordinates(Arrays.asList(
-                    new Vector2f(529.0f + 1400, 510.0f)
+                    new Vector2f(529.0f + 1400, 510.0f),
+                    new Vector2f(729.0f + 1400, 550.0f),
+                    new Vector2f(1029.0f + 1400, 600.0f),
+                    new Vector2f(1729.0f + 1400, 300.0f),
+                    new Vector2f(2009.0f + 1400, 450.0f)
             ));
+
         }
 
         if (type == 3) {
@@ -94,11 +99,7 @@ public class GreenHills extends Background {
             setCoordinates(Arrays.asList(
                     new Vector2f(2385.0f + 1400, 343.0f)
             ));
-
-
         }
-
-
     }
 
     @Override

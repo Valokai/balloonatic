@@ -9,6 +9,8 @@ import graphic.powerup.PBird;
 import graphic.powerup.PSpiral;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import util.BirdFormations;
@@ -17,11 +19,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created with IntelliJ IDEA.
  * User: user360
  * Date: 16/01/14
- * Time: 9:54 AM
- * To change this template use File | Settings | File Templates.
  */
 public class ScrollingHandler {
 
@@ -36,6 +35,7 @@ public class ScrollingHandler {
     private boolean DeadPlayersSpawned = false;
     private int balloonbouncetimer = 3;
     private double difficulty = 0;
+    private Sound bubblebounce;
 
 
     private SceneHandler sceneHandler = SceneHandler.getInstance();
@@ -46,12 +46,14 @@ public class ScrollingHandler {
      * @param name            name of this object
      * @param firstbackground the first image in the list
      */
-    public ScrollingHandler(String name, Background firstbackground) {
+    public ScrollingHandler(String name, Background firstbackground) throws SlickException {
+        bubblebounce = new Sound("data/sound/effects/bubblebounce.wav");
         renderlist = new ArrayList<Background>();
         bglist = new ArrayList<Background>();
         renderlist.add(firstbackground);
         bglist.add(firstbackground);
         this.name = name;
+
     }
 
     /**
@@ -160,18 +162,29 @@ public class ScrollingHandler {
         if (count == bglist.size()) {
             count = 0;
         }
-
-        collideCheck(balloon);    }
+        collideCheck(balloon);
+    }
 
     public void collideCheck(Balloon balloon) {
         if (renderlist.size() == 2 && renderlist.get(0).getX() <= -2120 && (name.equals("frontground") || name.equals("cavefront"))) {
             if (collider2) {
                 balloon.setLives(0);  //decrease the lives because they collide*/
-                if(balloon.isLockLife()) {
+                if (balloon.isLockLife()) {
+                    //   if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
+                    if (!bubblebounce.playing()){
+                    bubblebounce.play();
+                }
+
+              //      } else{
+               //         balloon.setSpeed(220);
+              //      }
               //      if (balloonbouncetimer<=6){
                     balloonbouncetimer++;
-              //          balloonbouncetimer=0;
+                    //      } else{
+                    //          balloonbouncetimer=0;
+
+
                 }
                 return;
             }
@@ -182,6 +195,9 @@ public class ScrollingHandler {
                 if (balloon.isLockLife()) {
                     //       if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
+                    if (!bubblebounce.playing()){
+                        bubblebounce.play();
+                    }
 //                    } else {
 //                        balloon.setSpeed(220);
 //                    }
@@ -213,8 +229,8 @@ public class ScrollingHandler {
     }
 
     public void moveDeadPlayerText(float movex) {
-        for (int i = 0; i < Game.SBoard.scores.size(); i++) {
-            Game.SBoard.setX(i, Game.SBoard.getX(i) + movex);
+        for (int i = 0; i < Game.SBoard.scores.size(); i++){
+            Game.SBoard.setX(i,Game.SBoard.getX(i)-4);
         }
     }
 

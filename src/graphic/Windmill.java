@@ -23,7 +23,8 @@ public class Windmill extends Powerup implements BalloonEffect {
         wmSheet = new SpriteSheet("data/image/SmallWindmill.png", 103, 104);
         wm = new Animation(wmSheet, 100);
         wm.setAutoUpdate(false);
-        this.scale = 1f;
+
+        this.scale = .8f + (int)(Math.random() * ((1.8 - .8) + 1));
         this.colour = null;
         this.step = -4;
     }
@@ -76,7 +77,7 @@ public class Windmill extends Powerup implements BalloonEffect {
     public void update(GameContainer gameContainer, int delta) {
         super.update(gameContainer, delta);
         wm.update(delta);
-        if (wm.getFrame() == 9) {
+        if (wm.getFrame() == 6) {
             wm.restart();
         }
     }
@@ -86,10 +87,6 @@ public class Windmill extends Powerup implements BalloonEffect {
 
     }
 
-    @Override
-    public void move(int delta) {
-        x += delta / 1000 + this.step;
-    }
 
     @Override
     public void render(GameContainer gc, Graphics graphics) {

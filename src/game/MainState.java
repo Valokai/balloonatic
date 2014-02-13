@@ -36,7 +36,6 @@ public class MainState extends BasicGameState {
     private Sprite fuelGagueCover;
     private Sprite fuelGague;
     private boolean introduction = true, paused = false;
-    private int shakeTimer = 20;
 
     Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), true);
 
@@ -78,17 +77,13 @@ public class MainState extends BasicGameState {
         backlayer.add(new SecondHills(0.0f, 0, false, 3)); //add more map to the back scrollable
         backlayer.add(new SecondHills(0.0f, 0, false, 4)); //add more map to the back scrollable
 
-
-        frontground.add(new Cave(0.0f, 0, true, 1)); //create front collidable scrollable
+        frontground.add(new Cave(0.0f, 0, true, 1));  //add more map to the front scrollable
         frontground.add(new Cave(0.0f, 0, true, 2)); //add more map to the front scrollable
         frontground.add(new Cave(0.0f, 0, true, 3)); //add more map to the front scrollable
         frontground.add(new Cave(0.0f, 0, true, 4)); //add more map to the front scrollable
-
         skyimage = new Image("data/image/sky.png");
-
         introduction = true;
         paused = false;
-
     }
 
     @Override
@@ -129,7 +124,6 @@ public class MainState extends BasicGameState {
         }
     }
 
-
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         Input input = gameContainer.getInput();
@@ -150,7 +144,7 @@ public class MainState extends BasicGameState {
             }
         } else {
             float speedMultiplier = 1f;
-            sceneHandler.update(gameContainer, delta, speedMultiplier);
+
 
             CrashedBalloon crashedBalloon = (CrashedBalloon) sceneHandler.getSceneObjectById("crashedBalloon");
             if(crashedBalloon != null){
@@ -158,24 +152,27 @@ public class MainState extends BasicGameState {
                     EnterNameState enterNameState = (EnterNameState) stateBasedGame.getState(game.Game.STATE.ENTERNAME);
                     enterNameState.setScore((int) (frontground.getDistance()));
                     stateBasedGame.enterState(game.Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+                }else{
+                    crashedBalloon.update(gameContainer, delta);
                 }
+            }else{
+                sceneHandler.update(gameContainer, delta, speedMultiplier);
             }
-
             if (balloon.getLives() <= 0) {
-                balloon.setOnShake(true);
-                if(crashedBalloon == null && shakeTimer <= 0){
+                balloon.stopBurner();
+                if(crashedBalloon == null){
                     sceneHandler.removeSceneObjectById("balloon");
+                    balloon.getImage().setAlpha(0);
                     sceneHandler.spawn(balloon.getX(), balloon.getY(), CrashedBalloon.class, "crashedBalloon");
                 }
-                shakeTimer--;
-            }else{
+
+            }else {
                 backgroundMove(background, -(1 * speedMultiplier), 0, stateBasedGame);
                 backgroundMove(backlayer, -(2 * speedMultiplier), 0, stateBasedGame);
                 backgroundMove(frontground, -(4 * speedMultiplier), 0, stateBasedGame);
                 fuelGague.update(gameContainer, delta); // really bad practice but I just wanted to get it working for now, see git notes.
             }
         }
-
     }
 
     @Override
