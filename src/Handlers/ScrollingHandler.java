@@ -17,11 +17,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created with IntelliJ IDEA.
  * User: user360
  * Date: 16/01/14
- * Time: 9:54 AM
- * To change this template use File | Settings | File Templates.
  */
 public class ScrollingHandler {
 
