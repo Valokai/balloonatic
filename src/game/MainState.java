@@ -144,7 +144,7 @@ public class MainState extends BasicGameState {
             }
         } else {
             float speedMultiplier = 1f;
-            sceneHandler.update(gameContainer, delta, speedMultiplier);
+
 
             CrashedBalloon crashedBalloon = (CrashedBalloon) sceneHandler.getSceneObjectById("crashedBalloon");
             if(crashedBalloon != null){
@@ -152,7 +152,12 @@ public class MainState extends BasicGameState {
                     EnterNameState enterNameState = (EnterNameState) stateBasedGame.getState(game.Game.STATE.ENTERNAME);
                     enterNameState.setScore((int) (frontground.getDistance()));
                     stateBasedGame.enterState(game.Game.STATE.ENTERNAME, new CombinedTransition(), new BlobbyTransition());
+                }else{
+                    crashedBalloon.update(gameContainer, delta);
+                    balloon.getImage().setAlpha(0);
                 }
+            }else{
+                sceneHandler.update(gameContainer, delta, speedMultiplier);
             }
 
             if (balloon.getLives() <= 0) {
