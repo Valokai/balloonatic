@@ -18,21 +18,13 @@ import java.awt.*;
  */
 public class MainGame extends StateBasedGame {
 
-    public static int SCREEN_WIDTH;
-    public static int SCREEN_HEIGHT;
+    public static int SCREEN_WIDTH = 1280;
+    public static int SCREEN_HEIGHT = 720;
 
     private static String OS = System.getProperty("os.name").toLowerCase();
 
     public MainGame() {
         super(Game.TITLE);
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        if (OS.indexOf("mac") >= 0) {
-            SCREEN_WIDTH = gd.getDisplayMode().getWidth();
-            SCREEN_HEIGHT = gd.getDisplayMode().getHeight();
-        } else {
-            SCREEN_WIDTH = 1280;
-            SCREEN_HEIGHT = 720;
-        }
     }
 
     @Override
@@ -49,12 +41,13 @@ public class MainGame extends StateBasedGame {
 
     // Main entry point for the game, set up the app and its window etc u
     public static void main(String[] args) throws SlickException {
-
         AppGameContainer app = new AppGameContainer(new MainGame());
-        app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+        if (OS.indexOf("mac") >= 0){
+            app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+        }else{
+            app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+        }
         app.setVSync(Game.VSYNC);
-//        app.setFullscreen(true);
-        //app.setShowFPS(Game.DEBUG.SHOW_FPS);
         app.setShowFPS(false);
         app.start();
     }

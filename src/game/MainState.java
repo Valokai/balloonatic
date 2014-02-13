@@ -36,7 +36,6 @@ public class MainState extends BasicGameState {
     private Sprite fuelGagueCover;
     private Sprite fuelGague;
     private boolean introduction = true, paused = false;
-    private int shakeTimer = 20;
 
     Font font = new TrueTypeFont(new java.awt.Font("Tahoma", 1, 36), true);
 
@@ -163,11 +162,10 @@ public class MainState extends BasicGameState {
 
             if (balloon.getLives() <= 0) {
                 balloon.setOnShake(true);
-                if(crashedBalloon == null && shakeTimer <= 0){
+                if(crashedBalloon == null){
                     sceneHandler.removeSceneObjectById("balloon");
                     sceneHandler.spawn(balloon.getX(), balloon.getY(), CrashedBalloon.class, "crashedBalloon");
                 }
-                shakeTimer--;
             }else{
                 backgroundMove(background, -(1 * speedMultiplier), 0, stateBasedGame);
                 backgroundMove(backlayer, -(2 * speedMultiplier), 0, stateBasedGame);
