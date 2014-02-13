@@ -22,11 +22,23 @@ public class DeadPlayer extends SceneObject {
     public void render(GameContainer gc, Graphics graphics) {
         super.render(gc, graphics);
         graphics.setFont(Game.scoreFont);
+<<<<<<< HEAD
 
 
         for (int i = 0; i < Game.SBoard.scores.size(); i++){
             if(-20<(Game.SBoard.getX(i)) && Game.SBoard.getX(i)<1400){
                 Game.scoreFont.drawString(Game.SBoard.getX(i)-50, 600, Game.SBoard.showName(i));
+=======
+<<<<<<< HEAD
+        for (int i = 0; i < Game.SBoard.scores.size(); i++) {
+            if (-20 < (Game.SBoard.getX(i)) && Game.SBoard.getX(i) < 1400) {
+                Game.scoreFont.drawString(Game.SBoard.getX(i) - 60, 600, Game.SBoard.showName(i));
+=======
+        for (int i = 0; i < Game.SBoard.scores.size(); i++){
+            if(-20<(Game.SBoard.getX(i)) && Game.SBoard.getX(i)<1400){
+                Game.scoreFont.drawString(Game.SBoard.getX(i)-50, 600, Game.SBoard.showName(i));
+>>>>>>> 396c7f69183600ed0ebb9d956b54c629a5291a68
+>>>>>>> 8d3d95dd38a771a5584b55681c5b3d7e12541d4b
             }
         }
 
