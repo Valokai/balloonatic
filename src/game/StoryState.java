@@ -45,7 +45,7 @@ public class StoryState extends BasicGameState implements ClickListener {
 
         btnManager = new ButtonManager(this);
 
-
+        btnManager.addButton(180, 50, "data/image/text/Story.png", "data/image/text/Story.png", "data/sound/critical.ogg", "btnStory");
         btnManager.addButton(350, 620, "data/buttons/back_1.png", "data/buttons/back_2.png", "data/sound/critical.ogg", "btnBack");
 
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
