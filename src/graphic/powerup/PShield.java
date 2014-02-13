@@ -24,11 +24,6 @@ public class PShield extends Powerup implements BalloonEffect {
     private int counter;
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 6006a949df11b0e9770a198d519df3f1fbee513f
     public PShield() throws SlickException {
         super("data/image/shield.png");
         this.invisibleInterval = 2500;
