@@ -17,10 +17,10 @@ public class Cloud extends Powerup implements BalloonEffect {
 
 
     public Cloud() throws SlickException {
-        super("data/image/cloud1.png");
+        super("data/image/cloud2.png");
         this.scale = .8f + (int)(Math.random() * ((1.8 - .8) + 1));
         this.colour = null;
-        this.step = -2;
+        this.step = -3;
     }
 
 
@@ -35,7 +35,7 @@ public class Cloud extends Powerup implements BalloonEffect {
 
     @Override
     public void move(int delta) {
-        x += delta / 1000 + step;;//To change body of overridden methods use File | Settings | File Templates.
+        x += delta / 1000 + step;//To change body of overridden methods use File | Settings | File Templates.
     }
 
     @Override
