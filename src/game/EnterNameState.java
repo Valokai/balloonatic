@@ -32,10 +32,11 @@ public class EnterNameState extends BasicGameState {
         mainGame = stateBasedGame;
         field = new TextField(gameContainer,
                 Game.fieldFont,
-                MainGame.SCREEN_WIDTH / 2 - 100,
+                MainGame.SCREEN_WIDTH / 2 - 125,
                 MainGame.SCREEN_HEIGHT / 2 - 40,
-                200,
+                250,
                 80);
+        field.setMaxLength(6);
     }
 
     @Override

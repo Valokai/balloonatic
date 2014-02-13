@@ -49,15 +49,16 @@ public class MenuState extends BasicGameState implements ClickListener {
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
+        if(Game.music){
+            bGM.loop();
+        }
 
     }
 
 
     @Override
     public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-        if(Game.music){
-            bGM.loop();
-        }
+
     }
 
     @Override
