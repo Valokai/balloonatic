@@ -166,7 +166,8 @@ public class MainState extends BasicGameState {
                     sceneHandler.removeSceneObjectById("balloon");
                     sceneHandler.spawn(balloon.getX(), balloon.getY(), CrashedBalloon.class, "crashedBalloon");
                 }
-            }else{
+
+            }else {
                 backgroundMove(background, -(1 * speedMultiplier), 0, stateBasedGame);
                 backgroundMove(backlayer, -(2 * speedMultiplier), 0, stateBasedGame);
                 backgroundMove(frontground, -(4 * speedMultiplier), 0, stateBasedGame);
