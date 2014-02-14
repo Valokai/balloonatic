@@ -173,7 +173,7 @@ public class ScrollingHandler {
                     //   if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
                     if (!bubblebounce.playing()){
-                    bubblebounce.play();
+                    bubblebounce.play(1,0.8f);
                 }
 
               //      } else{
@@ -196,7 +196,7 @@ public class ScrollingHandler {
                     //       if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
                     if (!bubblebounce.playing()){
-                        bubblebounce.play();
+                        bubblebounce.play(1,0.8f);
                     }
 //                    } else {
 //                        balloon.setSpeed(220);
