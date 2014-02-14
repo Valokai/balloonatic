@@ -26,7 +26,6 @@ public class PBird extends Powerup implements BalloonEffect {
         bird = new Animation(birdimages, 50);
         death = new Sound("data/sound/effects/gameover1.wav");
         birdsound = new Sound("data/sound/effects/bird_screech.ogg");
-
     }
 
     @Override
@@ -44,11 +43,6 @@ public class PBird extends Powerup implements BalloonEffect {
         balloon.setParticleTimer(200);
         for (int i = 0; i < 6; i++) {
             sceneHandler.spawn(x, y, Feather.class, "Feather" + i);
-            // int count = 5;
-            //while (count>0) {
-            //    sceneHandler.spawn(x, y, Blood.class);
-            //   count--;
-            //}
         }
 
         balloon.setBirdCounter(1);

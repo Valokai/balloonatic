@@ -24,7 +24,7 @@ public class Windmill extends Powerup implements BalloonEffect {
         wm = new Animation(wmSheet, 100);
         wm.setAutoUpdate(false);
 
-        this.scale = .8f + (int)(Math.random() * ((1.8 - .8) + 1));
+        this.scale = 1f + (int)(Math.random() * ((1.2 - 1) + 1));
         this.colour = null;
         this.step = -4;
     }
@@ -104,5 +104,10 @@ public class Windmill extends Powerup implements BalloonEffect {
     @Override
     public boolean isDrawnOnFront() {
         return false;
+    }
+
+    @Override
+    public boolean isReadyForDisposal() {
+        return (x < - image.getWidth()- 100);    //To change body of overridden methods use File | Settings | File Templates.
     }
 }

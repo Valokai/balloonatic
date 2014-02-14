@@ -33,7 +33,6 @@ public class MainGame extends StateBasedGame {
         addState(new MainState());
         addState(new HighScoreState());
         addState(new EnterNameState());
-        addState(new EnterCheatcodeState());
         addState(new SettingsState());
         addState(new StoryState());
         enterState(Game.STATE.MENU);

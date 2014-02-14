@@ -47,7 +47,6 @@ public class PShield extends Powerup implements BalloonEffect {
                 if (counter % 10 == 0) {
                     circle.draw(balloon.getX() - balloon.getImage().getWidth(), balloon.getY() - balloon.getImage().getWidth());
                 }
-                //counter ++;
             } else {
                 circle.draw(balloon.getX() - balloon.getImage().getWidth(), balloon.getY() - balloon.getImage().getWidth());
             }

@@ -62,7 +62,6 @@ public class Game {
         }
 
         if (scoreFont == null) {
-            // scoreFont = new TrueTypeFont(new java.awt.Font("Hyperfont", 1, 28), false);
             scoreFont = new TrueTypeFont(new java.awt.Font("Lucida Sans Typewriter", Font.BOLD, 28), true);
         }
 
@@ -100,7 +99,6 @@ public class Game {
     public static class STATE {
         public static final int STORY = 6;
         public static final int SETTINGS = 5;
-        public static final int ENTERCHEATCODE = 4;
         public static final int ENTERNAME = 3;
         public static final int HISCORE = 2;
         public static final int MAIN = 1;
@@ -111,16 +109,10 @@ public class Game {
 
         public static Sound SHIELD_POP;
 
-//        public static Sound NO;
-
-
         static {
             try {
                 SHIELD_POP = new Sound("data/sound/effects/pop.wav");
-//                NO = new Sound("data/sound/effects/no.wav");
-            } catch (SlickException e) {
-            }
-            ;
+            } catch (SlickException e) {}
         }
 
     }

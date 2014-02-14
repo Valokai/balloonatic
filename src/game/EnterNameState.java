@@ -90,7 +90,6 @@ public class EnterNameState extends BasicGameState {
         anyKeyPressed = false;
         field.setFocus(true);
         field.setConsumeEvents(false);
-//        Game.AUDIO.NO.play();
 
     }
 
@@ -115,7 +114,6 @@ public class EnterNameState extends BasicGameState {
         if (anyKeyPressed) {
             Game.SBoard.addScore(field.getText(), score);
             stateBasedGame.enterState(Game.STATE.HISCORE, new CombinedTransition(), new BlobbyTransition());
-
         }
     }
 }
