@@ -159,21 +159,23 @@ public class ScrollingHandler {
                 if (balloon.isLockLife()) {
                     balloon.setSpeed(-300);
                     if (!bubblebounce.playing()){
-                    bubblebounce.play(1,0.8f);
-                }
-                return;
-            }
-
-        } else {
-            if (collider) {
-                balloon.setLives(0);
-                if (balloon.isLockLife()) {
-                    balloon.setSpeed(-300);
-                    if (!bubblebounce.playing()){
                         bubblebounce.play(1,0.8f);
+                    }
+                    return;
+                }
+
+            } else {
+                if (collider) {
+                    balloon.setLives(0);
+                    if (balloon.isLockLife()) {
+                        balloon.setSpeed(-300);
+                        if (!bubblebounce.playing()){
+                            bubblebounce.play(1,0.8f);
+                        }
                     }
                 }
             }
+
         }
     }
 
