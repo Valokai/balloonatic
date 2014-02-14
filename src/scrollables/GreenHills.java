@@ -37,8 +37,8 @@ public class GreenHills extends Background {
                     new Vector2f(529.0f + 1400, 510.0f)
             ));
             setWindmillCoordinates(Arrays.asList(
-                    new Vector2f(100.0f + 1400, 550.0f),
-                    new Vector2f(2009.0f + 1400, 450.0f)
+                    new Vector2f(100.0f + 1400, 550.0f)
+                    //new Vector2f(2009.0f + 1400, 450.0f)
             ));
 
             setCloudCoordinates(Arrays.asList(
