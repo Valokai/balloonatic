@@ -22,9 +22,6 @@ public class DeadPlayer extends SceneObject {
     public void render(GameContainer gc, Graphics graphics) {
         super.render(gc, graphics);
         graphics.setFont(Game.scoreFont);
-
-
-
         for (int i = 0; i < Game.SBoard.scores.size(); i++){
             if(-20<(Game.SBoard.getX(i)) && Game.SBoard.getX(i)<1400){
                 Game.scoreFont.drawString(Game.SBoard.getX(i)-50, 600, Game.SBoard.showName(i));

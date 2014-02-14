@@ -33,7 +33,6 @@ public class ScrollingHandler {
     private Random random = new Random();
     private BirdFormations birdformations = new BirdFormations();
     private boolean DeadPlayersSpawned = false;
-    private int balloonbouncetimer = 3;
     private double difficulty = 0;
     private Sound bubblebounce;
 
@@ -75,12 +74,6 @@ public class ScrollingHandler {
      * @param balloon
      */
     public void printStats(Graphics g, int x, int y, Balloon balloon) {
-        //g.drawString(this.name, x, y);
-        //g.drawString("bglist: " + bglist.size(), x, y+20);
-        //g.drawString("renderlist: " + renderlist.size(), x, y+40);
-        // g.drawString("PosX(0): " + renderlist.get(0).getX(), x, y+60);
-        // g.drawString("count: " + count, x, y+80);
-
         if (renderlist.size() > 1 && renderlist.get(0).getX() < -2120) {
             if (renderlist.get(1).isCollidable()) { //if its collidable, check for collide
                 renderlist.get(1).checkCollide(name, renderlist.get(1).getX(), renderlist.get(1).getY(), g, balloon, 400, (name.equals("background")) ? 400 : 500);
@@ -123,14 +116,8 @@ public class ScrollingHandler {
         }
         renderlist.get(0).move(moveX, moveY);
 
-       // if (getRepeat() % 8 == 0 && this.name.equals("frontground")) {
-        //    if (difficulty != -0.01) difficulty = -0.01;
-
-        //}
-
         /*calculate the balloons horizontal movement if it's the collidable frontground */
         if (name.equals("frontground") || name.equals("cavefront")) {
-//            distance -= moveX / 100;
             distance -= moveX / 10;
             moveDeadPlayerText(moveX);
         }
@@ -170,21 +157,10 @@ public class ScrollingHandler {
             if (collider2) {
                 balloon.setLives(0);  //decrease the lives because they collide*/
                 if (balloon.isLockLife()) {
-                    //   if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
                     if (!bubblebounce.playing()){
-                    bubblebounce.play();
-                }
-
-              //      } else{
-               //         balloon.setSpeed(220);
-              //      }
-              //      if (balloonbouncetimer<=6){
-                    balloonbouncetimer++;
-                    //      } else{
-                    //          balloonbouncetimer=0;
-
-
+                        bubblebounce.play(1, 0.8f);
+                    }
                 }
                 return;
             }
@@ -193,25 +169,13 @@ public class ScrollingHandler {
             if (collider) {
                 balloon.setLives(0);
                 if (balloon.isLockLife()) {
-                    //       if(balloonbouncetimer<3){
                     balloon.setSpeed(-300);
                     if (!bubblebounce.playing()){
-                        bubblebounce.play();
+                        bubblebounce.play(1, 0.8f);
                     }
-//                    } else {
-//                        balloon.setSpeed(220);
-//                    }
-//                    if (balloonbouncetimer<=6){
-                    balloonbouncetimer++;
-//                    } else{
-//                        balloonbouncetimer=0;
-//                    }
-
                 }
-
             }
         }
-
     }
 
     public void spawnBirds() {
