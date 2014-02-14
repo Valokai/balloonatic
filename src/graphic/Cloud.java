@@ -18,7 +18,13 @@ public class Cloud extends Powerup implements BalloonEffect {
 
 
     public Cloud() throws SlickException {
-        super("data/image/cloud2.png");
+            super("data/image/cloud2.png");
+         if(Math.random()>.5){
+             this.setImage("data/image/cloud2.png");
+         }else{
+             this.setImage("data/image/cloud1.png");
+         }
+
         this.scale = .8f + (int)(Math.random() * ((1.8 - .8) + 1));
         this.colour = null;
         this.step = -3;

@@ -100,7 +100,8 @@ public class GreenHills extends Background {
             ));
 
             setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+                new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
+                new Vector2f( 0f + (int)(Math.random() * ((1200 - 0) + 1)) + 1400,  0f + (int)(Math.random() * ((100 - 0) + 1)))
             ));
         }
 
@@ -113,7 +114,7 @@ public class GreenHills extends Background {
 
             setWindmillCoordinates(Arrays.asList(
                     new Vector2f(100.0f + 1400, 550.0f),
-                    new Vector2f(2009.0f + 1400, 450.0f)
+                    new Vector2f(2009.0f + 1400, 650.0f)
             ));
 
             setCloudCoordinates(Arrays.asList(
