@@ -41,7 +41,6 @@ public class PCharge extends Powerup implements BalloonEffect {
                 circle.setY(balloon.getY() - balloon.getImage().getWidth());
                 graphics.fill(circle);
             }
-            //counter ++;
         } else {
             circle.setX(balloon.getX() - balloon.getImage().getWidth());
             circle.setY(balloon.getY() - balloon.getImage().getWidth());

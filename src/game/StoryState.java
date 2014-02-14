@@ -45,18 +45,11 @@ public class StoryState extends BasicGameState implements ClickListener {
 
         btnManager = new ButtonManager(this);
 
-       // btnManager.addButton(180, 50, "data/image/text/Story.png", "data/image/text/Story.png", "data/sound/critical.ogg", "btnStory");
         btnManager.addButton(350, 620, "data/buttons/back_1.png", "data/buttons/back_2.png", "data/sound/critical.ogg", "btnBack");
 
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
-    }
-
-
-    @Override
-    public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-
     }
 
     @Override
@@ -73,12 +66,7 @@ public class StoryState extends BasicGameState implements ClickListener {
         font.drawString(70,300, "terrain.");
         font.drawString(70,400, "Diago is the reigning champion, it ");
         font.drawString(70,450, "is up to you to beat him.");
-        font.drawString(70,500, "Are you a true Ballonatic?");
-
-
-
-
-
+        font.drawString(70,500, "Are you a true Balloonatic?");
     }
 
     @Override
@@ -104,14 +92,10 @@ public class StoryState extends BasicGameState implements ClickListener {
     }
 
     @Override
-    public void onRightClick(Button clicked, float mx, float my) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+    public void onRightClick(Button clicked, float mx, float my) {}
 
     @Override
-    public void onDoubleClick(Button clicked, float mx, float my) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+    public void onDoubleClick(Button clicked, float mx, float my) {}
 
     @Override
     public void keyPressed(int key, char c) {

@@ -26,7 +26,7 @@ public class FuelGauge extends Sprite {
 
     public void setState(int fuelstate) {
         this.fuelstate = fuelstate;
-        timer = 2;
+        this.timer = 2;
     }
 
 
@@ -44,7 +44,6 @@ public class FuelGauge extends Sprite {
     public void update(GameContainer gameContainer, int delta) {
         updateImage(gameContainer, delta);
     }
-
 
     /**
      * render the image

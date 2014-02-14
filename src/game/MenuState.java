@@ -45,7 +45,6 @@ public class MenuState extends BasicGameState implements ClickListener {
         btnManager.addButton(140, 400, "data/image/text/Story.png", "data/image/text/Story2.png", "data/sound/critical.ogg", "btnStory");
         btnManager.addButton(140, 500, "data/buttons/Settings_1.png", "data/buttons/Settings_2.png", "data/sound/critical.ogg", "btnSettings");
         btnManager.addButton(140, 600, "data/buttons/Quit_1.png", "data/buttons/Quit_2.png", "data/sound/critical.ogg", "btnQuit");
-        //btnManager.addButton(140, 150, "data/buttons/CheatCode_1.png", "data/buttons/CheatCode_1.png", "data/sound/critical.ogg", "btnStory");
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
         titleText = new TextGraphic(350, 150, "data/image/text/Balloonatic.png");
 
@@ -54,11 +53,6 @@ public class MenuState extends BasicGameState implements ClickListener {
             bGM.loop();
         }
 
-    }
-
-
-    @Override
-    public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
     }
 
     @Override
@@ -99,12 +93,10 @@ public class MenuState extends BasicGameState implements ClickListener {
     }
 
     @Override
-    public void onRightClick(Button clicked, float mx, float my) {
-    }
+    public void onRightClick(Button clicked, float mx, float my) {}
 
     @Override
-    public void onDoubleClick(Button clicked, float mx, float my) {
-    }
+    public void onDoubleClick(Button clicked, float mx, float my) {}
 
     @Override
     public void keyPressed(int key, char c) {

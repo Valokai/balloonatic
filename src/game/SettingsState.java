@@ -51,9 +51,7 @@ public class SettingsState extends BasicGameState implements ClickListener {
         miniBalloonMusic.setScale(.5f);
 
         btnManager = new ButtonManager(this);
-        //btnManager.addButton(80, 360, "data/buttons/learnerText_1.png", "data/buttons/learnerText_2.png", "data/sound/critical.ogg", "btnLearner");
-        btnManager
-                .addButton(80, 410, "data/buttons/pilotText_1.png", "data/buttons/pilotText_2.png", "data/sound/critical.ogg", "btnPilot");
+        btnManager.addButton(80, 410, "data/buttons/pilotText_1.png", "data/buttons/pilotText_2.png", "data/sound/critical.ogg", "btnPilot");
         btnManager.addButton(80, 460, "data/buttons/balloonaticText_1.png", "data/buttons/balloonaticText_2.png", "data/sound/critical.ogg", "btnHard");
         btnManager.addButton(500, 360, "data/buttons/on_1.png", "data/buttons/on_2.png", "data/sound/critical.ogg", "btnSoundOn");
         btnManager.addButton(500, 410, "data/buttons/off_1.png", "data/buttons/off_2.png", "data/sound/critical.ogg", "btnSoundOff");
@@ -63,12 +61,6 @@ public class SettingsState extends BasicGameState implements ClickListener {
         background = new Background(0, 0, Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT, "data/image/staticBackground.png", false);
 
         particleManager.addParticle("data/particles/emitter.xml", "data/particles/particle.png");
-    }
-
-
-    @Override
-    public void enter(GameContainer gameContainer, final StateBasedGame stateBasedGame) throws SlickException {
-
     }
 
     @Override
@@ -110,41 +102,28 @@ public class SettingsState extends BasicGameState implements ClickListener {
             Game.music = false;
             MenuState.bGM.stop();
             //switch music off
-
         }
 
         if (clicked == btnManager.getById("btnHard")) {
             miniBalloonDiff.setY(470f);
             //do something to affect difficulty
-
         }
-
-        //if (clicked == btnManager.getById("btnLearner")) {
-            //miniBalloonDiff.setY(360f);
-            //do something to affect difficulty
-
-       // }
 
         if (clicked == btnManager.getById("btnPilot")) {
             miniBalloonDiff.setY(410f);
-            //do something to affect difficulty
-
         }
 
         if (clicked == btnManager.getById("btnBack")) {
             stateBasedGame.enterState(Game.STATE.MENU, new CombinedTransition(), new BlobbyTransition());
-
         }
     }
 
     @Override
     public void onRightClick(Button clicked, float mx, float my) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void onDoubleClick(Button clicked, float mx, float my) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
