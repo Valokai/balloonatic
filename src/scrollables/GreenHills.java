@@ -157,9 +157,8 @@ public class GreenHills extends Background {
             )); */
 
             setCloudCoordinates(Arrays.asList(
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1))),
-                    new Vector2f( 0f + (int)(Math.random() * ((1000 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+                    new Vector2f( 0f + (int)(Math.random() * ((700 - 0) + 1)) + 1400,  20f + (int)(Math.random() * ((100 - 20) + 1)))
+
             ));
         }
     }
