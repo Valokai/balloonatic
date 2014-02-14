@@ -27,7 +27,7 @@ public class Cloud extends Powerup implements BalloonEffect {
 
         this.scale = .8f + (int)(Math.random() * ((1.8 - .8) + 1));
         this.colour = null;
-        this.step = -3;
+        this.step = -2;
     }
 
 
